@@ -1,0 +1,223 @@
+PCYNLITX_RELEASE_PACKAGES=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES
+DEBIAN_RELEASE=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/DEBIAN_RELEASE
+UBUNTU_RELEASE=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/UBUNTU_RELEASE
+FEDORA_RELEASE=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/FEDORA_RELEASE
+
+DEBIAN_PACKAGE=$DEBIAN_RELEASE/pcynlitx_debian
+UBUNTU_PACKAGE=$UBUNTU_RELEASE/pcynlitx_ubuntu
+FEDORA_PACKAGE=$FEDORA_RELEASE/pcynlitx_fedora
+
+DEBIAN_CONTROL_DIR=$DEBIAN_PACKAGE/DEBIAN
+UBUNTU_CONTROL_DIR=$UBUNTU_PACKAGE/DEBIAN
+
+DEBIAN_USER_DIR=$DEBIAN_PACKAGE/usr
+UBUNTU_USER_DIR=$UBUNTU_PACKAGE/usr
+FEDORA_USER_DIR=$FEDORA_PACKAGE/usr
+
+DEBIAN_USER_BIN=$DEBIAN_USER_DIR/bin
+UBUNTU_USER_BIN=$UBUNTU_USER_DIR/bin
+FEDORA_USER_BIN=$FEDORA_USER_DIR/bin
+
+DEBIAN_USER_SHARE=$DEBIAN_USER_DIR/share
+UBUNTU_USER_SHARE=$UBUNTU_USER_DIR/share
+FEDORA_USER_SHARE=$FEDORA_USER_DIR/share
+
+DEBIAN_USER_SHARE_DOC=$DEBIAN_USER_SHARE/doc
+UBUNTU_USER_SHARE_DOC=$UBUNTU_USER_SHARE/doc
+FEDORA_USER_SHARE_DOC=$FEDORA_USER_SHARE/doc
+
+DEBIAN_USER_SHARE_PCYNLITX=$DEBIAN_USER_SHARE/Pcynlitx
+UBUNTU_USER_SHARE_PCYNLITX=$UBUNTU_USER_SHARE/Pcynlitx
+FEDORA_USER_SHARE_PCYNLITX=$FEDORA_USER_SHARE/Pcynlitx
+
+DEBIAN_USER_SHARE_PCYNLITX_APP=$DEBIAN_USER_SHARE_PCYNLITX/applications
+UBUNTU_USER_SHARE_PCYNLITX_APP=$UBUNTU_USER_SHARE_PCYNLITX/applications
+FEDORA_USER_SHARE_PCYNLITX_APP=$FEDORA_USER_SHARE/applications
+
+DEBIAN_USER_SHARE_PCYNLITX_ICONS=$DEBIAN_USER_SHARE_PCYNLITX/icons
+UBUNTU_USER_SHARE_PCYNLITX_ICONS=$UBUNTU_USER_SHARE_PCYNLITX/icons
+FEDORA_USER_SHARE_PCYNLITX_ICONS=$FEDORA_USER_SHARE_PCYNLITX/icons
+
+
+
+# Packages main directory construction
+
+if [ ! -e "$PCYNLITX_RELEASE_PACKAGES" ]
+then
+  mkdir $PCYNLITX_RELEASE_PACKAGES
+fi
+
+
+# The construction of distro-specific directores
+
+if [ ! -e "$DEBIAN_RELEASE" ]
+then
+  mkdir $DEBIAN_RELEASE
+fi
+
+if [ ! -e "$UBUNTU_RELEASE" ]
+then
+  mkdir $UBUNTU_RELEASE
+fi
+
+if [ ! -e "$FEDORA_RELEASE" ]
+then
+  mkdir $FEDORA_RELEASE
+fi
+
+
+# The construction of package directores
+
+if [ ! -e "$DEBIAN_PACKAGE" ]
+then
+  mkdir $DEBIAN_PACKAGE
+fi
+
+if [ ! -e "$UBUNTU_PACKAGE" ]
+then
+  mkdir $UBUNTU_PACKAGE
+fi
+
+if [ ! -e "$FEDORA_PACKAGE" ]
+then
+  mkdir $FEDORA_PACKAGE
+fi
+
+
+# Control directory constructions for debian and ubuntu distros
+
+if [ ! -e "$DEBIAN_CONTROL_DIR" ]
+then
+  mkdir $DEBIAN_CONTROL_DIR
+fi
+
+if [ ! -e "$UBUNTU_CONTROL_DIR" ]
+then
+  mkdir $UBUNTU_CONTROL_DIR
+fi
+
+
+# The construction of user directories
+
+if [ ! -e "$DEBIAN_USER_DIR" ]
+then
+  mkdir $DEBIAN_USER_DIR
+fi
+
+if [ ! -e "$UBUNTU_USER_DIR" ]
+then
+  mkdir $UBUNTU_USER_DIR
+fi
+
+if [ ! -e "$FEDORA_USER_DIR" ]
+then
+  mkdir $FEDORA_USER_DIR
+fi
+
+
+# The construction of /usr/bin
+
+if [ ! -e "$DEBIAN_USER_BIN" ]
+then
+  mkdir $DEBIAN_USER_BIN
+fi
+
+if [ ! -e "$UBUNTU_USER_BIN" ]
+then
+  mkdir $UBUNTU_USER_BIN
+fi
+
+if [ ! -e "$FEDORA_USER_BIN" ]
+then
+  mkdir $FEDORA_USER_BIN
+fi
+
+
+# The construction of /usr/share
+
+if [ ! -e "$DEBIAN_USER_SHARE" ]
+then
+  mkdir $DEBIAN_USER_SHARE
+fi
+
+if [ ! -e "$UBUNTU_USER_SHARE" ]
+then
+  mkdir $UBUNTU_USER_SHARE
+fi
+
+if [ ! -e "$FEDORA_USER_SHARE" ]
+then
+  mkdir $FEDORA_USER_SHARE
+fi
+
+
+# The construction of /usr/share/doc
+
+if [ ! -e "$DEBIAN_USER_SHARE_DOC" ]
+then
+  mkdir $DEBIAN_USER_SHARE_DOC
+fi
+
+if [ ! -e "$UBUNTU_USER_SHARE_DOC" ]
+then
+  mkdir $UBUNTU_USER_SHARE_DOC
+fi
+
+if [ ! -e "$FEDORA_USER_SHARE_DOC" ]
+then
+  mkdir $FEDORA_USER_SHARE_DOC
+fi
+
+
+# The construction of /usr/share/Pcynlitx
+
+if [ ! -e "$DEBIAN_USER_SHARE_PCYNLITX" ]
+then
+  mkdir $DEBIAN_USER_SHARE_PCYNLITX
+fi
+
+if [ ! -e "$UBUNTU_USER_SHARE_PCYNLITX" ]
+then
+  mkdir $UBUNTU_USER_SHARE_PCYNLITX
+fi
+
+if [ ! -e "$FEDORA_USER_SHARE_PCYNLITX" ]
+then
+  mkdir $FEDORA_USER_SHARE_PCYNLITX
+fi
+
+
+# The construction of /usr/share/Pcynlitx/applications
+
+if [ ! -e "$DEBIAN_USER_SHARE_PCYNLITX_APP" ]
+then
+  mkdir $DEBIAN_USER_SHARE_PCYNLITX_APP
+fi
+
+if [ ! -e "$UBUNTU_USER_SHARE_PCYNLITX_APP" ]
+then
+  mkdir $UBUNTU_USER_SHARE_PCYNLITX_APP
+fi
+
+if [ ! -e "$FEDORA_USER_SHARE_PCYNLITX_APP" ]
+then
+  mkdir $FEDORA_USER_SHARE_PCYNLITX_APP
+fi
+
+
+# The construction of /usr/share/Pcynlitx/icons
+
+if [ ! -e "$DEBIAN_USER_SHARE_PCYNLITX_ICONS" ]
+then
+  mkdir $DEBIAN_USER_SHARE_PCYNLITX_ICONS
+fi
+
+if [ ! -e "$UBUNTU_USER_SHARE_PCYNLITX_ICONS" ]
+then
+  mkdir $UBUNTU_USER_SHARE_PCYNLITX_ICONS
+fi
+
+if [ ! -e "$FEDORA_USER_SHARE_PCYNLITX_ICONS" ]
+then
+  mkdir $FEDORA_USER_SHARE_PCYNLITX_ICONS
+fi

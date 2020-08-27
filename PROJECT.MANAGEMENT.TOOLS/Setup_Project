@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# This file construct package management tools in to the project directory
+
+# HFL : Project Header Files Location
+# OFL : Project Object Files location
+# PLL : Project Library location
+# PLN : Project Library Name
+
+HFL=~/PCYNLITX.PROJECT.LIBRARY/PROJECT.HEADER.FILES
+OFL=~/PCYNLITX.PROJECT.LIBRARY/PROJECT.LIBRARY/OBJECT.FILES
+PLL=~/PCYNLITX.PROJECT.LIBRARY/PROJECT.LIBRARY
+PLN=mptools
+
+Make_File_Builder $HFL $OFL $PLL $PLN s
+
+Modification_Control_Script_Builder $HFL $OFL

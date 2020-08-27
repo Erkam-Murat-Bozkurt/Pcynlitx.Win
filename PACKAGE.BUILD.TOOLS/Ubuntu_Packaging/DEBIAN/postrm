@@ -1,0 +1,52 @@
+#!/bin/sh
+
+cd /usr/bin
+
+if [ -e "Description_Printer" ]
+then
+  sudo rm -r Description_Printer
+fi
+
+if [ -e "Description_Recorder" ]
+then
+  sudo rm -r Description_Recorder
+fi
+
+if [ -e "Descriptor_File_Reader" ]
+then
+  sudo rm -r Descriptor_File_Reader
+fi
+
+if [ -e "Empty_Process_Descriptor_File_Builder" ]
+then
+  sudo rm -r Empty_Process_Descriptor_File_Builder
+fi
+
+if [ -e "MT_Project_Builder" ]
+then
+  sudo rm -r MT_Project_Builder
+fi
+
+if [ -e "Pcynlitx_Kernel" ]
+then
+  sudo rm -r Pcynlitx_Kernel
+fi
+
+if [ -e "Pcynlitx" ]
+then
+  sudo rm -r Pcynlitx
+fi
+
+cd /usr/share/applications
+
+if [ -e "pcynlitx.desktop" ]
+then
+  sudo rm -r pcynlitx.desktop
+fi
+
+cd /usr/share/
+
+if [ -e "Pcynlitx" ]
+then
+  sudo rm -r Pcynlitx
+fi

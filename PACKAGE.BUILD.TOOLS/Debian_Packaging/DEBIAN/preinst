@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc
+
+sudo apt-add-repository 'deb http://repos.codelite.org/wx3.1.2/debian/ buster libs'
+
+sudo apt-get update -y
+

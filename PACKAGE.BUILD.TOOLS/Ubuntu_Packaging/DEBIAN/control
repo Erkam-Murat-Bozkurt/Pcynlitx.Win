@@ -1,0 +1,11 @@
+Package: Pcynlitx
+Source: Pcynlitx
+Version: 1.0
+Section: Base
+Priority: optional
+Architecture:all
+Depends: libwxbase3.0-0v5, libwxbase3.0-dev, libwxgtk3.0-0v5, libwxgtk3.0-dev, libwxgtk3.0-gtk3-0v5, libwxgtk3.0-gtk3-dev, wx3.0-headers, wx3.0-i18n, wx-common, fonts-liberation, fonts-linuxlibertine
+Maintainer: Erkam Murat Bozkurt <pcynlitx.help@gmail.com>
+Description: An intelligent integrated development environment.
+ Pcynlitx is a free and open source ide. Pcynlitx is an intelligent integrated development environment that build application-specific multi-threading libraries according to your needs.
+Homepage: www.pcynlitx.tech

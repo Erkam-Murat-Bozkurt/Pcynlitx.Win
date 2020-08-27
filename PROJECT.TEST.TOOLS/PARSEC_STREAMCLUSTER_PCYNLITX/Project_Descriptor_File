@@ -1,0 +1,153 @@
+
+ PROCESS DESCRIPTOR FILE
+
+ Description [Header_File_Locations]
+ {
+    [1] /home/erkam/PARSEC_STREAMCLUSTER_PCYNLITX
+
+
+ }
+
+
+ Description [Source_File_Locations]
+ {
+    [1] /home/erkam/PARSEC_STREAMCLUSTER_PCYNLITX
+
+
+ }
+
+
+ Description [Library_Locations]
+ {
+
+
+ }
+
+
+ Description [Header_File_Names]
+ {
+    Header File Number [1] - File Location [1] - address_holder.h
+
+
+ }
+
+
+ Description [Source_File_Names]
+ {
+    Source File Number [1] - File Location [1] - address_holder.cpp
+
+
+ }
+
+
+ Description [Library_Names]
+ {
+
+
+ }
+
+
+ Description [Main_File_Name]
+ {
+    main.cpp
+
+
+ }
+
+
+ Description [Project_Executable_File_Name]
+ {
+
+
+ }
+
+
+ Description [Inter_Thread_Class_Header_File_Names]
+ {
+    Class Number [1] - File Location [1] - address_holder.h
+
+
+ }
+
+
+ Description [Inter_Thread_Class_Names]
+ {
+    [1] address_holder
+
+
+ }
+
+
+ Description [Inter_Thread_Class_Instance_Names]
+ {
+    [1] address_holder_IT
+
+
+ }
+
+
+ Description [Inter_Thread_Data_Types]
+ {
+
+
+ }
+
+
+ Description [Inter_Thread_Data_Type_Header_File_Names]
+ {
+
+
+ }
+
+
+ Description [Inter_Thread_Data_Type_Pointer_Names]
+ {
+
+
+ }
+
+
+ Description [Construction_Point]
+ {
+    /home/erkam/PARSEC_STREAMCLUSTER_PCYNLITX
+
+
+ }
+
+
+ Description [Server_Class_Name]
+ {
+    Thread_Server
+
+
+ }
+
+
+ Description [Thread_Number]
+ {
+    128
+
+
+ }
+
+
+ Description [Thread_Function_Names]
+ {
+    localSearchSub
+
+
+ }
+
+
+ Description [Namespace]
+ {
+
+
+ }
+
+
+ Description [OpenMP_Support]
+ {
+
+
+ }

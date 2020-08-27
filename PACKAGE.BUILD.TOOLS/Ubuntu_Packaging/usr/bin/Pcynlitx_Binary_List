@@ -1,0 +1,25 @@
+#!/bin/sh
+
+
+printf "\n   # PCYNLITX PROJECT BINARY FILES LIST \n\n"
+
+
+printf "\n   Pcynlitx : Executable for GUI \n"
+
+
+printf "\n   Pcynlitx_Kernel : Executable for library construction \n"
+
+
+printf "\n   Pcynlitx_Kernel : Executable for library construction \n"
+
+
+printf "\n   Empty_Process_Descriptor_File_Builder : Descriptor file builder \n"
+
+
+printf "\n   Description_Printer : Prints your descrition to the screen \n"
+
+
+printf "\n   Description_Recorder : Records your description to the descriptor file \n"
+
+
+printf "\n   Descriptor_File_Reader : Reads your descriptions from descriptor file \n"

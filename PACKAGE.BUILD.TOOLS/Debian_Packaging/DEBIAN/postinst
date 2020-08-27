@@ -1,0 +1,55 @@
+#!/bin/sh
+
+cd ../usr/share/Pcynlitx/applications
+
+sudo cp pcynlitx.desktop /usr/share/applications
+
+sudo chmod 0777 /usr/share/Pcynlitx/applications/pcynlitx.desktop
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/archive.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/build_executable.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/close.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/close_tab.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/empty_project_file.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/file.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/file_save.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/folder.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/help_documents.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/open_terminal.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/open_tree_view.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/pcynlitx.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/print_descriptions.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/select_project_file.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/icons/pane_close_icon.png
+
+sudo chmod 0777 /usr/share/Pcynlitx/Intro_File.png
+
+sudo chmod 0777 /usr/bin/Description_Printer
+
+sudo chmod 0777 /usr/bin/Description_Recorder
+
+sudo chmod 0777 /usr/bin/Descriptor_File_Reader
+
+sudo chmod 0777 /usr/bin/Empty_Process_Descriptor_File_Builder
+
+sudo chmod 0777 /usr/bin/MT_Project_Builder
+
+sudo chmod 0777 /usr/bin/Pcynlitx
+
+sudo chmod 0777 /usr/bin/Pcynlitx_Kernel
+
+sudo chmod 0777 /usr/share/Pcynlitx/doc/Copyright

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Pcynlitx
+GenericName=Library builder
+Comment=An intelligent multithread library generator
+Icon=/usr/share/Pcynlitx/icons/pcynlitx.png
+Exec=/usr/bin/Pcynlitx
+StartupNotify=true
+MimeType=text/plain;
+Categories=Development;
+Name[tr_TR]=Pcynlitx
