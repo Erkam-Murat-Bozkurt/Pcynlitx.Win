@@ -24,6 +24,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 Cpp_FileOperations::Cpp_FileOperations(){
 
+     this->File_line_Number = 0;
+
    // Constructor Function
 };
 
@@ -178,4 +180,96 @@ bool Cpp_FileOperations::Control_End_of_File(){
      this->End_Of_File_Condition = this->DataFile.eof();
 
      return this->End_Of_File_Condition;
+}
+
+void Cpp_FileOperations::CpFile(char * path, char * target_path){
+
+     this->Determine_Base_File_Size(path);
+
+     this->Receive_File(path);
+
+     this->Record_File(target_path);
+}
+
+void Cpp_FileOperations::MoveFile_Win(char * path, char * target_path){
+
+     this->CpFile(path,target_path);
+
+     int test = DeleteFileA(path);
+
+     if(test == 0){
+
+        std::cout << "\n Th file stay in " << path << " can not be removed .." ;
+
+        exit(0);
+     }
+}
+
+void Cpp_FileOperations::Receive_File(char * path){
+
+     this->File_Index = new char * [5*this->File_line_Number];
+
+     this->SetFilePath(path);
+
+     this->FileOpen(Rf);
+
+     int line_index = 0;
+
+     do{
+           std::string string_line = this->ReadLine();
+
+           int line_size = string_line.length();
+
+           this->File_Index[line_index] = new char [5*line_size];
+
+           for(int i=0;i<line_size;i++){
+
+               this->File_Index[line_index][i] = string_line[i];
+           }
+
+           this->File_Index[line_index][line_size] = '\0';
+
+           line_index++;
+
+     }while(!this->Control_End_of_File());
+
+     this->FileClose();
+}
+
+void Cpp_FileOperations::Determine_Base_File_Size(char * path){
+
+      this->File_line_Number = 0;
+
+      this->SetFilePath(path);
+
+      this->FileOpen(Rf);
+
+      do {
+
+          std::string string_line = this->ReadLine();
+
+          this->File_line_Number++;
+
+     }while(!this->Control_End_of_File());
+
+     this->FileClose();
+}
+
+void Cpp_FileOperations::Record_File(char * target_path){
+
+     this->SetFilePath(target_path);
+
+     this->FileOpen(RWCf);
+
+     for(int  i=0;i<this->File_line_Number;i++){
+
+         this->WriteToFile(this->File_Index[i]);
+
+         if(i < (this->File_line_Number-1)){
+
+            this->WriteToFile("\n");
+         }
+     }
+
+     this->FileClose();
 }

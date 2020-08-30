@@ -12,7 +12,12 @@
 #include <fstream>
 #include <string>
 #include <fcntl.h>
-#include <sys/sendfile.h>
+#include <winbase.h>
+#include <Windows.h>
+#include "Cpp_FileOperations.h"
+#include <tchar.h>
+
+#define BUFSIZE MAX_PATH
 
 class Class_Compiler
 {
@@ -35,6 +40,7 @@ private:
  void Send_File(char * Target_Location, char * Base_Location);
  std::fstream DataFile;
  std::string String_Line;
+ Cpp_FileOperations FileManager;
  char * Class_Name;
  char * Class_Source_File_Name;
  char * Class_Header_File_Name;

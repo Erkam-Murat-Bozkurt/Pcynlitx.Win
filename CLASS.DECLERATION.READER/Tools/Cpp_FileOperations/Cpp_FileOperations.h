@@ -9,6 +9,7 @@
 #include <cstring>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <windows.h>
 
 
 
@@ -40,6 +41,8 @@ public:
  void SetFilePath(std::string FilePATH);
  void SetFilePath(char * String);
  void SetFilePath(const char * String);
+ void CpFile(char * path, char * target_path);
+ void MoveFile_Win(char * path, char * target_path);  // Transfer file to another location in windows
  void FileOpen(char Open_Mode);
  void FileClose( );
  void WriteToFile(std::string string_list);
@@ -48,11 +51,16 @@ public:
  bool Control_End_of_File();
  std::string Read();
  std::string ReadLine();
+ void Determine_Base_File_Size(char * path);
+ void Receive_File(char * path);
+ void Record_File(char * path);
 private:
  std::fstream DataFile;
  std::string String_Line;
  std::string string_word;
  std::string FilePath;
+ char ** File_Index;
+ int File_line_Number;
  char Open_Mode_Determiner;
  int  FileDeleteCondition;
  bool isFilePathReceive;

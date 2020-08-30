@@ -13,11 +13,13 @@
 
      std::cout << "\n numbers:" << numbers;
 
-     char PATH [] = "Sample";
+     char PATH [] = "Sample.txt";
+
+     char TARGET_PATH [] = "Target.txt";
 
      FileManager.SetFilePath(PATH);
 
-     FileManager.FileOpen(RWC);
+     FileManager.FileOpen(RWCf);
 
      FileManager.WriteToFile(" Hello world ..!\n");
 
@@ -25,27 +27,7 @@
 
      FileManager.FileClose();
 
-     FileManager.FileOpen(R);
-
-     std::cout << "\n The File index :\n";
-
-     while(!FileManager.Control_End_of_File()){
-
-           std::cout  << FileManager.ReadLine();
-     }
-
-     FileManager.FileClose();
-
-     FileManager.FileOpen(R);
-
-     while(!FileManager.Control_End_of_File()){
-
-           std::cout  << FileManager.Read();
-
-           std::cout << " ";
-     }
-
-     FileManager.FileClose();
+     FileManager.CopyFile(PATH,TARGET_PATH);
 
      std::cout << "\n\n The end of the program ..\n\n";
 

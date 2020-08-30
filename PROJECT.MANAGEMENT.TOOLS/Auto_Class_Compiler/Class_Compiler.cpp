@@ -132,6 +132,10 @@ void Class_Compiler::Compile_Class(char * Header_Files_Directory, char * Object_
 
      this->Determine_Compiler_System_Command(Header_Files_Directory,Object_Files_Directory,Library_Name);
 
+     std::cout << "\n this->Compiler_System_Command:" << this->Compiler_System_Command;
+
+     std::cin.get();
+
      system(this->Compiler_System_Command);
 
      this->Copy_Header_File(Header_Files_Directory);
@@ -141,7 +145,13 @@ void Class_Compiler::Compile_Class(char * Header_Files_Directory, char * Object_
 
 void Class_Compiler::Find_Class_Name(){
 
-     char * Current_Directory = get_current_dir_name();
+     CHAR Buffer[BUFSIZE];
+
+     DWORD dwRet;
+
+     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+
+     char * Current_Directory = Buffer;
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -149,7 +159,7 @@ void Class_Compiler::Find_Class_Name(){
 
      for(int i=Directory_Name_Size;i>0;i--){
 
-         if(Current_Directory[i] == '/'){
+         if(Current_Directory[i] == '\\'){
 
             Start_Point = i;
 
@@ -216,8 +226,6 @@ void Class_Compiler::Find_Class_Name(){
      this->Class_Source_File_Name[Class_Name_Size+3] = 'p';
 
      this->Class_Source_File_Name[Class_Name_Size+4] = '\0';
-
-     free(Current_Directory);
 }
 
 void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Directory, char * Object_Files_Directory, char * Library_Name){
@@ -228,7 +236,7 @@ void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Direc
 
      char Source_File_Directory_Character [] = {'-','L','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char include_word [] = {'-','i','n','c','l','u','d','e','\0'};
 
@@ -236,7 +244,13 @@ void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Direc
 
      char Linker_Character [] = {'-','l','\0'};
 
-     char * Current_Directory = get_current_dir_name();
+     CHAR Buffer[BUFSIZE];
+
+     DWORD dwRet;
+
+     dwRet =  GetCurrentDirectory(BUFSIZE, Buffer);
+
+     char * Current_Directory = Buffer;
 
      int Include_Directory_Name_Size = strlen(Header_Files_Directory);
 
@@ -312,8 +326,6 @@ void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Direc
      }
 
      this->Compiler_System_Command[index_counter] = '\0';
-
-     free(Current_Directory);
 }
 
 void Class_Compiler::Determine_Included_Header_Files_Number(){
@@ -465,7 +477,13 @@ void Class_Compiler::Copy_Header_File(char * Header_Files_Directory){
 
      char Space_Character [] = {' ','\0'};
 
-     char * Current_Directory = get_current_dir_name();
+     CHAR Buffer[BUFSIZE];
+
+     DWORD dwRet;
+
+     dwRet =  GetCurrentDirectory(BUFSIZE, Buffer);
+
+     char * Current_Directory = Buffer;
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -493,9 +511,7 @@ void Class_Compiler::Copy_Header_File(char * Header_Files_Directory){
 
      Header_File_Copy_Path[index_counter] = '\0';
 
-     unlink(Header_File_Copy_Path);
-
-     link(Header_File_Full_Path,Header_File_Copy_Path);
+     this->FileManager.CpFile(Header_File_Full_Path,Header_File_Copy_Path);
 
      free(Current_Directory);
 
@@ -506,11 +522,17 @@ void Class_Compiler::Copy_Header_File(char * Header_Files_Directory){
 
 void Class_Compiler::Send_Object_File(char * Object_Files_Directory){
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Space_Character [] = {' ','\0'};
 
-     char * Current_Directory = get_current_dir_name();
+     char Buffer[BUFSIZE];
+
+     DWORD dwRet;
+
+     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+
+     char * Current_Directory = Buffer;
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -538,13 +560,7 @@ void Class_Compiler::Send_Object_File(char * Object_Files_Directory){
 
      Object_File_Copy_Path[index_counter] = '\0';
 
-     unlink(Object_File_Copy_Path);
-
-     this->Send_File(Object_File_Copy_Path,Object_File_Full_Path);
-
-     int return_value = unlink(Object_File_Full_Path);
-
-     free(Current_Directory);
+     this->FileManager.MoveFile_Win(Object_File_Full_Path, Object_File_Copy_Path);
 
      delete [] Object_File_Full_Path;
 
@@ -584,34 +600,7 @@ bool Class_Compiler::Include_Line_Determiner(std::string String_Line){
 
 void Class_Compiler::Send_File(char * Target_Location, char * Base_Location){
 
-     int read_fd;
-
-     int write_fd;
-
-     struct stat stat_buf;
-
-     off_t offset = 0;
-
-     /* Open the input file. */
-
-     read_fd = open (Base_Location, O_RDONLY);
-
-     /* Stat the input file to obtain its size. */
-
-     fstat (read_fd, &stat_buf);
-     /* Open the output file for writing, with the same permissions as the source file. */
-
-     write_fd = open (Target_Location, O_WRONLY | O_CREAT, stat_buf.st_mode);
-
-     /* Blast the bytes from one file to the other. */
-
-     sendfile (write_fd, read_fd, &offset, stat_buf.st_size);
-
-     /* Close up. */
-
-     close (read_fd);
-
-     close (write_fd);
+     this->FileManager.CpFile(Base_Location,Target_Location);
 }
 
 void Class_Compiler::Place_Information(char ** Pointer, char * Information, int * index_counter){

@@ -9,11 +9,11 @@ int main(int argc, char ** argv){
 
     Class_Compiler Compiler;
 
-    const char * Project_Header_Files_Location = "D:\\PCYNLITX.PROJECT.LIBRARY\\PROJECT.HEADER.FILES";
+    const char * Project_Header_Files_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.HEADER.FILES";
 
-    const char * Object_Files_Location = "D:\\PCYNLITX.PROJECT.LIBRARY\\PROJECT.LIBRARY/OBJECT.FILES";
+    const char * Object_Files_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY\\OBJECT.FILES";
 
-    const char * Project_Library_Location = "D:\\PCYNLITX.PROJECT.LIBRARY\\PROJECT.LIBRARY";
+    const char * Project_Library_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY";
 
     const char * Project_Library_Name = "mptools";
 
