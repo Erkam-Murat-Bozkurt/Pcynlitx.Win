@@ -2,10 +2,10 @@
 #ifndef STRINGOPERATOR_H
 #define STRINGOPERATOR_H
 
-#include <CFileOperations.h>
-#include <Cpp_FileOperations.h>
-#include <CharOperator.h>
 #include <cstring>
+#include "Cpp_FileOperations.h"
+#include "CharOperator.h"
+
 
 class StringOperator
 {
@@ -31,7 +31,6 @@ public:
  char * GetStringBuffer();
 private:
  CharOperator CharacterOperations;
- CFileOperations FileManager;
  Cpp_FileOperations Cpp_File_Manager;
  int Word_Count;
  int wordPosition;

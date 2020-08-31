@@ -20,8 +20,6 @@
 #define RWf  'x'     // Open the file for both reading and writing.
                      // The stream is positioned at the start of the file.
 
-
-
 #define RWCf   'b'    // Open the file for both reading and writing. If the file exists,
                       //  it is truncated to zero length.
                       // If the file does not exist, it is created.
@@ -51,14 +49,19 @@ public:
  bool Control_End_of_File();
  std::string Read();
  std::string ReadLine();
+ char * ReadLine_as_Cstring();
  void Determine_Base_File_Size(char * path);
  void Receive_File(char * path);
  void Record_File(char * path);
+ char * Conver_Std_String_To_Char(std::string string_line);
+ void Clear_Dynamic_Memory();
 private:
  std::fstream DataFile;
  std::string String_Line;
  std::string string_word;
  std::string FilePath;
+ bool Memory_Delete_Condition;
+ char * CString;
  char ** File_Index;
  int File_line_Number;
  char Open_Mode_Determiner;

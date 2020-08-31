@@ -1,0 +1,8 @@
+
+[START]  TEST File
+
+int IntegerSum(int integers);
+
+void DoubleMultiply(double a, double b);
+
+[END]

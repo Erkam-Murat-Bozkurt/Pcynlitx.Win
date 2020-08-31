@@ -2,23 +2,26 @@
 #include <iostream>
 #include <cstring>
 #include "CharOperator.h"
-#include "CFileOperations.h"
 
 
 int main(){
 
     const char * method = "int IntegerSum(int integers);";
 
-    char * pointer = new char[strlen(method)];
+    int string_size = strlen(method);
 
-    for(int i=0;i<strlen(method);i++){
+    char * pointer = new char[5*string_size];
+
+    for(int i=0;i<string_size;i++){
 
         pointer[i]=method[i];
     }
 
+    pointer[string_size] = '\0';
+
     CharOperator CPr;
 
-    CPr.SetFilePath("MethodReaderMetaData");
+    CPr.SetFilePath("CharOperator_Test.txt");
 
     char name[] = {'\0'};
 
@@ -38,21 +41,21 @@ int main(){
 
     int lineNumber = 0;
 
-    lineNumber = CPr.FindTheSpecificWordLine("END");
+    lineNumber = CPr.FindTheSpecificWordLine("[END]");
 
     std::cout << "\n The line number:" << lineNumber;
-    std::cin.get();
+
     std::cin.get();
 
     int TotalMethodNumber = CPr.DetermineTotalMethodNumber( );
 
     std::cout << "\n TotalMethodNumber :" <<  TotalMethodNumber;
 
-    char line[100];
+    char line[200];
 
     std::cout << "\n Enter a line :";
 
-    std::cin.getline(line,100);
+    std::cin.getline(line,200);
 
     std::cout << "\n The legth of the line: " << CPr.CharListLength(line);
 
@@ -61,6 +64,7 @@ int main(){
     char sample;
 
     std::cout << "\n Enter a character for that line for reputation :";
+
     std::cin  >> sample;
 
     std::cout << "\n The reputation:" << CPr.DetermineCharacterRepitation(line,sample);

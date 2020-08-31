@@ -24,7 +24,9 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 CharOperator::CharOperator(){
 
-     this->Memory_Delete_Condition = false;
+   this->String_Buffer = nullptr;
+
+   this->Memory_Delete_Condition = false;
 }
 
 CharOperator::CharOperator(const CharOperator &orig){
@@ -33,25 +35,20 @@ CharOperator::CharOperator(const CharOperator &orig){
 
 CharOperator::~CharOperator(){
 
-     if(!this->Memory_Delete_Condition){
-
-         this->FileManager.Clear_Dynamic_Memory();
-     }
 }
 
 void CharOperator::Clear_Dynamic_Memory(){
 
      if(!this->Memory_Delete_Condition){
 
-         this->Memory_Delete_Condition = true;
+         if(this->String_Buffer != nullptr){
 
-         this->FileManager.Clear_Dynamic_Memory();
+            delete [] this->String_Buffer;
+         }
      }
 }
 
 void CharOperator::SetFilePath(const char * TargetFile){
-
-     this->Memory_Delete_Condition = false;
 
      this->FileManager.SetFilePath(TargetFile);
 }
@@ -62,7 +59,7 @@ int CharOperator::DetermineTotalMethodNumber(){
 
     int TheFileEND = this->FindTheSpecificWordLine("END");
 
-    this->FileManager.FileOpen(R);
+    this->FileManager.FileOpen(Rf);
 
     char * pointer;
 
@@ -73,7 +70,7 @@ int CharOperator::DetermineTotalMethodNumber(){
 
     for(int i=0;i<TheFileEND;i++){
 
-        pointer = this->FileManager.ReadLine();
+        pointer = this->Conver_Std_String_To_Char(this->FileManager.ReadLine());
 
         condition = this->CharacterCheck(pointer,'(');
 
@@ -86,16 +83,6 @@ int CharOperator::DetermineTotalMethodNumber(){
     this->FileManager.FileClose();
 
     return this->TotalMethodNumber;
-}
-
-void CharOperator::ForwardFilePointer(CFileOperations * FileManager,int stepSize){
-
-    char * pointer;
-
-    for(int i=0;i<stepSize-1;i++){
-
-        pointer = FileManager->ReadLine();
-    }
 }
 
 void CharOperator::ForwardFilePointer(Cpp_FileOperations * FileManager,int stepSize){
@@ -126,7 +113,6 @@ int CharOperator::FindNextCharacterPositon(char * targetList,int startPoint, cha
 
               break;
           }
-
      };
 
      this->CharacterPosition = Position;
@@ -153,44 +139,29 @@ int CharOperator::DetermineCharacterRepitation(char * listPointer, char characte
 
 int CharOperator::FindTheSpecificWordLine(std::string word){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      this->WordPosition = 0;
 
-     char * pointer;
-
      std::string buffer = " ";
 
-     while(buffer != word){
+     while(true){
+
+           buffer = this->FileManager.ReadLine();
+
+           if(buffer != word){
+
+              break;
+           }
+
+           bool end_of_file = this->FileManager.Control_End_of_File();
+
+           if(end_of_file){
+
+              break;
+           }
 
            this->WordPosition++;
-
-           // This pointer indicates a specific line in a file includes a specific word
-
-           pointer = this->FileManager.ReadLine();
-
-           int i=0;
-
-           while (pointer[i]== ' ') {
-
-               i++;
-           };
-
-           int MemoryNeed = strlen(pointer)+1;
-
-           char read_word [2*MemoryNeed];
-
-           for(int k=0;k<MemoryNeed;k++){
-
-              read_word[k] = '\0';
-           }
-
-           for(int k=0;k < MemoryNeed;k++){
-
-              read_word[k]=pointer[k+i];
-           }
-
-           buffer = (std::string) read_word;
       }
 
       this->FileManager.FileClose();
@@ -270,4 +241,27 @@ bool CharOperator::CompareString(char * firstString,char * secondString){
 
           return this->isStringsEqual;
      }
+}
+
+char * CharOperator::Conver_Std_String_To_Char(std::string string_line){
+
+       if(this->String_Buffer != nullptr){
+
+          delete [] this->String_Buffer;
+       }
+
+       int string_size = string_line.length();
+
+       this->Memory_Delete_Condition = false;
+
+       this->String_Buffer = new char [5*string_size];
+
+       for(int i=0;i<string_size;i++){
+
+           this->String_Buffer[i] = string_line[i];
+       }
+
+       this->String_Buffer[string_size] = '\0';
+
+       return this->String_Buffer;
 }

@@ -20,7 +20,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include <StringOperator.h>
+#include "StringOperator.h"
 
 StringOperator::StringOperator(){
 
@@ -47,7 +47,7 @@ StringOperator::~StringOperator(){
 
         this->Clear_Dynamic_Memory();
 
-        this->FileManager.Clear_Dynamic_Memory();
+        this->Cpp_File_Manager.Clear_Dynamic_Memory();
     }
 }
 
@@ -68,8 +68,6 @@ void StringOperator::SetFilePath(char * TargetFilePath){
      this->Memory_Delete_Condition = false;
 
      this->Cpp_File_Manager.SetFilePath(TargetFilePath);
-
-     this->FileManager.SetFilePath(TargetFilePath);
 }
 
 int StringOperator::GetBufferLength(){
@@ -216,20 +214,14 @@ void StringOperator::ReceiveFileLine(char * ReadLine){
 
 int StringOperator::FindNextWordLine(char * search_word,int startPoint){
 
-    this->FileManager.FileOpen(R);
-
     this->Cpp_File_Manager.FileOpen(Rf);
 
     this->CharacterOperations.ForwardFilePointer(&this->Cpp_File_Manager,startPoint);
 
-    this->CharacterOperations.ForwardFilePointer(&this->FileManager,startPoint);
-
     this->wordPosition = startPoint;
 
     do{
-            char * string_line = this->FileManager.ReadLine();
-
-            this->Cpp_File_Manager.ReadLine();
+            char * string_line = this->Cpp_File_Manager.ReadLine_as_Cstring();
 
             if(this->Cpp_File_Manager.Control_End_of_File()){
 
@@ -258,8 +250,6 @@ int StringOperator::FindNextWordLine(char * search_word,int startPoint){
     }while(!this->Cpp_File_Manager.Control_End_of_File());
 
     this->File_End_Condition = this->Cpp_File_Manager.Control_End_of_File();
-
-    this->FileManager.FileClose();
 
     this->Cpp_File_Manager.FileClose();
 
@@ -362,15 +352,15 @@ int StringOperator::Get_Word_Number_on_String(char * StringLine, char * search_w
 
 char * StringOperator::ReadFileLine(int lineNumber){
 
-       this->FileManager.FileOpen(R);
+       this->Cpp_File_Manager.FileOpen(Rf);
 
-       this->CharacterOperations.ForwardFilePointer(&this->FileManager,lineNumber);
+       this->CharacterOperations.ForwardFilePointer(&this->Cpp_File_Manager,lineNumber);
 
-       char * line = this->FileManager.ReadLine();
+       char * line = this->Cpp_File_Manager.ReadLine_as_Cstring();
 
        this->ReceiveFileLine(line);
 
-       this->FileManager.FileClose();
+       this->Cpp_File_Manager.FileClose();
 
        return this->GetStringBuffer();
 }

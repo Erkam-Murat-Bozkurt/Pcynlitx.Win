@@ -26,6 +26,10 @@ Cpp_FileOperations::Cpp_FileOperations(){
 
      this->File_line_Number = 0;
 
+     this->CString = nullptr;
+
+     this->Memory_Delete_Condition = false;
+
    // Constructor Function
 };
 
@@ -36,8 +40,28 @@ Cpp_FileOperations::Cpp_FileOperations(const Cpp_FileOperations & orig){
 
 Cpp_FileOperations::~Cpp_FileOperations(){
 
+     if(!this->Memory_Delete_Condition){
+
+        this->Clear_Dynamic_Memory();
+     }
+
     // Destructor Function
 };
+
+void Cpp_FileOperations::Clear_Dynamic_Memory(){
+
+      if(!this->Memory_Delete_Condition){
+
+          this->Memory_Delete_Condition = true;
+
+          if(this->CString != nullptr){
+
+             delete [] this->CString;
+
+             this->CString = nullptr;
+          }
+      }
+}
 
 void Cpp_FileOperations::SetFilePath(std::string FilePATH){
 
@@ -51,8 +75,6 @@ void Cpp_FileOperations::SetFilePath(std::string FilePATH){
 
          this->FilePath.append(1,FilePATH[i]) ;
      }
-
-     this->FilePath.append(1,'\0');
 }
 
 void Cpp_FileOperations::SetFilePath(const char * String){
@@ -166,6 +188,13 @@ std::string Cpp_FileOperations::ReadLine(){
      return this->String_Line;
 }
 
+char * Cpp_FileOperations::ReadLine_as_Cstring(){;
+
+       this->ReadLine();
+
+       return this->Conver_Std_String_To_Char(this->String_Line);
+}
+
 std::string Cpp_FileOperations::Read(){
 
      this->DataFile >> this->string_word;
@@ -206,6 +235,13 @@ void Cpp_FileOperations::MoveFile_Win(char * path, char * target_path){
 }
 
 void Cpp_FileOperations::Receive_File(char * path){
+
+     this->Memory_Delete_Condition = true;
+
+     if(this->File_Index != nullptr){
+
+        delete [] this->File_Index;
+     }
 
      this->File_Index = new char * [5*this->File_line_Number];
 
@@ -272,4 +308,27 @@ void Cpp_FileOperations::Record_File(char * target_path){
      }
 
      this->FileClose();
+}
+
+char * Cpp_FileOperations::Conver_Std_String_To_Char(std::string string_line){
+
+       if(this->CString != nullptr){
+
+          delete [] this->CString;
+       }
+
+       int string_size = string_line.length();
+
+       this->Memory_Delete_Condition = false;
+
+       this->CString = new char [5*string_size];
+
+       for(int i=0;i<string_size;i++){
+
+           this->CString[i] = string_line[i];
+       }
+
+       this->CString[string_size] = '\0';
+
+       return this->CString;
 }

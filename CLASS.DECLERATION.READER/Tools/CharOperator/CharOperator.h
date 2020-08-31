@@ -4,7 +4,6 @@
 #ifndef CHAROPERATOR_H
 #define CHAROPERATOR_H
 
-#include "CFileOperations.h"
 #include "Cpp_FileOperations.h"
 #include <string>
 #include <iostream>
@@ -21,15 +20,16 @@ public:
   int  DetermineCharacterRepitation(char * list, char c);             // The function determines that how many character is there in a list
   int  FindNextCharacterPositon(char * list, int start ,char c);      // Search a character in a list starting from a given point..
   int  FindTheSpecificWordLine(std::string line);                     // The return value is the line number includes a specific word..
-  void ForwardFilePointer(CFileOperations * pointer, int start);      // Move File Pointer
   void ForwardFilePointer(Cpp_FileOperations * pointer, int start);   // Move File Pointer
   int  CharListLength(char * list);                                   // The return value is the length of a character list..
   int  FindFirstCharacterPosition(char * list);                       // Finds first character position in a list
   bool CharacterCheck(char * list, char c);                           // Does exist character which selected in the list
   bool CompareString(char * firstString,char * secondString);         // Compares two string
+  char * Conver_Std_String_To_Char(std::string string_line);
   void Clear_Dynamic_Memory();
 private:
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
+  char * String_Buffer;
   bool Memory_Delete_Condition;
   int  TotalMethodNumber;
   int  CharacterPosition;
