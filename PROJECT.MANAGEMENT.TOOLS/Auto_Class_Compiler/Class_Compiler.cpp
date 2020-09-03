@@ -132,10 +132,6 @@ void Class_Compiler::Compile_Class(char * Header_Files_Directory, char * Object_
 
      this->Determine_Compiler_System_Command(Header_Files_Directory,Object_Files_Directory,Library_Name);
 
-     std::cout << "\n this->Compiler_System_Command:" << this->Compiler_System_Command;
-
-     std::cin.get();
-
      system(this->Compiler_System_Command);
 
      this->Copy_Header_File(Header_Files_Directory);
@@ -513,7 +509,7 @@ void Class_Compiler::Copy_Header_File(char * Header_Files_Directory){
 
      this->FileManager.CpFile(Header_File_Full_Path,Header_File_Copy_Path);
 
-     free(Current_Directory);
+     //free(Current_Directory);
 
      delete [] Header_File_Full_Path;
 

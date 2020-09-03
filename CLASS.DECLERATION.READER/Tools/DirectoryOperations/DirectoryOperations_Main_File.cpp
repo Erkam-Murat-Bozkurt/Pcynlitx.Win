@@ -1,9 +1,9 @@
 
 #include <iostream>
 #include <cstring>
-#include "IntToCharTranslater.h"
 #include "DirectoryOperations.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
+#include "IntToCharTranslater.h"
 
 int main(){
 
@@ -11,7 +11,7 @@ int main(){
 
     DirectoryOperations DirectoryManager;
 
-    CFileOperations FileManager;
+    Cpp_FileOperations FileManager;
 
     DirectoryManager.DetermineCurrentDirectory();
 
@@ -23,7 +23,7 @@ int main(){
 
     std::cin.get();
 
-    DirectoryManager.MakeSubDirectory(Directory,0777);
+    DirectoryManager.MakeSubDirectory(Directory);
 
     std::cout << "\n Directory has been created..";
 
@@ -32,6 +32,7 @@ int main(){
     DirectoryManager.DetermineCurrentDirectory();
 
     std::cout << "\n Current Directory :" << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
+
 
     DirectoryManager.RecordCurrentDirectoryPATH();
 
@@ -43,7 +44,7 @@ int main(){
 
     int file_name_size = strlen(File_Name);
 
-    char ** File_List = new char * [4*File_Number];
+    char ** File_List = new char * [5*File_Number];
 
     for(int i=0;i<File_Number;i++){
 
@@ -70,7 +71,7 @@ int main(){
 
         FileManager.SetFilePath(File_List[i]);
 
-        FileManager.FileOpen(RWC);
+        FileManager.FileOpen(RWCf);
 
         FileManager.WriteToFile("\n\n HELLO WORLD ..");
 
@@ -89,7 +90,7 @@ int main(){
 
     std::cout << "\n Current Directory :" << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
 
-    char Target_Directory [] = "/home/erkam/META.PROGRAMMING.PROJECT/CLASS.DECLERATION.READER/Tools/DirectoryOperations/NewDirectory";
+    char Target_Directory [] = "D:\\DirectoryOperations\\NewDirectory";
 
     DirectoryManager.Determine_File_List_In_Directory(Target_Directory);
 
@@ -108,10 +109,8 @@ int main(){
 
     if(is_there_file){
 
-       std::cout << "\n\n That file exist in that location..";
+       std::cout << "\n\n That file exists in that location..";
     }
-
-    std::cin.get();
 
     std::cin.get();
 

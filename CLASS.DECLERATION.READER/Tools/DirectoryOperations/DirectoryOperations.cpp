@@ -109,7 +109,13 @@ void DirectoryOperations::DetermineCurrentDirectory(){
          this->CurrentDirectory = nullptr;
      }
 
-     char * Directory = get_current_dir_name();
+     CHAR Buffer[BUFSIZE];
+
+     DWORD dwRet;
+
+     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+
+     char * Directory = Buffer;
 
      int Directory_Name_Size = strlen(Directory);
 
@@ -118,8 +124,6 @@ void DirectoryOperations::DetermineCurrentDirectory(){
      this->CurrentDirectory = new char [10*Directory_Name_Size];
 
      this->Place_String(&this->CurrentDirectory,Directory,Directory_Name_Size);
-
-     free(Directory);
 }
 
 void DirectoryOperations::DetermineSubDirectoryName(char * DirectoryName){
@@ -133,7 +137,7 @@ void DirectoryOperations::DetermineSubDirectoryName(char * DirectoryName){
 
      this->DetermineCurrentDirectory();
 
-     char Directory_Character [] {'/','\0'};
+     char Directory_Character [] {'\\','\0'};
 
      int CurrentDirectory_Name_Size = strlen(this->GetCurrentlyWorkingDirectory());
 
@@ -173,7 +177,7 @@ void DirectoryOperations::DetermineUpperDirectoryName(){
 
      for(int i=CurrentDirectory_Name_Size;i>0;i--){
 
-          if(this->GetCurrentlyWorkingDirectory()[i] == '/'){
+          if(this->GetCurrentlyWorkingDirectory()[i] == '\\'){
 
              break;
           }
@@ -183,6 +187,8 @@ void DirectoryOperations::DetermineUpperDirectoryName(){
           }
      }
 
+     upper_directory_point++;
+
      this->Memory_Delete_Condition = false;
 
      this->Upper_Directory = new char [10*upper_directory_point];
@@ -190,17 +196,17 @@ void DirectoryOperations::DetermineUpperDirectoryName(){
      this->Place_String(&this->Upper_Directory,this->GetCurrentlyWorkingDirectory(),upper_directory_point);
 }
 
-int DirectoryOperations::MakeSubDirectory(char * DirectoryName,mode_t mode){
+int DirectoryOperations::MakeSubDirectory(char * DirectoryName){
 
      this->DetermineSubDirectoryName(DirectoryName);
 
-     this->ReturnCondition = this->MakeDirectory(this->GetSubDirectoryName(),mode);
+     this->ReturnCondition = this->MakeDirectory(this->GetSubDirectoryName());
 
      if(this->ReturnCondition == -1){
 
          this->RemoveSubDirectory(DirectoryName);
 
-         this->ReturnCondition = this->MakeDirectory(this->GetSubDirectoryName(),mode);
+         this->ReturnCondition = this->MakeDirectory(this->GetSubDirectoryName());
      }
 
      return this->ReturnCondition;
@@ -220,17 +226,9 @@ int DirectoryOperations::RemoveSubDirectory(char * DirectoryName){
      return this->ReturnCondition;
 }
 
+int DirectoryOperations::MakeDirectory(const char * path){
 
-int DirectoryOperations::ChangeDirectoryMode(const char * path, mode_t mode){
-
-    this->ReturnCondition = chmod(path,mode);
-
-    return this->ReturnCondition;
-};
-
-int DirectoryOperations::MakeDirectory(const char * path, mode_t mode){
-
-    this->ReturnCondition = mkdir(path,mode);
+    this->ReturnCondition = CreateDirectoryA(path,NULL);
 
     return this->ReturnCondition;
 };
@@ -267,7 +265,7 @@ int DirectoryOperations::ChangeDirectory(const char * path){
 
     if(TargetDirectory_String != CurrentDirectory_String){
 
-       this->ReturnCondition = chdir(path);
+       this->ReturnCondition = SetCurrentDirectory(path);
     }
 
     return this->ReturnCondition;
@@ -275,9 +273,9 @@ int DirectoryOperations::ChangeDirectory(const char * path){
 
 int DirectoryOperations::RemoveDirectory(const char * path){
 
-     this->ReturnCondition = rmdir(path);
+    this->ReturnCondition = RemoveDirectoryA(path);
 
-     return this->ReturnCondition;
+    return this->ReturnCondition;
 };
 
 int DirectoryOperations::GoToUpperDirectory(){
@@ -377,7 +375,6 @@ void DirectoryOperations::Determine_File_List_In_Directory(char * Director_Name)
 
          while ((dir = readdir(d)) != NULL)
           {
-
               this->File_Number++;
           }
 
@@ -454,7 +451,17 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
      int Directory_Name_Size = strlen(Directory_Name);
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
+
+     char current_dir [] = ".";
+
+     char upper_dir [] = "..";
+
+     char * File_Name = nullptr;
+
+     char * File_Path = nullptr;
+
+     char * Directory_Path = nullptr;
 
      for(int i=0;i<File_Number;i++){
 
@@ -462,7 +469,7 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
          int File_Name_String_Size = File_Name_String.length();
 
-         char * File_Name = new char [10*File_Name_String_Size];
+         File_Name = new char [10*File_Name_String_Size];
 
          for(int k=0;k<File_Name_String_Size;k++){
 
@@ -471,9 +478,13 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
          File_Name[File_Name_String_Size] = '\0';
 
+         bool is_current_dir = this->CString_Operator.CompareString(current_dir,File_Name);
+
+         bool is_upper_dir = this->CString_Operator.CompareString(upper_dir,File_Name);
+
          int File_Path_Size = File_Name_String_Size + Directory_Name_Size;
 
-         char * File_Path = new char [10*File_Path_Size];
+         File_Path = new char [10*File_Path_Size];
 
          int index_counter = 0;
 
@@ -485,14 +496,71 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
          File_Path[index_counter] = '\0';
 
-         unlink(File_Path);
+         if(((!is_upper_dir) && (!is_current_dir))){
+
+             this->Delete_File(File_Path);
+         }
+
+         if(is_current_dir){
+
+            Directory_Path = new char [10*File_Path_Size];
+
+            index_counter = 0;
+
+            this->Place_Information(&Directory_Path,Directory_Name,&index_counter);
+
+            this->Place_Information(&Directory_Path,Directory_Character,&index_counter);
+
+            this->Place_Information(&Directory_Path,File_Name,&index_counter);
+
+            Directory_Path[index_counter] = '\0';
+         }
 
          delete [] File_Path;
 
          delete [] File_Name;
      }
 
-     this->RemoveDirectory(Directory_Name);
+     this->Delete_File(Directory_Path);
+
+     delete [] Directory_Path;
+}
+
+void DirectoryOperations::Delete_File(char * path){
+
+     int path_length = strlen(path);
+
+     TCHAR * path_pointer = new TCHAR[5*path_length];
+
+     for(int i=0;i<path_length;i++){
+
+         path_pointer[i] = path[i];
+     }
+
+     path_pointer[path_length] = '\0';
+
+     path_pointer[path_length+1] = '\0';
+
+     SHFILEOPSTRUCT fileop;
+
+     fileop.wFunc = FO_DELETE;
+
+     fileop.pFrom = path_pointer;
+
+     fileop.pTo = NULL;
+
+     fileop.hwnd = NULL;
+
+     fileop.fFlags = FOF_FILESONLY | FOF_NOCONFIRMATION;
+
+     int ret = SHFileOperationA(&fileop);
+
+     if(ret != 0) {
+
+        std::cout << "\n The file can not be removed ..";
+     }
+
+     delete [] path_pointer;
 }
 
 std::string * DirectoryOperations::Get_File_List_In_Directory(){
@@ -540,6 +608,8 @@ void DirectoryOperations::Place_Information(char ** Pointer, const char * Inform
 }
 
 char * DirectoryOperations::GetCurrentlyWorkingDirectory(){
+
+       this->DetermineCurrentDirectory();
 
        return this->CurrentDirectory;
 }
