@@ -18,51 +18,34 @@ Custom_System_Interface::~Custom_System_Interface(){
 
 }
 
-int Custom_System_Interface::System_Function(const char * cmd){
+bool Custom_System_Interface::System_Function(char * cmd){
 
-    this->status = 0;
+     this->return_status = false;
 
-    this->pid = fork();
+     STARTUPINFO startupInfo;
 
-    if(this->pid == -1){    // On failure, from fork(), -1 is returned in the parent, no child process is created
+     PROCESS_INFORMATION processInformation;
 
-       this->return_status = -1; // The child process can not be created ..
+     this->return_status = CreateProcess(NULL,cmd,NULL,NULL,FALSE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
 
-       return this->return_status;
-    }
+     WaitForSingleObject( processInformation.hProcess, INFINITE );
 
-    if(this->pid==0){
+     DWORD exit_code = 0;
 
-       int exec_return = 0;
+     GetExitCodeProcess( processInformation.hProcess, &exit_code );
 
-       exec_return = execlp("/bin/sh","sh","-c",cmd,NULL);
+     CloseHandle( processInformation.hProcess );
 
-       if(exec_return != 0){
+     if(exit_code != 0){
 
-          this->return_status = -1;  // The command can not be executed by the child process..
+        std::cout << "\n The system function executing a command (an exacutable binary)";
 
-          return this->return_status;
-       }
-    }
-    else{
+        std::cout << "\n in a seperate process can not ended sucessfully.";
 
-          pid_t process_return = waitpid(this->pid,&(this->status),0);
+        std::cout << "\n the process has been ended with exit code:" << exit_code;
 
-          if(process_return == -1){
+        std::cout << "\n\n";
+     }
 
-             this->return_status = -1; // The child process can not be ended successfully ..
-
-             return this->return_status;
-          }
-
-          if(WIFEXITED(this->status)){
-
-             return WEXITSTATUS(this->status);
-          }
-    }
-
-
-    this->return_status = -1; // The system call is uncessesfull..
-
-    return this->return_status;
+     return this->return_status;
 }

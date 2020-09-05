@@ -129,11 +129,11 @@ void HeaderFileBuilder::BuildHeaderFile(){
 
      this->FileManager.SetFilePath(this->GetHeaderFileName());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.FileClose();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n#ifndef ");
 

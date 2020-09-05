@@ -38,6 +38,10 @@ DirectoryOperations::DirectoryOperations(){
      this->File_List = nullptr;
 
      this->Memory_Delete_Condition = false;
+
+     this->ReturnCondition = 0;
+
+     this->File_Number = 0;
 };
 
 DirectoryOperations::DirectoryOperations(const DirectoryOperations & orig){
@@ -226,14 +230,14 @@ int DirectoryOperations::RemoveSubDirectory(char * DirectoryName){
      return this->ReturnCondition;
 }
 
-int DirectoryOperations::MakeDirectory(const char * path){
+int DirectoryOperations::MakeDirectory(char * path){
 
     this->ReturnCondition = CreateDirectoryA(path,NULL);
 
     return this->ReturnCondition;
 };
 
-int DirectoryOperations::ChangeDirectory(const char * path){
+int DirectoryOperations::ChangeDirectory(char * path){
 
     this->DetermineCurrentDirectory();
 
@@ -271,9 +275,9 @@ int DirectoryOperations::ChangeDirectory(const char * path){
     return this->ReturnCondition;
 };
 
-int DirectoryOperations::RemoveDirectory(const char * path){
+int DirectoryOperations::RemoveDirectory(char * path){
 
-    this->ReturnCondition = RemoveDirectoryA(path);
+    this->Remove_Directory_Recursively(path);
 
     return this->ReturnCondition;
 };
@@ -296,7 +300,7 @@ int DirectoryOperations::GoToSubDirectory(char * DirectoryName){
      return this->ReturnCondition;
 };
 
-void DirectoryOperations::LoadSystemFunctionCommand(const char * Command,char * DirectoryName){
+void DirectoryOperations::LoadSystemFunctionCommand(char * Command,char * DirectoryName){
 
      if(this->SystemCommand != nullptr){
 
@@ -553,9 +557,9 @@ void DirectoryOperations::Delete_File(char * path){
 
      fileop.fFlags = FOF_FILESONLY | FOF_NOCONFIRMATION;
 
-     int ret = SHFileOperationA(&fileop);
+     this->ReturnCondition = SHFileOperationA(&fileop);
 
-     if(ret != 0) {
+     if(this->ReturnCondition != 0) {
 
         std::cout << "\n The file can not be removed ..";
      }

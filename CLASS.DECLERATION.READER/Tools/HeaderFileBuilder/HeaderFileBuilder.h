@@ -4,7 +4,7 @@
 
 #include <ctype.h>
 #include <cstring>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "CharOperator.h"
 
 
@@ -26,7 +26,7 @@ public:
 private:
   void Clear_Pointer_Memory(char ** Pointer);
   void Place_String(char ** Pointer, char * String);
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   CharOperator CharacterOperations;
   bool   Memory_Delete_Condition;
   char   character;

@@ -23,7 +23,7 @@ public:
  DirectoryOperations();
  DirectoryOperations(const DirectoryOperations & orig);
  virtual ~DirectoryOperations();
- void LoadSystemFunctionCommand(const char * command,char * DirectoryName);
+ void LoadSystemFunctionCommand(char * command,char * DirectoryName);
  void RecordCurrentDirectoryPATH();
  void ReturnRecordedDirectoryPATH();
  void DetermineCurrentDirectory();
@@ -32,10 +32,10 @@ public:
  void Determine_File_List_In_Directory(char * DirectoryName);
  void Remove_Directory_Recursively(char * DirectoryName);
  void Clear_Dynamic_Memory();
- int  MakeDirectory(const char * path);
+ int  MakeDirectory(char * path);
  int  MakeSubDirectory(char * path);
- int  ChangeDirectory(const char * path);
- int  RemoveDirectory(const char * path);
+ int  ChangeDirectory(char * path);
+ int  RemoveDirectory(char * path);
  int  GoToUpperDirectory();
  int  GoToSubDirectory(char * DirectoryName);
  int  RemoveSubDirectory(char * DirectoryName);
