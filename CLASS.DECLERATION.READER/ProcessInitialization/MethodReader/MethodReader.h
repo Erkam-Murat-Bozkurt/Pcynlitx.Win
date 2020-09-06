@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "ListFileOrganizer.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "FindSetPoints.h"
 #include "CharOperator.h"
 #include "SyntaxController.h"
@@ -52,7 +52,7 @@ private:
   bool IsMethodLine(char * ListLine);
   ListFileOrganizer FileOrganizer;
   FindSetPoints SetPointExplorer;
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   CharOperator CharacterOperations;
   SyntaxController * SyntaxOperations;
   ClassNameReader ClassNameDeterminer;

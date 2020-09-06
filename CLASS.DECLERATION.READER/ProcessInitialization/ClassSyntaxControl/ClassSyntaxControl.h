@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include "CharOperator.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "StringOperator.h"
 
 
@@ -43,7 +43,7 @@ private:
   void Find_Next_Space_Position(char * Pointer,int * Position, int Start_Point);
   void Read_Class_Word_Line();
   int  Space_Counter(char * Pointer);
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   CharOperator CharacterOperations;
   StringOperator StringOperations;
   char * Class_Word_Line;

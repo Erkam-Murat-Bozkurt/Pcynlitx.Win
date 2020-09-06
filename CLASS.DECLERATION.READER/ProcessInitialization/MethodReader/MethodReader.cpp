@@ -196,7 +196,7 @@ void MethodReader::ConstructMethodList(){
 
      this->FileManager.SetFilePath(this->FileOrganizer.GetRecordFilePath());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n ");
 
@@ -323,7 +323,7 @@ void MethodReader::DeterminePublicMethods(){
 
      if(this->SetPointExplorer.isTherePublicMethod()){
 
-        this->FileManager.FileOpen(R);
+        this->FileManager.FileOpen(Rf);
 
         this->CurrentLineNumber = this->SetPointExplorer.getPublicLineNumber()+1;
 
@@ -335,7 +335,7 @@ void MethodReader::DeterminePublicMethods(){
 
         for(int i=0;i<PublicArea;i++){
 
-            char * MethodLine = this->FileManager.ReadLine();
+            char * MethodLine = this->FileManager.ReadLine_as_Cstring();
 
             bool is_This_A_Method_Line = this->IsMethodLine(MethodLine);
 
@@ -394,7 +394,7 @@ void MethodReader::DeterminePrivateMethods(){
 
      if(this->SetPointExplorer.isTherePrivateMethod()){
 
-        this->FileManager.FileOpen(R);
+        this->FileManager.FileOpen(Rf);
 
         this->CurrentLineNumber = this->SetPointExplorer.getPrivateLineNumber()+1;
 
@@ -406,7 +406,7 @@ void MethodReader::DeterminePrivateMethods(){
 
         for(int i=0;i<PrivateArea;i++){
 
-            char * MethodLine = this->FileManager.ReadLine();
+            char * MethodLine = this->FileManager.ReadLine_as_Cstring();
 
             bool is_This_A_Method_Line = this->IsMethodLine(MethodLine);
 
@@ -471,7 +471,7 @@ void MethodReader::DetermineProtectedMethods(){
 
      if(this->SetPointExplorer.isThereProtectedMethod()){
 
-        this->FileManager.FileOpen(R);
+        this->FileManager.FileOpen(Rf);
 
         this->CurrentLineNumber = this->SetPointExplorer.getProtectedLineNumber()+1;
 
@@ -483,7 +483,7 @@ void MethodReader::DetermineProtectedMethods(){
 
         for(int i=0;i<ProtectedArea;i++){
 
-            char * MethodLine = this->FileManager.ReadLine();
+            char * MethodLine = this->FileManager.ReadLine_as_Cstring();
 
             bool is_This_A_Method_Line = this->IsMethodLine(MethodLine);
 
@@ -583,7 +583,7 @@ void MethodReader::RecordListMetaData(){
 
      this->FileManager.SetFilePath(this->FileOrganizer.GetMetaDataFilePath());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n METHOD LIST META DATAS");
 

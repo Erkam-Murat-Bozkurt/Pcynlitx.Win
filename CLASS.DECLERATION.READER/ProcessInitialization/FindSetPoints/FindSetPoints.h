@@ -6,7 +6,7 @@
 #define FINDSETPOINTS_H
 
 #include <cstring>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "ClassSyntaxControl.h"
 #include "StringOperator.h"
 
@@ -45,7 +45,7 @@ private:
   void Determine_Is_There_Any_Public_Method();
   void Determine_Is_There_Any_Private_Method();
   void Determine_Is_There_Any_Protected_Method();
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   ClassSyntaxControl ClsSynCntr;
   StringOperator StringOperations;
   int publicLineNumber;

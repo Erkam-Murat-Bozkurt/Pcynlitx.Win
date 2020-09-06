@@ -135,13 +135,13 @@ void ClassSyntaxControl::CheckClassSyntax(char * HeaderFile){
 
 void ClassSyntaxControl::CheckStartBrace(){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      this->FirstBraceLine = 1;
 
      int FirstBraceLine = 1;
 
-     char * linePointer = this->FileManager.ReadLine();
+     char * linePointer = this->FileManager.ReadLine_as_Cstring();
 
      if(this->CharacterOperations.CharacterCheck(linePointer,'{')){
 
@@ -152,7 +152,7 @@ void ClassSyntaxControl::CheckStartBrace(){
 
                    FirstBraceLine++;
 
-                   linePointer = this->FileManager.ReadLine();
+                   linePointer = this->FileManager.ReadLine_as_Cstring();
 
                    if(this->CharacterOperations.CharacterCheck(linePointer,'{')){
 
@@ -161,7 +161,7 @@ void ClassSyntaxControl::CheckStartBrace(){
                       break;
                    }
 
-                   if(this->FileManager.Check_End_of_File()){
+                   if(this->FileManager.Control_End_of_File()){
 
                       this->ClassSyntaxErrorStatus = true;
 
@@ -177,7 +177,7 @@ void ClassSyntaxControl::DetermineClassWordLine(){
 
      char class_word [] = {'c','l','a','s','s','\0'};
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      int SearchLine = this->GetFirstBraceLine();
 
@@ -194,7 +194,7 @@ void ClassSyntaxControl::DetermineClassWordLine(){
 
      this->CharacterOperations.ForwardFilePointer(&this->FileManager,SearchLine);
 
-     char * buffer = this->FileManager.ReadLine();
+     char * buffer = this->FileManager.ReadLine_as_Cstring();
 
      if(buffer[0]=='{'){
 
@@ -203,11 +203,11 @@ void ClassSyntaxControl::DetermineClassWordLine(){
 
               this->FileManager.FileClose();
 
-              this->FileManager.FileOpen(R);
+              this->FileManager.FileOpen(Rf);
 
               this->CharacterOperations.ForwardFilePointer(&this->FileManager,SearchLine);
 
-              buffer = this->FileManager.ReadLine();
+              buffer = this->FileManager.ReadLine_as_Cstring();
 
               if((buffer[0]!=' ') && (buffer[0]!='\n')){
 
@@ -244,11 +244,11 @@ void ClassSyntaxControl::Read_Class_Word_Line(){
 
      if(!this->GetClassSyntaxErrorStatus()){
 
-         this->FileManager.FileOpen(R);
+         this->FileManager.FileOpen(Rf);
 
          this->CharacterOperations.ForwardFilePointer(&this->FileManager,this->GetClassWordLineNumber());
 
-         char * buffer = this->FileManager.ReadLine();
+         char * buffer = this->FileManager.ReadLine_as_Cstring();
 
          int Line_Size = strlen(buffer);
 
@@ -441,11 +441,11 @@ void ClassSyntaxControl::CheckClassName(){
 
 void ClassSyntaxControl::CheckEndBrace(){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      this->LastBraceLine = 1;
 
-     char * linePointer = this->FileManager.ReadLine();
+     char * linePointer = this->FileManager.ReadLine_as_Cstring();
 
      if(!this->CharacterOperations.CharacterCheck(linePointer,'}')){
 
@@ -453,14 +453,14 @@ void ClassSyntaxControl::CheckEndBrace(){
 
                 this->LastBraceLine ++;
 
-                linePointer = this->FileManager.ReadLine();
+                linePointer = this->FileManager.ReadLine_as_Cstring();
 
                 if(this->CharacterOperations.CharacterCheck(linePointer,'}')){
 
                     break;
                 }
 
-                if(this->FileManager.Check_End_of_File()){
+                if(this->FileManager.Control_End_of_File()){
 
                     this->ClassSyntaxErrorStatus = true;
 
@@ -474,7 +474,7 @@ void ClassSyntaxControl::CheckEndBrace(){
 
 void ClassSyntaxControl::CheckPublicKeyWord(){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      char public_word [] = {'p','u','b','l','i','c',':','\0'};
 
@@ -490,7 +490,7 @@ void ClassSyntaxControl::CheckPublicKeyWord(){
 
      for(int i=StartLine;i<this->GetLastBraceLine();i++){
 
-         linePointer = this->FileManager.ReadLine();
+         linePointer = this->FileManager.ReadLine_as_Cstring();
 
          int ReadStartPoint = 0;
 
@@ -530,7 +530,7 @@ void ClassSyntaxControl::CheckPublicKeyWord(){
 
 void ClassSyntaxControl::CheckPrivateKeyWord(){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      char private_word [] = {'p','r','i','v','a','t','e',':','\0'};
 
@@ -546,7 +546,7 @@ void ClassSyntaxControl::CheckPrivateKeyWord(){
 
      for(int i=StartLine;i<this->GetLastBraceLine();i++){
 
-         linePointer = this->FileManager.ReadLine();
+         linePointer = this->FileManager.ReadLine_as_Cstring();
 
          int ReadStartPoint = 0;
 
@@ -586,7 +586,7 @@ void ClassSyntaxControl::CheckPrivateKeyWord(){
 
 void ClassSyntaxControl::CheckProtectedKeyWord(){
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      char protected_word [] = {'p','r','o','t','e','c','t','e','d',':','\0'};
 
@@ -602,7 +602,7 @@ void ClassSyntaxControl::CheckProtectedKeyWord(){
 
      for(int i=StartLine;i<this->GetLastBraceLine();i++){
 
-         linePointer = this->FileManager.ReadLine();
+         linePointer = this->FileManager.ReadLine_as_Cstring();
 
          int ReadStartPoint = 0;
 

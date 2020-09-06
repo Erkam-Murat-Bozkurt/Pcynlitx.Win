@@ -186,7 +186,7 @@ void FindSetPoints::findDeclerationEnd(){
 
      this->declerationEnd = 0;
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      bool condition = false;
 
@@ -194,7 +194,7 @@ void FindSetPoints::findDeclerationEnd(){
 
      do{
 
-         pointer = this->FileManager.ReadLine();
+         pointer = this->FileManager.ReadLine_as_Cstring();
 
          int Line_Size = strlen(pointer);
 
@@ -208,7 +208,7 @@ void FindSetPoints::findDeclerationEnd(){
 
          this->declerationEnd++;
 
-         if(this->FileManager.Check_End_of_File()){
+         if(this->FileManager.Control_End_of_File()){
 
              break;
          }
@@ -339,7 +339,7 @@ void FindSetPoints::Control_Methods_Acess_Types_Error(){
 
      this->AcessTypesError = false;
 
-     this->FileManager.FileOpen(R);
+     this->FileManager.FileOpen(Rf);
 
      char * linePointer;
 
@@ -359,9 +359,9 @@ void FindSetPoints::Control_Methods_Acess_Types_Error(){
 
      do{
 
-        linePointer = this->FileManager.ReadLine();
+        linePointer = this->FileManager.ReadLine_as_Cstring();
 
-        if(this->FileManager.Check_End_of_File()){
+        if(this->FileManager.Control_End_of_File()){
 
            break;
         }
