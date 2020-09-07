@@ -4,7 +4,7 @@
 
 #include <CharOperator.h>
 #include <MemberFunctionReader.h>
-#include <CFileOperations.h>
+#include <Cpp_FileOperations.h>
 #include <DirectoryOperations.h>
 #include <ClassRebuilder_Initializer.h>
 #include <MetaDataTranslater.h>
@@ -51,7 +51,7 @@ private:
  MetaDataTranslater DataTranslater;
  ClassRebuilder_Initializer Initializer;
  MemberFunctionReader FunctionReader;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  CharOperator CharacterOperations;
  DirectoryOperations DirectoryManager;
  HeaderRebuilder HeaderFileRebuilder;

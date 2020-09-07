@@ -61,7 +61,7 @@ void Empty_Process_Descriptor_File_Builder::Read_Construction_Point(char * path)
 
 void Empty_Process_Descriptor_File_Builder::Build_Descriptor_File(){
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n PROCESS DESCRIPTOR FILE");
 

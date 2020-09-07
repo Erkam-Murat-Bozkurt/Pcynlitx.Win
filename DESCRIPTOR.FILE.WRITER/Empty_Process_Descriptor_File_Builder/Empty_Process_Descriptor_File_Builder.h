@@ -2,7 +2,7 @@
 #ifndef EMPTY_PROCESS_DESCRIPTOR_FILE_BUILDER_H
 #define EMPTY_PROCESS_DESCRIPTOR_FILE_BUILDER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 
 class Empty_Process_Descriptor_File_Builder
@@ -15,7 +15,7 @@ public:
   void Build_Descriptor_File();
   void Clear_Dynamic_Memory();
 private:
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   DirectoryOperations Directory_Manager;
   bool Memory_Delete_Condition;
 };

@@ -167,7 +167,7 @@ void ClassRebuilder::Start_Implementation_File_Construction(){
 
      this->FileManager.SetFilePath(this->Initializer.Get_New_Class_Implementation_File_Name());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n\n #include \"");
 
@@ -180,7 +180,7 @@ void ClassRebuilder::Start_Implementation_File_Construction(){
 
 void ClassRebuilder::Construct_Class_Implementation_File(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      int PublicMethodNumber = this->FunctionReader.Get_Public_Method_Number();
 

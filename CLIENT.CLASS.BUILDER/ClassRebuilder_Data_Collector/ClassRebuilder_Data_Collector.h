@@ -6,7 +6,7 @@
 #include "ClassRebuilder_Initializer.h"
 #include "Descriptor_File_Reader.h"
 #include "DirectoryOperations.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "Custom_System_Interface.h"
 #include <iostream>
 #include <cstring>
@@ -36,7 +36,7 @@ private:
   DirectoryOperations * Directory_Manager_Pointer;
   Descriptor_File_Reader * Reader_Pointer;
   ClassRebuilder_Initializer * Initializer;
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   DirectoryOperations Directory_Manager;
   Custom_System_Interface System_Interface;
   char * Compiler_Command;

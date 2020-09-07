@@ -402,7 +402,7 @@ void ClassRebuilder_Data_Collector::Remove_Class_Implementation_File(){
 
      File_Name[index_counter] = '\0';
 
-     this->File_Manager.DeleteFile(File_Name);
+     this->File_Manager.Delete_File(File_Name);
 
      delete [] File_Name;
 }
@@ -439,7 +439,7 @@ void ClassRebuilder_Data_Collector::Remove_Header_Extra(){
 
      File_Name[index_counter] = '\0';
 
-     this->File_Manager.DeleteFile(File_Name);
+     this->File_Manager.Delete_File(File_Name);
 
      delete [] File_Name;
 }
