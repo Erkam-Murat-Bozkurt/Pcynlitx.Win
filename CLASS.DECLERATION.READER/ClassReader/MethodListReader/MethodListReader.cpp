@@ -217,7 +217,7 @@ void MethodListReader::ReadPublicMethods(){
      }
      else{
 
-        this->ListFileManager.FileOpen(R);
+        this->ListFileManager.FileOpen(Rf);
 
         this->PublicMethods = new char * [10*(this->PublicMethodNumber)];
 
@@ -225,7 +225,7 @@ void MethodListReader::ReadPublicMethods(){
 
         for(int i=0;i<this->PublicMethodNumber;i++){
 
-            char * LinePointer = this->ListFileManager.ReadLine();
+            char * LinePointer = this->ListFileManager.ReadLine_as_Cstring();
 
             if(this->isThisMethodLine(LinePointer)){
 
@@ -267,7 +267,7 @@ void MethodListReader::ReadPrivateMethods(){
      }
      else{
 
-          this->ListFileManager.FileOpen(R);
+          this->ListFileManager.FileOpen(Rf);
 
           this->PrivateMethods = new char * [10*(this->PrivateMethodNumber)];
 
@@ -275,7 +275,7 @@ void MethodListReader::ReadPrivateMethods(){
 
           for(int i=0;i<this->PrivateMethodNumber;i++){
 
-              char * LinePointer = this->ListFileManager.ReadLine();
+              char * LinePointer = this->ListFileManager.ReadLine_as_Cstring();
 
               if(this->isThisMethodLine(LinePointer)){
 
@@ -317,7 +317,7 @@ void MethodListReader::ReadProtectedMethods(){
      }
      else{
 
-          this->ListFileManager.FileOpen(R);
+          this->ListFileManager.FileOpen(Rf);
 
           this->ProtectedMethods = new char * [10*(this->ProtectedMethodNumber)];
 
@@ -325,7 +325,7 @@ void MethodListReader::ReadProtectedMethods(){
 
           for(int i=0;i<this->ProtectedMethodNumber;i++){
 
-              char * LinePointer = this->ListFileManager.ReadLine();
+              char * LinePointer = this->ListFileManager.ReadLine_as_Cstring();
 
               if(this->isThisMethodLine(LinePointer)){
 

@@ -5,7 +5,7 @@
 
 #include <cstring>
 #include "DirectoryOperations.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "MethodInterpreter.h"
 #include "MethodListReader.h"
 #include "MethodReader.h"
@@ -48,7 +48,7 @@ private:
   void Clear_Interpreter_Memory();
   MethodListReader Reader;
   MethodInterpreter Interpreter;
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   DirectoryOperations DirectoryManager;
   Method_Datas * Public_Method_Data_Pointer;
   Method_Datas * Private_Method_Data_Pointer;

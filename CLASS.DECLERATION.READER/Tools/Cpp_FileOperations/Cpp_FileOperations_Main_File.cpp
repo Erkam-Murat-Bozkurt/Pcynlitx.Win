@@ -19,6 +19,10 @@
 
      FileManager.SetFilePath(PATH);
 
+     std::cout << "\n File Path:" << FileManager.GetFilePath();
+
+     std::cin.get();
+
      FileManager.FileOpen(RWCf);
 
      FileManager.WriteToFile(" Hello world ..!\n");
@@ -27,7 +31,7 @@
 
      FileManager.FileClose();
 
-     FileManager.CopyFile(PATH,TARGET_PATH);
+     FileManager.CpFile(PATH,TARGET_PATH);
 
      std::cout << "\n\n The end of the program ..\n\n";
 

@@ -28,7 +28,11 @@ Cpp_FileOperations::Cpp_FileOperations(){
 
      this->CString = nullptr;
 
+     this->CString_FilePATH = nullptr;
+
      this->Memory_Delete_Condition = false;
+
+     this->Delete_Return_Status = 0;
 
    // Constructor Function
 };
@@ -60,6 +64,13 @@ void Cpp_FileOperations::Clear_Dynamic_Memory(){
 
              this->CString = nullptr;
           }
+
+          if(this->CString_FilePATH != nullptr){
+
+             delete [] this->CString_FilePATH;
+
+             this->CString_FilePATH = nullptr;
+          }
       }
 }
 
@@ -75,6 +86,28 @@ void Cpp_FileOperations::SetFilePath(std::string FilePATH){
 
          this->FilePath.append(1,FilePATH[i]) ;
      }
+
+     int string_size = this->FilePath.length();
+
+     if(this->CString_FilePATH != nullptr){
+
+        delete [] this->CString_FilePATH;
+
+        this->CString_FilePATH = nullptr;
+     }
+
+     int index_counter = 0;
+
+     this->CString_FilePATH = new char [5*string_size];
+
+     for(int i=0;i<string_size;i++){
+
+         this->CString_FilePATH[index_counter] = this->FilePath[i];
+
+         index_counter++;
+     }
+
+     this->CString_FilePATH[index_counter] = '\0';
 }
 
 void Cpp_FileOperations::SetFilePath(const char * String){
@@ -103,6 +136,28 @@ void Cpp_FileOperations::SetFilePath(char * String){
 
          this->FilePath.append(1,String[i]);
      }
+
+     int string_size = this->FilePath.length();
+
+     if(this->CString_FilePATH != nullptr){
+
+        delete [] this->CString_FilePATH;
+
+        this->CString_FilePATH = nullptr;
+     }
+
+     int index_counter = 0;
+
+     this->CString_FilePATH = new char [5*string_size];
+
+     for(int i=0;i<string_size;i++){
+
+         this->CString_FilePATH[index_counter] = this->FilePath[i];
+
+         index_counter++;
+     }
+
+     this->CString_FilePATH[index_counter] = '\0';
 }
 
 void Cpp_FileOperations::FileOpen(char Open_Mode){
@@ -331,4 +386,49 @@ char * Cpp_FileOperations::Conver_Std_String_To_Char(std::string string_line){
        this->CString[string_size] = '\0';
 
        return this->CString;
+}
+
+int Cpp_FileOperations::Delete_File(char * path){
+
+     int path_length = strlen(path);
+
+     TCHAR * path_pointer = new TCHAR[5*path_length];
+
+     for(int i=0;i<path_length;i++){
+
+         path_pointer[i] = path[i];
+     }
+
+     path_pointer[path_length] = '\0';
+
+     path_pointer[path_length+1] = '\0';
+
+     SHFILEOPSTRUCT fileop;
+
+     fileop.wFunc = FO_DELETE;
+
+     fileop.pFrom = path_pointer;
+
+     fileop.pTo = NULL;
+
+     fileop.hwnd = NULL;
+
+     fileop.fFlags = FOF_FILESONLY | FOF_NOCONFIRMATION;
+
+     this->Delete_Return_Status = SHFileOperationA(&fileop);
+
+     if(this->Delete_Return_Status != 0) {
+
+        std::cout << "\n The file can not be removed ..";
+     }
+
+     delete [] path_pointer;
+
+     return this->Delete_Return_Status;
+}
+
+
+char * Cpp_FileOperations::GetFilePath(){
+
+       return this->CString_FilePATH;
 }

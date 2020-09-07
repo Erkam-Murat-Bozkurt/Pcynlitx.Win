@@ -265,7 +265,7 @@ void DataBaseBuilder::Set_Currently_Working_Directory(char * path){
 
 void DataBaseBuilder::Remove_MemberFunctionList(MethodReader * Reader){
 
-     int file_remove_status = this->FileManager.DeleteFile(Reader->GetRecordFilePath());
+     int file_remove_status = this->FileManager.Delete_File(Reader->GetRecordFilePath());
 
      if(file_remove_status == -1){
 
@@ -280,7 +280,7 @@ void DataBaseBuilder::Remove_MemberFunctionList(MethodReader * Reader){
         exit(EXIT_FAILURE);
      }
 
-     file_remove_status = this->FileManager.DeleteFile(Reader->GetMetaDataFilePath());
+     file_remove_status = this->FileManager.Delete_File(Reader->GetMetaDataFilePath());
 
      if(file_remove_status == -1){
 

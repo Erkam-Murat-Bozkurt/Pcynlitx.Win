@@ -2,7 +2,7 @@
 #ifndef METHODLISTREADER_H
 #define METHODLISTREADER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "CharOperator.h"
 #include "MethodListInterpreter.h"
 
@@ -36,8 +36,8 @@ private:
   void DetermineTotalMethodNumber();
   int  Get_Memory_Need(char * LinePointer);
   MethodListInterpreter ListInterpreter;
-  CFileOperations ListFileManager;
-  CFileOperations MetaFileManager;
+  Cpp_FileOperations ListFileManager;
+  Cpp_FileOperations MetaFileManager;
   CharOperator CharacterOperations;
   bool Memory_Delete_Condition;
   char ** PublicMethods;
