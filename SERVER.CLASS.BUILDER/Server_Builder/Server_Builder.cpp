@@ -98,7 +98,7 @@ void Server_Builder::Build_Server_Class(){
 
      this->FileManager.SetFilePath(this->Server_Class_Implementation_File_Name);
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n\n #include \"");
 
@@ -238,7 +238,7 @@ void Server_Builder::Write_Thread_Activation_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n void ");
 
@@ -281,7 +281,7 @@ void Server_Builder::Write_Join_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n void ");
 
@@ -641,7 +641,7 @@ void Server_Builder::Remove_Source_File(){
 
      this->Directory_Manager.ChangeDirectory(Construction_Point);
 
-     this->FileManager.DeleteFile(Source_File_Path);
+     this->FileManager.Delete_File(Source_File_Path);
 
      delete [] Source_File_Path;
 }
@@ -704,7 +704,7 @@ void Server_Builder::Move_Header_File(){
 
      Header_File_New_Path[index_counter] = '\0';
 
-     this->FileManager.Move_File(Header_File_New_Path,Header_File_Path);
+     this->FileManager.MoveFile_Win(Header_File_New_Path,Header_File_Path);
 
      delete [] Header_File_Path;
 

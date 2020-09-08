@@ -5,7 +5,7 @@
 
 #include <cstring>
 #include <cstdlib>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "IntToCharTranslater.h"
 #include "Thread_Locker_Builder.h"
@@ -33,7 +33,7 @@ private:
  void Place_Information(char ** Pointer, char * Information, int * Counter);
  Descriptor_File_Reader * Reader_Pointer;
  Thread_Data_Manager_Header_Builder HeaderFileBuilder;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations Directory_Manager;
  IntToCharTranslater Translater;
  Custom_System_Interface System_Interface;

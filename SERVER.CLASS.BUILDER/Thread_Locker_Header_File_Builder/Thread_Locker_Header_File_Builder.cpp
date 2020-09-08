@@ -45,7 +45,7 @@ void Thread_Locker_Header_File_Builder::Build_thread_locker_header_file(){
 
      this->FileManager.SetFilePath("Thread_Locker.h");
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #ifndef THREAD_LOCKER_H");
 

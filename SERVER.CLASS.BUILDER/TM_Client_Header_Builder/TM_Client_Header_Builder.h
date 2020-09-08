@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <ctype.h>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "Descriptor_File_Reader.h"
 
 class TM_Client_Header_Builder
@@ -23,7 +23,7 @@ private:
   void Place_Information(char ** Pointer,char * String,int * index_counter);
   void Clear_Pointer_Memory(char ** Pointer);
   Descriptor_File_Reader * Reader_Pointer;
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   char character;
   char * New_Include_Directory;
   char * Construction_Point;

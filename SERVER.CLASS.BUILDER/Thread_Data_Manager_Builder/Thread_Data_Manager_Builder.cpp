@@ -86,7 +86,7 @@ void Thread_Data_Manager_Builder::Build_Thread_Data_Manager(){
 
      this->FileManager.SetFilePath("Thread_Data_Manager.cpp");
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n");
 
@@ -1224,7 +1224,7 @@ void Thread_Data_Manager_Builder::Remove_Source_File(){
 
      Source_File_Path[index_counter] = '\0';
 
-     this->FileManager.DeleteFile(Source_File_Path);
+     this->FileManager.Delete_File(Source_File_Path);
 
      delete [] Source_File_Path;
 }
@@ -1255,7 +1255,7 @@ void Thread_Data_Manager_Builder::Remove_Header_Extra_File(){
 
      File_Path[index_counter] = '\0';
 
-     this->FileManager.DeleteFile(File_Path);
+     this->FileManager.Delete_File(File_Path);
 
      delete [] File_Path;
 }
@@ -1303,7 +1303,7 @@ void Thread_Data_Manager_Builder::Move_Header_File(){
 
      Target_Path[index_counter] = '\0';
 
-     this->FileManager.Move_File(Target_Path,Current_Path);
+     this->FileManager.MoveFile_Win(Target_Path,Current_Path);
 
      delete [] Current_Path;
 

@@ -4,7 +4,7 @@
 
 #include "Descriptor_File_Reader.h"
 #include "TM_Client_Header_Builder.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "Custom_System_Interface.h"
 #include <cstring>
@@ -28,7 +28,7 @@ private:
   void Remove_Source_File();
   Descriptor_File_Reader * Reader_Pointer;
   TM_Client_Header_Builder Header_Builder;
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   DirectoryOperations Directory_Manager;
   Custom_System_Interface System_Interface;
   char * Compiler_Command;

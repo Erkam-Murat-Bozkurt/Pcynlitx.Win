@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <cstdlib>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "Descriptor_File_Reader.h"
 #include "IntToCharTranslater.h"
@@ -22,7 +22,7 @@ private:
   void Move_Header_File_List_To_New_Include_Directory();
   void Place_Information(char ** Pointer, char * Information, int * counter);
   void Write_Space(const char * String);
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   DirectoryOperations Directory_Manager;
   Descriptor_File_Reader * File_Reader;
   IntToCharTranslater Translater;

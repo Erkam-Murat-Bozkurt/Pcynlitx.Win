@@ -2,7 +2,7 @@
 #ifndef THREAD_LOCKER_BUILDER_H
 #define THREAD_LOCKER_BUILDER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "Thread_Locker_Header_File_Builder.h"
 #include "Descriptor_File_Reader.h"
@@ -25,7 +25,7 @@ private:
  void Remove_Header_Extra_File();
  void Place_Information(char ** Pointer, char * Information, int * Counter);
  Thread_Locker_Header_File_Builder HeaderFileBuilder;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  Custom_System_Interface System_Interface;
  DirectoryOperations Directory_Manager;
  Descriptor_File_Reader * Reader_Pointer;

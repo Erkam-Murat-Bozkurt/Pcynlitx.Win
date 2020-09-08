@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "IntToCharTranslater.h"
 #include "DirectoryOperations.h"
 #include "Server_Header_File_Builder.h"
@@ -44,7 +44,7 @@ private:
  void Write_Join_Member_Function();
  Server_Header_File_Builder Header_File_Builder;
  Descriptor_File_Reader * Reader_Pointer;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations Directory_Manager;
  IntToCharTranslater Translater;
  Custom_System_Interface System_Interface;

@@ -87,7 +87,7 @@ void TM_Client_Builder::Build_Thread_Manager_Client(){
 
      this->File_Manager.SetFilePath("TM_Client.cpp");
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n\n #include \"TM_Client.h\"");
 
@@ -758,7 +758,7 @@ void TM_Client_Builder::Remove_Source_File(){
 
      File_Path[index_counter] = '\0';
 
-     this->File_Manager.DeleteFile(File_Path);
+     this->File_Manager.Delete_File(File_Path);
 
      delete [] File_Path;
 }

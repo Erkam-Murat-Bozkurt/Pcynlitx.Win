@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <ctype.h>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "IntToCharTranslater.h"
 #include "Descriptor_File_Reader.h"
 #include "MemberFunctionReader.h"
@@ -23,7 +23,7 @@ private:
  void Determine_Inclusion_Word();
  void Place_Information(char ** Pointer,char * String,int * index_counter);
  char ConvertToUpper(char character);
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  IntToCharTranslater Translater;
  Descriptor_File_Reader * Reader_Pointer;
  MemberFunctionReader FunctionReader;

@@ -144,7 +144,7 @@ void TM_Client_Header_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->File_Manager.Move_File(New_Path_Name,Current_Path_Name);
+     this->File_Manager.MoveFile_Win(New_Path_Name,Current_Path_Name);
 
      delete [] Current_Path_Name;
 
@@ -163,7 +163,7 @@ void TM_Client_Header_Builder::Build_Header_File(){
 
      this->File_Manager.SetFilePath("TM_Client.h");
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n#ifndef ");
 

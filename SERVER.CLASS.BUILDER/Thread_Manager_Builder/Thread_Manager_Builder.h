@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <cstdlib>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "IntToCharTranslater.h"
 #include "Thread_Locker_Builder.h"
@@ -34,7 +34,7 @@ private:
  Descriptor_File_Reader * Reader_Pointer;
  Thread_Data_Manager_Builder Data_Manager_Builder;
  Thread_Manager_Header_File_Builder HeaderFileBuilder;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations Directory_Manager;
  IntToCharTranslater Translater;
  Custom_System_Interface System_Interface;

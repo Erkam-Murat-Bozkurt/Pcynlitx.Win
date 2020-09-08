@@ -2,7 +2,7 @@
 #ifndef THREAD_DATA_MANAGER_HEADER_BUILDER_H
 #define THREAD_DATA_MANAGER_HEADER_BUILDER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "IntToCharTranslater.h"
 #include "Descriptor_File_Reader.h"
 
@@ -15,7 +15,7 @@ public:
   void Receive_Descriptor_File_Reader(Descriptor_File_Reader * Pointer);
   void Build_Thread_Data_Manager_Header_File();
 private:
-  CFileOperations FileManager;
+  Cpp_FileOperations FileManager;
   IntToCharTranslater Translater;
   Descriptor_File_Reader * Reader_Pointer;
 };

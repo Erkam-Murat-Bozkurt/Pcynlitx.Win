@@ -76,7 +76,7 @@ void Main_File_Builder::Build_Main_File(){
 
      int Total_Data_Type_Number = this->File_Reader->Get_Shared_Data_Types_Number();
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n");
 
@@ -185,7 +185,7 @@ void Main_File_Builder::Build_Main_File(){
 
      this->File_Manager.SetFilePath(Main_File_Name);
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n #include \"MT_Library_Headers.h\"");
 
@@ -338,7 +338,7 @@ void Main_File_Builder::Move_Header_File_List_To_New_Include_Directory(){
 
      New_Path[index_counter] = '\0';
 
-     this->File_Manager.Move_File(New_Path,Current_Path);
+     this->File_Manager.MoveFile_Win(New_Path,Current_Path);
 
      delete [] New_Path;
 

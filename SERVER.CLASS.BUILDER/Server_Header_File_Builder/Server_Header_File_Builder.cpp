@@ -120,7 +120,7 @@ void Server_Header_File_Builder::Build_Server_Header_File(){
 
      this->FileManager.SetFilePath(Server_Class_Header_File_Name);
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #ifndef ");
 
@@ -295,7 +295,7 @@ void Server_Header_File_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->FileManager.Move_File(New_Path_Name,Current_Path_Name);
+     this->FileManager.MoveFile_Win(New_Path_Name,Current_Path_Name);
 
      delete [] Current_Path_Name;
 

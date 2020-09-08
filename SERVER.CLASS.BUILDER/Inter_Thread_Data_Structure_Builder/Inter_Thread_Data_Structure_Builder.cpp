@@ -78,7 +78,7 @@ void Inter_Thread_Data_Structure_Builder::Build_Inter_Thread_Data_Structure(){
 
      this->File_Manager.SetFilePath("itds.h");
 
-     this->File_Manager.FileOpen(RWC);
+     this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.WriteToFile("\n #ifndef ITDS_H");
 
@@ -282,7 +282,7 @@ void Inter_Thread_Data_Structure_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->File_Manager.Move_File(New_Path_Name,Current_Path_Name);
+     this->File_Manager.MoveFile_Win(New_Path_Name,Current_Path_Name);
 
      delete [] Current_Path_Name;
 

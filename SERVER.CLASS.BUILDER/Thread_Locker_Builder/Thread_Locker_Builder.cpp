@@ -82,7 +82,7 @@ void Thread_Locker_Builder::Build_Thread_Locker(){
 
      this->FileManager.SetFilePath("Thread_Locker.cpp");
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n");
 
@@ -262,7 +262,7 @@ void Thread_Locker_Builder::Remove_Header_Extra_File(){
 
      File_Path[index_counter] = '\0';
 
-     this->FileManager.DeleteFile(File_Path);
+     this->FileManager.Delete_File(File_Path);
 
      delete [] File_Path;
 }

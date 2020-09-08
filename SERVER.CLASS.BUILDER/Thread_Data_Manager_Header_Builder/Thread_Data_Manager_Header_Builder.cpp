@@ -49,7 +49,7 @@ void Thread_Data_Manager_Header_Builder::Build_Thread_Data_Manager_Header_File()
 
      this->FileManager.SetFilePath("Thread_Data_Manager.h");
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #ifndef THREAD_DATA_MANAGER_H");
 

@@ -2,7 +2,7 @@
 #ifndef INTER_THREAD_DATA_STRUCTURE_BUILDER_H
 #define INTER_THREAD_DATA_STRUCTURE_BUILDER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "Descriptor_File_Reader.h"
 
 class Inter_Thread_Data_Structure_Builder
@@ -19,7 +19,7 @@ private:
  void Determine_Header_File_Path(char * Header_File_Location, char * Header_File_Name);
  void Place_Information(char ** Pointer,char * String,int * index_counter);
  MemberFunctionReader FunctionReader;
- CFileOperations File_Manager;
+ Cpp_FileOperations File_Manager;
  Descriptor_File_Reader * Reader_Pointer;
  bool Memory_Delete_Condition;
  char * Header_File_Path;

@@ -3,7 +3,7 @@
 #define THREAD_MANAGER_HEADER_FILE_BUILDER_H
 
 #include "Thread_Data_Manager_Header_Builder.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "IntToCharTranslater.h"
 #include "Descriptor_File_Reader.h"
 
@@ -17,7 +17,7 @@ public:
  void Build_Thread_Manager_Header_File();
 private:
  Thread_Data_Manager_Header_Builder Data_Manager_Header_Builder;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  IntToCharTranslater Translater;
  Descriptor_File_Reader * Reader_Pointer;
 };
