@@ -6,7 +6,7 @@
 #include "Compiler_Descriptor_File_Constructor.h"
 #include "Compiler.h"
 #include "DirectoryOperations.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -29,7 +29,7 @@ private:
   Compiler_Descriptor_File_Constructor File_Constructor;
   Compiler Project_Compiler;
   DirectoryOperations Directory_Manager;
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
   bool Memory_Delete_Condition;
   char * Compiler_Output_File_Path;
 };

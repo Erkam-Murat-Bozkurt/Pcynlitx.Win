@@ -5,7 +5,7 @@
 #include "Builder_Initializer.h"
 #include "DirectoryOperations.h"
 #include "Descriptor_File_Reader.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include <cstring>
 #include <ctype.h>
 
@@ -29,7 +29,7 @@ private:
  void Determine_Client_Header_File_Name();
  char ConvertToUpper(char character);
  void Clear_Pointer_Memory(char ** Pointer);
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;
  Descriptor_File_Reader * Reader_Pointer;
  bool   Memory_Delete_Condition;

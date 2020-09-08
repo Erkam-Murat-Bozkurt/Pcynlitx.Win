@@ -2,7 +2,7 @@
 #ifndef MULTI_THREAD_POINTER_FILE_CLEANER_H
 #define MULTI_THREAD_POINTER_FILE_CLEANER_H
 
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include <cstring>
 #include <unistd.h>
 
@@ -18,7 +18,7 @@ public:
 private:
   void Clear_Pointer_Memory(char ** Pointer);
   void Place_Information(char ** Pointer, char * Information, int * index_counter);
-  CFileOperations File_Manager;
+  Cpp_FileOperations File_Manager;
 };
 
 #endif /* MULTI_THREAD_POINTER_FILE_CLEANER_H*/

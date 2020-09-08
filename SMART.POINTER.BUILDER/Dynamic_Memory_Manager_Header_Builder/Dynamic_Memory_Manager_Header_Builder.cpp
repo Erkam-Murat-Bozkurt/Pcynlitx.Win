@@ -161,11 +161,11 @@ void Dynamic_Memory_Manager_Header_Builder::Write_Header_File(){
 
      this->FileManager.SetFilePath(this->Initializer.Get_NewHeaderFileName());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.FileClose();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n#ifndef ");
 

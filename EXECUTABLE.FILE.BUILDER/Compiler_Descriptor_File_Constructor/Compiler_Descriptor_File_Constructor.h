@@ -14,7 +14,7 @@ application developed and the library that is constructed by the pcynlitx platfo
 #define COMPILER_DESCRIPTOR_FILE_CONSTRUCTOR_H
 
 #include <cstring>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "Descriptor_File_Reader.h"
 
 class Compiler_Descriptor_File_Constructor
@@ -53,7 +53,7 @@ private:
  char * Get_File_Path_For_Base_Class_Header_File(int Index_Number);
  char * Get_File_Path_For_Shared_Data_Type_Header_File(int Index_Number);
  char * Get_Header_File_Paths_In_New_Include_Directory(char * Header_File_Name);
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  Descriptor_File_Reader * Reader_Pointer;
  int Include_Directory_Counter;
  int Library_Directory_Counter;

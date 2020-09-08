@@ -286,7 +286,7 @@ void Multi_Thread_Pointer_Builder::Start_Implementation_File_Construction(){
 
      this->FileManager.SetFilePath(this->Initializer.Get_ClassImplementationFileName());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #include \"");
 
@@ -299,7 +299,7 @@ void Multi_Thread_Pointer_Builder::Start_Implementation_File_Construction(){
 
 void Multi_Thread_Pointer_Builder::Build_Constructors(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -356,7 +356,7 @@ void Multi_Thread_Pointer_Builder::Build_Constructors(){
 
 void Multi_Thread_Pointer_Builder::Build_Destructor(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -391,7 +391,7 @@ void Multi_Thread_Pointer_Builder::Build_Destructor(){
 
 void Multi_Thread_Pointer_Builder::Build_NewMemory_Member_Functions(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -510,7 +510,7 @@ void Multi_Thread_Pointer_Builder::Build_DeleteMemory_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -571,7 +571,7 @@ void Multi_Thread_Pointer_Builder::Build_ReceiveIndexBound_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -602,7 +602,7 @@ void Multi_Thread_Pointer_Builder::Build_Overload_Operators_Member_Functions(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -807,7 +807,7 @@ void Multi_Thread_Pointer_Builder::Build_SetFilePath_Member_Functions(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -868,7 +868,7 @@ void Multi_Thread_Pointer_Builder::Build_Jump_To_Start_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -907,7 +907,7 @@ void Multi_Thread_Pointer_Builder::Build_Jump_To_End_Member_Function(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -958,7 +958,7 @@ void Multi_Thread_Pointer_Builder::Build_Thread_User_Member_Functions(){
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 

@@ -577,7 +577,7 @@ void Compiler_Descriptor_File_Constructor::Build_Compiler_Descriptor_File(){
 
      this->FileManager.SetFilePath("Compiler_Descriptor_File");
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n\nINCLUDE DIRECTORIES:\n");
 

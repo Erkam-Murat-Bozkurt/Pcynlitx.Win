@@ -206,7 +206,7 @@ void Multi_Thread_Pointer_Client_Header_Builder::Write_Header_File(){
 
      this->FileManager.SetFilePath(this->Client_Class_Header_File_Name);
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n#ifndef ");
 

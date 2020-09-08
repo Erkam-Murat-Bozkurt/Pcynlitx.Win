@@ -213,7 +213,7 @@ void Multi_Thread_Pointer_Client_Builder::Build_Class_Implementation_File(){
 
      this->FileManager.SetFilePath(this->Client_Class_Implementation_File_Name);
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n\n #include \"");
 
@@ -927,7 +927,7 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Class_Implementation_File(){
 
      File_Name[index_counter] = '\0';
 
-     this->FileManager.DeleteFile(File_Name);
+     this->FileManager.Delete_File(File_Name);
 
      delete [] File_Name;
 }
@@ -958,7 +958,7 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Header_Extra(){
 
      File_Name[index_counter] = '\0';
 
-     this->FileManager.DeleteFile(File_Name);
+     this->FileManager.Delete_File(File_Name);
 
      delete [] File_Name;
 }

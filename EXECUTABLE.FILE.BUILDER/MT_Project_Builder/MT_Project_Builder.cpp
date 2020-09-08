@@ -102,7 +102,7 @@ void MT_Project_Builder::Build_Project(){
 
      char Compiler_Descriptor_File_Name [] = "Compiler_Descriptor_File";
 
-     this->File_Manager.DeleteFile(Compiler_Descriptor_File_Name);
+     this->File_Manager.Delete_File(Compiler_Descriptor_File_Name);
 
      this->Remove_Compiler_Output_File();
 
@@ -143,7 +143,7 @@ void MT_Project_Builder::Remove_Compiler_Output_File(){
 
      if(Is_Compiler_Output_File_Exist == 0){
 
-        unlink(this->Compiler_Output_File_Path);
+        this->File_Manager.Delete_File(this->Compiler_Output_File_Path);
      }
 
      delete [] this->Compiler_Output_File_Path;

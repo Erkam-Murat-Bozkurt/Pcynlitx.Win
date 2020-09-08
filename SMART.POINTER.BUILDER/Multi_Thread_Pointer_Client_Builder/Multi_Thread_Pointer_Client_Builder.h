@@ -4,7 +4,7 @@
 
 #include "Multi_Thread_Pointer_Client_Header_Builder.h"
 #include "Descriptor_File_Reader.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include <cstring>
 #include <cstdlib>
@@ -36,7 +36,7 @@ private:
  bool Memory_Delete_Condition;
  int  include_options_size;
  Multi_Thread_Pointer_Client_Header_Builder P_Header_Builder;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;
  Descriptor_File_Reader * Reader_Pointer;
  char * Construction_Point;

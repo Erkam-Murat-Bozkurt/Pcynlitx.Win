@@ -131,7 +131,7 @@ void ReportFileBuilder_Writer::Start_Implementation_File_Construction(){
 
      this->FileManager.SetFilePath(this->Initializer.Get_ClassImplementationFileName());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #include \"");
 
@@ -144,7 +144,7 @@ void ReportFileBuilder_Writer::Start_Implementation_File_Construction(){
 
 void ReportFileBuilder_Writer::Build_Constructors(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -211,7 +211,7 @@ void ReportFileBuilder_Writer::Build_Constructors(){
 
 void ReportFileBuilder_Writer::Build_Destructor(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -246,7 +246,7 @@ void ReportFileBuilder_Writer::Build_Destructor(){
 
 void ReportFileBuilder_Writer::Build_SetFilePath_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -287,7 +287,7 @@ void ReportFileBuilder_Writer::Build_SetFilePath_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_File_Operations_Member_Functions(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -366,7 +366,7 @@ void ReportFileBuilder_Writer::Build_File_Operations_Member_Functions(){
 
 void ReportFileBuilder_Writer::Build_SetReportFileName_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -411,7 +411,7 @@ void ReportFileBuilder_Writer::Build_SetReportFileName_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_WriteReportEnd_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -464,7 +464,7 @@ void ReportFileBuilder_Writer::Build_WriteReportEnd_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_MemoryAllocationError_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -533,7 +533,7 @@ void ReportFileBuilder_Writer::Build_MemoryAllocationError_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_MemoryCanNotDelete_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -606,7 +606,7 @@ void ReportFileBuilder_Writer::Build_MemoryCanNotDelete_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_IndexOutOfBoundError_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -675,7 +675,7 @@ void ReportFileBuilder_Writer::Build_IndexOutOfBoundError_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_AdressSearchError_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -744,7 +744,7 @@ void ReportFileBuilder_Writer::Build_AdressSearchError_Member_Function(){
 
 void ReportFileBuilder_Writer::Build_PointerAdressChangeError_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 

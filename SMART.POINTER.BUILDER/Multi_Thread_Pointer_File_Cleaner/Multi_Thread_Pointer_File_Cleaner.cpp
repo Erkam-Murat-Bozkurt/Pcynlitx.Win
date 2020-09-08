@@ -38,7 +38,7 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Source_Files(char ** Source_File_
 
      for(int i=0;i<3;i++){
 
-         this->File_Manager.DeleteFile(Source_File_Name_Matrix[i]);
+         this->File_Manager.Delete_File(Source_File_Name_Matrix[i]);
      }
 }
 
@@ -65,7 +65,7 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Header_File_Extras(char ** Header
 
          Extra_File_Name[index_counter] = '\0';
 
-         this->File_Manager.DeleteFile(Extra_File_Name);
+         this->File_Manager.Delete_File(Extra_File_Name);
 
          delete [] Extra_File_Name;
      }
@@ -75,7 +75,7 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Object_Files(char ** Object_File_
 
      for(int i=0;i<3;i++){
 
-         this->File_Manager.DeleteFile(Object_File_Name_Matrix[i]);
+         this->File_Manager.Delete_File(Object_File_Name_Matrix[i]);
      }
 }
 

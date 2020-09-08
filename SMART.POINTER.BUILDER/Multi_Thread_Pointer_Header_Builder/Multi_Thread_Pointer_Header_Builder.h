@@ -5,7 +5,7 @@
 #include "Builder_Initializer.h"
 #include "DirectoryOperations.h"
 #include "Descriptor_File_Reader.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include <cstring>
 #include <ctype.h>
 
@@ -32,7 +32,7 @@ private:
  void Write_Header_File();
  void Determine_Inclusion_Word();
  char ConvertToUpper(char character);
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;
  Builder_Initializer Initializer;
  Builder_Initializer Manager_Initializer;

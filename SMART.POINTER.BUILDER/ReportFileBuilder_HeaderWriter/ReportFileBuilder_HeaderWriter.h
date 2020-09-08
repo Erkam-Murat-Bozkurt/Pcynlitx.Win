@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <ctype.h>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "Builder_Initializer.h"
 
@@ -26,7 +26,7 @@ private:
  void Write_Header_File();
  void Determine_Inclusion_Word();
  char ConvertToUpper(char character);
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;
  Builder_Initializer Initializer;
  char * InclusionWord;

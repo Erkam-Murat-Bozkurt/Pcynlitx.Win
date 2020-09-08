@@ -156,7 +156,7 @@ void Dynamic_Memory_Manager_Builder::Build_Class_Implementation_File(){
 
      this->FileManager.SetFilePath(this->Initializer.Get_ClassImplementationFileName());
 
-     this->FileManager.FileOpen(RWC);
+     this->FileManager.FileOpen(RWCf);
 
      this->FileManager.WriteToFile("\n #include \"");
 
@@ -185,7 +185,7 @@ void Dynamic_Memory_Manager_Builder::Build_Class_Implementation_File(){
 
 void Dynamic_Memory_Manager_Builder::Build_Constructors(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -268,7 +268,7 @@ void Dynamic_Memory_Manager_Builder::Build_Constructors(){
 
 void Dynamic_Memory_Manager_Builder::Build_Destructor(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -311,7 +311,7 @@ void Dynamic_Memory_Manager_Builder::Build_Destructor(){
 
 void Dynamic_Memory_Manager_Builder::Build_NewMemory_Member_Functions(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -402,7 +402,7 @@ void Dynamic_Memory_Manager_Builder::Build_NewMemory_Member_Functions(){
 
 void Dynamic_Memory_Manager_Builder::Build_DeleteMemory_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -517,7 +517,7 @@ void Dynamic_Memory_Manager_Builder::Build_DeleteMemory_Member_Function(){
 
 void Dynamic_Memory_Manager_Builder::Build_GetMemoryAdress_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n ");
 
@@ -564,7 +564,7 @@ void Dynamic_Memory_Manager_Builder::Build_GetMemoryAdress_Member_Function(){
 
 void Dynamic_Memory_Manager_Builder::Build_ReceiveReportFileManager_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -597,7 +597,7 @@ void Dynamic_Memory_Manager_Builder::Build_ReceiveReportFileManager_Member_Funct
 
 void Dynamic_Memory_Manager_Builder::Build_GetMemorySize_Member_Function(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 
@@ -622,7 +622,7 @@ void Dynamic_Memory_Manager_Builder::Build_GetMemorySize_Member_Function(){
 
 void Dynamic_Memory_Manager_Builder::Build_User_Number_Determiner_Member_Functions(){
 
-     this->FileManager.FileOpen(A);
+     this->FileManager.FileOpen(Af);
 
      this->FileManager.WriteToFile("\n\n");
 

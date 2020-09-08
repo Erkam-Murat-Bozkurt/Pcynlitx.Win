@@ -227,7 +227,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_New_Pointer_Class_Name(
 
 void Multi_Thread_Pointer_File_Data_Collector::Move_Header_Files(){
 
-     char * Current_Directory = get_current_dir_name();
+     char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      char Directory_Character [] = {'/','\0'};
 
@@ -261,14 +261,12 @@ void Multi_Thread_Pointer_File_Data_Collector::Move_Header_Files(){
 
          Header_File_New_Path[index_counter] = '\0';
 
-         this->File_Manager.Move_File(Header_File_New_Path,Header_File_Full_Path);
+         this->File_Manager.MoveFile_Win(Header_File_New_Path,Header_File_Full_Path);
 
          delete [] Header_File_Full_Path;
 
          delete [] Header_File_New_Path;
      }
-
-     free(Current_Directory);
 }
 
 void Multi_Thread_Pointer_File_Data_Collector::Run_System_Commands(){

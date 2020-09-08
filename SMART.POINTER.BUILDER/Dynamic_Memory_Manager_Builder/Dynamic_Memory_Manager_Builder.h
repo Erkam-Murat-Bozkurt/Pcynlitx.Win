@@ -6,7 +6,7 @@
 #include "ReportFileBuilder_Writer.h"
 #include "Builder_Initializer.h"
 #include "DirectoryOperations.h"
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include <cstring>
 
 class Dynamic_Memory_Manager_Builder
@@ -38,7 +38,7 @@ private:
  void Build_GetMemorySize_Member_Function();
  void Build_User_Number_Determiner_Member_Functions();
  bool Data_Type_Include_File_Name_Receive_Condition;
- CFileOperations FileManager;
+ Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;
  Builder_Initializer Initializer;
  Builder_Initializer ReportFileBuilder_Initializer;
