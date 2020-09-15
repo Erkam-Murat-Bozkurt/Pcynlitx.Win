@@ -182,9 +182,7 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
 
      if(this->Gui_Status){
 
-        this->FileManager.WriteToFile("Libraries=`wx-config --cxxflags --libs`");
-
-        this->FileManager.WriteToFile(" `wx-config --libs std stc` `wx-config --libs core,base,aui`");
+        this->FileManager.WriteToFile("include D:\\PCYNLITX.PROJECT.WINDOWS\\GUI.DEVELOPMENT\\PATHS_FOR_GUI_MAKE_FILES");
      }
 
      this->FileManager.WriteToFile("\n");
@@ -242,8 +240,6 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
 
      this->FileManager.WriteToFile(compiler_command);
 
-     this->FileManager.WriteToFile(" $(Libraries)");
-
      this->FileManager.WriteToFile("\n");
 
      this->FileManager.FileClose();
@@ -251,7 +247,7 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
 
 void Make_File_Builder::Find_Class_Name(){
 
-     char * Current_Directory = get_current_dir_name();
+     char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -259,7 +255,7 @@ void Make_File_Builder::Find_Class_Name(){
 
      for(int i=Directory_Name_Size;i>0;i--){
 
-         if(Current_Directory[i] == '/'){
+         if(Current_Directory[i] == '\\'){
 
             Start_Point = i;
 
@@ -326,8 +322,6 @@ void Make_File_Builder::Find_Class_Name(){
      this->Class_Source_File_Name[Class_Name_Size+3] = 'p';
 
      this->Class_Source_File_Name[Class_Name_Size+4] = '\0';
-
-     free(Current_Directory);
 }
 
 void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Directory, char * Object_Files_Directory, char * Library_Name){
@@ -338,7 +332,7 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      char Source_File_Directory_Character [] = {'-','L','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char include_word [] = {'-','i','n','c','l','u','d','e','\0'};
 
@@ -346,7 +340,7 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      char Linker_Character [] = {'-','l','\0'};
 
-     char * Current_Directory = get_current_dir_name();
+     char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      int Include_Directory_Name_Size = strlen(Header_Files_Directory);
 
@@ -422,21 +416,19 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
      }
 
      this->Compiler_System_Command[index_counter] = '\0';
-
-     free(Current_Directory);
 }
 
 void Make_File_Builder::Determine_Included_Header_Files_Number(){
 
-     std::string Header_File_Name(this->Class_Header_File_Name);
+     this->FileManager.SetFilePath(this->Class_Header_File_Name);
 
-     this->DataFile.open(Header_File_Name,std::ios::in);
+     this->FileManager.FileOpen(Rf);
 
      this->Included_Header_Files_Number = 0;
 
-     while(!this->DataFile.eof()){
+     while(!this->FileManager.Control_End_of_File()){
 
-            std::getline(this->DataFile,this->String_Line);
+            this->String_Line = this->FileManager.ReadLine();
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
@@ -460,7 +452,7 @@ void Make_File_Builder::Determine_Included_Header_Files_Number(){
 
                          std::cout << "\n There is a syntax error in ";
 
-                         std::cout << Header_File_Name << " decleration..";
+                         std::cout << this->Class_Header_File_Name << " decleration..";
 
                          std::cout << "\n\n Please check decleraiton ..";
 
@@ -475,22 +467,22 @@ void Make_File_Builder::Determine_Included_Header_Files_Number(){
             }
        }
 
-       this->DataFile.close();
+       this->FileManager.FileClose();
 }
 
 void Make_File_Builder::Read_Include_File_Names(){
 
      this->Included_Header_Files = new char * [5*this->Included_Header_Files_Number];
 
-     std::string Header_File_Name(this->Class_Header_File_Name);
+     this->FileManager.SetFilePath(this->Class_Header_File_Name);
 
-     this->DataFile.open(Header_File_Name,std::ios::in);
+     this->FileManager.FileOpen(Rf);
 
      int Included_Header_Files_Index_Counter = 0;
 
-     while(!this->DataFile.eof()){
+     while(!this->FileManager.Control_End_of_File()){
 
-            std::getline(this->DataFile,this->String_Line);
+            this->String_Line = this->FileManager.ReadLine();
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
@@ -528,7 +520,7 @@ void Make_File_Builder::Read_Include_File_Names(){
           }
      }
 
-     this->DataFile.close();
+     this->FileManager.FileClose();
 }
 
 void Make_File_Builder::Determine_Object_File_Names(){

@@ -5,7 +5,7 @@
 #include <cstring>
 #include <unistd.h>
 #include <cstdlib>
-#include "CFileOperations.h"
+#include "Cpp_FileOperations.h"
 #include "ClassRebuilder.h"
 #include "Inter_Thread_Data_Structure_Builder.h"
 #include "Multi_Thread_Pointer_Builder.h"
@@ -18,6 +18,9 @@
 #include "Main_File_Builder.h"
 #include "Kernel_Data_Collector.h"
 #include "IntToCharTranslater.h"
+#include <windows.h>
+#include "Shlwapi.h"
+
 
 
 class Kernel
@@ -43,6 +46,7 @@ private:
  void Construct_Main_File();
  void Construct_Compiler_Descriptor_File();
  void Remove_Compiler_Output_File();
+ Cpp_FileOperations FileManager;
  Descriptor_File_Reader Description_Reader;
  Inter_Thread_Data_Structure_Builder ITDS_Builder;
  Server_Builder Srv_Builder;

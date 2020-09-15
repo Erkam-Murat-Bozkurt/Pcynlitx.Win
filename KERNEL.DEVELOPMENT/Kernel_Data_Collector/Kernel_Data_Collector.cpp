@@ -135,7 +135,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
             Smart_Pointer_File_Name[index_counter] = '\0';
 
-            unlink(Smart_Pointer_File_Name);
+            this->FileManager.Delete_File(Smart_Pointer_File_Name);
 
             delete [] Smart_Pointer_File_Name;
 
@@ -153,7 +153,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
             Smart_Pointer_Client_File_Name[index_counter] = '\0';
 
-            unlink(Smart_Pointer_Client_File_Name); //Remove Smart pointer client object file
+            this->FileManager.Delete_File(Smart_Pointer_Client_File_Name); //Remove Smart pointer client object file
 
             delete [] Smart_Pointer_Client_File_Name;
 
@@ -171,7 +171,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
             Memory_Manager_File_Name[index_counter] = '\0';
 
-            unlink(Memory_Manager_File_Name); // Remove Memory Manager File
+            this->FileManager.Delete_File(Memory_Manager_File_Name); // Remove Memory Manager File
 
             delete [] Memory_Manager_File_Name;
 
@@ -189,7 +189,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
             Report_File_Builder_Name[index_counter] = '\0';
 
-            unlink(Report_File_Builder_Name);
+            this->FileManager.Delete_File(Report_File_Builder_Name);
 
             delete [] Report_File_Builder_Name;
 
@@ -258,7 +258,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
         Manager_Class_Object_File_Name[index_counter] = '\0';
 
-        unlink(Manager_Class_Object_File_Name);
+        this->FileManager.Delete_File(Manager_Class_Object_File_Name);
 
         delete [] Manager_Class_Object_File_Name;
 
@@ -279,7 +279,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
         Data_Manager_Class_Object_File_Name[index_counter] = '\0';
 
-        unlink(Data_Manager_Class_Object_File_Name);
+        this->FileManager.Delete_File(Data_Manager_Class_Object_File_Name);
 
         delete [] Data_Manager_Class_Object_File_Name;
 
@@ -301,7 +301,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
         Manager_Client_Class_Object_File_Name[index_counter] = '\0';
 
-        unlink(Manager_Client_Class_Object_File_Name);
+        this->FileManager.Delete_File(Manager_Client_Class_Object_File_Name);
 
         delete [] Manager_Client_Class_Object_File_Name;
 
@@ -321,7 +321,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
         Locker_Class_Object_File_Name[index_counter] = '\0';
 
-        unlink(Locker_Class_Object_File_Name);
+        this->FileManager.Delete_File(Locker_Class_Object_File_Name);
 
         delete [] Locker_Class_Object_File_Name;
 }
@@ -366,7 +366,7 @@ void Kernel_Data_Collector::Construct_New_Library(){
 
      Library_Name[index_counter] = '\0';
 
-     unlink(Library_Name);
+     this->FileManager.Delete_File(Library_Name);
 
      index_counter = 0;
 
@@ -556,7 +556,7 @@ void Kernel_Data_Collector::Construct_New_Include_Directory(){
         this->DirectoryManager.Remove_Directory_Recursively(this->New_Include_Directory_Name);
      }
 
-     this->DirectoryManager.MakeDirectory(this->New_Include_Directory_Name,0777);
+     this->DirectoryManager.MakeDirectory(this->New_Include_Directory_Name);
 }
 
 void Kernel_Data_Collector::Jump_To_Construction_Point(){

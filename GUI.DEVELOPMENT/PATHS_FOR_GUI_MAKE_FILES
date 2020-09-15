@@ -1,0 +1,19 @@
+
+INC_1=C:\wxWidgets-3.0.5\include
+
+INC_2=C:\wxWidgets-3.0.5\lib\gcc_lib\mswu\wx
+
+LNC=C:\wxWidgets-3.0.5\lib\gcc_lib
+
+Library_1=-lwxmsw30ud_core -lwxbase30ud -lwxtiffd -lwxjpegd -lwxpngd -lwxzlibd -lwxregexud
+
+Library_2=-lwxexpatd -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm
+
+Library_3=-lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lwininet
+
+ID=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES
+OD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY/OBJECT.FILES
+LD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PCYNLITX.PROJECT.LIBRARY\PROJECT.LIBRARY
+
+vpath %.h D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES
+vpath %.o D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY/OBJECT.FILES

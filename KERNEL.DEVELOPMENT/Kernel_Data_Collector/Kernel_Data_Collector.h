@@ -5,9 +5,10 @@
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
+#include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "Descriptor_File_Reader.h"
-
+#include <windows.h>
 
 class Kernel_Data_Collector
 {
@@ -27,6 +28,7 @@ private:
   void Clear_Pointer_Memory(char ** Pointer);
   void Place_String(char ** Pointer,char * String, int String_Size);
   void Place_Information(char ** Pointer, char * Information, int * index_counter);
+  Cpp_FileOperations FileManager;
   Descriptor_File_Reader * Reader_Pointer;
   DirectoryOperations DirectoryManager;
   bool Memory_Delete_Condition;

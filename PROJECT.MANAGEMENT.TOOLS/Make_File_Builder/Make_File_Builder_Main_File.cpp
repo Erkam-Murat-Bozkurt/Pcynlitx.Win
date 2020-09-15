@@ -17,9 +17,12 @@ int main(int argc, char ** argv){
 
     char * Project_Library_Name = argv[4];
 
-    if(argv[5][0] == 'g'){
+    if(argc > 5){
 
-       File_Builder.Make_For_GUI(true);
+      if(argv[5][0] == 'g'){
+
+         File_Builder.Make_For_GUI(true);
+      }
     }
 
     int Header_Files_Location_String_Size = strlen(Project_Header_Files_Location);

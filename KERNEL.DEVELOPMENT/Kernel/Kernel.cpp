@@ -348,11 +348,11 @@ void Kernel::Remove_Compiler_Output_File(){
 
      this->Compiler_Output_File_Path[index_counter] = '\0';
 
-     int Is_Compiler_Output_File_Exist = access(this->Compiler_Output_File_Path,F_OK);
+     int Is_Compiler_Output_File_Exist = PathFileExists(this->Compiler_Output_File_Path);
 
      if(Is_Compiler_Output_File_Exist == 0){
 
-        unlink(this->Compiler_Output_File_Path);
+        this->FileManager.Delete_File(this->Compiler_Output_File_Path);
      }
 
      delete [] this->Compiler_Output_File_Path;

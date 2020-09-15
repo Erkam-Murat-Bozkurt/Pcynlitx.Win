@@ -12,8 +12,9 @@
 #include <fstream>
 #include <string>
 #include <fcntl.h>
-#include <sys/sendfile.h>
+#include <windows.h>
 #include "Cpp_FileOperations.h"
+#include "DirectoryOperations.h"
 
 class Make_File_Builder
 {
@@ -37,7 +38,7 @@ private:
  bool Include_Line_Determiner(std::string String_Line);
  void Send_File(char * Target_Location, char * Base_Location);
  Cpp_FileOperations FileManager;
- std::fstream DataFile;
+ DirectoryOperations DirectoryManager;
  std::string String_Line;
  char * Dependency_Code_Line;
  char * Class_Name;
