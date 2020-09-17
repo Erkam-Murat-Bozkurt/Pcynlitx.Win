@@ -340,6 +340,20 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      char Linker_Character [] = {'-','l','\0'};
 
+     char wx_Include_1 [] = "$(INC_1)";
+
+     char wx_Include_2 [] = "$(INC_2)";
+
+     char wx_Include_3 [] = "$(INC_3)";
+
+     char wx_Lib [] = "$(LNC)";
+
+     char wx_Link_Lib_1 [] = "$(Library_1)";
+
+     char wx_Link_Lib_2 [] = "$(Library_2)";
+
+     char wx_Link_Lib_3 [] = "$(Library_3)";
+
      char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      int Include_Directory_Name_Size = strlen(Header_Files_Directory);
@@ -372,7 +386,7 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
                                  Included_Object_Files_Name_Size + Included_Header_Files_Name_Size;
 
-     this->Compiler_System_Command = new char [10*compiler_command_size];
+     this->Compiler_System_Command = new char [20*compiler_command_size];
 
      int index_counter = 0;
 
@@ -392,17 +406,52 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
+     if(this->Gui_Status){
+
+        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Include_1,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Include_2,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Include_3,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+     }
+
      this->Place_Information(&this->Compiler_System_Command,Source_File_Directory_Character,&index_counter);
 
      this->Place_Information(&this->Compiler_System_Command,Object_Files_Directory,&index_counter);
 
      this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
+     if(this->Gui_Status){
+
+        this->Place_Information(&this->Compiler_System_Command,Source_File_Directory_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Lib,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+     }
+
      this->Place_Information(&this->Compiler_System_Command,this->Class_Source_File_Name,&index_counter);
 
      this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
      this->Place_Information(&this->Compiler_System_Command,this->Class_Header_File_Name,&index_counter);
+
+     if(this->Included_Header_Files_Number == 0){
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+     }
 
      for(int i=0;i<this->Included_Header_Files_Number;i++){
 
@@ -413,6 +462,21 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
          this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
          this->Place_Information(&this->Compiler_System_Command,this->Included_Header_Files[i],&index_counter);
+
+         this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+     }
+
+     if(this->Gui_Status){
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_1,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_2,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+
+        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_3,&index_counter);
      }
 
      this->Compiler_System_Command[index_counter] = '\0';
