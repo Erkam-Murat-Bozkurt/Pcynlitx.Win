@@ -5,6 +5,8 @@
 #include <cstring>
 #include <unistd.h>
 #include <cstdlib>
+#include <windows.h>
+#include <shlwapi.h>
 #include "Cpp_FileOperations.h"
 #include "ClassRebuilder.h"
 #include "Inter_Thread_Data_Structure_Builder.h"
@@ -18,9 +20,6 @@
 #include "Main_File_Builder.h"
 #include "Kernel_Data_Collector.h"
 #include "IntToCharTranslater.h"
-#include <windows.h>
-#include "Shlwapi.h"
-
 
 
 class Kernel
