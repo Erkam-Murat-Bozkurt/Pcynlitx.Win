@@ -122,8 +122,6 @@ void Library_Updater::Build_Library(char * Object_Files_Directory, char * Librar
             }
         }
 
-        this->Object_File_List[index_counter] = '\0';
-
         closedir(d);
      }
 
@@ -135,7 +133,7 @@ void Library_Updater::Build_Library(char * Object_Files_Directory, char * Librar
 
      int Object_File_List_Character_Size = strlen(this->Object_File_List);
 
-     this->Archive_Build_Command = new char [2*Object_File_List_Character_Size];
+     this->Archive_Build_Command = new char [5*Object_File_List_Character_Size];
 
      this->Place_Information(&this->Archive_Build_Command,Library_Construction_Command,&index_counter);
 
@@ -151,7 +149,7 @@ void Library_Updater::Build_Library(char * Object_Files_Directory, char * Librar
 
      chdir(Object_Files_Directory);
 
-     system(this->Archive_Build_Command);
+     this->System_Interface.System_Function(this->Archive_Build_Command);
 }
 
 void Library_Updater::Send_Library_New_Location(char * Object_Files_Directory, char * New_Location, char * Library_Name){
@@ -174,9 +172,9 @@ void Library_Updater::Send_Library_New_Location(char * Object_Files_Directory, c
 
      Library_File_Name[index_counter] = '\0';
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
-     char * Current_Directory = get_current_dir_name();
+     char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -204,13 +202,14 @@ void Library_Updater::Send_Library_New_Location(char * Object_Files_Directory, c
 
      Target_Library_Path[index_counter] = '\0';
 
-     unlink(Target_Library_Path);
+     bool Is_Target_Library_Path_Already_Exist = PathFileExistsA(Target_Library_Path);
 
-     link(Current_Library_Path,Target_Library_Path);
+     if(Is_Target_Library_Path_Already_Exist){
 
-     unlink(Current_Library_Path);
+        this->FileManager.Delete_File(Target_Library_Path);
+     }
 
-     free(Current_Directory);
+     MoveFile(Current_Library_Path,Target_Library_Path);
 
      delete [] Current_Library_Path;
 

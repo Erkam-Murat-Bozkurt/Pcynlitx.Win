@@ -5,7 +5,7 @@ Custom_System_Interface::Custom_System_Interface(){
 
     this->status = 0;
 
-    this->return_status = -1; // The return status of the system call..
+    this->return_status = false; // The return status of the system call..
 }
 
 Custom_System_Interface::Custom_System_Interface(const Custom_System_Interface & arg){
@@ -26,15 +26,22 @@ bool Custom_System_Interface::System_Function(char * cmd){
 
      PROCESS_INFORMATION processInformation;
 
-     this->return_status = CreateProcess(NULL,cmd,NULL,NULL,FALSE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
+     ZeroMemory(&startupInfo,sizeof(startupInfo));
+
+     startupInfo.cb = sizeof(startupInfo);
+
+     ZeroMemory(&processInformation,sizeof(processInformation));
+
+     this->return_status = CreateProcessA(NULL,cmd,NULL,NULL,FALSE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
+
 
      WaitForSingleObject( processInformation.hProcess, INFINITE );
 
      DWORD exit_code = 0;
 
-     GetExitCodeProcess( processInformation.hProcess, &exit_code );
+     GetExitCodeProcess(processInformation.hProcess, &exit_code );
 
-     CloseHandle( processInformation.hProcess );
+     CloseHandle(processInformation.hProcess );
 
      if(exit_code != 0){
 
