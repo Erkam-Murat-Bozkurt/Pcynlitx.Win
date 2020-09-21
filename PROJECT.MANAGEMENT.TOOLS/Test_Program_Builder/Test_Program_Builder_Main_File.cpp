@@ -6,9 +6,17 @@ void Place_String(char ** Pointer, const char * String);
 
 int main(int argc, char ** argv){
 
+    const char * Headers_Files_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY\\OBJECT.FILES";
+
+    const char * Object_Files_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY\\OBJECT.FILES";
+
+    const char * Directory_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY";
+
+    const char * Library_Name = "mptools";
+
     Test_Program_Builder Builder;
 
-    Builder.Build_Test_Program(argv[1],argv[2],argv[3],argv[4]);
+    Builder.Build_Test_Program(Headers_Files_Location,Object_Files_Location,Directory_Location,Library_Name);
 
     return 0;
 }

@@ -137,12 +137,12 @@ void Test_Program_Builder::Build_Test_Program(const char * Header_Files_Director
 
      this->Determine_Compiler_System_Command(Header_Files_Directory,Object_Files_Directory,Library_Directory,Library_Name);
 
-     system(this->Compiler_System_Command);
+     this->System_Interface.System_Function(this->Compiler_System_Command);
 }
 
 void Test_Program_Builder::Find_Class_Name(){
 
-     char * Current_Directory = get_current_dir_name();
+     char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
      int Directory_Name_Size = strlen(Current_Directory);
 
@@ -150,7 +150,7 @@ void Test_Program_Builder::Find_Class_Name(){
 
      for(int i=Directory_Name_Size;i>0;i--){
 
-         if(Current_Directory[i] == '/'){
+         if(Current_Directory[i] == '\\'){
 
             Start_Point = i;
 
@@ -232,8 +232,6 @@ void Test_Program_Builder::Find_Class_Name(){
      this->Place_Information(&this->Main_File_Name,Main_File_Add_word,&index_counter);
 
      this->Main_File_Name[index_counter] = '\0';
-
-     free(Current_Directory);
 }
 
 void Test_Program_Builder::Determine_Compiler_System_Command(const char * Header_Files_Directory, const char * Object_Files_Directory, const char * Library_Directory, const char * Library_Name){
@@ -248,7 +246,7 @@ void Test_Program_Builder::Determine_Compiler_System_Command(const char * Header
 
      char Linker_Character [] = {'-','l','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Space_Character [] = {' ','\0'};
 

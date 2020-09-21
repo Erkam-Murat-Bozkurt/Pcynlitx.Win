@@ -12,10 +12,9 @@
 #include <fstream>
 #include <string>
 #include <fcntl.h>
-#include <winbase.h>
 #include <Windows.h>
-#include "Cpp_FileOperations.h"
 #include <tchar.h>
+#include "Cpp_FileOperations.h"
 
 #define BUFSIZE MAX_PATH
 

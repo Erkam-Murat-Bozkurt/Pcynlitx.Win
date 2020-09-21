@@ -1,4 +1,9 @@
 
+
+Write-Output ""
+
+Write-Output " # The construction of the project directories started .."
+
 $Condition = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY'
 
 if ( -not $Condition )
@@ -26,3 +31,11 @@ if ( -not $Condition  )
 {
     mkdir D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES
 }
+
+Write-Output ""
+
+Write-Output ""
+
+Write-Output "   The project directories have been constructed :-)"
+
+Write-Output ""

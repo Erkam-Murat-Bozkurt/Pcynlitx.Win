@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Custom_System_Interface.h"
+#include "DirectoryOperations.h"
 
 class Test_Program_Builder
 {
@@ -30,6 +32,8 @@ private:
  bool Include_Line_Determiner(std::string String_Line);
  std::fstream DataFile;
  std::string String_Line;
+ Custom_System_Interface System_Interface;
+ DirectoryOperations DirectoryManager;
  char * Class_Name;
  char * Class_Object_File_Name;
  char * Class_Header_File_Name;

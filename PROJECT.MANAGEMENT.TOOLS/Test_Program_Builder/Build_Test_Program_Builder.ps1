@@ -7,17 +7,17 @@ Write-Output " # The construction of the Test_Program_Builder started .."
 
 Write-Output ""
 
-mingw32-make -f auto_class_compiler.make > Compiler_Output.txt
+mingw32-make -f test_program_builder.make > Compiler_Output.txt
 
 
-$Condition = Test-Path -Path 'D:\Pcynlitx_Binaries\Class_Compiler.exe'
+$Condition = Test-Path -Path 'D:\Pcynlitx_Binaries\Test_Program_Builder.exe'
 
 if ($Condition )
 {
-     rm D:\Pcynlitx_Binaries\Class_Compiler.exe
+     rm D:\Pcynlitx_Binaries\Test_Program_Builder.exe
 }
 
-mv Class_Compiler.exe D:\Pcynlitx_Binaries
+mv Test_Program_Builder.exe D:\Pcynlitx_Binaries
 
 Write-Output ""
 
