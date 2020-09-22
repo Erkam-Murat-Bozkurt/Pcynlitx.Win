@@ -93,9 +93,9 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
      wxIcon File_Icon;
 
-     Folder_Icon.LoadFile(wxT("/usr/share/Pcynlitx/icons/folder.png"),wxICON_DEFAULT_TYPE,-1,-1);
+     Folder_Icon.LoadFile(wxT("D:\\Pcynlitx\\icons\\folder.png"),wxICON_DEFAULT_TYPE,-1,-1);
 
-     File_Icon.LoadFile(wxT("/usr/share/Pcynlitx/icons/file.png"),wxICON_DEFAULT_TYPE,-1,-1);
+     File_Icon.LoadFile(wxT("D:\\Pcynlitx\\icons\\file.png"),wxICON_DEFAULT_TYPE,-1,-1);
 
      wxArrayString File_List;
 
@@ -155,9 +155,9 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
      }
      else{
 
-          if(Folder == wxT("/")){
+          if(Folder == wxT("\\")){
 
-             Root_String = wxT("/");
+             Root_String = wxT("D:\\");
           }
      }
 
@@ -213,7 +213,7 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
                       for(int k=Files.Item(j).length();k>0;k--){
 
-                          if(Files.Item(j)[k] == '/'){
+                          if(Files.Item(j)[k] == '\\'){
 
                              break;
                       }
@@ -277,7 +277,7 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
                        for(int k=Files.Item(j).length();k>0;k--){
 
-                           if(Files.Item(j)[k] == '/'){
+                           if(Files.Item(j)[k] == '\\'){
 
                               break;
                            }
@@ -347,7 +347,7 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
                 for(int k=Files.Item(j).length();k>0;k--){
 
-                    if(Files.Item(j)[k] == '/'){
+                    if(Files.Item(j)[k] == '\\'){
 
                        break;
                     }
@@ -446,7 +446,7 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
      for(int k=Item.length();k>0;k--){
 
-         if(Item[k] == '/'){
+         if(Item[k] == '\\'){
 
             break;
          }

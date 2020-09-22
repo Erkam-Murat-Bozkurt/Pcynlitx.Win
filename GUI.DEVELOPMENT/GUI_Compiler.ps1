@@ -45,13 +45,15 @@ $Event_ID_Numbers="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\GUI.Headers\Event
 
 $Event_Table_Header="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\GUI.Headers\Event_Table_Header.h"
 
+$wxDirTraverser_executer="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\GUI.Headers\wxDirTraverser_executer.h"
+
 $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
 
 $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output " GUI COMPILE PROCESS HAS BEEN STARTED"
+Write-Output "  GUI COMPILE PROCESS HAS BEEN STARTED"
 
 Write-Output ""
 
@@ -62,9 +64,8 @@ cp $Event_ID_Numbers $Project_Headers_Files
 
 cp $Event_Table_Header $Project_Headers_Files
 
+cp $wxDirTraverser_executer $Project_Headers_Files
 
-
-Write-Output ""
 
 cd $Intro_Page_Loader_PATH
 
@@ -81,11 +82,7 @@ if ($Condition)
 
 Write-Output "   # Intro_Page_Loader class has been compiled"
 
-Write-Output ""
 
-
-
-Write-Output ""
 
 cd $Help_Page_Loader_PATH
 
@@ -102,11 +99,9 @@ if ($Condition)
 
 Write-Output "   # Help_Page_Loader class has been compiled"
 
-Write-Output ""
 
 
 
-Write-Output ""
 
 cd $Custom_wxDataViewTreeCtrl_PATH
 
@@ -123,11 +118,9 @@ if ($Condition  )
 
 Write-Output "   # Custom_wxDataViewTreeCtrl class has been compiled"
 
-Write-Output ""
 
 
 
-Write-Output ""
 
 cd $Project_Folder_Lister_PATH
 
@@ -144,10 +137,7 @@ if ($Condition  )
 
 Write-Output "   # Project_Folder_Lister class has been compiled"
 
-Write-Output ""
 
-
-Write-Output ""
 
 cd $Custom_Window_PATH
 
@@ -164,11 +154,8 @@ if ($Condition  )
 
 Write-Output "   # Custom_Window class has been compiled"
 
-Write-Output ""
 
 
-
-Write-Output ""
 
 cd $Custom_Close_Button_PATH
 
@@ -185,11 +172,9 @@ if ($Condition  )
 
 Write-Output "   # Custom_Close_Button class has been compiled"
 
-Write-Output ""
 
 
 
-Write-Output ""
 
 cd $Custom_Tree_View_Panel_PATH
 
@@ -206,11 +191,8 @@ if ($Condition  )
 
 Write-Output "   # Custom_Tree_View_Panel class has been compiled"
 
-Write-Output ""
 
 
-
-Write-Output ""
 
 cd $Custom_wxPanel_PATH
 
@@ -227,11 +209,9 @@ if ($Condition  )
 
 Write-Output "   # Custom_wxPanel class has been compiled"
 
-Write-Output ""
 
 
 
-Write-Output ""
 
 cd $Project_File_Selection_Dialog_PATH
 
@@ -248,10 +228,8 @@ if ($Condition)
 
 Write-Output "   # Project_File_Selection_Dialog class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $ToolBar_Initializer_PATH
 
@@ -268,10 +246,8 @@ if ($Condition)
 
 Write-Output "   # ToolBar_Initializer class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $Menu_Bar_Options_PATH
 
@@ -288,10 +264,8 @@ if ($Condition)
 
 Write-Output "   # Menu_Bar_Options class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $Style_Loader_PATH
 
@@ -308,11 +282,9 @@ if ($Condition)
 
 Write-Output "   # Style_Loader class has been compiled"
 
-Write-Output ""
 
 
 
-Write-Output ""
 
 cd $Custom_TextCtrl_PATH
 
@@ -329,10 +301,8 @@ if ($Condition)
 
 Write-Output "   # Custom_TextCtrl class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $Custom_TabArt_PATH
 
@@ -349,10 +319,8 @@ if ($Condition)
 
 Write-Output "   # Custom_TabArt class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $Custom_Notebook_PATH
 
@@ -369,10 +337,8 @@ if ($Condition)
 
 Write-Output "   # Custom_NoteBook class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $wx_Description_Record_Tools_PATH
 
@@ -389,10 +355,8 @@ if ($Condition)
 
 Write-Output "   # wx_Description_Record_Tools class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $keyboard_event_controler_PATH
 
@@ -409,10 +373,8 @@ if ($Condition)
 
 Write-Output "   # keyboard_event_controler class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $Process_Execution_Controller_PATH
 
@@ -429,10 +391,8 @@ if ($Condition)
 
 Write-Output "   # Process_Execution_Controller class has been compiled"
 
-Write-Output ""
 
 
-Write-Output ""
 
 cd $MainFrame_PATH
 
@@ -449,7 +409,6 @@ if ($Condition)
 
 Write-Output "   # MainFrame class has been compiled"
 
-Write-Output ""
 
 
 Write-Output ""

@@ -35,6 +35,8 @@ Write-Output ""
 
 Write-Output "  DESCRIPTOR FILE READER COMPILE PROCESS STARTED"
 
+Write-Output ""
+
 
 cd $Descriptor_File_Data_Collector_PATH
 
@@ -119,7 +121,5 @@ cd $Descriptor_File_Reader_PATH
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
 
 Write-Output "   # A make file has been derived for Descriptor_File_Reader class"
-
-Write-Output "   # Sub-Project has been compiled"
 
 Write-Output ""

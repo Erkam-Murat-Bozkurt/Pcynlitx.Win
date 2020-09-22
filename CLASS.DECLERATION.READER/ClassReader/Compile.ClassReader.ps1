@@ -175,6 +175,7 @@ if ($Condition)
 
 Write-Output "   # DataBaseBuilder class has been compiled"
 
+Write-Output ""
 
 Write-Output "   # Sub-Project has been compiled"
 

@@ -96,7 +96,7 @@ if ($Condition)
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Header_Builder\Thread_Data_Manager_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # Thread_Manager_Header_File_Builder class has been compiled"
+Write-Output "   # Thread_Data_Manager_Header_Builder class has been compiled"
 
 
 
@@ -113,7 +113,7 @@ if ($Condition)
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Builder\Thread_Data_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # Thread_Manager_Header_File_Builder class has been compiled"
+Write-Output "   # Thread_Data_Manager_Builder class has been compiled"
 
 
 cd $Thread_Manager_Header_File_Builder_PATH

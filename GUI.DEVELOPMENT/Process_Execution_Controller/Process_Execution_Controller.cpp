@@ -51,7 +51,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
      for(int k=this->Descriptor_File_Path.length();k>0;k--){
 
-         if(this->Descriptor_File_Path[k] == '/'){
+         if(this->Descriptor_File_Path[k] == '\\'){
 
             break;
          }
@@ -68,7 +68,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
 
-     wxString shell_command = "Descriptor_File_Reader " + Directory_Name;
+     wxString shell_command = "Descriptor_File_Reader.exe " + Directory_Name;
 
      this->Process_Exit_Status = 0;
 
@@ -168,7 +168,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
        for(int k=this->Descriptor_File_Path.length();k>0;k--){
 
-           if(this->Descriptor_File_Path[k] == '/'){
+           if(this->Descriptor_File_Path[k] == '\\'){
 
               break;
            }
@@ -185,7 +185,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
            Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
        }
 
-       wxString shell_command = "Descriptor_File_Reader " + Directory_Name;
+       wxString shell_command = "Descriptor_File_Reader.exe " + Directory_Name;
 
        this->Process_Exit_Status = 0;
 
@@ -277,21 +277,21 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            this->Process_Pointer->Redirect();
 
-           this->Output_File_Path = this->Construction_Point + wxT("/Output.txt");
+           this->Output_File_Path = this->Construction_Point + wxT("\\Output.txt");
 
            this->Run_Command = wxT("");
 
-           this->Run_Command = wxT("/usr/bin/Pcynlitx_Kernel ") + this->Descriptor_File_Path;
+           this->Run_Command = wxT("D:\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ") + this->Descriptor_File_Path;
 
-           wxString shell_command = "printf \"" + this->Run_Command + " >> " + this->Output_File_Path +
+           wxString shell_command = "Write-Output \"" + this->Run_Command + " >> " + this->Output_File_Path +
 
-                                    "\"" + " >> " + this->Construction_Point + "/build_script.sh";
+                                    "\"" + " >> " + this->Construction_Point + "\\build_script.ps1";
 
            wxShell(shell_command);
 
            shell_command = wxT("");
 
-           shell_command = "bash " + this->Construction_Point + "/build_script.sh";
+           shell_command = "PowerShell " + this->Construction_Point + "\\build_script.ps1";
 
            this->Sub_Process_ID = wxExecute(shell_command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER,this->Process_Pointer);
 
@@ -371,21 +371,21 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
              this->Output_File_Path = wxT("");
 
-             this->Output_File_Path = this->Construction_Point + wxT("/Output.txt");
+             this->Output_File_Path = this->Construction_Point + wxT("\\Output.txt");
 
              this->Run_Command = wxT("");
 
-             this->Run_Command = wxT("/usr/bin/MT_Project_Builder ") + this->Construction_Point;
+             this->Run_Command = wxT("D:\\Pcynlitx\\bin\\MT_Project_Builder.exe ") + this->Construction_Point;
 
-             wxString shell_command = "printf \"" + this->Run_Command + " >> " + this->Output_File_Path +
+             wxString shell_command = "Write-Output \"" + this->Run_Command + " >> " + this->Output_File_Path +
 
-                                      "\"" + " >> " + this->Construction_Point + "/build_script.sh";
+                                      "\"" + " >> " + this->Construction_Point + "\\build_script.ps1";
 
              wxShell(shell_command);
 
              shell_command = wxT("");
 
-             shell_command = "bash " + this->Construction_Point + "/build_script.sh";
+             shell_command = "PowerShell " + this->Construction_Point + "\\build_script.ps1";
 
              this->Sub_Process_ID = wxExecute(shell_command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER,this->Process_Pointer);
 
@@ -520,7 +520,7 @@ void Process_Execution_Controller::Process_End(int Process_Exit_Status){
 
      this->process_end_condition = true;
 
-     wxString Compiler_Output_File =  this->Construction_Point + wxT("/Compiler_Output");
+     wxString Compiler_Output_File =  this->Construction_Point + wxT("\\Compiler_Output.txt");
 
      wxTextFile Compiler_Output_File_Control(Compiler_Output_File);
 
@@ -597,19 +597,15 @@ void Process_Execution_Controller::Construct_Inter_Process_Files(){
 
      this->Clear_Inter_Process_Files();
 
-     wxString shell_command = "printf \"#!/bin/bash\" >> " + this->Construction_Point + "/build_script.sh";
+     wxString shell_command = wxT("");
+
+     shell_command = "Write-Output \"\" >> " + this->Construction_Point + "\\build_script.ps1";
 
      wxShell(shell_command);
 
      shell_command = wxT("");
 
-     shell_command = "printf \"\n\" >> " + this->Construction_Point + "/build_script.sh";
-
-     wxShell(shell_command);
-
-     shell_command = wxT("");
-
-     wxString Output_File_Path = this->Construction_Point + wxT("/Output.txt");
+     wxString Output_File_Path = this->Construction_Point + wxT("\\Output.txt");
 
      shell_command = "printf \"\" >> " + Output_File_Path;
 
@@ -618,7 +614,7 @@ void Process_Execution_Controller::Construct_Inter_Process_Files(){
 
 void Process_Execution_Controller::Clear_Inter_Process_Files(){
 
-     wxString Compiler_Output_File =  this->Construction_Point + wxT("/Compiler_Output");
+     wxString Compiler_Output_File =  this->Construction_Point + wxT("\\Compiler_Output.txt");
 
      wxTextFile Compiler_Output_File_Control(Compiler_Output_File);
 
@@ -629,7 +625,7 @@ void Process_Execution_Controller::Clear_Inter_Process_Files(){
         wxShell(Remove_Command);
      }
 
-     wxString Build_Script_File_Path = this->Construction_Point + "/build_script.sh";
+     wxString Build_Script_File_Path = this->Construction_Point + "\\build_script.ps1";
 
      wxTextFile Build_Script_File_Control(Build_Script_File_Path);
 
@@ -640,7 +636,7 @@ void Process_Execution_Controller::Clear_Inter_Process_Files(){
         wxShell(Remove_Command);
      }
 
-     wxString Output_File_Path = this->Construction_Point + wxT("/Output.txt");
+     wxString Output_File_Path = this->Construction_Point + wxT("\\Output.txt");
 
      wxTextFile Output_File_Control(Output_File_Path);
 
@@ -651,7 +647,7 @@ void Process_Execution_Controller::Clear_Inter_Process_Files(){
         wxShell(Remove_Command);
      }
 
-     wxString Construction_Point_Holder_Path = this->Construction_Point+ wxT("/Construction_Point_Holder");
+     wxString Construction_Point_Holder_Path = this->Construction_Point+ wxT("\\Construction_Point_Holder.txt");
 
      wxTextFile Holder_File_Control(Construction_Point_Holder_Path);
 
@@ -669,7 +665,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      for(int k=Descriptor_File_Path.length();k>0;k--){
 
-         if(Descriptor_File_Path[k] == '/'){
+         if(Descriptor_File_Path[k] == '\\'){
 
             break;
          }
@@ -690,7 +686,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      this->Process_Pointer->Redirect();
 
-     wxString Description_Print_Command = wxT("/usr/bin/Description_Printer ");
+     wxString Description_Print_Command = wxT("D:\\Pcynlitx\\bin\\Description_Printer.exe");
 
      Description_Print_Command = Description_Print_Command + Directory_Name;
 
@@ -717,7 +713,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
            wxRichMessageDialog * dial = new wxRichMessageDialog(this->MainFrame_Pointer,
 
-                                            log_string,wxT("Error in Descriptor File Reading"), wxOK|wxCENTRE);
+                log_string,wxT("Error in Descriptor File Reading"), wxOK|wxCENTRE);
 
            dial->ShowModal();
 
@@ -740,9 +736,9 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
             wxDialog * Succes_Dialog = new wxDialog(this->MainFrame_Pointer,-1,
 
-                                           "YOUR DESCRIPTIONS",
+                        "YOUR DESCRIPTIONS",
 
-                                           wxDefaultPosition, wxSize(900,650),wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxRESIZE_BORDER);
+                        wxDefaultPosition, wxSize(900,650),wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxRESIZE_BORDER);
 
             Succes_Dialog->SetVirtualSize(wxSize(2000,2000));
 
@@ -751,7 +747,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
             wxTextCtrl * text_ctrl = new wxTextCtrl(Succes_Dialog,wxID_ANY,wxEmptyString,
 
-                                                    wxDefaultPosition, wxSize(900,650),wxTE_MULTILINE | wxTE_LEFT | wxTE_READONLY);
+                        wxDefaultPosition, wxSize(900,650),wxTE_MULTILINE | wxTE_LEFT | wxTE_READONLY);
 
 	          text_ctrl->SetVirtualSize(wxSize(2000,2000));
 

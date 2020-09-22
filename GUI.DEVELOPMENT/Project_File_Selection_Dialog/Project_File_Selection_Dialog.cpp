@@ -33,7 +33,7 @@ Project_File_Selection_Dialog::Project_File_Selection_Dialog(wxFrame * Frame){
 
     this->file_selection_sizer = new wxBoxSizer(wxVERTICAL);
 
-    this->File_Selection_Control = new wxFileCtrl(this->File_Selection_Panel,wxID_ANY,wxT("/home"),wxT(""),wxT("*"),wxFC_DEFAULT_STYLE,wxDefaultPosition,wxSize(650,450));
+    this->File_Selection_Control = new wxFileCtrl(this->File_Selection_Panel,wxID_ANY,wxT("D:\\"),wxEmptyString,wxEmptyString,wxFC_DEFAULT_STYLE,wxDefaultPosition,wxSize(650,450));
 
     this->File_Selection_Control->Centre();
 

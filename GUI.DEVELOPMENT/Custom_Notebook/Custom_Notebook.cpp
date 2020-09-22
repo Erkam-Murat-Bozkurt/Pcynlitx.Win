@@ -909,7 +909,7 @@ void Custom_Notebook::Determine_File_Short_Name(wxString File_Long_Name)
 
      for(int k=File_Long_Name.length();k>0;k--){
 
-         if(File_Long_Name[k] == '/'){
+         if(File_Long_Name[k] == '\\'){
 
             break;
          }

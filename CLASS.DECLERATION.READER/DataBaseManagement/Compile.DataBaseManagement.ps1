@@ -32,9 +32,20 @@ Write-Output  "   # MemberFunctionReader class has been updated"
 
 cd $MetaDataTranslaterPATH
 
-Class_Compiler.exe
+mingw32-make -f auto_make_file.make > ..\Compiler_Output.txt
+
+Copy-Item D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MetaDataTranslater\MetaDataTranslater.h -Destination $Project_Headers_Files
+
+$Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MetaDataTranslater\MetaDataTranslater.o'
+
+if ($Condition)
+{
+   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MetaDataTranslater\MetaDataTranslater.o -Destination $OBJECTS_DIRECTORY
+}
 
 Write-Output  "   # MetaDataTranslater class has been updated"
+
+Write-Output ""
 
 Write-Output  "   # Sub-Project has been compiled"
 

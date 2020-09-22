@@ -42,7 +42,7 @@ Custom_Close_Button::Custom_Close_Button(Custom_Window * parent, wxPoint positio
 
     this->page_close_icon = new
 
-                wxBitmap(wxT("/usr/share/Pcynlitx/icons/pane_close_icon.png"),
+                wxBitmap(wxT("D:\\Pcynlitx\\icons\\pane_close_icon.png"),
 
                 wxBITMAP_TYPE_ANY);
 

@@ -102,6 +102,6 @@ if ($Condition)
 {
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Empty_Process_Descriptor_File_Builder\Empty_Process_Descriptor_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
-Write-Output "   # Empty_Process_Descriptor_Descriptor_File_Builder class has been compiled"
+Write-Output "   # Empty_Process_Descriptor_File_Builder class has been compiled"
 
 Write-Output ""

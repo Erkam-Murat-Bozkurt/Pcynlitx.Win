@@ -47,9 +47,6 @@ if ($Condition)
 
 Write-Output "   # ClassSyntaxControl class has been updated"
 
-Write-Output ""
-
-
 
 
 cd $ClassNameReaderPATH
@@ -66,8 +63,6 @@ if ($Condition)
 }
 
 Write-Output "   # ClassNameReader class has been updated"
-
-Write-Output ""
 
 
 
@@ -86,8 +81,6 @@ if ($Condition)
 
 Write-Output "   # MethodInitializer class has been updated"
 
-Write-Output ""
-
 
 
 cd $FindSetPointsPATH
@@ -105,8 +98,6 @@ if ($Condition)
 
 Write-Output "   # FindSetPoints class has been updated"
 
-Write-Output ""
-
 
 cd $MethodProcessorPATH
 
@@ -123,8 +114,6 @@ if ($Condition)
 
 Write-Output "   # MethodProcessor class has been updated"
 
-Write-Output ""
-
 
 cd $SyntaxControllerPATH
 
@@ -140,8 +129,6 @@ if ($Condition)
 }
 
 Write-Output "   # SyntaxController class has been updated"
-
-Write-Output ""
 
 
 
@@ -160,7 +147,6 @@ if ($Condition)
 
 Write-Output "   # ListFileOrganizer class has been updated"
 
-Write-Output ""
 
 
 cd $MethodReaderPATH
@@ -177,8 +163,6 @@ if ($Condition)
 }
 
 Write-Output "   # MethodReader class has been updated"
-
-Write-Output ""
 
 
 
@@ -198,7 +182,6 @@ if ($Condition)
 Write-Output "   # Included_Header_File_Names_Reader class has been updated"
 
 Write-Output ""
-
 
 Write-Output "   # Sub-Project has been compiled"
 

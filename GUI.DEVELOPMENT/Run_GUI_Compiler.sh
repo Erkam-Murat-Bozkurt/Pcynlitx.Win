@@ -1,1 +1,1 @@
-bash GUI_Compiler.sh > Compiler_Output
+PowerShell GUI_Compiler.sh > Compiler_Output.txt

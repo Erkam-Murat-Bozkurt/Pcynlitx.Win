@@ -6,7 +6,7 @@
 
  Custom_TabArt::Custom_TabArt() : wxAuiDefaultTabArt()
  {
-    this->page_close_icon = new wxBitmap(wxT("/usr/share/Pcynlitx/icons/close_tab.png"),
+    this->page_close_icon = new wxBitmap(wxT("D:\\Pcynlitx\\icons\\close_tab.png"),
 
                              wxBITMAP_TYPE_ANY);
  }

@@ -425,7 +425,7 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
         this->Run_Command = wxT("");
 
-        this->Run_Command = "/usr/bin/Pcynlitx_Kernel " + this->Descriptor_File_Path;
+        this->Run_Command = "D:\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
 
         int Descriptor_File_Name_Size = 0;
 
@@ -435,7 +435,7 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
         for(int k = Descriptor_File_Path_Size; k > 0; k--){
 
-            if(this->Descriptor_File_Path[k] == '/'){
+            if(this->Descriptor_File_Path[k] == '\\'){
 
                 break;
             }
@@ -594,7 +594,7 @@ void MainFrame::Process_End(wxProcessEvent & event)
 
 void MainFrame::OpenTerminal(wxCommandEvent & event)
 {
-     wxExecute(wxT("/usr/bin/gnome-terminal"),wxEXEC_ASYNC | wxEXEC_SHOW_CONSOLE);
+     wxExecute(wxT("powershell.exe"),wxEXEC_ASYNC | wxEXEC_SHOW_CONSOLE);
 }
 
 void MainFrame::ShowAuthor(wxCommandEvent & event)
@@ -761,7 +761,7 @@ void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
 
         this->Run_Command = wxT("");
 
-        this->Run_Command = "/usr/bin/Pcynlitx_Kernel " + this->Descriptor_File_Path;
+        this->Run_Command = "D:\\Pcynlitx\\bin\\Pcynlitx_Kernel " + this->Descriptor_File_Path;
 
         this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
 

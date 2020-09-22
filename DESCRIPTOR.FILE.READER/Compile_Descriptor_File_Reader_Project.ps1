@@ -32,6 +32,7 @@ Write-Output ""
 
 Write-Output "  DESCRIPTOR FILE READER COMPILE PROCESS STARTED"
 
+Write-Output ""
 
 
 cd $Descriptor_File_Data_Collector_PATH
