@@ -1,9 +1,5 @@
 
-DEBIAN_RELEASE_BIN_DIR=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/DEBIAN_RELEASE/pcynlitx_debian/usr/bin
-UBUNTU_RELEASE_BIN_DIR=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/UBUNTU_RELEASE/pcynlitx_ubuntu/usr/bin
-FEDORA_RELEASE_BIN_DIR=~/PCYNLITX.PROJECT.LIBRARY/PCYNLITX_RELEASE_PACKAGES/FEDORA_RELEASE/pcynlitx_fedora/usr/bin
-
-printf "\n   #\e[1;34m Project binary files will be updated .. \e[0m\n\n"
+Write-Output " # Project binary files will be updated "
 
 cd ~/PCYNLITX.PROJECT/EXECUTABLE.FILE.BUILDER/MT_Project_Builder
 

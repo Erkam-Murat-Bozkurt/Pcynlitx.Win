@@ -53,4 +53,6 @@ cd $GUI_DEVELOPMENT_PATH
 
 PowerShell .\GUI_Compiler.ps1
 
+PowerShell .\Update_Icon_Files.ps1
+
 Library_Updater.exe
