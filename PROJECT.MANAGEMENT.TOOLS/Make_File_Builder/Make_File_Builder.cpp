@@ -162,19 +162,22 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
 
      char object_add [] = ".o ";
 
-     this->FileManager.WriteToFile(PathSpecifier);
+     if(!this->Gui_Status){
 
-     this->FileManager.WriteToFile(header_add);
+         this->FileManager.WriteToFile(PathSpecifier);
 
-     this->FileManager.WriteToFile(Header_Files_Directory);
+         this->FileManager.WriteToFile(header_add);
 
-     this->FileManager.WriteToFile("\n");
+         this->FileManager.WriteToFile(Header_Files_Directory);
 
-     this->FileManager.WriteToFile(PathSpecifier);
+         this->FileManager.WriteToFile("\n");
 
-     this->FileManager.WriteToFile(object_add);
+         this->FileManager.WriteToFile(PathSpecifier);
 
-     this->FileManager.WriteToFile(Object_Files_Directory);
+         this->FileManager.WriteToFile(object_add);
+
+         this->FileManager.WriteToFile(Object_Files_Directory);
+     }
 
      this->FileManager.WriteToFile("\n");
 
@@ -183,6 +186,10 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
      if(this->Gui_Status){
 
         this->FileManager.WriteToFile("include D:\\PCYNLITX.PROJECT.WINDOWS\\GUI.DEVELOPMENT\\PATHS_FOR_GUI_MAKE_FILES");
+
+        this->FileManager.WriteToFile("\n\n");
+
+        this->FileManager.WriteToFile("VPATH =  $(INC1) $(INC2) $(ID) $(OD) $(LD) $(LNC)");
      }
 
      this->FileManager.WriteToFile("\n");
@@ -190,6 +197,8 @@ void Make_File_Builder::Build_MakeFile(char * Header_Files_Directory, char * Obj
      this->FileManager.WriteToFile("\n");
 
      this->FileManager.WriteToFile(this->Dependency_Code_Line);
+
+     this->FileManager.WriteToFile("\n");
 
      this->FileManager.WriteToFile("\n\t");
 
@@ -326,7 +335,7 @@ void Make_File_Builder::Find_Class_Name(){
 
 void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Directory, char * Object_Files_Directory, char * Library_Name){
 
-     char compiler_input_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4','\0'};
+     char compiler_input_command [] = {'g','+','+',' ','-','W','a','l','l',' ','-','c',' ','-','s','t','d','=','c','+','+','1','1','\0'};
 
      char Include_Character [] = {'-','I','\0'};
 
@@ -340,19 +349,13 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      char Linker_Character [] = {'-','l','\0'};
 
-     char wx_Include_1 [] = "$(INC_1)";
+     char Include_Directories [] = "$(INCLUDE_DIRECTORIES)";
 
-     char wx_Include_2 [] = "$(INC_2)";
+     char Library_Directories [] = "$(LIBRARY_DIRECTORIES)";
 
-     char wx_Include_3 [] = "$(INC_3)";
+     char Linking_Libraries [] = "$(LINKING_LIBRARIES)";
 
-     char wx_Lib [] = "$(LNC)";
-
-     char wx_Link_Lib_1 [] = "$(Library_1)";
-
-     char wx_Link_Lib_2 [] = "$(Library_2)";
-
-     char wx_Link_Lib_3 [] = "$(Library_3)";
+     char Configurations [] = "$(CONFIGS)";
 
      char * Current_Directory = this->DirectoryManager.GetCurrentlyWorkingDirectory();
 
@@ -394,52 +397,28 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
 
      this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
-     this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
-
-     this->Place_Information(&this->Compiler_System_Command,Header_Files_Directory,&index_counter);
-
-     this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-
-     this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
-
-     this->Place_Information(&this->Compiler_System_Command,Current_Directory,&index_counter);
-
-     this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-
      if(this->Gui_Status){
 
-        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Include_1,&index_counter);
+        this->Place_Information(&this->Compiler_System_Command,Configurations,&index_counter);
 
         this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
-        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Include_2,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Include_3,&index_counter);
+        this->Place_Information(&this->Compiler_System_Command,Include_Directories,&index_counter);
 
         this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
      }
+     else{
+            this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
 
-     this->Place_Information(&this->Compiler_System_Command,Source_File_Directory_Character,&index_counter);
+            this->Place_Information(&this->Compiler_System_Command,Header_Files_Directory,&index_counter);
 
-     this->Place_Information(&this->Compiler_System_Command,Object_Files_Directory,&index_counter);
+            this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
 
-     this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+            this->Place_Information(&this->Compiler_System_Command,Include_Character,&index_counter);
 
-     if(this->Gui_Status){
+            this->Place_Information(&this->Compiler_System_Command,Current_Directory,&index_counter);
 
-        this->Place_Information(&this->Compiler_System_Command,Source_File_Directory_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Lib,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
+            this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
      }
 
      this->Place_Information(&this->Compiler_System_Command,this->Class_Source_File_Name,&index_counter);
@@ -464,19 +443,6 @@ void Make_File_Builder::Determine_Compiler_System_Command(char * Header_Files_Di
          this->Place_Information(&this->Compiler_System_Command,this->Included_Header_Files[i],&index_counter);
 
          this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-     }
-
-     if(this->Gui_Status){
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_1,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_2,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,Space_Character,&index_counter);
-
-        this->Place_Information(&this->Compiler_System_Command,wx_Link_Lib_3,&index_counter);
      }
 
      this->Compiler_System_Command[index_counter] = '\0';

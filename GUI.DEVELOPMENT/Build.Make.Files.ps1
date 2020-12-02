@@ -8,7 +8,7 @@ $LIBRARY_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.IBRARY"
 
 $Custom_wxPanel_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxPanel"
 
-$Custom_wxDataViewTreeCtrl_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxDataViewTreeCtrl"
+$Custom_wxTreeCtrl_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl"
 
 $Custom_Tree_View_Panel_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Tree_View_Panel"
 
@@ -67,11 +67,11 @@ Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY 
 Write-Output "   # A make file has been derived for Custom_Tree_View_Panel class .. "
 
 
-cd $Custom_wxDataViewTreeCtrl_PATH
+cd $Custom_wxTreeCtrl_PATH
 
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools g
 
-Write-Output "   # A make file has been derived for Custom_wxDataViewTreeCtrl class .. "
+Write-Output "   # A make file has been derived for Custom_wxTreeCtrl class .. "
 
 
 

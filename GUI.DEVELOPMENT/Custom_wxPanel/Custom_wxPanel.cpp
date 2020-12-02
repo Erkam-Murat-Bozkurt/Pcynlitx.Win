@@ -63,7 +63,7 @@ Custom_wxPanel::~Custom_wxPanel()
 
 void Custom_wxPanel::Initialize_Sizer()
 {
-     this->panel_sizer->Add(this->book_manager,1,wxEXPAND | wxALIGN_CENTER_HORIZONTAL,0);
+     this->panel_sizer->Add(this->book_manager,1, wxALL|wxEXPAND,0);
 
      this->SetSizer(this->panel_sizer);
 

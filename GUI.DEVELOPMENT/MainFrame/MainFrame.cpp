@@ -117,8 +117,6 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
   // THE CONSTRUCTION OF THE NOTEBOOK
 
-  wxSize Toolbar_Size = this->ToolBar_Widget->toolBar->GetSize();
-
   this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
 
                        wxFONTWEIGHT_NORMAL,false,"Dejavu Sans Mono");
@@ -156,17 +154,17 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
   this->Interface_Manager.Update();
 
-  this->tree_control = this->Dir_List_Manager->GetDataViewTreeCtrl();
+  this->tree_control = this->Dir_List_Manager->GetTreeCtrl();
 
 
 
-  wxDataViewEvent File_Activation(wxEVT_DATAVIEW_ITEM_ACTIVATED,this->tree_control->GetId());
+  //wxDataViewEvent File_Activation(wxEVT_DATAVIEW_ITEM_ACTIVATED,this->tree_control,this->tree_control->GetCurrentColumn(), this->tree_control->GetId());
 
-  this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
+  //this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
 
-  wxDataViewEvent File_Name_Edit(wxEVT_DATAVIEW_ITEM_START_EDITING,this->tree_control->GetId());
+  //wxDataViewEvent File_Name_Edit(wxEVT_DATAVIEW_ITEM_START_EDITING,this->tree_control,this->tree_control->GetCurrentColumn(),this->tree_control->GetId());
 
-  this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
+  //this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
 
   wxStyledTextEvent Char_Add(wxEVT_STC_CHARADDED,wxID_ANY);
 
@@ -347,9 +345,9 @@ void MainFrame::OnClose(wxCloseEvent & event)
            this->Interface_Manager.DetachPane(central_pane_window);
         }
 
-        this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
+        //this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
 
-        this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
+        //this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
 
         this->Disconnect(wxID_ANY,wxEVT_STC_CHARADDED,wxStyledTextEventHandler(MainFrame::Auto_Indentation));
 
@@ -545,31 +543,37 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
      }
 }
 
-void MainFrame::FileNameEdit(wxDataViewEvent & event)
+void MainFrame::FileNameEdit(wxTreeEvent& event)
 {
-     event.Veto();
+     if(event.GetId() == ID_TREEVIEW_ITEM_START_EDITING){
+
+        event.Veto();
+     }
 }
 
-void MainFrame::FileSelect(wxDataViewEvent & event)
+void MainFrame::FileSelect(wxTreeEvent& event)
 {
-     wxDataViewItem Item = this->tree_control->GetSelection();
+     if(event.GetId() == ID_TREEVIEW_ITEM_ACTIVATED){
 
-     wxString File_Path = this->Dir_List_Manager->GetItemPath(Item);
+       wxTreeItemId Item = this->tree_control->GetSelection();
 
-     if(this->dir_control->Exists(File_Path)){
+       wxString File_Path = this->Dir_List_Manager->GetItemPath(Item);
 
-         if(this->Dir_List_Manager->GetDataViewTreeCtrl()->IsExpanded(Item)){
+       if(this->dir_control->Exists(File_Path)){
 
-           this->Dir_List_Manager->GetDataViewTreeCtrl()->Collapse(Item);
-         }
-         else{
+           if(this->Dir_List_Manager->GetTreeCtrl()->IsExpanded(Item)){
 
-               this->Dir_List_Manager->GetDataViewTreeCtrl()->Expand(Item);
-         }
-     }
-     else{
+             this->Dir_List_Manager->GetTreeCtrl()->Collapse(Item);
+           }
+           else{
 
-          this->Book_Manager->Open_File(File_Path);
+                 this->Dir_List_Manager->GetTreeCtrl()->Expand(Item);
+           }
+       }
+       else{
+
+            this->Book_Manager->Open_File(File_Path);
+       }
      }
 }
 

@@ -4,6 +4,7 @@
 
 #include "Event_ID_Numbers.h"
 #include "Custom_Tree_View_Panel.h"
+#include <wx/wx.h>
 #include <wx/frame.h>
 #include <wx/richmsgdlg.h>
 #include <wx/string.h>

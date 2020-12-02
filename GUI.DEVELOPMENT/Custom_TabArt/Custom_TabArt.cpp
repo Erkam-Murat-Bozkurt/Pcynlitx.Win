@@ -41,7 +41,7 @@
 
         wxCoord selected_textx, selected_texty;
 
-        wxCoord textx, texty;
+        wxCoord texty;
 
         wxString caption = page.caption;
 
@@ -156,7 +156,7 @@
               dc.DrawPolygon(WXSIZEOF(border_points), border_points);
        }
 
-       int close_button_width = 0;
+       //int close_button_width = 0;
 
        // draw close button if necessary
        if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
@@ -176,7 +176,8 @@
            DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
 
            *out_button_rect = rect;
-           close_button_width = bmp.GetScaledWidth();
+
+           //close_button_width = bmp.GetScaledWidth();
        }
 
        wxString draw_text = page.caption;

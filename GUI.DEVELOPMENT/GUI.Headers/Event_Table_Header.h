@@ -62,6 +62,8 @@ BEGIN_EVENT_TABLE(MainFrame,wxFrame)
   EVT_AUI_PANE_CLOSE(MainFrame::Close_Directory_Pane)
   EVT_END_PROCESS(wxID_ANY,MainFrame::Process_End)
   EVT_CHAR_HOOK(MainFrame::KeyboardEvent)
+  EVT_TREE_ITEM_ACTIVATED(ID_TREEVIEW_ITEM_ACTIVATED,MainFrame::FileSelect)
+  EVT_TREE_BEGIN_LABEL_EDIT(ID_TREEVIEW_ITEM_START_EDITING,MainFrame::FileNameEdit)
 END_EVENT_TABLE()
 
 #endif /* EVENT_TABLE_HEADER_H */

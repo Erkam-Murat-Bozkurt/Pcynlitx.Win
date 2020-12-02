@@ -2,6 +2,7 @@
 #ifndef CUSTOM_WXPANEL_H
 #define CUSTOM_WXPANEL_H
 
+#include <wx/wx.h>
 #include <wx/panel.h>
 #include <wx/dc.h>
 #include <wx/event.h>
@@ -29,7 +30,7 @@ public:
        this->book_manager = wnd;
   }
 
-  void Update(){};
+  //void Update(){};
 
   void Initialize_Sizer();
 

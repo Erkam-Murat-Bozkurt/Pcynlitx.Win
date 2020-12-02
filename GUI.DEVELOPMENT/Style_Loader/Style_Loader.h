@@ -1,6 +1,7 @@
 #ifndef STYLE_LOADER_H
 #define STYLE_LOADER_H
 
+#include <wx/wx.h>
 #include <wx/stc/stc.h>
 #include <wx/font.h>
 #include <wx/colour.h>

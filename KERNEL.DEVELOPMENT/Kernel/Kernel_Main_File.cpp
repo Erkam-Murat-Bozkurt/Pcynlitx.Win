@@ -14,7 +14,7 @@
 
      for(int i=Project_File_Path_Name_Size;i>0;i--){
 
-         if(argv[1][i] == '/'){
+         if(argv[1][i] == '\\'){
 
             Directory_Name_Size = i;
 

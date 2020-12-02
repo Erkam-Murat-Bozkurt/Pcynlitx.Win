@@ -2,6 +2,7 @@
 #ifndef KEYBOARD_EVENT_CONTROLER_H
 #define KEYBOARD_EVENT_CONTROLER_H
 
+#include <wx/wx.h>
 #include <wx/event.h>
 #include <wx/stc/stc.h>
 #include "Custom_Notebook.h"

@@ -165,7 +165,7 @@ void Custom_Notebook::OpenIntroPage()
 
          // Load Intro Page
 
-         bool is_loaded = this->AddPage(this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer,wxT(" Introduction  "),true);
+         this->AddPage(this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer,wxT(" Introduction  "),true);
 
          this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer->Show(true);
 
@@ -212,7 +212,7 @@ void Custom_Notebook::Load_Help_Page()
 
         this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Initialize_Help_Page_Text(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer);
 
-        bool is_loaded = this->AddPage(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer,wxT(" Help Page  "),true);
+        //bool is_loaded = this->AddPage(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer,wxT(" Help Page  "),true);
 
         this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Show(true);
 
@@ -919,7 +919,7 @@ void Custom_Notebook::Determine_File_Short_Name(wxString File_Long_Name)
 
      this->File_Short_Name = wxT(" ");
 
-     for(int k=File_Long_Name.length() - Name_Size +1; k<File_Long_Name.length();k++){
+     for(size_t k=File_Long_Name.length() - Name_Size +1; k<File_Long_Name.length();k++){
 
          this->File_Short_Name = this->File_Short_Name + File_Long_Name[k];
      }
@@ -968,7 +968,7 @@ void Custom_Notebook::Select_File(wxString File_Path)
 
      size_t page_count = this->GetPageCount();
 
-     for(int i=0;i<page_count;i++){
+     for(size_t i=0;i<page_count;i++){
 
          wxWindow * page_window = this->GetPage(i);
 

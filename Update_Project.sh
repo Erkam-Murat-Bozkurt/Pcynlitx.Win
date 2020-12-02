@@ -1,4 +1,10 @@
 
+cd $BASE_DIRECTORY
+
+PowerShell .\ReFactorProjectLibrary.ps1
+
+PowerShell .\Update_Project_Binaries.ps1
+
 cd ~/PCYNLITX.PROJECT
 
 bash ReFactorProjectLibrary.sh

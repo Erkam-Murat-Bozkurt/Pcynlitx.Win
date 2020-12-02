@@ -33,9 +33,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->SetExtraStyle(wxNO_FULL_REPAINT_ON_RESIZE);
 
-     wxPaintEvent Custom_Paint_Event(wxEVT_PAINT);
-
-     this->Connect(this->GetId(),wxEVT_PAINT,wxPaintEventHandler(Custom_Tree_View_Panel::OnPaint));
+     this->GetEventHandler()->Bind(wxEVT_PAINT,&Custom_Tree_View_Panel::OnPaint,this,wxID_ANY);
 
      this->GetEventHandler()->Bind(wxEVT_LEFT_UP,&Custom_Tree_View_Panel::mouseReleased,this,wxID_ANY);
 
@@ -84,14 +82,14 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->File_List_Widget_Shape.dock_proportion = 0.25;
 
 
-     int tree_view_hegiht = this->GetClientSize().y - this->tab_ctrl_hight+10;
+     //int tree_view_hegiht = this->GetClientSize().y - this->tab_ctrl_hight+10;
 
      this->Tree_Control_Size = this->GetClientSize();
 
 
-     this->tree_control = new Custom_wxDataViewTreeCtrl(this, wxID_ANY,wxDefaultPosition,
+     this->tree_control = new Custom_wxTreeCtrl(this, wxID_ANY,wxDefaultPosition,
 
-                             this->Tree_Control_Size,wxDV_NO_HEADER);
+                             this->Tree_Control_Size, wxTR_HAS_BUTTONS | wxTR_HAS_VARIABLE_ROW_HEIGHT);
 
 
 
@@ -117,11 +115,11 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->Top_Bar_Window->Show(false);
 
 
-     wxPoint Panel_Position = this->GetRect().GetPosition();
+     //wxPoint Panel_Position = this->GetRect().GetPosition();
 
      wxPoint Panel_Top_Right_Position = this->GetRect().GetTopRight();
 
-     wxPoint Panel_Top_Left_Position = this->GetRect().GetTopLeft();
+     //wxPoint Panel_Top_Left_Position = this->GetRect().GetTopLeft();
 
 
      // Default wxPanel position is TopLeft corner of the panel
@@ -194,9 +192,9 @@ void Custom_Tree_View_Panel::Initialize_Sizer()
 {
      this->panel_sizer = new wxBoxSizer(wxVERTICAL);
 
-     this->panel_sizer->Add(this->Top_Bar_Window,0,wxEXPAND | wxALIGN_CENTER,0);
+     this->panel_sizer->Add(this->Top_Bar_Window,0, wxALL|wxEXPAND,0);
 
-     this->panel_sizer->Add(this->tree_control,0,wxEXPAND | wxALIGN_CENTER,0);
+     this->panel_sizer->Add(this->tree_control,0, wxALL|wxEXPAND,0);
 
      this->windows_detach_condition = false;
 
@@ -293,6 +291,8 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
 
      this->close_button->Show(true);
 
+     this->Refresh();
+
      this->Interface_Manager_Pointer->Update();
 }
 
@@ -326,12 +326,12 @@ void Custom_Tree_View_Panel::Set_Font(wxFont Font){
       this->tree_control->SetFont(Font);
 }
 
-Custom_wxDataViewTreeCtrl * Custom_Tree_View_Panel::GetDataViewTreeCtrl(){
+Custom_wxTreeCtrl * Custom_Tree_View_Panel::GetTreeCtrl(){
 
      return this->tree_control;
 }
 
-wxString Custom_Tree_View_Panel::GetItemPath(wxDataViewItem item_number){
+wxString Custom_Tree_View_Panel::GetItemPath(wxTreeItemId item_number){
 
          return this->Folder_Lister->GetItemPath(item_number);
 }

@@ -63,7 +63,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
      wxString Directory_Name = wxT("");
 
-     for(int k=0;k<this->Descriptor_File_Path.length() - Descriptor_File_Name_Size;k++){
+     for(int k=0;k<Directory_Name_Size;k++){
 
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
@@ -164,7 +164,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
      this->is_executable_file_name_determined = false;
 
-     int Descriptor_File_Name_Size = 0;
+     size_t Descriptor_File_Name_Size = 0;
 
        for(int k=this->Descriptor_File_Path.length();k>0;k--){
 
@@ -176,11 +176,11 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
            Descriptor_File_Name_Size++;
        }
 
-       int Directory_Name_Size = this->Descriptor_File_Path.length() - Descriptor_File_Name_Size;
+       size_t Directory_Name_Size = this->Descriptor_File_Path.length() - Descriptor_File_Name_Size;
 
        wxString Directory_Name = wxT("");
 
-       for(int k=0;k<this->Descriptor_File_Path.length() - Descriptor_File_Name_Size;k++){
+       for(size_t k=0;k<Directory_Name_Size;k++){
 
            Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
        }
@@ -231,7 +231,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
                std::string Name_String = Record_String.ToStdString();
 
-               for(int i=0;i<Name_String.length();i++){
+               for(size_t i=0;i<Name_String.length();i++){
 
                    if(((Name_String[i] != ' ') && (Name_String[i] != '\0') && (Name_String[i] != '\t') && (Name_String[i] != '\n'))){
 
@@ -495,11 +495,15 @@ void Process_Execution_Controller::ShowProgress(){
 
             if(!cont)
             {
-                 if(wxMessageBox(wxT("Do you really want to cancel?"),wxT("Progress dialog question"),
+                 int answer  = wxMessageBox(wxT("Do you really want to cancel?"),
 
-                                 wxYES_NO | wxICON_QUESTION) == wxYES);
+                      wxT("Progress dialog question"), wxYES_NO | wxICON_QUESTION);
 
-                    break;
+                 if(answer == wxYES){
+
+                     break;
+                 }
+
             }
         }
 
@@ -661,9 +665,9 @@ void Process_Execution_Controller::Clear_Inter_Process_Files(){
 
 void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Path){
 
-     int Descriptor_File_Name_Size = 0;
+     size_t Descriptor_File_Name_Size = 0;
 
-     for(int k=Descriptor_File_Path.length();k>0;k--){
+     for(size_t k=Descriptor_File_Path.length();k>0;k--){
 
          if(Descriptor_File_Path[k] == '\\'){
 
@@ -673,11 +677,11 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
          Descriptor_File_Name_Size++;
      }
 
-     int Directory_Name_Size = Descriptor_File_Path.length() - Descriptor_File_Name_Size;
+     size_t Directory_Name_Size = Descriptor_File_Path.length() - Descriptor_File_Name_Size;
 
      wxString Directory_Name = wxT("");
 
-     for(int k=0;k<Descriptor_File_Path.length() - Descriptor_File_Name_Size;k++){
+     for(size_t k=0;k<Directory_Name_Size;k++){
 
          Directory_Name = Directory_Name + Descriptor_File_Path[k];
      }
@@ -755,7 +759,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
 	          text_ctrl->SetDefaultStyle(wxTextAttr(wxColour(100,100,100)));
 
-            for(int i=0;i<log_string.length();i++){
+            for(size_t i=0;i<log_string.length();i++){
 
                 if(log_string[i+1] == '['){
 

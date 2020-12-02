@@ -2,32 +2,32 @@
 #ifndef MAINFRAME_H
 #define MAINFRAME_H
 
-#include <wx/wx.h>
-#include <wx/frame.h>
-#include <wx/panel.h>
-#include <wx/aui/framemanager.h>
-#include <wx/aui/aui.h>
-#include <wx/aui/auibar.h>
-#include <wx/aui/auibook.h>
-#include <wx/aui/dockart.h>
-#include <wx/event.h>
-#include <wx/fontdata.h>
-#include <wx/fontdlg.h>
-#include <wx/filedlg.h>
-#include <wx/font.h>
-#include <wx/process.h>
-#include <wx/utils.h>
-#include <wx/dialog.h>
-#include <wx/dir.h>
-#include <wx/toolbar.h>
-#include <wx/richmsgdlg.h>
-#include <wx/stc/stc.h>
-#include <wx/textdlg.h>
-#include <wx/colour.h>
-#include <wx/string.h>
-#include <wx/scrolwin.h>
-#include <wx/dcbuffer.h>
-#include <wx/display.h>
+#include <wx\wx.h>
+#include <wx\frame.h>
+#include <wx\panel.h>
+#include <wx\aui\framemanager.h>
+#include <wx\aui\aui.h>
+#include <wx\aui\auibar.h>
+#include <wx\aui\auibook.h>
+#include <wx\aui\dockart.h>
+#include <wx\event.h>
+#include <wx\fontdata.h>
+#include <wx\fontdlg.h>
+#include <wx\filedlg.h>
+#include <wx\font.h>
+#include <wx\process.h>
+#include <wx\utils.h>
+#include <wx\dialog.h>
+#include <wx\dir.h>
+#include <wx\toolbar.h>
+#include <wx\richmsgdlg.h>
+#include <wx\stc/stc.h>
+#include <wx\textdlg.h>
+#include <wx\colour.h>
+#include <wx\string.h>
+#include <wx\scrolwin.h>
+#include <wx\dcbuffer.h>
+#include <wx\display.h>
 #include "wx_Description_Record_Tools.h"
 #include "Project_File_Selection_Dialog.h"
 #include "Menu_Bar_Options.h"
@@ -61,7 +61,7 @@ public:
   void RunLibraryBuilder(wxCommandEvent & event);
   void RunExeBuilder(wxCommandEvent & event);
   void OpenTerminal(wxCommandEvent & event);
-  void FileSelect(wxDataViewEvent & event);
+  void FileSelect(wxTreeEvent& event);
   void ShowProjectFile(wxCommandEvent & event);
   void OpenIntroPage(wxCommandEvent & event);
   void ShowAuthor(wxCommandEvent & event);
@@ -74,7 +74,7 @@ public:
   bool is_custom_panel_constructed = false;
   void Update(){};
 private:
-  void FileNameEdit(wxDataViewEvent & event);
+  void FileNameEdit(wxTreeEvent& event);
   void Process_End(wxProcessEvent & event);
   void File_Save(wxCommandEvent & event);
   void OpenEmptyProjectFile(wxCommandEvent & event);
@@ -140,7 +140,7 @@ private:
   wxDir    * dir_control;
   wxFont   * Default_Font;
   wxFontDialog * Font_Dialog;
-  Custom_wxDataViewTreeCtrl * tree_control;
+  Custom_wxTreeCtrl * tree_control;
   bool Close_Operation_Status;
   int Toolbar_ID;
   DECLARE_EVENT_TABLE()

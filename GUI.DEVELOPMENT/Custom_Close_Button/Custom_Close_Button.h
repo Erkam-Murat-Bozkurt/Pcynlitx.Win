@@ -2,14 +2,13 @@
 #ifndef CUSTOM_CLOSE_BUTTON_H
 #define CUSTOM_CLOSE_BUTTON_H
 
-#include <wx/wx.h>
-#include <wx/sizer.h>
-#include <wx/event.h>
-#include <wx/aui/aui.h>
-#include <wx/aui/framemanager.h>
-#include <wx/dataview.h>
-#include <wx/sizer.h>
-#include "Custom_wxDataViewTreeCtrl.h"
+#include <wx\wx.h>
+#include <wx\sizer.h>
+#include <wx\event.h>
+#include <wx\aui\aui.h>
+#include <wx\aui\framemanager.h>
+#include <wx\sizer.h>
+#include "Custom_wxTreeCtrl.h"
 #include "Custom_Window.h"
 #include "Project_Folder_Lister.h"
 

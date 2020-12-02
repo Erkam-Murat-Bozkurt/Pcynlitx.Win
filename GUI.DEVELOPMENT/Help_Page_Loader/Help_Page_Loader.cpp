@@ -463,8 +463,6 @@ void Help_Page_Loader::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect & 
 
      dc.SetBrush(wxColour(250,250,250));
 
-     wxPoint position = rect.GetPosition();
-
      dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+5,rect.GetHeight()+5);
 
      dc.SetPen(wxPen(wxColour(180,180,180)));

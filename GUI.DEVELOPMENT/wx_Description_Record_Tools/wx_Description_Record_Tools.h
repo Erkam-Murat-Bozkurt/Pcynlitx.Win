@@ -2,6 +2,7 @@
 #ifndef WX_DESCRIPTION_RECORD_TOOLS_H
 #define WX_DESCRIPTION_RECORD_TOOLS_H
 
+#include <wx/wx.h>
 #include <wx/frame.h>
 #include <wx/process.h>
 #include <wx/utils.h>

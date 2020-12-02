@@ -1,9 +1,10 @@
 
  #include "Descriptor_File_Reader.h"
- #include "CFileOperations.h"
+ #include "Cpp_FileOperations.h"
  #include "DirectoryOperations.h"
  #include <cstring>
  #include <iostream>
+ #include <windows.h>
 
  int main(int argc, char** argv){
 
@@ -15,11 +16,11 @@
 
      File_Reader.Receive_Descriptor_File_Infomations();
 
-     CFileOperations File_Manager;
+     Cpp_FileOperations File_Manager;
 
      DirectoryOperations Directory_Manager;
 
-     char File_Name [] = "/Construction_Point_Holder";
+     char File_Name [] = "\\Construction_Point_Holder";
 
      int Directory_Size = strlen(argv[1]);
 
@@ -43,7 +44,7 @@
          index_counter++;
      }
 
-     if(Construction_Point_File[index_counter] == '/'){
+     if(Construction_Point_File[index_counter] == '\\'){
 
         index_counter--;
      }
@@ -61,7 +62,7 @@
 
      File_Manager.SetFilePath(Construction_Point_File);
 
-     File_Manager.FileOpen(RWC);
+     File_Manager.FileOpen(RWCf);
 
      File_Manager.WriteToFile(File_Reader.Get_Construction_Point());
 

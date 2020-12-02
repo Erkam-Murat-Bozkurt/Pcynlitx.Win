@@ -70,6 +70,8 @@ bool wxLauncher::OnInit(){
 
      this->SetExitOnFrameDelete(true);
 
+     wxInitAllImageHandlers();
+
      this->Frame = new MainFrame();
 
      this->SetTopWindow(this->Frame);

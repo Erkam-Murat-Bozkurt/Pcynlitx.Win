@@ -9,7 +9,7 @@ $Custom_Tree_View_Panel_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 $Custom_wxPanel_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxPanel"
 
-$Custom_wxDataViewTreeCtrl_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxDataViewTreeCtrl"
+$Custom_wxTreeCtrl_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl"
 
 $Custom_Close_Button_PATH="D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Close_Button"
 
@@ -103,22 +103,20 @@ Write-Output "   # Help_Page_Loader class has been compiled"
 
 
 
-cd $Custom_wxDataViewTreeCtrl_PATH
+cd $Custom_wxTreeCtrl_PATH
 
 mingw32-make -f auto_make_file.make  > ..\Compiler_Output.txt
 
-Copy-Item D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxDataViewTreeCtrl\Custom_wxDataViewTreeCtrl.h -Destination $Project_Headers_Files
+Copy-Item D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl\Custom_wxTreeCtrl.h -Destination $Project_Headers_Files
 
-$Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxDataViewTreeCtrl\Custom_wxDataViewTreeCtrl.o'
+$Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl\Custom_wxTreeCtrl.o'
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxDataViewTreeCtrl\Custom_wxDataViewTreeCtrl.o -Destination $OBJECTS_DIRECTORY
+   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl\Custom_wxTreeCtrl.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # Custom_wxDataViewTreeCtrl class has been compiled"
-
-
+Write-Output "   # Custom_wxTreeCtrl class has been compiled"
 
 
 

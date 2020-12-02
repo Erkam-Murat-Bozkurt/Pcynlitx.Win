@@ -11,10 +11,9 @@
 #include <wx/aui/framemanager.h>
 #include <wx/aui/aui.h>
 #include <wx/aui/framemanager.h>
-#include <wx/dataview.h>
 #include <wx/font.h>
 #include <wx/sizer.h>
-#include "Custom_wxDataViewTreeCtrl.h"
+#include "Custom_wxTreeCtrl.h"
 #include "Project_Folder_Lister.h"
 #include "Custom_DockArt.h"
 #include "Custom_Window.h"
@@ -42,9 +41,9 @@ public:
 
   void RemoveProjectDirectory();
 
-  Custom_wxDataViewTreeCtrl * GetDataViewTreeCtrl();
+  Custom_wxTreeCtrl * GetTreeCtrl();
 
-  wxString GetItemPath(wxDataViewItem item_number);
+  wxString GetItemPath(wxTreeItemId item_number);
 
   bool Get_Panel_Open_Status();
 
@@ -82,7 +81,7 @@ public:
 
   void PaintNow();
 
-  void Update(){};
+  //void Update(){};
 
   void Initialize_Sizer();
 
@@ -113,7 +112,7 @@ protected:
 
   Project_Folder_Lister * Folder_Lister;
 
-  Custom_wxDataViewTreeCtrl * tree_control;
+  Custom_wxTreeCtrl * tree_control;
 
   wxAuiManager * Interface_Manager_Pointer;
 

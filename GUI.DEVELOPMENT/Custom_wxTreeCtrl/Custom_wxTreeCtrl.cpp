@@ -1,23 +1,24 @@
 
-#include "Custom_wxDataViewTreeCtrl.h"
+#include "Custom_wxTreeCtrl.h"
 
-Custom_wxDataViewTreeCtrl::Custom_wxDataViewTreeCtrl(wxWindow *parent, wxWindowID id,
+BEGIN_EVENT_TABLE(Custom_wxTreeCtrl,wxWindow)
+
+    EVT_SIZE(Custom_wxTreeCtrl::Size_Event)
+
+END_EVENT_TABLE()
+
+
+Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
   const wxPoint & pos,
 
-  const wxSize & size, long style) : wxDataViewTreeCtrl(parent,id,pos,size,style)
+  const wxSize & size, long style) : wxTreeCtrl(parent,id,pos,size,style)
   {
-     this->GetEventHandler()->Bind(wxEVT_SIZE,&Custom_wxDataViewTreeCtrl::Size_Event,this,wxID_ANY);
-
      this->SetBackgroundStyle(wxBG_STYLE_PAINT);
 
      this->Parent_Window_Pointer = parent;
 
-     this->SetThemeEnabled(false);
-
      this->SetBackgroundColour(wxColour(250,250,250));
-
-     this->SetEventHandler(this);
 
      this->SetDoubleBuffered(true);
 
@@ -37,15 +38,15 @@ Custom_wxDataViewTreeCtrl::Custom_wxDataViewTreeCtrl(wxWindow *parent, wxWindowI
 
      this->CentreOnParent(wxBOTH);
 
-     this->Update();
+     this->Refresh();
  }
 
- Custom_wxDataViewTreeCtrl::~Custom_wxDataViewTreeCtrl()
+ Custom_wxTreeCtrl::~Custom_wxTreeCtrl()
  {
-      this->GetEventHandler()->Unbind(wxEVT_SIZE,&Custom_wxDataViewTreeCtrl::Size_Event,this,wxID_ANY);
+
  }
 
- void Custom_wxDataViewTreeCtrl::PaintNow(){
+ void Custom_wxTreeCtrl::PaintNow(){
 
        wxClientDC dc(this);
 
@@ -54,19 +55,19 @@ Custom_wxDataViewTreeCtrl::Custom_wxDataViewTreeCtrl(wxWindow *parent, wxWindowI
        this->DrawBackground(dc,this,rect);
  }
 
-void Custom_wxDataViewTreeCtrl::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect){
+void Custom_wxTreeCtrl::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect){
 
      dc.SetBrush(wxColour(230,230,230));
 
      dc.DrawRectangle(rect.GetX(), rect.GetY(), rect.GetWidth(),rect.GetHeight());
 }
 
-void Custom_wxDataViewTreeCtrl::Receive_Position(wxPoint control_position){
+void Custom_wxTreeCtrl::Receive_Position(wxPoint control_position){
 
      this->Position = control_position;
 }
 
-void Custom_wxDataViewTreeCtrl::Size_Event(wxSizeEvent & event)
+void Custom_wxTreeCtrl::Size_Event(wxSizeEvent & event)
 {
       event.Skip(true);
 

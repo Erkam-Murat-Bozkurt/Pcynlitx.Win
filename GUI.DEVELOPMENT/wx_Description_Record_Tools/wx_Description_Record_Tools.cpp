@@ -369,7 +369,7 @@ void wx_Description_Record_Tools::Enter_Thread_Function_Name(){
 
      if(this->is_project_file_selected){
 
-        int line_counter = 1;
+        //int line_counter = 1;
 
         Input_Command = wxGetTextFromUser(wxT("What will the name of the thread function be?"), wxT("   ENTER THREAD FUNCTION NAME   "));
 
@@ -399,7 +399,7 @@ void wx_Description_Record_Tools::Enter_Thread_Number(){
 
      if(this->is_project_file_selected){
 
-        int line_counter = 1;
+        //int line_counter = 1;
 
         Input_Command = wxGetTextFromUser(wxT(" How many thread will be executed ? "),
 
@@ -432,7 +432,7 @@ void wx_Description_Record_Tools::Enter_Exe_File_Name(){
 
      if(this->is_project_file_selected){
 
-        int line_counter = 1;
+        //int line_counter = 1;
 
         Input_Command = wxGetTextFromUser(wxT("What will be the name of the executable file"),
 
@@ -540,7 +540,7 @@ void wx_Description_Record_Tools::Enter_ITC_Class_Instance_Name(wxString ClassNa
 
      wxString Input_Command = ClassName + "_IT";
 
-     int line_counter = 1;
+     //int line_counter = 1;
 
      this->Determine_Description_Recorder_Command(Data_Type,Input_Command);
 
@@ -639,7 +639,7 @@ void wx_Description_Record_Tools::Enter_IT_Data_Type_Name(){
 
      if(this->is_project_file_selected){
 
-        int line_counter = 1;
+        //int line_counter = 1;
 
         Input_Command = wxGetTextFromUser(wxT("What is the type of the data?"),wxT("   ENTER INTER-THREAD DATA TYPE   "));
 

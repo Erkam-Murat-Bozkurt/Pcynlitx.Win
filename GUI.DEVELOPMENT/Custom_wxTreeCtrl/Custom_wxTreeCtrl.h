@@ -1,27 +1,28 @@
 
-#ifndef CUSTOM_WXDATAVIEWTREECTRL_H
-#define CUSTOM_WXDATAVIEWTREECTRL_H
+#ifndef CUSTOM_WXTREECTRL_H
+#define CUSTOM_WXTREECTRL_H
 
 #include <wx/wx.h>
-#include <wx/dataview.h>
-#include <wx/font.h>
+#include <wx/panel.h>
+#include <wx/event.h>
+#include <wx/sizer.h>
 #include <wx/event.h>
 #include <wx/gdicmn.h>
 #include <wx/dc.h>
 #include <wx/dcclient.h>
-#include <iostream>
+#include <wx/treectrl.h>
+#include <wx/treebase.h>
 
-
-class Custom_wxDataViewTreeCtrl : public wxDataViewTreeCtrl
+class Custom_wxTreeCtrl : public wxTreeCtrl
 {
 public:
-  Custom_wxDataViewTreeCtrl(wxWindow *parent, wxWindowID id,
+  Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
         const wxPoint & pos,
 
         const wxSize & size, long style);
 
-  virtual ~Custom_wxDataViewTreeCtrl();
+  virtual ~Custom_wxTreeCtrl();
 
   wxBackgroundStyle GetBackgroundStyle( )	const
   {
@@ -30,7 +31,7 @@ public:
 
   void Size_Event(wxSizeEvent & event);
 
-  void Update(){};
+  //void Update(){};
 
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
 
@@ -41,6 +42,8 @@ public:
   wxWindow * Parent_Window_Pointer;
 
   wxPoint Position;
+
+  DECLARE_EVENT_TABLE()
 };
 
-#endif /* CUSTOM_WXDATAVIEWTREECTRL_H */
+#endif /* CUSTOM_WXTREECTRL_H */

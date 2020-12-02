@@ -2,7 +2,7 @@
 #ifndef TOOLBAR_INITIALIZER_H
 #define TOOLBAR_INITIALIZER_H
 
-#include "Event_ID_Numbers.h"
+#include <wx/wx.h>
 #include <wx/aui/framemanager.h>
 #include <wx/aui/aui.h>
 #include <wx/aui/auibar.h>
@@ -11,6 +11,7 @@
 #include <wx/dc.h>
 #include <wx/dcclient.h>
 #include <iostream>
+#include "Event_ID_Numbers.h"
 #include "Custom_DockArt.h"
 
 class MyAuiTBArt : public wxAuiDefaultToolBarArt

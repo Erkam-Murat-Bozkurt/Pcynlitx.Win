@@ -1,19 +1,35 @@
 
-INC_1=C:\wxWidgets-3.0.5\include
+INC1=C:\wxWidgets-3.1.4\include
 
-INC_2=C:\wxWidgets-3.0.5\lib\gcc_lib\mswu\wx
+INC2=C:\wxWidgets-3.1.4\lib\gcc810_x64_dll\mswu
 
-LNC=C:\wxWidgets-3.0.5\lib\gcc_lib
+LIB=C:\wxWidgets-3.1.4\lib\gcc_lib
 
-Library_1=-lwxmsw30ud_core -lwxbase30ud -lwxtiffd -lwxjpegd -lwxpngd -lwxzlibd -lwxregexud
+SRC=C:\wxWidgets-3.1.4\src\msw
 
-Library_2=-lwxexpatd -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm
 
-Library_3=-lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lwininet
+Library_1=-lwxmsw31ud_core -lwxbase31ud -lwxtiffd -lwxjpegd -lwxpngd -lwxzlibd -lwxregexud -lwxexpatd -lwxbase31ud_xml -lwxmsw31ud_aui
+
+Library_2=-lwxmsw31ud_stc -lwxscintillad -lwxbase31ud_net -lwxmsw31ud_xrc -lwxmsw31ud_richtext
+
+Library_3=-lwxmsw31ud_webview -lwxmsw31ud_ribbon -lwxmsw31ud_propgrid -lwxmsw31ud_html
+
+Library_4=-lwxmsw31ud_adv -lwxmsw31ud_gl -lwxmsw31ud_media -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm
+
+Library_5=-lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lwininet -luxtheme -loleacc
+
+Project_Library=-lmptools
 
 ID=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES
-OD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY/OBJECT.FILES
-LD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PCYNLITX.PROJECT.LIBRARY\PROJECT.LIBRARY
+OD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES
+LD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY
 
-vpath %.h D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES
-vpath %.o D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES
+GUI_PATH=D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT
+
+LINKING_LIBRARIES=$(Library_1) $(Library_2) $(Library_3) $(Library_4) $(Library_5) $(Project_Library)
+
+INCLUDE_DIRECTORIES=-I$(INC1) -I$(INC2) -I$(ID)
+
+LIBRARY_DIRECTORIES=-L$(LIB) -L$(OD) -L$(LD) -L$(GUI_PATH) -L$(SRC) -Wl,--subsystem,windows -mwindows
+
+CONFIGS=-static -static-libgcc -DHAVE_W32API_H -D__WXMSW__ -D_UNICODE
