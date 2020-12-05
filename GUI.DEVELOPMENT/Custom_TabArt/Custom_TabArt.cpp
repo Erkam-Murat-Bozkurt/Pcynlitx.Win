@@ -45,11 +45,15 @@
 
         wxString caption = page.caption;
 
-        dc.SetFont(this->m_selectedFont);
+        wxFont tab_font(10,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
+
+                             wxFONTWEIGHT_BOLD,false,"Liberation Sans");
+
+        dc.SetFont(tab_font);
 
         dc.GetTextExtent(caption, &selected_textx, &selected_texty);
 
-        dc.SetFont(this->m_normalFont);
+        dc.SetFont(tab_font);
 
         dc.GetTextExtent(caption, &normal_textx, &normal_texty);
 
@@ -68,13 +72,13 @@
 
         if (page.active)
         {
-            dc.SetFont(m_normalFont);
+            dc.SetFont(tab_font);
 
             texty = selected_texty;
         }
         else
         {
-               dc.SetFont(m_normalFont);
+               dc.SetFont(tab_font);
 
                texty = normal_texty;
         }
@@ -88,29 +92,29 @@
 
              // draw base background color
 
-            wxRect r(tab_x, tab_y, tab_width, tab_height+5);
+            wxRect r(tab_x, tab_y, tab_width+5, tab_height+5);
 
-            dc.SetPen(wxPen(wxColour(128,139,150)));
+            dc.SetPen(wxPen(wxColour(120,120,120)));
 
-            dc.SetBrush(wxBrush(wxColour(128,139,150)));
+            dc.SetBrush(wxBrush(wxColour(120,120,120)));
 
             // DrawRectangle member function: The first two parameters indicate the coordinates
             // of the top left corner of the rectangle
 
-            dc.DrawRectangle(r.x+3, r.y+3, r.width-2, r.height);
+            dc.DrawRectangle(r.x+3, r.y+3, r.width+3, r.height);
 
 
             border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+7); // left bottom corner
 
-            border_points[1] = wxPoint(tab_x+3,tab_y+4); // left top corner
+            border_points[1] = wxPoint(tab_x+3,tab_y+5);
 
-            border_points[2] = wxPoint(tab_x+3,tab_y+3); // right top corner
+            border_points[2] = wxPoint(tab_x+3,tab_y+3); // left top corner
 
-            border_points[3] = wxPoint(tab_x+tab_width,tab_y+3);
+            border_points[3] = wxPoint(tab_x+tab_width+10,tab_y+3); // Right top corner
 
-            border_points[4] = wxPoint(tab_x+tab_width,tab_y+4);
+            border_points[4] = wxPoint(tab_x+tab_width+10,tab_y+5);
 
-            border_points[5] = wxPoint(tab_x+tab_width,tab_y+tab_height+7);
+            border_points[5] = wxPoint(tab_x+tab_width+10,tab_y+tab_height+7); // Right bottom corner
 
 
             dc.SetPen(wxPen(wxColour(150,150,150)));
@@ -169,7 +173,7 @@
            else
                bmp = m_disabledCloseBmp;
 
-           wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 8,
+           wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() + 2,
                        tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2) + 6,
                        bmp.GetScaledWidth(),
                        tab_height - 1);
@@ -197,11 +201,11 @@
 
        if(page.active){
 
-           dc.SetTextForeground(wxColour(220,220,220));
+           dc.SetTextForeground(wxColour(240,240,240));
        }
        else{
 
-             dc.SetTextForeground(wxColour(220,220,220));
+             dc.SetTextForeground(wxColour(240,240,240));
        }
 
 

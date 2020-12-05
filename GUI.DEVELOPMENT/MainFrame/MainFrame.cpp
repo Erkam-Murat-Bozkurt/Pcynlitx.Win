@@ -284,6 +284,8 @@ void MainFrame::OnSize(wxSizeEvent & event){
         this->Custom_Main_Panel->PaintNow(this->Custom_Main_Panel);
 
         this->Book_Manager->PaintNow(this->Book_Manager);
+
+        this->Dir_List_Manager->PaintNow();
      }
 }
 
@@ -315,6 +317,18 @@ void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
 
      delete this->Font_Dialog;
 }
+
+
+/*
+
+void MainFrame::Tree_Item_Expanded(wxTreeEvent & event){
+
+     event.Skip(true);
+
+     wxMessageOutput::Get()->Printf(" wxTreeItem has been activated..");
+}
+
+*/
 
 void MainFrame::OnOpen(wxCommandEvent & event)
 {
@@ -543,6 +557,8 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
      }
 }
 
+/*
+
 void MainFrame::FileNameEdit(wxTreeEvent& event)
 {
      if(event.GetId() == ID_TREEVIEW_ITEM_START_EDITING){
@@ -550,6 +566,10 @@ void MainFrame::FileNameEdit(wxTreeEvent& event)
         event.Veto();
      }
 }
+
+*/
+
+/*
 
 void MainFrame::FileSelect(wxTreeEvent& event)
 {
@@ -576,6 +596,8 @@ void MainFrame::FileSelect(wxTreeEvent& event)
        }
      }
 }
+
+*/
 
 void MainFrame::RunLibraryBuilder(wxCommandEvent & event)
 {

@@ -12,6 +12,7 @@
 #include <wx/dcclient.h>
 #include <wx/treectrl.h>
 #include <wx/treebase.h>
+#include <wx/msgdlg.h>
 
 class Custom_wxTreeCtrl : public wxTreeCtrl
 {
@@ -29,9 +30,19 @@ public:
      return wxBG_STYLE_CUSTOM;
   }
 
-  void Size_Event(wxSizeEvent & event);
+  //void Size_Event(wxSizeEvent & event);
+
+  //void OnPaint(wxPaintEvent& event);
 
   //void Update(){};
+
+  void Tree_Item_Expanded(wxTreeEvent & event);
+
+  void Tree_Item_Collapsed(wxTreeEvent & event);
+
+  void FileNameEdit(wxTreeEvent & event);
+
+  void FileSelect(wxTreeEvent & event);
 
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
 

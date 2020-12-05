@@ -4,14 +4,17 @@
 #ifndef CUSTOM_TABART_H
 #define CUSTOM_TABART_H
 
-#include <wx/wx.h>
-#include <wx/frame.h>
-#include <wx/panel.h>
-#include <wx/aui/aui.h>
-#include <wx/aui/auibook.h>
-#include <wx/aui/framemanager.h>
-#include <wx/aui/dockart.h>
-#include <wx/event.h>
+#include <wx\wx.h>
+#include <wx\frame.h>
+#include <wx\panel.h>
+#include <wx\aui\aui.h>
+#include <wx\aui\auibook.h>
+#include <wx\aui\framemanager.h>
+#include <wx\aui\dockart.h>
+#include <wx\event.h>
+#include <wx\font.h>
+#include <wx\fontdata.h>
+#include <wx\fontdlg.h>
 
 
 // Custom TabArt decleration .........

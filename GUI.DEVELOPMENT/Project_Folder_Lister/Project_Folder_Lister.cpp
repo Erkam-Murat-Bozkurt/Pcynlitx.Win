@@ -42,6 +42,13 @@ Project_Folder_Lister::Project_Folder_Lister(Custom_wxTreeCtrl * TreeCtrl){
 
 Project_Folder_Lister::~Project_Folder_Lister(){
 
+     if(!this->Memory_Delete_Condition){
+
+        if(this->tree_item_list != nullptr){
+
+           delete [] this->tree_item_list;
+        }
+     }
 }
 
 
@@ -152,9 +159,9 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
                }
              }
          }
-      }
 
-      dirCtrl.Close();
+         dirCtrl.Close();
+      }
  }
 
  void Project_Folder_Lister::Append_Items(wxString Folder, wxTreeItemId Id){
@@ -375,4 +382,9 @@ void Project_Folder_Lister::RemoveProjectDirectory(){
 bool Project_Folder_Lister::GetProjectDirectoryOpenStatus(){
 
      return this->is_project_directory_open;
+}
+
+void Project_Folder_Lister::Expand_Root(){
+
+     this->treeCtrl->Expand(this->tree_item_list[0].item_id);
 }

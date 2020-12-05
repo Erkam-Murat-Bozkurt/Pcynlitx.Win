@@ -28,6 +28,7 @@
 #include <wx\scrolwin.h>
 #include <wx\dcbuffer.h>
 #include <wx\display.h>
+#include <wx/msgdlg.h>
 #include "wx_Description_Record_Tools.h"
 #include "Project_File_Selection_Dialog.h"
 #include "Menu_Bar_Options.h"
@@ -61,7 +62,7 @@ public:
   void RunLibraryBuilder(wxCommandEvent & event);
   void RunExeBuilder(wxCommandEvent & event);
   void OpenTerminal(wxCommandEvent & event);
-  void FileSelect(wxTreeEvent& event);
+  //void FileSelect(wxTreeEvent& event);
   void ShowProjectFile(wxCommandEvent & event);
   void OpenIntroPage(wxCommandEvent & event);
   void ShowAuthor(wxCommandEvent & event);
@@ -69,10 +70,11 @@ public:
   void ShowProjectDirectoryLocation(wxCommandEvent & event);
   void Open_Project_Web_Page(wxCommandEvent & event);
   void Show_Descriptions(wxCommandEvent & event);
+  //void Tree_Item_Expanded(wxTreeEvent & event);
   void OnClose(wxCloseEvent & event);
   wxAuiPaneInfo Central_Pane_Info;
   bool is_custom_panel_constructed = false;
-  void Update(){};
+  //void Update(){};
 private:
   void FileNameEdit(wxTreeEvent& event);
   void Process_End(wxProcessEvent & event);

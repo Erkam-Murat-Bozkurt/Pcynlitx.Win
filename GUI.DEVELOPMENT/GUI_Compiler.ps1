@@ -77,6 +77,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Intro_
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Intro_Page_Loader.o'
+
+   if ($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Intro_Page_Loader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Intro_Page_Loader\Intro_Page_Loader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -94,6 +101,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Help_P
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Help_Page_Loader.o'
+
+   if ($Exists_On_Obj_Dir){
+
+       rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Help_Page_Loader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Help_Page_Loader\Help_Page_Loader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -113,7 +127,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl\Custom_wxTreeCtrl.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_wxTreeCtrl.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_wxTreeCtrl.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxTreeCtrl\Custom_wxTreeCtrl.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_wxTreeCtrl class has been compiled"
@@ -130,7 +151,21 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Projec
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Project_Folder_Lister\Project_Folder_Lister.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Project_Folder_Lister.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Project_Folder_Lister.o'
+
+        Write-Output "   # Project_Folder_Lister.o class has been removed"
+    }
+    else{
+
+         Write-Output "   # Project_Folder_Lister.o does not find"
+
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Project_Folder_Lister\Project_Folder_Lister.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Project_Folder_Lister class has been compiled"
@@ -147,7 +182,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Window\Custom_Window.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Window.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Window.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Window\Custom_Window.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_Window class has been compiled"
@@ -165,7 +207,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Close_Button\Custom_Close_Button.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Close_Button.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Close_Button.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Close_Button\Custom_Close_Button.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_Close_Button class has been compiled"
@@ -184,7 +233,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Tree_View_Panel\Custom_Tree_View_Panel.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Tree_View_Panel.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Tree_View_Panel.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Tree_View_Panel\Custom_Tree_View_Panel.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_Tree_View_Panel class has been compiled"
@@ -202,7 +258,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition  )
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxPanel\Custom_wxPanel.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_wxPanel.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_wxPanel.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_wxPanel\Custom_wxPanel.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_wxPanel class has been compiled"
@@ -221,7 +284,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Projec
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Project_File_Selection_Dialog\Project_File_Selection_Dialog.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Project_File_Selection_Dialog.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Project_File_Selection_Dialog.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Project_File_Selection_Dialog\Project_File_Selection_Dialog.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Project_File_Selection_Dialog class has been compiled"
@@ -239,7 +309,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\ToolBa
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\ToolBar_Initializer\ToolBar_Initializer.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ToolBar_Initializer.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ToolBar_Initializer.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\ToolBar_Initializer\ToolBar_Initializer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ToolBar_Initializer class has been compiled"
@@ -257,7 +334,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Menu_B
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Menu_Bar_Options\Menu_Bar_Options.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Menu_Bar_Options.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Menu_Bar_Options.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Menu_Bar_Options\Menu_Bar_Options.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Menu_Bar_Options class has been compiled"
@@ -275,7 +359,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Style_
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Style_Loader\Style_Loader.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Style_Loader.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Style_Loader.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Style_Loader\Style_Loader.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Style_Loader class has been compiled"
@@ -294,7 +385,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_TextCtrl\Custom_TextCtrl.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_TextCtrl.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_TextCtrl.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_TextCtrl\Custom_TextCtrl.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_TextCtrl class has been compiled"
@@ -312,7 +410,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_TabArt\Custom_TabArt.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_TabArt.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_TabArt.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_TabArt\Custom_TabArt.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_TabArt class has been compiled"
@@ -330,7 +435,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Notebook\Custom_Notebook.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Notebook.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Custom_Notebook.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Custom_Notebook\Custom_Notebook.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Custom_NoteBook class has been compiled"
@@ -348,7 +460,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\wx_Des
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\wx_Description_Record_Tools\wx_Description_Record_Tools.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\wx_Description_Record_Tools.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\wx_Description_Record_Tools.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\wx_Description_Record_Tools\wx_Description_Record_Tools.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # wx_Description_Record_Tools class has been compiled"
@@ -366,6 +485,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\keyboa
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\keyboard_event_controler.o'
+
+   if ($Exists_On_Obj_Dir){
+
+       rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\keyboard_event_controler.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\keyboard_event_controler\keyboard_event_controler.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -384,7 +510,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Proces
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Process_Execution_Controller\Process_Execution_Controller.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Process_Execution_Controller.o'
+
+    if ($Exists_On_Obj_Dir){
+
+       rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Process_Execution_Controller.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\Process_Execution_Controller\Process_Execution_Controller.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Process_Execution_Controller class has been compiled"
@@ -402,7 +535,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\MainFr
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\MainFrame\MainFrame.o -Destination $OBJECTS_DIRECTORY
+    $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MainFrame.o'
+
+    if ($Exists_On_Obj_Dir){
+
+        rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MainFrame.o'
+    }
+
+    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT\MainFrame\MainFrame.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # MainFrame class has been compiled"

@@ -13,7 +13,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
   : wxPanel(frame,id,pos,size)
 
 {
-     this->background = wxColour(200,200,200);
+     this->background = wxColour(255,255,255);
 
      this->Interface_Manager_Pointer = Interface_Manager;
 
@@ -31,7 +31,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->SetExtraStyle(wxCLIP_CHILDREN);
 
-     this->SetExtraStyle(wxNO_FULL_REPAINT_ON_RESIZE);
+     this->SetExtraStyle(wxFULL_REPAINT_ON_RESIZE);
 
      this->GetEventHandler()->Bind(wxEVT_PAINT,&Custom_Tree_View_Panel::OnPaint,this,wxID_ANY);
 
@@ -173,6 +173,8 @@ void Custom_Tree_View_Panel::Size_Event(wxSizeEvent & event)
 {
      event.Skip(true);
 
+     this->PaintNow();
+
      if(this->close_button_construction_status){
 
         this->close_button->paintNow();
@@ -235,6 +237,8 @@ void Custom_Tree_View_Panel::PaintNow()
      wxRect rect(this->GetSize());
 
      this->DrawBackground(dc,this,rect);
+
+     //this->Top_Bar_Window->paintNow();
 }
 
 void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
@@ -246,6 +250,18 @@ void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
      wxRect rect(this->GetSize());
 
      this->DrawBackground(dc,this,rect);
+
+     if(this->close_button_construction_status){
+
+        this->close_button->paintNow();
+     }
+
+     if(this->Get_Panel_Open_Status()){
+
+        this->Top_Bar_Window->paintNow();
+
+        this->tree_control->PaintNow();
+     }
 };
 
 void Custom_Tree_View_Panel::Clear_Dynamic_Memory()
@@ -285,8 +301,6 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
 
      this->Top_Bar_Window->paintNow();
 
-     this->tree_control->Show(true);
-
      this->Top_Bar_Window->Show(true);
 
      this->close_button->Show(true);
@@ -294,6 +308,8 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
      this->Refresh();
 
      this->Interface_Manager_Pointer->Update();
+
+     this->tree_control->Show(true);
 }
 
 void Custom_Tree_View_Panel::Close_Directory_Pane()
@@ -302,6 +318,8 @@ void Custom_Tree_View_Panel::Close_Directory_Pane()
 
      if(this->panel_open_status)
      {
+        this->tree_control->DeleteAllItems();
+
         this->tree_control->Show(false);
 
         this->Top_Bar_Window->Show(false); // Top bar window

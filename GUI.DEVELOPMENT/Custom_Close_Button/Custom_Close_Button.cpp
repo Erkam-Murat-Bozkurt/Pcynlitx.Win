@@ -32,13 +32,17 @@ Custom_Close_Button::Custom_Close_Button(Custom_Window * parent, wxPoint positio
 {
     this->Memory_Delete_Condition = false;
 
-    this->SetSize(button_size);
+    this->bt_size = button_size;
+
+    this->SetSize(this->bt_size);
 
     this->SetThemeEnabled(false);
 
     this->SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     this->SetExtraStyle(wxFULL_REPAINT_ON_RESIZE);
+
+    this->GetEventHandler()->Bind(wxEVT_SIZE,&Custom_Close_Button::Size_Event,this,wxID_ANY);
 
     this->page_close_icon = new
 
@@ -85,6 +89,15 @@ void Custom_Close_Button::paintNow()
 
     wxClientDC dc(this);
     this->render(dc);
+}
+
+void Custom_Close_Button::Size_Event(wxSizeEvent & event)
+{
+      event.Skip(true);
+
+      this->SetSize(this->bt_size);
+
+      this->paintNow();
 }
 
 void Custom_Close_Button::Update_Window_Data(){

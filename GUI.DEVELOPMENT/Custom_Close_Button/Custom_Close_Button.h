@@ -20,6 +20,7 @@ public:
       wxSize button_size);
 
     virtual ~Custom_Close_Button();
+    void Size_Event(wxSizeEvent & event);
     void Update_Window_Data();
     void paintEvent(wxPaintEvent & evt);
     void paintNow();
@@ -39,6 +40,7 @@ public:
     wxBitmap * page_close_icon;
     wxImage page_close_image;
     bool Memory_Delete_Condition;
+    wxSize bt_size;
     DECLARE_EVENT_TABLE()
 };
 

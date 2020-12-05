@@ -38,6 +38,8 @@ public:
 
   bool GetProjectDirectoryOpenStatus();
 
+  void Expand_Root();
+
 private:
   void Initialize_Properties(wxString Folder);
 
