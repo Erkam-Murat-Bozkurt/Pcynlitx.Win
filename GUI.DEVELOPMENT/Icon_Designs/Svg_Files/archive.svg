@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 12.000001 12.000001"
+   height="12.000001"
+   width="12.000001"
    id="svg2"
    version="1.1"
    sodipodi:docname="archive.svg"
@@ -30,9 +30,9 @@
      inkscape:window-height="1001"
      id="namedview8"
      showgrid="true"
-     inkscape:zoom="12.528765"
-     inkscape:cx="-29.1864"
-     inkscape:cy="3.0220203"
+     inkscape:zoom="17.718349"
+     inkscape:cx="-19.750369"
+     inkscape:cy="3.0220208"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -40,7 +40,7 @@
     <inkscape:grid
        type="xygrid"
        id="grid10"
-       originx="4.2890625e-07"
+       originx="2.0000005"
        originy="-25" />
   </sodipodi:namedview>
   <metadata
@@ -60,28 +60,28 @@
   <rect
      style="fill:#c86464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819-3"
-     width="10"
-     height="10"
+     width="12"
+     height="12"
      x="5e-07"
      y="5e-07"
-     ry="1.0000005"
+     ry="1.2000005"
      inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/archive.png"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke-width:1.09431958"
+     style="fill:#ffffff;fill-opacity:1;stroke-width:1.31318355"
      id="rect878-7"
-     width="6"
-     height="2.3950706"
-     x="2.0000005"
-     y="5.6049304"
-     ry="0.39507055" />
+     width="7.1999998"
+     height="2.8740847"
+     x="2.4000003"
+     y="6.7259159"
+     ry="0.47408465" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke-width:1.09431958"
+     style="fill:#ffffff;fill-opacity:1;stroke-width:1.31318355"
      id="rect878-7-1"
-     width="6"
-     height="2.3950706"
-     x="2.000001"
-     y="2.000001"
-     ry="0.39507055" />
+     width="7.1999998"
+     height="2.8740847"
+     x="2.400001"
+     y="2.4000008"
+     ry="0.47408465" />
 </svg>

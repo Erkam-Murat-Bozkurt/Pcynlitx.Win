@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 11.674899 11.538081"
+   height="11.538081"
+   width="11.674899"
    id="svg2"
    version="1.1"
    sodipodi:docname="close.svg"
@@ -29,10 +29,10 @@
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      id="namedview8"
-     showgrid="false"
-     inkscape:zoom="7.76173"
-     inkscape:cx="-48.831303"
-     inkscape:cy="8.6491916"
+     showgrid="true"
+     inkscape:zoom="21.953488"
+     inkscape:cx="-16.337283"
+     inkscape:cy="8.6491913"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -40,7 +40,7 @@
     <inkscape:grid
        type="xygrid"
        id="grid815"
-       originx="28.325102"
+       originx="30"
        originy="-41.461919" />
   </sodipodi:namedview>
   <metadata
@@ -60,21 +60,21 @@
   <rect
      style="fill:#c86464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
+     width="11.674898"
+     height="11.53808"
      x="5e-07"
      y="5e-07"
-     ry="1"
+     ry="1.153808"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <path
      id="path825-3-7-7"
-     d="M 3.1091402,7.6549544 2.3980152,6.9386738 6.8425442,2.4619199 7.5536692,3.1782004 Z"
-     style="fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.17842451px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 3.6298895,8.832348 2.7996583,8.0058977 7.9886008,2.840583 8.818832,3.6670332 Z"
+     style="fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.20708463px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      inkscape:connector-curvature="0" />
   <path
      id="path825-3-7-5-5"
-     d="m 3.1640552,2.4619199 -0.711125,0.7162805 4.444529,4.476754 0.711125,-0.7162806 z"
-     style="fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.17842451px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 3.6940022,2.840583 2.863771,3.6670332 8.0527135,8.832348 8.8829447,8.0058977 Z"
+     style="fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.20708463px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      inkscape:connector-curvature="0" />
 </svg>

@@ -7,14 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 12.02373 12.403609"
+   height="12.403609"
+   width="12.02373"
    id="svg901"
    version="1.1"
    sodipodi:docname="empty_project_file.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/empty_project_file.png"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="D:\Pcynlitx\icons\empty_project_file.png"
    inkscape:export-xdpi="500"
    inkscape:export-ydpi="500">
   <sodipodi:namedview
@@ -26,22 +26,22 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1307"
-     inkscape:window-height="717"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
      id="namedview10"
      showgrid="true"
      inkscape:zoom="23.454216"
-     inkscape:cx="1.6431924"
-     inkscape:cy="4.4235157"
-     inkscape:window-x="59"
-     inkscape:window-y="27"
+     inkscape:cx="-3.4533331"
+     inkscape:cy="4.4235155"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg901">
     <inkscape:grid
        type="xygrid"
        id="grid12"
-       originx="52.976271"
-       originy="-54.596391" />
+       originx="54.999999"
+       originy="-54.59639" />
   </sodipodi:namedview>
   <metadata
      id="metadata907">
@@ -60,33 +60,33 @@
   <text
      transform="scale(0.8604174,1.1622266)"
      id="text917"
-     y="47.836102"
-     x="65.44014"
+     y="49.904209"
+     x="67.792175"
      style="font-style:normal;font-weight:normal;font-size:38.84294128px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.97107351"
      xml:space="preserve"><tspan
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:31.07435226px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.97107351"
-       y="82.203003"
-       x="65.44014"
+       y="84.271111"
+       x="67.792175"
        id="tspan915" /></text>
   <rect
      style="fill:#646464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
+     width="12.023729"
+     height="12.403608"
      x="5e-07"
      y="5e-07"
-     ry="1"
+     ry="1.2403609"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <text
      id="text921-3-7"
-     y="6.5952506"
-     x="1.6844825"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.25878525px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Bold';letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.18146962"
+     y="8.0542469"
+     x="2.0571222"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.86456776px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Bold';letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.22161418"
      xml:space="preserve"
-     transform="scale(0.97691386,1.0236317)"><tspan
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.08114958px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold';fill:#f0f0f0;fill-opacity:1;stroke-width:0.18146962"
-       y="6.5952506"
-       x="1.6844825"
+     transform="scale(0.96183782,1.0396763)"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.20519733px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold';fill:#f0f0f0;fill-opacity:1;stroke-width:0.22161418"
+       y="8.0542469"
+       x="2.0571222"
        id="tspan919-6-5">Dr</tspan></text>
 </svg>

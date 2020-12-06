@@ -8,14 +8,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 12.013364 12.216953"
+   height="12.216953"
+   width="12.013364"
    id="svg866"
    version="1.1"
    sodipodi:docname="open_tree_view.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/open_tree_view.png"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="D:\Pcynlitx\icons\open_tree_view.png"
    inkscape:export-xdpi="500"
    inkscape:export-ydpi="500">
   <sodipodi:namedview
@@ -27,22 +27,22 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1307"
-     inkscape:window-height="704"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
      id="namedview8"
      showgrid="true"
-     inkscape:zoom="46.908428"
-     inkscape:cx="5.923681"
-     inkscape:cy="4.8452721"
-     inkscape:window-x="59"
-     inkscape:window-y="27"
+     inkscape:zoom="23.454214"
+     inkscape:cx="20.079"
+     inkscape:cy="3.5396522"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg866">
     <inkscape:grid
        type="xygrid"
        id="grid10"
-       originx="43.394067"
-       originy="-41.877118" />
+       originx="45.013364"
+       originy="-41.783046" />
   </sodipodi:namedview>
   <metadata
      id="metadata872">
@@ -70,16 +70,16 @@
   <rect
      style="fill:#646464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
+     width="12.013363"
+     height="12.216952"
      x="5e-07"
      y="5e-07"
-     ry="1"
+     ry="1.2216952"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <path
      inkscape:connector-curvature="0"
      id="path821-1-7"
-     d="m 5.1595676,2.5632221 0.63112,0.9344557 h 2.208927 v 3.8581885 l -5.995654,0.010947 V 2.5632257 Z"
+     d="M 6.1983761,3.1314758 6.9565635,4.2730959 H 9.6102277 V 8.9866263 L 2.4074306,9.0000003 V 3.1314802 Z"
      style="fill:#f0f0f0;fill-opacity:1;stroke:#464646;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.74509804" />
 </svg>

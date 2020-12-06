@@ -23,14 +23,48 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
-        wxDefaultPosition, wxSize(1000,780),wxDEFAULT_FRAME_STYLE)
+        wxDefaultPosition, wxSize(1200,950),wxDEFAULT_FRAME_STYLE)
 {
+
+
+
+  wxFontInfo Font_Style(9);
+
+  Font_Style.Family(wxFONTFAMILY_TELETYPE);
+
+  Font_Style.FaceName(wxT("Dejavu Sans Mono"));
+
+  Font_Style.Light(false);
+
+  Font_Style.AntiAliased(true);
+
+  Font_Style.Slant(false);
+
+
+
+  this->SetSize(this->FromDIP(wxSize(1200,950)));
+
+  this->SetClientSize(this->FromDIP(wxSize(1200,950)));
+
+  this->Default_Font = new wxFont(Font_Style);
+
+
+  //wxSize pixel_size = this->Default_Font->GetPixelSize();
+
+  //this->Default_Font->SetPixelSize(this->FromDIP(wxSize(16,16)));
+
+
+  this->Default_Font->SetEncoding(wxFONTENCODING_DEFAULT);
+
+  this->Default_Font->SetStyle(wxFONTSTYLE_NORMAL);
+
+  this->SetFont(*(this->Default_Font));
 
   this->is_custom_panel_constructed = false;
 
   this->Interface_Manager.SetManagedWindow(this);
 
-  this->SetThemeEnabled(false);
+  this->SetThemeEnabled(true);
 
   this->SetDoubleBuffered(true);
 
@@ -48,9 +82,9 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
   this->Interface_Manager.SetFlags(wxAUI_MGR_LIVE_RESIZE);
 
 
-  this->SetSize(wxSize(1000,780));
+  this->SetSize(wxSize(1200,950));
 
-  this->SetMinSize(wxSize(1000,780));
+  this->SetMinSize(wxSize(1200,950));
 
   this->Refresh();
 
@@ -116,10 +150,6 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
 
   // THE CONSTRUCTION OF THE NOTEBOOK
-
-  this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
-
-                       wxFONTWEIGHT_NORMAL,false,"Dejavu Sans Mono");
 
   this->Book_Manager = new Custom_Notebook(this->Custom_Main_Panel,&this->Interface_Manager,
 

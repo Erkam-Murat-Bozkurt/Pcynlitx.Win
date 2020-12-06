@@ -7,10 +7,10 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="10"
-   height="11"
+   width="15.966102"
+   height="16"
    version="1.1"
-   viewBox="0 0 10 11"
+   viewBox="0 0 15.966102 16"
    id="svg6"
    sodipodi:docname="close_tab.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
@@ -45,8 +45,8 @@
      id="namedview8"
      showgrid="true"
      inkscape:zoom="14.75"
-     inkscape:cx="-10.080143"
-     inkscape:cy="3.6174824"
+     inkscape:cx="11.350526"
+     inkscape:cy="10.394068"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -54,19 +54,20 @@
     <inkscape:grid
        type="xygrid"
        id="grid4526"
-       originx="67"
+       originx="72.000004"
        originy="6" />
   </sodipodi:namedview>
   <rect
-     style="fill:#787878;fill-opacity:1;stroke-width:0.9534626"
+     style="fill:#787878;fill-opacity:1;stroke-width:1.45300376"
      id="rect816"
-     width="10"
-     height="11"
+     width="15.966102"
+     height="16"
      x="0"
-     y="0" />
+     y="0"
+     ry="0" />
   <path
-     style="fill:#f0f0f0;fill-opacity:1;stroke-width:2"
-     d="M 1,1.414062 V 2.828124 L 3.585938,5.414062 1,8 V 9.414062 H 2.414062 L 5,6.828124 7.585938,9.414062 H 9 V 8 L 6.414062,5.414062 9,2.828124 V 1.414062 H 7.585938 L 5,4 2.414062,1.414062 Z"
+     style="fill:#f0f0fa;fill-opacity:1;stroke:#000000;stroke-width:0.22625341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 3.000002,3 V 4.7675774 L 6.2324248,8 3.000002,11.232422 V 13 H 4.7675791 L 8.0000019,9.7675753 11.232425,13 h 1.767577 V 11.232422 L 9.767579,8 13.000002,4.7675774 V 3 H 11.232425 L 8.0000019,6.2324222 4.7675791,3 Z"
      id="path4"
      inkscape:connector-curvature="0"
      inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/close_tab.png"

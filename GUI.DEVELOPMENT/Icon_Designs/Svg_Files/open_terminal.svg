@@ -7,14 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 12 12.516239"
+   height="12.516239"
+   width="12"
    id="svg6428"
    version="1.1"
    sodipodi:docname="open_terminal.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/open_terminal.png"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="D:\Pcynlitx\icons\open_terminal.png"
    inkscape:export-xdpi="500"
    inkscape:export-ydpi="500">
   <sodipodi:namedview
@@ -26,21 +26,21 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1307"
-     inkscape:window-height="704"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
      id="namedview8"
      showgrid="true"
-     inkscape:zoom="7.92377"
-     inkscape:cx="-12.744905"
-     inkscape:cy="-0.75757834"
-     inkscape:window-x="59"
-     inkscape:window-y="27"
+     inkscape:zoom="22.411806"
+     inkscape:cx="-7.7834083"
+     inkscape:cy="6.8145746"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg6428">
     <inkscape:grid
        type="xygrid"
        id="grid10"
-       originx="42.000001"
+       originx="44.000001"
        originy="-28.40897" />
   </sodipodi:namedview>
   <metadata
@@ -60,21 +60,21 @@
   <rect
      style="fill:#646464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
+     width="11.999999"
+     height="12.516238"
      x="5e-07"
      y="5e-07"
-     ry="1"
+     ry="1.2516239"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <path
      inkscape:connector-curvature="0"
      id="path7201-3-3"
-     d="m 2.8569025,2.3371315 -1.001683,0.90643 1.144781,1.16541 -1.144781,1.03592 1.001683,1.035919 2.146465,-2.071839 -2.146465,-2.07184"
+     d="M 3.4282828,2.9252094 2.2262633,4.0597189 3.6000003,5.5183738 2.2262633,6.814956 3.4282828,8.1115369 6.0040406,5.5183738 3.4282828,2.9252094"
      style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      inkscape:connector-curvature="0"
      id="path7211-6-6"
-     d="m 4.4658865,5.9877505 c 0,1.019044 0,1.019044 0,1.019044 h 2.56699 v -1.019044 z"
+     d="m 5.3590635,7.4944113 c 0,1.2754597 0,1.2754597 0,1.2754597 H 8.4394513 V 7.4944113 Z"
      style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>

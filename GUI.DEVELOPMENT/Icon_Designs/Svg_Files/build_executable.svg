@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10 10"
-   height="10"
-   width="10"
+   viewBox="0 0 12.000001 12.000001"
+   height="12.000001"
+   width="12.000001"
    id="svg2"
    version="1.1"
    sodipodi:docname="build_executable.svg"
@@ -31,8 +31,8 @@
      id="namedview8"
      showgrid="true"
      inkscape:zoom="41.860721"
-     inkscape:cx="-5.6923429"
-     inkscape:cy="6.2413842"
+     inkscape:cx="-3.6923424"
+     inkscape:cy="6.2413847"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -41,7 +41,7 @@
     <inkscape:grid
        type="xygrid"
        id="grid814"
-       originx="0"
+       originx="2.0000005"
        originy="-20" />
   </sodipodi:namedview>
   <metadata
@@ -61,34 +61,34 @@
   <rect
      style="fill:#c86464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
-     x="0"
-     y="0"
-     ry="1"
+     width="12"
+     height="12"
+     x="5e-07"
+     y="5e-07"
+     ry="1.2"
      inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/build_executable.png"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.3125;"
-     x="1.2799622"
-     y="7.0631838"
+     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.375"
+     x="1.5359551"
+     y="8.4758215"
      id="text833"><tspan
        sodipodi:role="line"
        id="tspan831"
-       x="1.2799622"
-       y="7.0631838"
-       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:5.83333349px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.3125;">E</tspan></text>
+       x="1.5359551"
+       y="8.4758215"
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.375">E</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.3125;"
-     x="5.2770171"
-     y="7.0503049"
+     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.375"
+     x="6.3324208"
+     y="8.4603662"
      id="text833-9"><tspan
        sodipodi:role="line"
        id="tspan831-1"
-       x="5.2770171"
-       y="7.0503049"
-       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:5.83333349px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.3125;">x</tspan></text>
+       x="6.3324208"
+       y="8.4603662"
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.375">x</tspan></text>
 </svg>

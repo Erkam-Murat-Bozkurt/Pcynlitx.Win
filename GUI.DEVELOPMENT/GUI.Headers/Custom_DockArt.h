@@ -40,7 +40,7 @@ public:
 
       this->m_borderSize = 0;
 
-      this->m_captionSize = 30;
+      this->m_captionSize = 40;
 
       this->m_buttonSize = 27;
 
@@ -52,7 +52,7 @@ public:
 
       this->m_sashBrush.SetColour(this->m_baseColour);
 
-      this->m_sashSize = 8;
+      this->m_sashSize = 15;
   }
 
 
@@ -69,7 +69,7 @@ public:
                                     wxAuiPaneInfo& pane)
   {
       dc.SetPen(wxColour(200,200,200));
-      
+
       dc.SetBrush(wxColour(200,200,200));
 
       wxRect rect = _rect;

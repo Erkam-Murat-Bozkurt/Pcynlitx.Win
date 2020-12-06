@@ -7,14 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 10.000001 10.000001"
-   height="10.000001"
-   width="10.000001"
+   viewBox="0 0 11.862066 12.362354"
+   height="12.362354"
+   width="11.862066"
    id="svg866"
    version="1.1"
    sodipodi:docname="select_project_file.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/erkam/PCYNLITX.SETUP.FILES/ICON_DESIGNS/PNG_ICONS/select_project_file.png"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="D:\Pcynlitx\icons\select_project_file.png"
    inkscape:export-xdpi="500"
    inkscape:export-ydpi="500">
   <sodipodi:namedview
@@ -26,22 +26,22 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1307"
-     inkscape:window-height="704"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
      id="namedview7"
-     showgrid="true"
-     inkscape:zoom="16.584635"
-     inkscape:cx="-0.96794629"
-     inkscape:cy="-4.5696287"
-     inkscape:window-x="59"
-     inkscape:window-y="27"
+     showgrid="false"
+     inkscape:zoom="23.454216"
+     inkscape:cx="-9.1754422"
+     inkscape:cy="5.6630731"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg866">
     <inkscape:grid
        type="xygrid"
        id="grid9"
-       originx="73.137935"
-       originy="-48.637646" />
+       originx="74.999999"
+       originy="-48.637645" />
   </sodipodi:namedview>
   <metadata
      id="metadata872">
@@ -60,16 +60,16 @@
   <rect
      style="fill:#646464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
-     width="10"
-     height="10"
+     width="11.862065"
+     height="12.362353"
      x="5e-07"
      y="5e-07"
-     ry="1"
+     ry="1.2362354"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <path
      inkscape:connector-curvature="0"
      id="path900-3-6"
-     d="m 3.2872105,5.7878539 -1.149276,-1.1502067 0.224982,-0.2251487 0.224981,-0.2251487 0.85437,0.3799578 c 0.469904,0.2089768 0.858349,0.3738767 0.863213,0.3664443 0.0048,-0.00743 0.477168,-0.5671768 1.049565,-1.2438764 l 1.040722,-1.2303629 h 0.537623 c 0.295691,0 0.53762,0.0032 0.53762,0.00712 0,0.00532 -3.016477,4.4511629 -3.03164,4.4681873 -0.0016,0.00178 -0.520057,-0.5143554 -1.15216,-1.1469691 z"
+     d="M 3.8993105,7.1551495 2.5360318,5.7332233 2.8029069,5.4548865 3.0697809,5.1765497 4.0832402,5.646267 c 0.5574032,0.2583445 1.0181792,0.4621996 1.0239489,0.4530114 0.00569,-0.00919 0.5660198,-0.701164 1.2450009,-1.537724 L 7.5867012,3.0405363 h 0.6377319 c 0.3507506,0 0.6377284,0.00396 0.6377284,0.0088 0,0.00658 -3.5781648,5.5026849 -3.5961512,5.5237311 -0.0019,0.0022 -0.616895,-0.6358644 -1.3666998,-1.4179238 z"
      style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.5;stroke-opacity:1;paint-order:fill markers stroke" />
 </svg>

@@ -9,6 +9,8 @@
     this->page_close_icon = new wxBitmap(wxT("D:\\Pcynlitx\\icons\\close_tab.png"),
 
                              wxBITMAP_TYPE_ANY);
+
+    this->m_tabCtrlHeight = 37;
  }
 
  wxAuiTabArt * Custom_TabArt::Clone() {
@@ -27,7 +29,7 @@
 
       dc.SetBrush(wxColour(235,235,235));
 
-      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2,rect.GetWidth()+5,rect.GetHeight()+5);
+      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2,rect.GetWidth()+10,rect.GetHeight()+10);
  }
 
  void Custom_TabArt::DrawTab(wxDC & dc, wxWindow *wnd, const wxAuiNotebookPage &page,
@@ -47,7 +49,7 @@
 
         wxFont tab_font(10,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
 
-                             wxFONTWEIGHT_BOLD,false,"Liberation Sans");
+                             wxFONTWEIGHT_NORMAL,false,"Noto Sans");
 
         dc.SetFont(tab_font);
 
@@ -66,7 +68,7 @@
 
         wxCoord tab_width = tab_size.x;
 
-        wxCoord tab_x = in_rect.x-2;
+        wxCoord tab_x = in_rect.x-4;
 
         wxCoord tab_y = in_rect.y;
 
@@ -92,7 +94,7 @@
 
              // draw base background color
 
-            wxRect r(tab_x, tab_y, tab_width+5, tab_height+5);
+            wxRect r(tab_x, tab_y, tab_width, tab_height+12);
 
             dc.SetPen(wxPen(wxColour(120,120,120)));
 
@@ -101,20 +103,20 @@
             // DrawRectangle member function: The first two parameters indicate the coordinates
             // of the top left corner of the rectangle
 
-            dc.DrawRectangle(r.x+3, r.y+3, r.width+3, r.height);
+            dc.DrawRectangle(r.x+3, r.y+3, r.width-4, r.height);
 
 
-            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+7); // left bottom corner
+            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+14); // left bottom corner
 
-            border_points[1] = wxPoint(tab_x+3,tab_y+5);
+            border_points[1] = wxPoint(tab_x+3,tab_y+4);
 
             border_points[2] = wxPoint(tab_x+3,tab_y+3); // left top corner
 
-            border_points[3] = wxPoint(tab_x+tab_width+10,tab_y+3); // Right top corner
+            border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+3); // Right top corner
 
-            border_points[4] = wxPoint(tab_x+tab_width+10,tab_y+5);
+            border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
 
-            border_points[5] = wxPoint(tab_x+tab_width+10,tab_y+tab_height+7); // Right bottom corner
+            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+14); // Right bottom corner
 
 
             dc.SetPen(wxPen(wxColour(150,150,150)));
@@ -129,7 +131,7 @@
 
               // draw inactive tab
 
-              wxRect r(tab_x, tab_y,tab_width, tab_height+5);
+              wxRect r(tab_x, tab_y,tab_width, tab_height+13);
 
               dc.SetPen(wxPen(wxColour(150,150,150)));
 
@@ -173,7 +175,7 @@
            else
                bmp = m_disabledCloseBmp;
 
-           wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() + 2,
+           wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 8,
                        tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2) + 6,
                        bmp.GetScaledWidth(),
                        tab_height - 1);
@@ -211,7 +213,7 @@
 
        dc.DrawText(draw_text,
              text_offset,
-             (tab_y + tab_height)/2 - (texty/2) + 4);
+             (tab_y + tab_height)/2 - (texty/2) + 8);
 
        *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height);
  }
@@ -222,6 +224,8 @@
 
                             const wxBitmap& bmp, const wxColour& bkcolour, int button_state)
   {
+        //wxMessageOutput::Get()->Printf("Inside Custom_TabArt::DrawButtons");
+
         wxRect rect = _rect;
 
         if (button_state == wxAUI_BUTTON_STATE_PRESSED)
@@ -237,11 +241,11 @@
             dc.SetPen(wxPen(bkcolour.ChangeLightness(75)));
 
             // draw the background behind the button
-            dc.DrawRectangle(rect.x, rect.y, bmp.GetScaledWidth()-offset.x, bmp.GetScaledHeight()-offset.y);
+            dc.DrawRectangle(rect.x, rect.y+4, bmp.GetScaledWidth()-offset.x, bmp.GetScaledHeight()-offset.y);
         }
 
         // draw the button itself
-        dc.DrawBitmap(bmp, rect.x, rect.y, true);
+        dc.DrawBitmap(bmp, rect.x, rect.y+4, true);
  }
 
 
@@ -284,7 +288,6 @@
                   bmp = m_activeWindowListBmp;
               break;
       }
-
 
       if (!bmp.IsOk())
           return;
