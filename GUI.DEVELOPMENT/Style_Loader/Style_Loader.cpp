@@ -43,21 +43,21 @@ void Style_Loader::Set_Lexer_Style(wxFont Default_Font, wxStyledTextCtrl * text_
 
      this->Set_Style_Font(Default_Font,text_ctrl);
 
-     text_ctrl->StyleSetForeground(wxSTC_C_STRING,wxColour(0,115,135));
+     text_ctrl->StyleSetForeground(wxSTC_C_STRING,wxColour(0, 128, 128));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_PREPROCESSOR,wxColour(190,50,50));
+     text_ctrl->StyleSetForeground(wxSTC_C_PREPROCESSOR,wxColour(205, 92, 92));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_IDENTIFIER,wxColour(40,0,60));
+     text_ctrl->StyleSetForeground(wxSTC_C_IDENTIFIER,wxColour(65,65,65));
 
      text_ctrl->StyleSetForeground(wxSTC_C_NUMBER,wxColour(160,76,0));
 
      text_ctrl->StyleSetForeground(wxSTC_C_CHARACTER,wxColour(150,0,0));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_OPERATOR,wxColour(110,110,110));
+     text_ctrl->StyleSetForeground(wxSTC_C_OPERATOR,wxColour(90,90,90));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_WORD,wxColour(93, 109, 126));
+     text_ctrl->StyleSetForeground(wxSTC_C_WORD,wxColour(41, 128, 185));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_WORD2,wxColour(93, 109, 126));
+     text_ctrl->StyleSetForeground(wxSTC_C_WORD2,wxColour(41, 128, 185));
 
      text_ctrl->StyleSetForeground(wxSTC_C_COMMENT,wxColour(150,150,150));
 
@@ -71,7 +71,7 @@ void Style_Loader::Set_Lexer_Style(wxFont Default_Font, wxStyledTextCtrl * text_
 
      text_ctrl->StyleSetForeground(wxSTC_C_COMMENTLINEDOC,wxColour(150,150,150));
 
-     text_ctrl->StyleSetForeground(wxSTC_C_DEFAULT,wxColour(90,90,90));
+     text_ctrl->StyleSetForeground(wxSTC_C_DEFAULT,wxColour(41, 128, 185));
 
      text_ctrl->StyleSetForeground(wxSTC_C_REGEX,wxColour(90,90,90));
 

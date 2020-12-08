@@ -2,22 +2,24 @@
 #ifndef CUSTOM_WXTREECTRL_H
 #define CUSTOM_WXTREECTRL_H
 
-#include <wx/wx.h>
-#include <wx/panel.h>
-#include <wx/event.h>
-#include <wx/sizer.h>
-#include <wx/event.h>
-#include <wx/gdicmn.h>
-#include <wx/dc.h>
-#include <wx/dcclient.h>
-#include <wx/treectrl.h>
-#include <wx/treebase.h>
-#include <wx/msgdlg.h>
+#include <wx\wx.h>
+#include <wx\frame.h>
+#include <wx\panel.h>
+#include <wx\event.h>
+#include <wx\sizer.h>
+#include <wx\event.h>
+#include <wx\gdicmn.h>
+#include <wx\dc.h>
+#include <wx\dcclient.h>
+#include <wx\treectrl.h>
+#include <wx\treebase.h>
+#include <wx\font.h>
+
 
 class Custom_wxTreeCtrl : public wxTreeCtrl
 {
 public:
-  Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
+  Custom_wxTreeCtrl(wxWindow *parent,  wxWindowID id,
 
         const wxPoint & pos,
 
@@ -30,15 +32,19 @@ public:
      return wxBG_STYLE_CUSTOM;
   }
 
-  //void Size_Event(wxSizeEvent & event);
+  void Size_Event(wxSizeEvent & event);
 
   //void OnPaint(wxPaintEvent& event);
 
-  //void Update(){};
+  void kill_focus_event(wxFocusEvent& event);
 
-  void Tree_Item_Expanded(wxTreeEvent & event);
+  void set_focus_event(wxFocusEvent& event);
 
-  void Tree_Item_Collapsed(wxTreeEvent & event);
+  void Update(){};
+
+  //void Tree_Item_Expanded(wxTreeEvent & event);
+
+  //void Tree_Item_Collapsed(wxTreeEvent & event);
 
   void FileNameEdit(wxTreeEvent & event);
 
@@ -53,8 +59,6 @@ public:
   wxWindow * Parent_Window_Pointer;
 
   wxPoint Position;
-
-  DECLARE_EVENT_TABLE()
 };
 
 #endif /* CUSTOM_WXTREECTRL_H */

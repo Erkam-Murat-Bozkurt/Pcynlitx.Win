@@ -103,6 +103,8 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
      this->tree_item_list[0].item_id = this->treeCtrl->AddRoot(Root_Folder,0,0,NULL);
 
+     this->tree_item_list[0].Item_Path = Folder;
+
      this->item_counter++;
 
      this->Append_Items(Folder,this->tree_item_list[0].item_id);

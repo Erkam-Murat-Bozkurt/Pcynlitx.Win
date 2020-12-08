@@ -26,39 +26,12 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
         wxDefaultPosition, wxSize(1200,950),wxDEFAULT_FRAME_STYLE)
 {
 
+  this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
 
-
-  wxFontInfo Font_Style(9);
-
-  Font_Style.Family(wxFONTFAMILY_TELETYPE);
-
-  Font_Style.FaceName(wxT("Dejavu Sans Mono"));
-
-  Font_Style.Light(false);
-
-  Font_Style.AntiAliased(true);
-
-  Font_Style.Slant(false);
-
-
-
-  this->SetSize(this->FromDIP(wxSize(1200,950)));
-
-  this->SetClientSize(this->FromDIP(wxSize(1200,950)));
-
-  this->Default_Font = new wxFont(Font_Style);
-
-
-  //wxSize pixel_size = this->Default_Font->GetPixelSize();
-
-  //this->Default_Font->SetPixelSize(this->FromDIP(wxSize(16,16)));
-
-
-  this->Default_Font->SetEncoding(wxFONTENCODING_DEFAULT);
-
-  this->Default_Font->SetStyle(wxFONTSTYLE_NORMAL);
+                     wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
 
   this->SetFont(*(this->Default_Font));
+
 
   this->is_custom_panel_constructed = false;
 
@@ -349,16 +322,8 @@ void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
 }
 
 
-/*
 
-void MainFrame::Tree_Item_Expanded(wxTreeEvent & event){
 
-     event.Skip(true);
-
-     wxMessageOutput::Get()->Printf(" wxTreeItem has been activated..");
-}
-
-*/
 
 void MainFrame::OnOpen(wxCommandEvent & event)
 {
@@ -571,7 +536,6 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
 
              this->Book_Manager->Open_File(this->Descriptor_File_Path);
         }
-
      }
      else{
             wxMessageDialog * dial = new wxMessageDialog(NULL,
@@ -587,47 +551,98 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
      }
 }
 
-/*
+
+// THE START OF THE TREE CONTROL EVENTS
+
+void MainFrame::Tree_Item_Expanded(wxTreeEvent & event){
+
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+}
 
 void MainFrame::FileNameEdit(wxTreeEvent& event)
 {
-     if(event.GetId() == ID_TREEVIEW_ITEM_START_EDITING){
+     event.Veto();
 
-        event.Veto();
-     }
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+
 }
 
-*/
+void MainFrame::Tree_Item_Right_Clicked(wxTreeEvent & event){
 
-/*
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+}
+
+void MainFrame::Tree_Item_Collapsed(wxTreeEvent & event){
+
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+}
+
+void MainFrame::Tree_Item_Sel_Changed(wxTreeEvent & event){
+
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+}
+
+void MainFrame::Tree_Item_Sel_Changing(wxTreeEvent & event){
+
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+}
 
 void MainFrame::FileSelect(wxTreeEvent& event)
 {
-     if(event.GetId() == ID_TREEVIEW_ITEM_ACTIVATED){
+       event.Skip(true);
+
+       event.StopPropagation();
 
        wxTreeItemId Item = this->tree_control->GetSelection();
 
-       wxString File_Path = this->Dir_List_Manager->GetItemPath(Item);
+       wxString Path = this->Dir_List_Manager->GetItemPath(Item);
 
-       if(this->dir_control->Exists(File_Path)){
+       if(this->dir_control->Exists(Path)){
 
            if(this->Dir_List_Manager->GetTreeCtrl()->IsExpanded(Item)){
 
              this->Dir_List_Manager->GetTreeCtrl()->Collapse(Item);
+
+             this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
            }
            else{
 
                  this->Dir_List_Manager->GetTreeCtrl()->Expand(Item);
+
+                 this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
            }
        }
        else{
 
-            this->Book_Manager->Open_File(File_Path);
+            this->Book_Manager->Open_File(Path);
        }
-     }
+
+       this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
 }
 
-*/
+
+// THE END OF THE TREE CONTROL EVENTS
+
 
 void MainFrame::RunLibraryBuilder(wxCommandEvent & event)
 {

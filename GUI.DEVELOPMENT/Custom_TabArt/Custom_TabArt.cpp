@@ -49,7 +49,7 @@
 
         wxFont tab_font(10,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
 
-                             wxFONTWEIGHT_NORMAL,false,"Noto Sans");
+                             wxFONTWEIGHT_NORMAL,false,"Liberation Sans");
 
         dc.SetFont(tab_font);
 
@@ -94,7 +94,7 @@
 
              // draw base background color
 
-            wxRect r(tab_x, tab_y, tab_width, tab_height+12);
+            wxRect r(tab_x, tab_y, tab_width, tab_height+14);
 
             dc.SetPen(wxPen(wxColour(120,120,120)));
 
@@ -103,10 +103,10 @@
             // DrawRectangle member function: The first two parameters indicate the coordinates
             // of the top left corner of the rectangle
 
-            dc.DrawRectangle(r.x+3, r.y+3, r.width-4, r.height);
+            dc.DrawRectangle(r.x+3, r.y+3, r.width-3, r.height);
 
 
-            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+14); // left bottom corner
+            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+16); // left bottom corner
 
             border_points[1] = wxPoint(tab_x+3,tab_y+4);
 
@@ -116,7 +116,7 @@
 
             border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
 
-            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+14); // Right bottom corner
+            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+16); // Right bottom corner
 
 
             dc.SetPen(wxPen(wxColour(150,150,150)));
@@ -133,14 +133,14 @@
 
               wxRect r(tab_x, tab_y,tab_width, tab_height+13);
 
-              dc.SetPen(wxPen(wxColour(150,150,150)));
+              dc.SetPen(wxPen(wxColour(170,170,170)));
 
-              dc.SetBrush(wxBrush(wxColour(150,150,150)));
+              dc.SetBrush(wxBrush(wxColour(170,170,170)));
 
               // DrawRectangle member function: The first two parameters indicate the coordinates
               // of the top left corner of the rectangle
 
-              dc.DrawRectangle(r.x+3, r.y+3, r.width-2, r.height);
+              dc.DrawRectangle(r.x+3, r.y+3, r.width-1, r.height);
 
 
               border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+7); // left bottom corner
@@ -155,7 +155,7 @@
 
               border_points[5] = wxPoint(tab_x+tab_width,tab_y+tab_height+7);
 
-              dc.SetPen(wxPen(wxColour(150,150,150)));
+              dc.SetPen(wxPen(wxColour(170,170,170)));
 
               dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
@@ -207,7 +207,7 @@
        }
        else{
 
-             dc.SetTextForeground(wxColour(240,240,240));
+             dc.SetTextForeground(wxColour(70,70,70));
        }
 
 

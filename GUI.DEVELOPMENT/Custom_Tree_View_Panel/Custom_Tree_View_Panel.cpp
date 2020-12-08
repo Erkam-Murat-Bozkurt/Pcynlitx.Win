@@ -31,7 +31,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->SetExtraStyle(wxCLIP_CHILDREN);
 
-     this->SetExtraStyle(wxFULL_REPAINT_ON_RESIZE);
+     this->SetExtraStyle(wxNO_FULL_REPAINT_ON_RESIZE);
 
      this->GetEventHandler()->Bind(wxEVT_PAINT,&Custom_Tree_View_Panel::OnPaint,this,wxID_ANY);
 
@@ -89,7 +89,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->tree_control = new Custom_wxTreeCtrl(this, wxID_ANY,wxDefaultPosition,
 
-                             this->Tree_Control_Size, wxTR_HAS_BUTTONS | wxTR_HAS_VARIABLE_ROW_HEIGHT);
+                             this->Tree_Control_Size, wxTR_DEFAULT_STYLE | wxTR_ROW_LINES);
 
 
 
@@ -178,6 +178,8 @@ void Custom_Tree_View_Panel::Size_Event(wxSizeEvent & event)
      if(this->close_button_construction_status){
 
         this->close_button->paintNow();
+
+        this->tree_control->PaintNow();
      }
 }
 
@@ -237,8 +239,6 @@ void Custom_Tree_View_Panel::PaintNow()
      wxRect rect(this->GetSize());
 
      this->DrawBackground(dc,this,rect);
-
-     //this->Top_Bar_Window->paintNow();
 }
 
 void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
@@ -259,8 +259,6 @@ void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
      if(this->Get_Panel_Open_Status()){
 
         this->Top_Bar_Window->paintNow();
-
-        this->tree_control->PaintNow();
      }
 };
 
@@ -305,11 +303,11 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
 
      this->close_button->Show(true);
 
+     this->tree_control->Show(true);
+
      this->Refresh();
 
      this->Interface_Manager_Pointer->Update();
-
-     this->tree_control->Show(true);
 }
 
 void Custom_Tree_View_Panel::Close_Directory_Pane()

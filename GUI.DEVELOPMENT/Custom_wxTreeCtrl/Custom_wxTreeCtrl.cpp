@@ -2,20 +2,6 @@
 #include "Custom_wxTreeCtrl.h"
 
 
-
-BEGIN_EVENT_TABLE(Custom_wxTreeCtrl,wxTreeCtrl)
-
-  EVT_TREE_ITEM_ACTIVATED(wxID_ANY,Custom_wxTreeCtrl::FileSelect)
-
-  EVT_TREE_BEGIN_LABEL_EDIT(wxID_ANY,Custom_wxTreeCtrl::FileNameEdit)
-
-  EVT_TREE_ITEM_EXPANDED(wxID_ANY,Custom_wxTreeCtrl::Tree_Item_Expanded)
-
-  EVT_TREE_ITEM_COLLAPSED(wxID_ANY,Custom_wxTreeCtrl::Tree_Item_Collapsed)
-
-END_EVENT_TABLE()
-
-
 Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
   const wxPoint & pos,
@@ -26,9 +12,18 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
      this->Parent_Window_Pointer = parent;
 
-     //this->GetEventHandler()->Bind(wxEVT_PAINT,&Custom_wxTreeCtrl::OnPaint,this,wxID_ANY);
+     this->GetEventHandler()->Bind(wxEVT_SIZE,&Custom_wxTreeCtrl::Size_Event,this,wxID_ANY);
 
-     //this->GetEventHandler()->Bind(wxEVT_TREE_ITEM_EXPANDED,&Custom_wxTreeCtrl::Tree_Item_Expanded,this,wxID_ANY);
+     this->GetEventHandler()->Bind(wxEVT_KILL_FOCUS,&Custom_wxTreeCtrl::kill_focus_event,this,wxID_ANY);
+
+     this->GetEventHandler()->Bind(wxEVT_SET_FOCUS,&Custom_wxTreeCtrl::set_focus_event,this,wxID_ANY);
+
+
+     wxFont tree_font(9,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
+
+                          wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
+
+     this->SetFont(tree_font);
 
      this->SetBackgroundColour(wxColour(250,250,250));
 
@@ -36,7 +31,7 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
      this->SetExtraStyle(wxCLIP_CHILDREN);
 
-     this->SetExtraStyle(wxFULL_REPAINT_ON_RESIZE);
+     this->SetExtraStyle(wxNO_FULL_REPAINT_ON_RESIZE);
 
      this->ClearBackground();
 
@@ -58,62 +53,19 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
  }
 
- void Custom_wxTreeCtrl::Tree_Item_Expanded(wxTreeEvent & event){
+void Custom_wxTreeCtrl::kill_focus_event(wxFocusEvent& event){
 
-      event.Skip(false);
+     event.Skip(true);
 
-      //wxMessageOutput::Get()->Printf(" wxTreeItem has been expanded..");
+     this->PaintNow();
+}
 
-      this->PaintNow();
+void Custom_wxTreeCtrl::set_focus_event(wxFocusEvent& event){
 
+     event.Skip(true);
 
- }
-
- void Custom_wxTreeCtrl::Tree_Item_Collapsed(wxTreeEvent & event){
-
-      event.Skip(false);
-
-      //wxMessageOutput::Get()->Printf(" wxTreeItem has been expanded..");
-
-      this->PaintNow();
-
- }
-
- void Custom_wxTreeCtrl::FileSelect(wxTreeEvent& event)
- {
-      event.Skip(false);
-
-      this->PaintNow();
-
-      //wxMessageOutput::Get()->Printf(" wxTreeItem has been activated..");
-
- }
-
- void Custom_wxTreeCtrl::FileNameEdit(wxTreeEvent& event)
- {
-      event.Veto();
-
- }
-
-
- /*
-
- void Custom_wxTreeCtrl::OnPaint(wxPaintEvent& event)
- {
-      event.Skip(false);
-
-      wxPaintDC dc(this);
-
-      wxSize current_size = this->GetSize();
-
-      wxSize new_size = wxSize(current_size.x+5, current_size.y+5);
-
-      wxRect rect(new_size);
-
-      this->DrawBackground(dc,this,rect);
- };
-
- */
+     this->PaintNow();
+}
 
  void Custom_wxTreeCtrl::PaintNow(){
 
@@ -124,8 +76,8 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
        this->DrawBackground(dc,this,rect);
  }
 
-void Custom_wxTreeCtrl::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect){
-
+void Custom_wxTreeCtrl::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
+{
      dc.SetBrush(wxColour(255,255,255));
 
      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2, rect.GetWidth()+5,rect.GetHeight()+5);
@@ -136,8 +88,6 @@ void Custom_wxTreeCtrl::Receive_Position(wxPoint control_position){
      this->Position = control_position;
 }
 
-/*
-
 void Custom_wxTreeCtrl::Size_Event(wxSizeEvent & event)
 {
       event.Skip(true);
@@ -146,7 +96,5 @@ void Custom_wxTreeCtrl::Size_Event(wxSizeEvent & event)
 
       this->SetSize(parent->GetClientSize());
 
-      //this->PaintNow();
+      this->PaintNow();
 }
-
-*/
