@@ -13,6 +13,7 @@
 #include <wx/aui/framemanager.h>
 #include <wx/font.h>
 #include <wx/sizer.h>
+#include <wx/msgdlg.h>
 #include "Custom_wxTreeCtrl.h"
 #include "Project_Folder_Lister.h"
 #include "Custom_DockArt.h"

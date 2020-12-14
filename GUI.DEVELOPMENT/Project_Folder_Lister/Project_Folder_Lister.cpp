@@ -74,32 +74,13 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
      this->item_counter = 0;
 
-
      this->count_sub_directories(Folder);
 
      // The sub directory number is determined
 
-
-     wxArrayString Files;
-
-     wxDir dirCtrl;
-
-     size_t count = dirCtrl.GetAllFiles(Folder,&Files,wxEmptyString,wxDIR_DEFAULT);
-
-     int file_number = (int) count;
-
-
-
-     this->total_item_number = this->sub_directory_number + file_number +1;
-
-     // Total item number is estimated in order to allocate memory
-
-     // +1 item is for root item
-
-     this->tree_item_list = new Tree_Item [5*this->total_item_number];
+     this->tree_item_list = new Tree_Item [10*this->total_item_number];
 
      wxString Root_Folder = this->Determine_Short_Path(Folder);
-
 
      this->tree_item_list[0].item_id = this->treeCtrl->AddRoot(Root_Folder,0,0,NULL);
 
@@ -108,7 +89,6 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
      this->item_counter++;
 
      this->Append_Items(Folder,this->tree_item_list[0].item_id);
-
 
      // Total item number is determined exactly after appending the Append_Items
 
@@ -121,48 +101,127 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
     this->is_project_directory_open = true;
  }
 
+
+
+ bool Project_Folder_Lister::Does_it_have_SubDir(wxString Folder){
+
+      this->does_it_have_sub_dir = false;
+
+      wxDir dirCtrl;
+
+      if(dirCtrl.Exists(Folder)){
+
+         dirCtrl.Open(Folder);
+
+         if(dirCtrl.IsOpened()){
+
+           if(dirCtrl.HasSubDirs()){
+
+             this->does_it_have_sub_dir = true;
+           }
+
+           dirCtrl.Close();
+         }
+         else{
+
+            wxMessageOutput::Get()->Printf("Folder %s can not be openned",Folder);
+         }
+      }
+
+      return this->does_it_have_sub_dir;
+ }
+
+ wxTreeItemId Project_Folder_Lister::Append_Directory_To_Tree(wxTreeItemId Id, wxString Directory, wxString Path){
+
+      this->tree_item_list[this->item_counter].item_id =
+
+              this->treeCtrl->AppendItem(Id,Directory,0,0,NULL);
+
+      this->appended_item_id = this->tree_item_list[this->item_counter].item_id;
+
+      this->tree_item_list[this->item_counter].Item_Path = Path;
+
+      this->item_counter++;
+
+      return this->appended_item_id;
+ }
+
+
+ wxTreeItemId Project_Folder_Lister::Append_File_To_Tree(wxTreeItemId Id, wxString File, wxString Path){
+
+      this->tree_item_list[this->item_counter].item_id =
+
+              this->treeCtrl->AppendItem(Id,File,1,1,NULL);
+
+      this->appended_item_id = this->tree_item_list[this->item_counter].item_id;
+
+      this->tree_item_list[this->item_counter].Item_Path = Path;
+
+      this->item_counter++;
+
+      return this->appended_item_id;
+ }
+
  void Project_Folder_Lister::count_sub_directories(wxString Folder){
 
       wxDir dirCtrl;
 
-      dirCtrl.Open(Folder);
+      if(dirCtrl.Exists(Folder)){
 
-      wxString dirname  = wxT("");
+         dirCtrl.Open(Folder);
 
-      wxString setpoint = wxT("");
+         wxString dirname  = wxT("");
 
-      wxString setpoint_path = Folder;
+         wxString setpoint_path = Folder;
 
-      if(dirCtrl.IsOpened()){
+         if(dirCtrl.IsOpened()){
 
-         if(dirCtrl.HasSubDirs()){
+            if(dirCtrl.HasSubDirs()){
 
-            bool cond = dirCtrl.GetFirst(&dirname,wxT(""),wxDIR_DIRS | wxDIR_NO_FOLLOW);
+              bool cond = dirCtrl.GetFirst(&dirname,wxEmptyString,
 
-            if(cond){
+                     wxDIR_DIRS | wxDIR_NO_FOLLOW);
 
-               this->sub_directory_number++;
+              if(cond){
+
+                this->total_item_number++;
+
+                setpoint_path = Folder + wxT("\\") + dirname;
+
+                if(this->Does_it_have_SubDir(setpoint_path)){
+
+                   this->count_sub_directories(setpoint_path);
+                }
+
+                this->Count_Files(Folder);
+
+                while(dirCtrl.GetNext(&dirname)){
+
+                  this->total_item_number++;
+
+                  setpoint_path = Folder + wxT("\\") + dirname;
+
+                  if(this->Does_it_have_SubDir(setpoint_path)){
+
+                     this->count_sub_directories(setpoint_path);
+                  }
+
+                  this->Count_Files(Folder);
+                }
+              }
             }
 
-            setpoint_path = Folder + wxT("\\") + dirname;
+            dirCtrl.Close();
 
-            this->count_sub_directories(setpoint_path);
+          }
+          else{
 
-            if(cond){
+                wxMessageOutput::Get()->Printf("Folder %s can not be openned",Folder);
+          }
+      }
+      else{
 
-               while(cond){
-
-                 cond = dirCtrl.GetNext(&dirname);
-
-                 setpoint_path = Folder + wxT("\\") + dirname;
-
-                 this->count_sub_directories(setpoint_path);
-
-               }
-             }
-         }
-
-         dirCtrl.Close();
+            wxMessageOutput::Get()->Printf("Folder: %s does not exist",Folder);
       }
  }
 
@@ -170,154 +229,142 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
       // Appending the directories recursively
 
-      wxDir dirCtrl;
-
-      dirCtrl.Open(Folder);
-
       wxString dirname  = wxT("");
-
-      wxString setpoint = wxT("");
 
       wxTreeItemId setpoint_id;
 
       wxString setpoint_path = Folder;
 
-      if(dirCtrl.IsOpened()){
+      wxDir dirCtrl;
 
-        if(dirCtrl.HasSubDirs()){
+      if(dirCtrl.Exists(Folder)){
 
-           bool cond = dirCtrl.GetFirst(&dirname,wxT(""), wxDIR_DIRS  | wxDIR_NO_FOLLOW);
+         dirCtrl.Open(Folder);
 
-           if(cond){
+         if(dirCtrl.IsOpened()){
 
-              this->tree_item_list[this->item_counter].item_id =
+            if(dirCtrl.HasSubDirs()){
 
-                  this->treeCtrl->AppendItem(Id,dirname,0,0,NULL);
+               bool cond = dirCtrl.GetFirst(&dirname,wxEmptyString,
 
-              setpoint_id = this->tree_item_list[this->item_counter].item_id;
-
-              setpoint_path = Folder + wxT("\\") + dirname;
-
-              this->tree_item_list[this->item_counter].Item_Path = setpoint_path;
-
-              this->item_counter++;
-
-
-              wxDir dir;
-
-              dir.Open(setpoint_path);
-
-              if(dir.IsOpened()){
-
-                if(dir.HasSubDirs()){ // recurdive call for the next directory
-
-                  this->Append_Items(setpoint_path,setpoint_id);
-                }
-              }
-
-              dir.Close();
-           }
-
-
-           if(cond){
-
-             while(cond){
-
-               cond = dirCtrl.GetNext(&dirname);
+                      wxDIR_DIRS  | wxDIR_NO_FOLLOW);
 
                if(cond){
 
-                 this->tree_item_list[this->item_counter].item_id =
+                  setpoint_path = Folder + wxT("\\") + dirname;
 
-                         this->treeCtrl->AppendItem(Id,dirname,0,0,NULL);
+                  setpoint_id = this->Append_Directory_To_Tree(Id,dirname,setpoint_path);
 
-                 setpoint_id = this->tree_item_list[this->item_counter].item_id;
-
-                 setpoint_path = Folder + wxT("\\") + dirname;
-
-                 this->tree_item_list[this->item_counter].Item_Path = setpoint_path;
-
-                 this->item_counter++;
-
-
-                 wxDir dir;
-
-                 dir.Open(setpoint_path);
-
-                 if(dir.IsOpened()){
-
-                   if(dir.HasSubDirs()){
+                  if(this->Does_it_have_SubDir(setpoint_path)){
 
                      this->Append_Items(setpoint_path,setpoint_id);
-                   }
-                 }
+                  }
 
-                 dir.Close();
+                  this->Append_Files(setpoint_path,setpoint_id);
 
-               }
-             }
-           }
-         }
-       }
+                  while(dirCtrl.GetNext(&dirname)){
 
-      dirCtrl.Close();
+                    setpoint_path = Folder + wxT("\\") + dirname;
 
-      // Appending the files plasing on the directory folder recursively
+                    setpoint_id = this->Append_Directory_To_Tree(Id,dirname,setpoint_path);
+
+                    if(this->Does_it_have_SubDir(setpoint_path)){
+
+                      this->Append_Items(setpoint_path,setpoint_id);
+                    }
+
+                    this->Append_Files(setpoint_path,setpoint_id);
+                  }
+                }
+              }
+              else{
+
+                   this->Append_Files(setpoint_path,Id);
+              }
+
+              dirCtrl.Close();
+            }
+            else{
+
+                   wxMessageOutput::Get()->Printf("Folder %s can not be openned",Folder);
+            }
+        }
+        else{
+
+              wxMessageOutput::Get()->Printf("Folder: %s does not exist",Folder);
+        }
+ }
+
+ void Project_Folder_Lister::Append_Files(wxString Folder, wxTreeItemId Id){
 
       wxString filename  = wxT("");
 
-      wxString file_Path =  wxT("");
+      wxString file_path = wxT("");
 
-      dirCtrl.Open(Folder);
+      wxDir File_dirCtrl;
 
-      if(dirCtrl.IsOpened()){
+      File_dirCtrl.Open(Folder);
 
-         bool cond = dirCtrl.GetFirst(&filename,wxT(""), wxDIR_FILES  | wxDIR_NO_FOLLOW);
+      if(File_dirCtrl.IsOpened()){
+
+         bool cond = File_dirCtrl.GetFirst(&filename,wxEmptyString,
+
+              wxDIR_FILES  | wxDIR_NO_FOLLOW);
 
          if(cond){
 
-            this->tree_item_list[this->item_counter].item_id =
+           file_path = Folder + wxT("\\") + filename;
 
-                  this->treeCtrl->AppendItem(Id,filename,1,1,NULL);
+            this->Append_File_To_Tree(Id,filename,file_path);
 
-            setpoint_id = this->tree_item_list[this->item_counter].item_id;
+             while(cond){
 
-            file_Path = Folder + wxT("\\") + filename;
+                   cond = File_dirCtrl.GetNext(&filename);
 
-            this->tree_item_list[this->item_counter].Item_Path = file_Path;
+                   if(cond){
 
-            this->item_counter++;
+                     file_path = Folder + wxT("\\") + filename;
 
-
-            if(cond){
-
-              while(cond){
-
-                cond = dirCtrl.GetNext(&filename);
-
-                if(cond){
-
-                  this->tree_item_list[this->item_counter].item_id =
-
-                  this->treeCtrl->AppendItem(Id,filename,1,1,NULL);
-
-                  file_Path = Folder + wxT("\\") + filename;
-
-                  this->tree_item_list[this->item_counter].Item_Path = file_Path;
-
-                  this->item_counter++;
-                }
-              }
-            }
-          }
-      }
+                      this->Append_File_To_Tree(Id,filename,file_path);
+                   }
+             }
+           }
+       }
  }
+
+
+  void Project_Folder_Lister::Count_Files(wxString Folder){
+
+       wxString filename  = wxT("");
+
+       wxDir File_dirCtrl;
+
+       File_dirCtrl.Open(Folder);
+
+       if(File_dirCtrl.IsOpened()){
+
+          bool cond = File_dirCtrl.GetFirst(&filename,wxEmptyString,
+
+               wxDIR_FILES  | wxDIR_NO_FOLLOW);
+
+          if(cond){
+
+              while(File_dirCtrl.GetNext(&filename)){
+
+                this->total_item_number++;
+
+              }
+          }
+       }
+  }
+
+
 
  size_t Project_Folder_Lister::Get_Sub_Directory_Name_Size(wxString Item){
 
         this->Short_Path_Name_Size = 0;
 
-        for(int k=Item.length();k>0;k--){
+        for(size_t k=Item.Length();k>0;k--){
 
             if(Item[k] == '\\'){
 
@@ -343,9 +390,9 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
      size_t Sub_Dir_Name_Size = this->Get_Sub_Directory_Name_Size(Item);
 
-     size_t Sub_Dir_Start_Point = Item.length( ) - Sub_Dir_Name_Size +1;
+     size_t Sub_Dir_Start_Point = Item.Length( ) - Sub_Dir_Name_Size +1;
 
-     for(size_t k=Sub_Dir_Start_Point; k<Item.length();k++){
+     for(size_t k=Sub_Dir_Start_Point; k<Item.Length();k++){
 
          this->Short_Path = this->Short_Path + Item[k];
      }

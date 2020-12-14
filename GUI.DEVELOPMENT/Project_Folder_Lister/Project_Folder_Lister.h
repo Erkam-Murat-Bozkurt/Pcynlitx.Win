@@ -13,6 +13,7 @@
 #include <wx/window.h>
 #include <cstdlib>
 #include <wx/artprov.h>
+#include <wx/msgout.h>
 #include "Custom_wxTreeCtrl.h"
 
 struct Tree_Item
@@ -51,6 +52,16 @@ private:
 
   wxString Determine_Short_Path(wxString Item);
 
+  bool Does_it_have_SubDir(wxString Folder);
+
+  wxTreeItemId Append_Directory_To_Tree(wxTreeItemId Id, wxString Directory, wxString Path);
+
+  wxTreeItemId Append_File_To_Tree(wxTreeItemId Id, wxString Directory, wxString Path);
+
+  void Append_Files(wxString Folder, wxTreeItemId Id);
+
+  void Count_Files(wxString Folder);
+
   size_t Short_Path_Name_Size;
   int sub_directory_number;
   int total_item_number;
@@ -62,6 +73,9 @@ private:
   wxString Item_Path;
   bool is_project_directory_open;
   bool Memory_Delete_Condition;
+  bool search_cond;
+  bool does_it_have_sub_dir;
+  wxTreeItemId appended_item_id;
 };
 
 #endif /* PROJECT_FOLDER_LISTER_H */

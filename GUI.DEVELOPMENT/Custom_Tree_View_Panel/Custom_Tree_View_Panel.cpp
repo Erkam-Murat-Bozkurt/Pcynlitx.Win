@@ -82,8 +82,6 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->File_List_Widget_Shape.dock_proportion = 0.25;
 
 
-     //int tree_view_hegiht = this->GetClientSize().y - this->tab_ctrl_hight+10;
-
      this->Tree_Control_Size = this->GetClientSize();
 
 
@@ -115,11 +113,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->Top_Bar_Window->Show(false);
 
 
-     //wxPoint Panel_Position = this->GetRect().GetPosition();
-
      wxPoint Panel_Top_Right_Position = this->GetRect().GetTopRight();
-
-     //wxPoint Panel_Top_Left_Position = this->GetRect().GetTopLeft();
 
 
      // Default wxPanel position is TopLeft corner of the panel
@@ -289,13 +283,9 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
         this->panel_open_status = true;
      }
 
-     this->Interface_Manager_Pointer->Update();
-
      this->Initialize_Sizer();
 
      this->Folder_Lister->Load_Project_Directory(Folder);
-
-     this->Show(true);
 
      this->Top_Bar_Window->paintNow();
 
@@ -304,6 +294,8 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
      this->close_button->Show(true);
 
      this->tree_control->Show(true);
+
+     this->Show(true);
 
      this->Refresh();
 
