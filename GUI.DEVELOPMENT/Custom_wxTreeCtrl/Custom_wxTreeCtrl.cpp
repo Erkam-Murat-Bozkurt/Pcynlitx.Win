@@ -12,12 +12,9 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
      this->Parent_Window_Pointer = parent;
 
+     this->GetEventHandler()->Bind(wxEVT_PAINT,&Custom_wxTreeCtrl::OnPaint,this,wxID_ANY);
+
      this->GetEventHandler()->Bind(wxEVT_SIZE,&Custom_wxTreeCtrl::Size_Event,this,wxID_ANY);
-
-     this->GetEventHandler()->Bind(wxEVT_KILL_FOCUS,&Custom_wxTreeCtrl::kill_focus_event,this,wxID_ANY);
-
-     this->GetEventHandler()->Bind(wxEVT_SET_FOCUS,&Custom_wxTreeCtrl::set_focus_event,this,wxID_ANY);
-
 
      wxFont tree_font(9,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
 
@@ -53,20 +50,6 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
  }
 
-void Custom_wxTreeCtrl::kill_focus_event(wxFocusEvent& event){
-
-     event.Skip(true);
-
-     this->PaintNow();
-}
-
-void Custom_wxTreeCtrl::set_focus_event(wxFocusEvent& event){
-
-     event.Skip(true);
-
-     this->PaintNow();
-}
-
  void Custom_wxTreeCtrl::PaintNow(){
 
        wxClientDC dc(this);
@@ -75,6 +58,18 @@ void Custom_wxTreeCtrl::set_focus_event(wxFocusEvent& event){
 
        this->DrawBackground(dc,this,rect);
  }
+
+ void Custom_wxTreeCtrl::OnPaint(wxPaintEvent & event){
+
+      event.Skip(true);
+
+      wxPaintDC dc(this);
+
+      wxRect rect(this->GetSize());
+
+      this->DrawBackground(dc,this,rect);
+ }
+
 
 void Custom_wxTreeCtrl::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
 {

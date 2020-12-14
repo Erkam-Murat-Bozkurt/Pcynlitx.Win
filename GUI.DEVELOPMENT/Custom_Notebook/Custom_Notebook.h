@@ -55,7 +55,6 @@ public:
   void Pane_Activated(wxAuiNotebookEvent & event);
   void OnPaint(wxPaintEvent & event);
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
-  void Update(){};
   void Initialization();
   void Selection_Changing(wxAuiNotebookEvent & event);
   void NoteBook_Page_Closed(wxAuiNotebookEvent & event);

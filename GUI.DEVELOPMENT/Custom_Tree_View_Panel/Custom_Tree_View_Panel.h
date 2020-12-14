@@ -82,8 +82,6 @@ public:
 
   void PaintNow();
 
-  //void Update(){};
-
   void Initialize_Sizer();
 
   void Detach_Windows_From_Sizer();

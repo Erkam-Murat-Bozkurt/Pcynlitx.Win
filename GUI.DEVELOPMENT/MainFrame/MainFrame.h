@@ -53,7 +53,6 @@ public:
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& _rect);
   void PaintNow(wxWindow * wnd);
   void Receive_Interface_Manager_Adress(wxAuiManager * Interface_Manager);
-  void OnSize(wxSizeEvent & event);
   void OnQuit(wxCommandEvent & event);
   void OnOpen(wxCommandEvent & event);
   void SelectProjectFile(wxCommandEvent & event);
@@ -70,15 +69,9 @@ public:
   void ShowProjectDirectoryLocation(wxCommandEvent & event);
   void Open_Project_Web_Page(wxCommandEvent & event);
   void Show_Descriptions(wxCommandEvent & event);
-  void Tree_Item_Expanded(wxTreeEvent & event);
-  void Tree_Item_Collapsed(wxTreeEvent & event);
-  void Tree_Item_Right_Clicked(wxTreeEvent & event);
-  void Tree_Item_Sel_Changing(wxTreeEvent & event);
-  void Tree_Item_Sel_Changed(wxTreeEvent & event);
   void OnClose(wxCloseEvent & event);
   wxAuiPaneInfo Central_Pane_Info;
   bool is_custom_panel_constructed = false;
-  //void Update(){};
 private:
   void FileNameEdit(wxTreeEvent& event);
   void Process_End(wxProcessEvent & event);

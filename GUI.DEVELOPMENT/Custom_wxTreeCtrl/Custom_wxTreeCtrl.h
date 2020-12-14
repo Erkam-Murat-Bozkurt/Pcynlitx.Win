@@ -34,18 +34,6 @@ public:
 
   void Size_Event(wxSizeEvent & event);
 
-  //void OnPaint(wxPaintEvent& event);
-
-  void kill_focus_event(wxFocusEvent& event);
-
-  void set_focus_event(wxFocusEvent& event);
-
-  void Update(){};
-
-  //void Tree_Item_Expanded(wxTreeEvent & event);
-
-  //void Tree_Item_Collapsed(wxTreeEvent & event);
-
   void FileNameEdit(wxTreeEvent & event);
 
   void FileSelect(wxTreeEvent & event);
@@ -53,6 +41,8 @@ public:
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
 
   void PaintNow();
+
+  void OnPaint(wxPaintEvent& event);
 
   void Receive_Position(wxPoint control_position);
 

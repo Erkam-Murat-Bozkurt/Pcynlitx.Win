@@ -50,6 +50,7 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
   this->ClearBackground();
 
 
+
   this->SetBackgroundColour(wxColour(200,200,200));
 
   this->Interface_Manager.SetFlags(wxAUI_MGR_LIVE_RESIZE);
@@ -160,21 +161,11 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
   this->tree_control = this->Dir_List_Manager->GetTreeCtrl();
 
 
-
-  //wxDataViewEvent File_Activation(wxEVT_DATAVIEW_ITEM_ACTIVATED,this->tree_control,this->tree_control->GetCurrentColumn(), this->tree_control->GetId());
-
-  //this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
-
-  //wxDataViewEvent File_Name_Edit(wxEVT_DATAVIEW_ITEM_START_EDITING,this->tree_control,this->tree_control->GetCurrentColumn(),this->tree_control->GetId());
-
-  //this->Connect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
-
   wxStyledTextEvent Char_Add(wxEVT_STC_CHARADDED,wxID_ANY);
 
   this->Connect(wxID_ANY,wxEVT_STC_CHARADDED,wxStyledTextEventHandler(MainFrame::Auto_Indentation));
 
   this->GetEventHandler()->Bind(wxEVT_PAINT,&MainFrame::OnPaint,this,wxID_ANY);
-
 
 
   this->Interface_Manager.Update();
@@ -244,6 +235,8 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
   this->Raise();
 
   this->PostSizeEvent();
+
+  this->Interface_Manager.Update();
 }
 
 MainFrame::~MainFrame()
@@ -267,20 +260,7 @@ void MainFrame::PaintNow(wxWindow * wnd)
      wxRect rect(wnd->GetSize());
 
      this->DrawBackground(dc,wnd,rect);
-}
 
-void MainFrame::DrawBackground(wxDC & dc, wxWindow *  wnd, const wxRect& rect)
-{
-     dc.SetBrush(wxColour(200,200,200));
-
-     dc.DrawRectangle(rect.GetX()-5, rect.GetY()-5, rect.GetWidth()+10,rect.GetHeight()+5);
-}
-
-void MainFrame::OnSize(wxSizeEvent & event){
-
-     event.Skip(false);
-
-     this->PaintNow(this);
 
      if(this->is_custom_panel_constructed)
      {
@@ -292,6 +272,13 @@ void MainFrame::OnSize(wxSizeEvent & event){
      }
 }
 
+void MainFrame::DrawBackground(wxDC & dc, wxWindow *  wnd, const wxRect& rect)
+{
+     dc.SetBrush(wxColour(200,200,200));
+
+     dc.DrawRectangle(rect.GetX()-5, rect.GetY()-5, rect.GetWidth()+10,rect.GetHeight()+5);
+}
+
 void MainFrame::OnPaint(wxPaintEvent & event)
 {
      event.Skip(false);
@@ -301,6 +288,15 @@ void MainFrame::OnPaint(wxPaintEvent & event)
      wxRect rect(this->GetSize());
 
      this->DrawBackground(dc,this,rect);
+
+     if(this->is_custom_panel_constructed)
+     {
+        this->Custom_Main_Panel->PaintNow(this->Custom_Main_Panel);
+
+        this->Book_Manager->PaintNow(this->Book_Manager);
+
+        this->Dir_List_Manager->PaintNow();
+     }
 }
 
 void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
@@ -320,10 +316,6 @@ void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
 
      delete this->Font_Dialog;
 }
-
-
-
-
 
 void MainFrame::OnOpen(wxCommandEvent & event)
 {
@@ -353,10 +345,6 @@ void MainFrame::OnClose(wxCloseEvent & event)
 
            this->Interface_Manager.DetachPane(central_pane_window);
         }
-
-        //this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_ACTIVATED,wxDataViewEventHandler(MainFrame::FileSelect));
-
-        //this->Disconnect(this->tree_control->GetId(),wxEVT_DATAVIEW_ITEM_START_EDITING,wxDataViewEventHandler(MainFrame::FileNameEdit));
 
         this->Disconnect(wxID_ANY,wxEVT_STC_CHARADDED,wxStyledTextEventHandler(MainFrame::Auto_Indentation));
 
@@ -554,57 +542,10 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
 
 // THE START OF THE TREE CONTROL EVENTS
 
-void MainFrame::Tree_Item_Expanded(wxTreeEvent & event){
-
-     event.Skip(true);
-
-     event.StopPropagation();
-
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-}
-
 void MainFrame::FileNameEdit(wxTreeEvent& event)
 {
      event.Veto();
 
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-
-}
-
-void MainFrame::Tree_Item_Right_Clicked(wxTreeEvent & event){
-
-     event.Skip(true);
-
-     event.StopPropagation();
-
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-}
-
-void MainFrame::Tree_Item_Collapsed(wxTreeEvent & event){
-
-     event.Skip(true);
-
-     event.StopPropagation();
-
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-}
-
-void MainFrame::Tree_Item_Sel_Changed(wxTreeEvent & event){
-
-     event.Skip(true);
-
-     event.StopPropagation();
-
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-}
-
-void MainFrame::Tree_Item_Sel_Changing(wxTreeEvent & event){
-
-     event.Skip(true);
-
-     event.StopPropagation();
-
-     this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
 }
 
 void MainFrame::FileSelect(wxTreeEvent& event)
@@ -636,8 +577,6 @@ void MainFrame::FileSelect(wxTreeEvent& event)
 
             this->Book_Manager->Open_File(Path);
        }
-
-       this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
 }
 
 

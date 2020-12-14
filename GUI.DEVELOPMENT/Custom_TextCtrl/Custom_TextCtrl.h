@@ -22,8 +22,6 @@ public:
 
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
 
-  void Update(){};
-
   wxString file_path;
 };
 

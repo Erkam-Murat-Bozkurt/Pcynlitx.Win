@@ -64,11 +64,6 @@ BEGIN_EVENT_TABLE(MainFrame,wxFrame)
   EVT_CHAR_HOOK(MainFrame::KeyboardEvent)
   EVT_TREE_ITEM_ACTIVATED(wxID_ANY,MainFrame::FileSelect)
   EVT_TREE_BEGIN_LABEL_EDIT(wxID_ANY,MainFrame::FileNameEdit)
-  EVT_TREE_ITEM_EXPANDED(wxID_ANY,MainFrame::Tree_Item_Expanded)
-  EVT_TREE_ITEM_COLLAPSED(wxID_ANY,MainFrame::Tree_Item_Collapsed)
-  EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY,MainFrame::Tree_Item_Right_Clicked)
-  EVT_TREE_SEL_CHANGING(wxID_ANY,MainFrame::Tree_Item_Sel_Changing)
-  EVT_TREE_SEL_CHANGED(wxID_ANY,MainFrame::Tree_Item_Sel_Changed)
 END_EVENT_TABLE()
 
 #endif /* EVENT_TABLE_HEADER_H */

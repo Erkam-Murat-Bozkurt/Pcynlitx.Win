@@ -168,13 +168,6 @@ void Custom_Tree_View_Panel::Size_Event(wxSizeEvent & event)
      event.Skip(true);
 
      this->PaintNow();
-
-     if(this->close_button_construction_status){
-
-        this->close_button->paintNow();
-
-        this->tree_control->PaintNow();
-     }
 }
 
 void Custom_Tree_View_Panel::mouseReleased(wxMouseEvent& event)
@@ -221,7 +214,7 @@ void Custom_Tree_View_Panel::Receive_Topbar_MinSize(wxSize size)
 
 void Custom_Tree_View_Panel::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(this->background);
+     dc.SetBrush(wxColour(255,255,255));
 
      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2, rect.GetWidth()+5,rect.GetHeight()+5);
 }
@@ -237,7 +230,7 @@ void Custom_Tree_View_Panel::PaintNow()
 
 void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
 {
-     event.Skip(false);
+     event.Skip(true);
 
      wxPaintDC dc(this);
 
