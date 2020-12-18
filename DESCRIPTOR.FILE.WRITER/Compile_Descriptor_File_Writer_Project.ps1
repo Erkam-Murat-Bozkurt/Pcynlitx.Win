@@ -17,7 +17,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output " DESCRIPTOR FILE WRITER PROJECT LIBRARY CONSTRUCTION STARTED"
+Write-Host "   Descriptor file writer project library construction started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -32,7 +32,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\DataRecorder\DataRecorder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataRecorder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataRecorder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\DataRecorder\DataRecorder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # DataRecorder class has been compiled"
@@ -48,7 +55,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\DataRecord_Tools\DataRecord_Tools.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataRecord_Tools.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataRecord_Tools.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\DataRecord_Tools\DataRecord_Tools.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # DataRecord_Tools class has been compiled"
@@ -66,7 +80,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Process_Descriptions_Recorder\Process_Descriptions_Recorder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Process_Descriptions_Recorder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Process_Descriptions_Recorder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Process_Descriptions_Recorder\Process_Descriptions_Recorder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Process_Descriptions_Recorder class has been compiled"
@@ -82,7 +103,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Description_Printer\Description_Printer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Description_Printer.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Description_Printer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Description_Printer\Description_Printer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Description_Printer class has been compiled"
@@ -100,8 +128,16 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Empty_Process_Descriptor_File_Builder\Empty_Process_Descriptor_File_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Empty_Process_Descriptor_File_Builder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Empty_Process_Descriptor_File_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Empty_Process_Descriptor_File_Builder\Empty_Process_Descriptor_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
+
 Write-Output "   # Empty_Process_Descriptor_File_Builder class has been compiled"
 
 Write-Output ""

@@ -27,7 +27,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output " CLASS READER INITIALIZATION LIBRARY CONTRUCTION STARTED "
+Write-Host "   Class reader initialization library construction started " -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -42,6 +42,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassSyntaxControl.o'
+
+  if($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassSyntaxControl.o'
+  }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\ClassSyntaxControl\ClassSyntaxControl.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -59,7 +66,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\ClassNameReader\ClassNameReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassNameReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassNameReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\ClassNameReader\ClassNameReader.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ClassNameReader class has been updated"
@@ -76,7 +90,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\MethodInitializer\MethodInitializer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodInitializer.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodInitializer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\MethodInitializer\MethodInitializer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # MethodInitializer class has been updated"
@@ -93,7 +114,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\FindSetPoints\FindSetPoints.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\FindSetPoints.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\FindSetPoints.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\FindSetPoints\FindSetPoints.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # FindSetPoints class has been updated"
@@ -109,7 +137,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\MethodProcessor\MethodProcessor.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodProcessor.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodProcessor.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\MethodProcessor\MethodProcessor.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # MethodProcessor class has been updated"
@@ -125,6 +160,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\SyntaxController.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\SyntaxController.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\SyntaxController\SyntaxController.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -142,6 +184,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ListFileOrganizer.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ListFileOrganizer.o'
+  }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\ListFileOrganizer\ListFileOrganizer.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -159,6 +208,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodReader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodReader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ProcessInitialization\MethodReader\MethodReader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -176,6 +232,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\PROJECT.MANAGEMENT.TOO
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Included_Header_File_Names_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Included_Header_File_Names_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\PROJECT.MANAGEMENT.TOOLS\Included_Header_File_Names_Reader\Included_Header_File_Names_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 

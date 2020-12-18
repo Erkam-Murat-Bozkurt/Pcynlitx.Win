@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the library updater started .."
+Write-Host "   # The construction of the library updater started .." -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -21,7 +21,5 @@ mv Library_Updater.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   Automatic library updater program is ready :-)"
-
-Write-Output ""
 
 Write-Output ""

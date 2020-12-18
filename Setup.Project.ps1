@@ -9,22 +9,21 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " ------------------------------------------------------------------"
+Write-Host "   PCYNLITX PROJECT SETUP SCRIPT FOR DEVELOPMENT TOOLS INITIALIZATION   " -ForegroundColor Green
 
 Write-Output ""
 
-Write-Output "    PCYNLITX WINDOWS PROJECT SETUP SCRIPT STARTED ITS EXECUTIONS   "
+Write-Host "   " -ForegroundColor Gray -NoNewline
+
+Get-Date -Format "dddd MM/dd/yyyy HH:mm K"
 
 Write-Output ""
 
-Write-Output " ------------------------------------------------------------------"
-
-Write-Output ""
 
 
-PowerShell .\build_project_directories.ps1
+# PowerShell .\build_project_directories.ps1
 
-PowerShell .\build_project_management_tools.ps1
+# PowerShell .\build_project_management_tools.ps1
 
 cd $BASE_DIRECTORY
 

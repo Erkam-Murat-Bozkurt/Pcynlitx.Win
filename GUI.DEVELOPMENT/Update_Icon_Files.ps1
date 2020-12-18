@@ -47,6 +47,6 @@ cp .\print_descriptions.png D:\Pcynlitx\icons
 cp .\pcynlitx.png D:\Pcynlitx\icons
 
 
-Write-Output "   #Pcynlitx icon files has been updated "
+Write-Output "   # Pcynlitx icon files has been updated "
 
 Write-Output ""

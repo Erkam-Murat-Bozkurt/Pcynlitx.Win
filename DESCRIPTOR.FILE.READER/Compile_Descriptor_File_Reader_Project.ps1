@@ -30,7 +30,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output "  DESCRIPTOR FILE READER COMPILE PROCESS STARTED"
+Write-Host "   Descriptor file reader compile process started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -45,6 +45,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Data_Collector.o'
+
+   if($Exists_On_Obj_Dir){
+
+       rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Data_Collector.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Data_Collector\Descriptor_File_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -64,7 +71,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Reader_Initializer\Descriptor_File_Reader_Initializer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader_Initializer.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader_Initializer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Reader_Initializer\Descriptor_File_Reader_Initializer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Descriptor_File_Reader_Initializer class has been compiled"
@@ -84,7 +98,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Number_Processor\Descriptor_File_Number_Processor.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Number_Processor.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Number_Processor.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Number_Processor\Descriptor_File_Number_Processor.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Descriptor_File_Number_Processor class has been compiled"
@@ -103,6 +124,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Include_Directory_Description_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Include_Directory_Description_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Include_Directory_Description_Reader\Include_Directory_Description_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -122,6 +150,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Class_Description_Reader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Class_Description_Reader.o'
+  }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Inter_Thread_Class_Description_Reader\Inter_Thread_Class_Description_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -141,6 +176,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Data_Type_Description_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Data_Type_Description_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Inter_Thread_Data_Type_Description_Reader\Inter_Thread_Data_Type_Description_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -159,6 +201,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Source_File_Descriptions_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Source_File_Descriptions_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Source_File_Descriptions_Reader\Source_File_Descriptions_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -177,6 +226,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Header_File_Descriptions_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Header_File_Descriptions_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Header_File_Descriptions_Reader\Header_File_Descriptions_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -195,6 +251,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Library_Descriptions_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Library_Descriptions_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Library_Descriptions_Reader\Library_Descriptions_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -213,6 +276,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Main_File_Descriptions_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Main_File_Descriptions_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Main_File_Descriptions_Reader\Main_File_Descriptions_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -231,6 +301,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader_Syntax_Controller.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader_Syntax_Controller.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Reader_Syntax_Controller\Descriptor_File_Reader_Syntax_Controller.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -247,6 +324,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Descriptor_File_Reader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.READER\Descriptor_File_Reader\Descriptor_File_Reader.o -Destination $OBJECTS_DIRECTORY
 }
 

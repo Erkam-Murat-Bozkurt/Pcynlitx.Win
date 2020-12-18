@@ -1,8 +1,9 @@
 
+Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the project directories started .."
+Write-Output "   # The construction of the project directories started .."
 
 $Condition = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY'
 

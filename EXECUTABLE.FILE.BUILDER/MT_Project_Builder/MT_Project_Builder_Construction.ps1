@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the MT_Project_Builder started .."
+Write-Host "   # The construction of the MT_Project_Builder started .."  -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -22,7 +22,5 @@ mv MT_Project_Builder.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   MT_Project_Builder.exe has been constructed :-)"
-
-Write-Output ""
 
 Write-Output ""

@@ -12,7 +12,7 @@ int main(int argc, char ** argv){
 
     Builder.Receive_Descriptor_File_Directory(argv[1]);
 
-    Builder.Receive_Descriptor_File_Name("Project_Descriptor_File");
+    Builder.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
     Builder.Build_Project();
 

@@ -113,16 +113,6 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
       this->Determine_Newly_Constructed_Include_Directory();
 
-      /*
-
-      std::cout << "\n Inside Descriptor_File_Reader..";
-
-      std::cout << "\n this->Constructed_Include_Directory:" << this->Constructed_Include_Directory;
-
-      std::cin.get();
-
-      */
-
       this->File_Data_Collector.Clear_Dynamic_Memory();
 
       this->Reader_Initializer.Clear_Dynamic_Memory();
@@ -252,7 +242,7 @@ void Descriptor_File_Reader::Control_Process_Header_Files_Syntax(){
 
 void Descriptor_File_Reader::Remove_Compiler_Output_File(){
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      int Error_Message_File_Name_Size = strlen(Error_Message_File_Name);
 
@@ -314,7 +304,7 @@ void Descriptor_File_Reader::Determine_Newly_Constructed_Include_Directory(){
          index_counter++;
      }
 
-     this->Constructed_Include_Directory[index_counter] = '/';
+     this->Constructed_Include_Directory[index_counter] = '\\';
 
      index_counter++;
 

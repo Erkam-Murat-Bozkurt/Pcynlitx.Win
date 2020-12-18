@@ -113,7 +113,7 @@ void MT_Project_Builder::Build_Project(){
 
 void MT_Project_Builder::Remove_Compiler_Output_File(){
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      int Error_Message_File_Name_Size = strlen(Error_Message_File_Name);
 

@@ -34,7 +34,7 @@ void Description_Printer::Receive_Descriptor_File_Directory(char * Descriptor_Di
 
      this->Description_Reader.Receive_Descriptor_File_Directory(Descriptor_Directory);
 
-     this->Description_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File");
+     this->Description_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 }
 
 void Description_Printer::Read_Descriptions(){

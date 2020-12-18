@@ -15,7 +15,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output " CLIENT.CLASS.BUILDER COMPILE PROCESS HAS BEEN STARTED"
+Write-Host "   Client class builder compile process has been started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -31,7 +31,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\C
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder_Initializer\ClassRebuilder_Initializer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder_Initializer.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder_Initializer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder_Initializer\ClassRebuilder_Initializer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ClassRebuilder_Initializer class has been compiled"
@@ -47,7 +54,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\C
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder_Data_Collector\ClassRebuilder_Data_Collector.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder_Data_Collector.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder_Data_Collector.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder_Data_Collector\ClassRebuilder_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ClassRebuilder_Data_Collector class has been compiled"
@@ -63,7 +77,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\H
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\HeaderRebuilder\HeaderRebuilder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\HeaderRebuilder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\HeaderRebuilder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\HeaderRebuilder\HeaderRebuilder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # HeaderRebuilder class has been compiled"
@@ -79,7 +100,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\C
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder\ClassRebuilder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ClassRebuilder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLIENT.CLASS.BUILDER\ClassRebuilder\ClassRebuilder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ClassRebuilder class has been compiled"

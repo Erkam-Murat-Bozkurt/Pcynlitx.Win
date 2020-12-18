@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of Description_Printer.exe started .."
+Write-Host "   # The construction of Description_Printer.exe started .."  -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -21,7 +21,5 @@ mv Description_Printer.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   Description_Printer.exe has been constructed :-)"
-
-Write-Output ""
 
 Write-Output ""

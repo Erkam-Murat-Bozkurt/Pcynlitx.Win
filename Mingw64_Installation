@@ -1,0 +1,36 @@
+
+Mingw64 installation for Windows
+-------------------------------
+
+Download page: https://sourceforge.net/projects/mingw-w64/files/
+
+The package: x86_64-win32-seh
+
+Download and unzip the files to the directory "C:\"
+
+
+
+Setting Path environments:
+--------------------------
+
+Open the panel that is used in order to set path variables.
+
+The panel can be opened with the way given in below.
+
+
+Control Panel -> System and Security -> System -> Advanced System Settings ->Environment Variables
+
+
+The following paths must be added to the user path ( The path variables to be used for the users )
+
+mingw64
+
+mingw64\bin
+
+mingw64\include
+
+mingw64\x86_64-w64-mingw32
+
+mingw64\x86_64-w64-mingw32\include
+
+mingw64\x86_64-w64-mingw32\lib

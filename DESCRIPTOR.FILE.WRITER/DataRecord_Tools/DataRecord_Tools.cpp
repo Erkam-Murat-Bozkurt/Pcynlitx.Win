@@ -278,7 +278,7 @@ void DataRecord_Tools::Isolate_Input_Data(char * Input_Data){
 
      int Data_End_Point = Data_Size;
 
-     if(Input_Data[Data_Size-1] == '/'){
+     if(Input_Data[Data_Size-1] == '\\'){
 
         Data_End_Point = Data_Size - 1;
      }
@@ -301,7 +301,7 @@ void DataRecord_Tools::Isolate_Record_Data(char * Record_Data){
 
      int Data_End_Point = Data_Size;
 
-     if(Record_Data[Data_Size-1] == '/'){
+     if(Record_Data[Data_Size-1] == '\\'){
 
         Data_End_Point = Data_Size - 1;
      }
@@ -633,7 +633,7 @@ void DataRecord_Tools::Determine_Standart_Record_Data(char * Input_Data, int Rec
 
      this->Record_Data[index_counter] = '\0';
 
-     if(this->Record_Data[index_counter -1] == '/'){
+     if(this->Record_Data[index_counter -1] == '\\'){
 
         this->Record_Data[index_counter-1] = '\0';
      }

@@ -28,7 +28,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output  " CLASS READER LIBRARY CONTRUCTION STARTED"
+Write-Host "   Class reader library construction started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -42,10 +42,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodListInterpreter.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodListInterpreter.o'
+  }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\MethodListInterpreter\MethodListInterpreter.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # MethodListInterpreter class has been compiled"
+Write-Host "   # MethodListInterpreter class has been compiled";
 
 
 cd $MethodListReaderPATH
@@ -58,10 +65,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodListReader.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodListReader.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\MethodListReader\MethodListReader.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # MethodListReader class has been compiled"
+Write-Host "   # MethodListReader class has been compiled"
 
 
 cd $ParenthesReaderPATH
@@ -74,10 +88,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ParenthesReader\ParenthesReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ParenthesReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ParenthesReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ParenthesReader\ParenthesReader.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # ParenthesReader class has been compiled"
+Write-Host "   # ParenthesReader class has been compiled"
 
 
 cd $MethodReceiverPATH
@@ -90,10 +111,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodReceiver.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodReceiver.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\MethodReceiver\MethodReceiver.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # MethodReceiver class has been compiled"
+Write-Host "   # MethodReceiver class has been compiled"
 
 
 cd $ReturnTypeReaderPATH
@@ -106,10 +134,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ReturnTypeReader\ReturnTypeReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReturnTypeReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReturnTypeReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ReturnTypeReader\ReturnTypeReader.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # ReturnTypeReader class has been compiled"
+Write-Host "   # ReturnTypeReader class has been compiled"
 
 
 cd $NameReaderPATH
@@ -122,10 +157,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\NameReader\NameReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\NameReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\NameReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\NameReader\NameReader.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # NameReader class has been compiled"
+Write-Host "   # NameReader class has been compiled"
 
 
 cd $ParameterReaderPATH
@@ -138,10 +180,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ParameterReader\ParameterReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ParameterReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ParameterReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\ParameterReader\ParameterReader.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # ParameterReader class has been compiled"
+Write-Host "   # ParameterReader class has been compiled"
 
 
 cd $MethodInterpreterPATH
@@ -154,10 +203,17 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\MethodInterpreter\MethodInterpreter.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodInterpreter.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MethodInterpreter.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\MethodInterpreter\MethodInterpreter.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # MethodInterpreter class has been compiled"
+Write-Host "   # MethodInterpreter class has been compiled"
 
 
 cd $DataBaseBuilderPATH
@@ -170,13 +226,20 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
+   $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataBaseBuilder.o'
+
+   if($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\DataBaseBuilder.o'
+   }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\ClassReader\DataBaseBuilder\DataBaseBuilder.o -Destination $OBJECTS_DIRECTORY
 }
 
-Write-Output "   # DataBaseBuilder class has been compiled"
+Write-Host "   # DataBaseBuilder class has been compiled" -ForegroundColor Gray
 
 Write-Output ""
 
-Write-Output "   # Sub-Project has been compiled"
+Write-Host "   # Sub-Project has been compiled"
 
 Write-Output ""

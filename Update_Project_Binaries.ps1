@@ -1,9 +1,7 @@
 
 Write-Output ""
 
-Write-Output ""
-
-Write-Output " # Project binary files will be updated "
+Write-Host "   # Project binary files will be updated " -ForegroundColor Green
 
 cd D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\MT_Project_Builder
 
@@ -29,6 +27,10 @@ cd D:\PCYNLITX.PROJECT.WINDOWS\DESCRIPTOR.FILE.WRITER\Description_Printer
 
 PowerShell .\Description_Printer_Construction.ps1
 
-Write-Output "   Project binary files has been updated"
+Write-Output ""
+
+Write-Host "   Project binary files has been updated" -ForegroundColor Green
+
+Write-Output ""
 
 Write-Output ""

@@ -28,10 +28,11 @@ $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
 $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 
+Write-Output ""
 
 Write-Output ""
 
-Write-Output "  SERVER CLASS BUILDER PROJECT COMPILE PROCESS HAS BEEN STARTED"
+Write-Host "   Server class builder project compile process has been started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -45,10 +46,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\I
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Inter_Thread_Data_Structure_Builder\Inter_Thread_Data_Structure_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Data_Structure_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Inter_Thread_Data_Structure_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Inter_Thread_Data_Structure_Builder\Inter_Thread_Data_Structure_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Inter_Thread_Data_Structure_Builder class has been compiled"
+
 
 
 cd $Thread_Locker_Header_File_Builder_PATH
@@ -61,10 +70,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Locker_Header_File_Builder\Thread_Locker_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Locker_Header_File_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Locker_Header_File_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Locker_Header_File_Builder\Thread_Locker_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Locker_Header_File_Builder class has been compiled"
+
 
 
 cd $Thread_Locker_Builder_PATH
@@ -77,10 +94,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Locker_Builder\Thread_Locker_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Locker_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Locker_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Locker_Builder\Thread_Locker_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Locker_Builder class has been compiled"
+
 
 
 cd $Thread_Data_Manager_Header_Builder_PATH
@@ -93,10 +118,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Header_Builder\Thread_Data_Manager_Header_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Data_Manager_Header_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Data_Manager_Header_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Header_Builder\Thread_Data_Manager_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Data_Manager_Header_Builder class has been compiled"
+
 
 
 
@@ -110,7 +143,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Builder\Thread_Data_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Data_Manager_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Data_Manager_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Data_Manager_Builder\Thread_Data_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Data_Manager_Builder class has been compiled"
@@ -126,10 +166,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Manager_Header_File_Builder\Thread_Manager_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Manager_Header_File_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Manager_Header_File_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Manager_Header_File_Builder\Thread_Manager_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Manager_Header_File_Builder class has been compiled"
+
 
 
 
@@ -143,10 +191,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Manager_Builder\Thread_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Manager_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Thread_Manager_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Thread_Manager_Builder\Thread_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Thread_Manager_Builder class has been compiled"
+
 
 
 cd $TM_Client_Header_Builder_PATH
@@ -159,10 +215,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\TM_Client_Header_Builder\TM_Client_Header_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\TM_Client_Header_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\TM_Client_Header_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\TM_Client_Header_Builder\TM_Client_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # TM_Client_Header_Builder class has been compiled"
+
 
 
 cd $TM_Client_Builder_PATH
@@ -175,10 +239,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\T
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\TM_Client_Builder\TM_Client_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\TM_Client_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\TM_Client_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\TM_Client_Builder\TM_Client_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # TM_Client_Builder class has been compiled"
+
 
 
 cd $Server_Header_File_Builder_PATH
@@ -191,10 +263,18 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\S
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Server_Header_File_Builder\Server_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Server_Header_File_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Server_Header_File_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Server_Header_File_Builder\Server_Header_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Server_Header_File_Builder class has been compiled"
+
 
 
 cd $Server_Builder_PATH
@@ -207,6 +287,13 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\S
 
 if ($Condition)
 {
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Server_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Server_Builder.o'
+  }
+
    Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Server_Builder\Server_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
@@ -223,7 +310,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\M
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Main_File_Builder\Main_File_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Main_File_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Main_File_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SERVER.CLASS.BUILDER\Main_File_Builder\Main_File_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Main_File_Builder class has been compiled"

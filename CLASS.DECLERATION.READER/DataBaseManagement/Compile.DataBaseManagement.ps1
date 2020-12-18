@@ -10,7 +10,7 @@ $MetaDataTranslaterPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Da
 
 Write-Output ""
 
-Write-Output  " DATABASE MANAGEMENT LIBRARY CONTRUCTION STARTED"
+Write-Host "   Database management library construction started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -25,7 +25,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MemberFunctionReader\MemberFunctionReader.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MemberFunctionReader.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MemberFunctionReader.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MemberFunctionReader\MemberFunctionReader.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output  "   # MemberFunctionReader class has been updated"
@@ -40,7 +47,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READ
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MetaDataTranslater\MetaDataTranslater.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MetaDataTranslater.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MetaDataTranslater.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\DataBaseManagement\MetaDataTranslater\MetaDataTranslater.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output  "   # MetaDataTranslater class has been updated"

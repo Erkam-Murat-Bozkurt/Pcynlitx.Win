@@ -33,7 +33,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output " SMART POINTER CONSTRUCTION PROJECT - UPDATE PROCESS STARTED"
+Write-Host "   Smart pointer construction project - update process started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -48,7 +48,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Builder_Initializer\Builder_Initializer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Builder_Initializer.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Builder_Initializer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Builder_Initializer\Builder_Initializer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Builder_Initializer class has been compiled"
@@ -64,7 +71,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\ReportFileBuilder_HeaderWriter\ReportFileBuilder_HeaderWriter.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReportFileBuilder_HeaderWriter.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReportFileBuilder_HeaderWriter.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\ReportFileBuilder_HeaderWriter\ReportFileBuilder_HeaderWriter.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ReportFileBuilder_HeaderWriter class has been compiled"
@@ -80,7 +94,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\ReportFileBuilder_Writer\ReportFileBuilder_Writer.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReportFileBuilder_Writer.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\ReportFileBuilder_Writer.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\ReportFileBuilder_Writer\ReportFileBuilder_Writer.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # ReportFileBuilder_Writer class has been compiled"
@@ -96,7 +117,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Dynamic_Memory_Manager_Header_Builder\Dynamic_Memory_Manager_Header_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Dynamic_Memory_Manager_Header_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Dynamic_Memory_Manager_Header_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Dynamic_Memory_Manager_Header_Builder\Dynamic_Memory_Manager_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Dynamic_Memory_Manager_Header_Builder class has been compiled"
@@ -112,7 +140,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Dynamic_Memory_Manager_Builder\Dynamic_Memory_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Dynamic_Memory_Manager_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Dynamic_Memory_Manager_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Dynamic_Memory_Manager_Builder\Dynamic_Memory_Manager_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Dynamic_Memory_Manager_Builder class has been compiled"
@@ -128,7 +163,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Header_Builder\Multi_Thread_Pointer_Header_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Header_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Header_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Header_Builder\Multi_Thread_Pointer_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Header_Builder class has been compiled"
@@ -144,7 +186,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Data_Collector\Multi_Thread_Pointer_Data_Collector.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Data_Collector.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Data_Collector.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Data_Collector\Multi_Thread_Pointer_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Data_Collector class has been compiled"
@@ -162,7 +211,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Compile_Data_Collector\Multi_Thread_Pointer_Compile_Data_Collector.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Compile_Data_Collector.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Compile_Data_Collector.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Compile_Data_Collector\Multi_Thread_Pointer_Compile_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Compile_Data_Collector class has been compiled"
@@ -180,7 +236,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_File_Cleaner\Multi_Thread_Pointer_File_Cleaner.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_File_Cleaner.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_File_Cleaner.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_File_Cleaner\Multi_Thread_Pointer_File_Cleaner.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_File_Cleaner class has been compiled"
@@ -196,7 +259,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_File_Data_Collector\Multi_Thread_Pointer_File_Data_Collector.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_File_Data_Collector.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_File_Data_Collector.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_File_Data_Collector\Multi_Thread_Pointer_File_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_File_Data_Collector class has been compiled"
@@ -213,7 +283,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Builder\Multi_Thread_Pointer_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Builder\Multi_Thread_Pointer_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Builder class has been compiled"
@@ -229,7 +306,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Header_Builder\Multi_Thread_Pointer_Client_Header_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Client_Header_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Client_Header_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Header_Builder\Multi_Thread_Pointer_Client_Header_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Client_Header_Builder class has been compiled"
@@ -247,7 +331,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Builder\Multi_Thread_Pointer_Client_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Client_Builder.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Multi_Thread_Pointer_Client_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Builder\Multi_Thread_Pointer_Client_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Multi_Thread_Pointer_Client_Builder class has been compiled"

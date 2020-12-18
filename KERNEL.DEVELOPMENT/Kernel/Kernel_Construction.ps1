@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the Kernel.exe started .."
+Write-Host "   # The construction of the Kernel.exe started .." -ForegroundColor Magenta
 
 Write-Output ""
 

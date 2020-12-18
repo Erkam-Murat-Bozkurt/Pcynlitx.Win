@@ -51,9 +51,10 @@ $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
 
 $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
+
 Write-Output ""
 
-Write-Output "  GUI COMPILE PROCESS HAS BEEN STARTED"
+Write-Host "   GUI Compile process has been started" -ForegroundColor Cyan;
 
 Write-Output ""
 

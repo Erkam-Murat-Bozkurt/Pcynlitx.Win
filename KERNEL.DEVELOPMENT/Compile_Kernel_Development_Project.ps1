@@ -12,7 +12,7 @@ $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
 
 Write-Output ""
 
-Write-Output "  KERNEL DEVELOPMENT PROJECT COMPILE PROCESS HAS BEEN STARTED"
+Write-Host "   Kernel development project compile process has been started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -26,7 +26,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Ker
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Kernel_Data_Collector\Kernel_Data_Collector.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Kernel_Data_Collector.o'
+
+  if ($Exists_On_Obj_Dir){
+
+      rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Kernel_Data_Collector.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Kernel_Data_Collector\Kernel_Data_Collector.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Kernel_Data_Collector class has been compiled"
@@ -42,7 +49,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Ker
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Kernel\Kernel.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Kernel.o'
+
+  if ($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Kernel.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\KERNEL.DEVELOPMENT\Kernel\Kernel.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Kernel class has been compiled"

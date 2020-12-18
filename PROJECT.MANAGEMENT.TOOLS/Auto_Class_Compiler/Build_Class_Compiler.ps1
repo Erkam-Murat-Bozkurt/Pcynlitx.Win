@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the Test_Program_Builder started .."
+Write-Host "   # The construction of the Test_Program_Builder started .."  -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -22,7 +22,5 @@ mv Class_Compiler.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   Test_Program_Builder has been constructed :-)"
-
-Write-Output ""
 
 Write-Output ""

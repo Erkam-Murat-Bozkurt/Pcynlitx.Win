@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of the make file builder started .."
+Write-Host "   # The construction of the make file builder started .." -ForegroundColor Magenta
 
 Write-Output ""
 

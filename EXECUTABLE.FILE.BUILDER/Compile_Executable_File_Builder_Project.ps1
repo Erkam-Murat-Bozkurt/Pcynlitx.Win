@@ -11,7 +11,7 @@ $MT_Project_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\MT
 
 Write-Output ""
 
-Write-Output "  EXECUTABLE FILE BUILDER COMPILE PROCESS HAS BEEN STARTED"
+Write-Host "   Executable file builder compile process has been started" -ForegroundColor Cyan;
 
 Write-Output ""
 
@@ -25,7 +25,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDE
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\Compiler_Descriptor_File_Constructor\Compiler_Descriptor_File_Constructor.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Compiler_Descriptor_File_Constructor.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Compiler_Descriptor_File_Constructor.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\Compiler_Descriptor_File_Constructor\Compiler_Descriptor_File_Constructor.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # Compiler_Descriptor_File_Constructor class has been compiled"
@@ -41,7 +48,14 @@ $Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDE
 
 if ($Condition)
 {
-   Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\MT_Project_Builder\MT_Project_Builder.o -Destination $OBJECTS_DIRECTORY
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MT_Project_Builder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\MT_Project_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\EXECUTABLE.FILE.BUILDER\MT_Project_Builder\MT_Project_Builder.o -Destination $OBJECTS_DIRECTORY
 }
 
 Write-Output "   # MT_Project_Builder class has been compiled"

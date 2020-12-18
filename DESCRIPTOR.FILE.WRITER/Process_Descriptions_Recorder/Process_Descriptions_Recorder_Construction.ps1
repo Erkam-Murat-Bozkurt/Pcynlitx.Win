@@ -3,7 +3,7 @@ Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of Process_Descriptions_Recorder.exe started .."
+Write-Host "   # The construction of Process_Descriptions_Recorder.exe started .." -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -21,7 +21,5 @@ mv Process_Descriptions_Recorder.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   Process_Descriptions_Recorder.exe has been constructed :-)"
-
-Write-Output ""
 
 Write-Output ""

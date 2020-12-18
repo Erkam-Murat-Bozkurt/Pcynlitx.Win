@@ -1,10 +1,9 @@
 
-
 Write-Output ""
 
 Write-Output ""
 
-Write-Output " # The construction of Empty_Process_Descriptor_File_Builder.exe started .."
+Write-Host "   # The construction of Empty_Process_Descriptor_File_Builder.exe started .."  -ForegroundColor Magenta
 
 Write-Output ""
 
@@ -22,7 +21,5 @@ mv Empty_Process_Descriptor_File_Builder.exe D:\Pcynlitx_Binaries
 Write-Output ""
 
 Write-Output "   Empty_Process_Descriptor_File_Builder.exe has been constructed :-)"
-
-Write-Output ""
 
 Write-Output ""
