@@ -108,7 +108,7 @@ void TM_Client_Header_Builder::Move_Header_File(){
 
      char Header_File_Name [ ] = {'T','M','_','C','l','i','e','n','t','.','h','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Header_File_Name_Size = strlen(Header_File_Name);
 
@@ -144,7 +144,7 @@ void TM_Client_Header_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->File_Manager.MoveFile_Win(New_Path_Name,Current_Path_Name);
+     this->File_Manager.MoveFile_Win(Current_Path_Name,New_Path_Name);
 
      delete [] Current_Path_Name;
 
@@ -155,7 +155,7 @@ void TM_Client_Header_Builder::Build_Header_File(){
 
      this->Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     char * Supervisor_Class_Header_File_Name = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
+     //char * Supervisor_Class_Header_File_Name = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
 
      char * name_space = this->Reader_Pointer->Get_Namespace();
 

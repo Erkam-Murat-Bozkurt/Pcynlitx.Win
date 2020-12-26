@@ -10,7 +10,7 @@ Test_Program_Builder: Test_Program_Builder_Main_File.cpp Test_Program_Builder.cp
 	DirectoryOperations.cpp Custom_System_Interface.cpp CharOperator.cpp Cpp_FileOperations.cpp \
 	Test_Program_Builder.h DirectoryOperations.h Custom_System_Interface.h CharOperator.h Cpp_FileOperations.h
 
-	g++ -o Test_Program_Builder.exe -I$(DIR_OPS) -I$(CSI_OPS) -I$(CHAR_OPS) -I$(CPP_OPS) \
+	g++ -std=c++17 -o Test_Program_Builder.exe -I$(DIR_OPS) -I$(CSI_OPS) -I$(CHAR_OPS) -I$(CPP_OPS) \
 		-L$(DIR_OPS) -L$(CSI_OPS) -L$(CHAR_OPS) -L$(CPP_OPS) \
 		Test_Program_Builder_Main_File.cpp Test_Program_Builder.cpp \
 		$(DIR_OPS)\DirectoryOperations.cpp $(CSI_OPS)\Custom_System_Interface.cpp \

@@ -72,7 +72,7 @@ void Inter_Thread_Data_Structure_Builder::Receive_Descriptor_File_Reader(Descrip
 
 void Inter_Thread_Data_Structure_Builder::Build_Inter_Thread_Data_Structure(){
 
-     char * Server_Class_Name = this->Reader_Pointer->Get_Server_Class_Name();
+     //char * Server_Class_Name = this->Reader_Pointer->Get_Server_Class_Name();
 
      char * Namespace = this->Reader_Pointer->Get_Namespace();
 
@@ -246,7 +246,7 @@ void Inter_Thread_Data_Structure_Builder::Move_Header_File(){
 
      char Header_File_Name [ ] = {'i','t','d','s','.','h','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Header_File_Name_Size = strlen(Header_File_Name);
 
@@ -282,7 +282,7 @@ void Inter_Thread_Data_Structure_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->File_Manager.MoveFile_Win(New_Path_Name,Current_Path_Name);
+     this->File_Manager.MoveFile_Win(Current_Path_Name,New_Path_Name);
 
      delete [] Current_Path_Name;
 
@@ -314,7 +314,7 @@ void Inter_Thread_Data_Structure_Builder::Determine_Header_File_Path(char * Head
          index_counter++;
      }
 
-     this->Header_File_Path[index_counter] = '/';
+     this->Header_File_Path[index_counter] = '\\';
 
      index_counter++;
 

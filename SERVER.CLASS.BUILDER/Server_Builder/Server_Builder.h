@@ -34,6 +34,7 @@ private:
  void Place_Information(char ** Pointer, char * Information, int * index_counter);
  void Determine_File_Names();
  void Determine_Compiler_Command_For_Server_Class();
+ void Build_Output_Stream_File();
  void Clear_Pointer_Memory(char ** Pointer);
  void Write_Space(char * String);
  void Write_Space(const char * String);

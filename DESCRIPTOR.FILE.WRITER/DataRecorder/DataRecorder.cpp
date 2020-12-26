@@ -497,8 +497,6 @@ void DataRecorder::Determine_Data_Type_Record_Number(char * Data_Type){
 
      int End_Point = this->StringOperations.FindNextWordLine(Last_Brace_Line,Start_Point);
 
-     int Read_Point = Start_Point;
-
      for(int i=Start_Point;i<End_Point;i++){
 
          char * File_Line = this->StringOperations.ReadFileLine(i);

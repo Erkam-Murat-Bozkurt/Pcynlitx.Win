@@ -7,6 +7,11 @@
 #include <wx/sizer.h>
 #include <wx/filectrl.h>
 #include <wx/button.h>
+#include <wx/dirctrl.h>
+#include <wx/utils.h>
+#include <wx/filedlg.h>
+#include <wx/filepicker.h>
+
 
 class Project_File_Selection_Dialog
 {

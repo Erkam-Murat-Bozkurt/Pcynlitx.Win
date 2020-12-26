@@ -125,7 +125,7 @@ void HeaderRebuilder::Build_Header_File(){
 
      char * Base_Class_Destructor_Name = this->Initializer->Get_Base_Class_Destructor_Name();
 
-     char * Object_Name = this->Initializer->Get_Object_Name();
+     //char * Object_Name = this->Initializer->Get_Object_Name();
 
      this->DirectoryManager.ChangeDirectory(this->Reader_Pointer->Get_Constructed_Include_Directory());
 

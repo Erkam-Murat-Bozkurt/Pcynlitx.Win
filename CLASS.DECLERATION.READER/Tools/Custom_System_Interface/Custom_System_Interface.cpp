@@ -18,9 +18,9 @@ Custom_System_Interface::~Custom_System_Interface(){
 
 }
 
-bool Custom_System_Interface::System_Function(char * cmd){
+int Custom_System_Interface::System_Function(char * cmd){
 
-     this->return_status = false;
+     this->return_value = 2;
 
      STARTUPINFO startupInfo;
 
@@ -32,7 +32,7 @@ bool Custom_System_Interface::System_Function(char * cmd){
 
      ZeroMemory(&processInformation,sizeof(processInformation));
 
-     this->return_status = CreateProcessA(NULL,cmd,NULL,NULL,FALSE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
+     this->return_value = CreateProcessA(NULL,cmd,NULL,NULL,TRUE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
 
 
      WaitForSingleObject( processInformation.hProcess, INFINITE );
@@ -41,7 +41,7 @@ bool Custom_System_Interface::System_Function(char * cmd){
 
      GetExitCodeProcess(processInformation.hProcess, &exit_code );
 
-     CloseHandle(processInformation.hProcess );
+     CloseHandle(processInformation.hProcess);
 
      if(exit_code != 0){
 
@@ -54,5 +54,44 @@ bool Custom_System_Interface::System_Function(char * cmd){
         std::cout << "\n\n";
      }
 
-     return this->return_status;
+     return this->return_value;
+}
+
+bool Custom_System_Interface::Create_Process(char * cmd){
+
+     STARTUPINFO si;
+     PROCESS_INFORMATION pi;
+
+     ZeroMemory( &si, sizeof(si) );
+     si.cb = sizeof(si);
+     ZeroMemory( &pi, sizeof(pi) );
+
+     this->return_status = true;
+
+     this->return_status = CreateProcess( NULL,   // No module name (use command line)
+          cmd,        // Command line
+          NULL,           // Process handle not inheritable
+          NULL,           // Thread handle not inheritable
+          FALSE,          // Set handle inheritance to FALSE
+          0,              // No creation flags
+          NULL,           // Use parent's environment block
+          NULL,           // Use parent's starting directory
+          &si,            // Pointer to STARTUPINFO structure
+          &pi );          // Pointer to PROCESS_INFORMATION structure
+
+     // Start the child process.
+     if(!this->return_status)
+     {
+          printf( "CreateProcess failed (%d).\n", GetLastError() );
+          return this->return_status;
+      }
+
+    // Wait until child process exits.
+    WaitForSingleObject( pi.hProcess, INFINITE );
+
+    // Close process and thread handles.
+    CloseHandle( pi.hProcess );
+    CloseHandle( pi.hThread );
+
+    return this->return_status;
 }

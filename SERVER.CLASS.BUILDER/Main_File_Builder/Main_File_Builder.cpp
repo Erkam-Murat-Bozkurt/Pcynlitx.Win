@@ -58,13 +58,13 @@ void Main_File_Builder::Build_Main_File(){
 
      this->Supervisor_Class_Header_File_Name = this->File_Reader->Get_Server_Class_Header_File_Name();
 
-     const char * Client_Subfix = "_Client";
+     //const char * Client_Subfix = "_Client";
 
      const char * Client_Header_Subfix = "_Client.h";
 
      const char * Type_Subfix   = "_Type_Smart_Pointer";
 
-     const char * Type_Header_Subfix = "_Type_Smart_Pointer.h";
+     //const char * Type_Header_Subfix = "_Type_Smart_Pointer.h";
 
      char * Server_Class_Name = this->File_Reader->Get_Server_Class_Name();
 
@@ -298,7 +298,7 @@ void Main_File_Builder::Move_Header_File_List_To_New_Include_Directory(){
 
      char Header_File_List_Name [] = "MT_Library_Headers.h";
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Header_File_List_Name_Size = strlen(Header_File_List_Name);
 

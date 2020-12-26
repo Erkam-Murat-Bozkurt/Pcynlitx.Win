@@ -23,9 +23,15 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 Project_File_Selection_Dialog::Project_File_Selection_Dialog(wxFrame * Frame){
 
-    this->File_Selection_Dialog = new wxDialog(Frame,-1,"MAKE SELECTION",wxDefaultPosition,wxSize(650,500),wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+    this->File_Selection_Dialog = new wxDialog(Frame,-1,"MAKE SELECTION",wxDefaultPosition,
 
-    this->File_Selection_Panel = new wxPanel(this->File_Selection_Dialog,-1,wxDefaultPosition,wxSize(650,450));
+            wxSize(650,500),wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+
+    this->File_Selection_Panel = new wxPanel(this->File_Selection_Dialog,-1,
+
+           wxDefaultPosition,wxSize(650,500));
+
 
     this->vbox = new wxBoxSizer(wxVERTICAL);
 
@@ -33,33 +39,49 @@ Project_File_Selection_Dialog::Project_File_Selection_Dialog(wxFrame * Frame){
 
     this->file_selection_sizer = new wxBoxSizer(wxVERTICAL);
 
-    this->File_Selection_Control = new wxFileCtrl(this->File_Selection_Panel,wxID_ANY,wxT("D:\\"),wxEmptyString,wxEmptyString,wxFC_DEFAULT_STYLE,wxDefaultPosition,wxSize(650,450));
+    this->File_Selection_Control = new wxFileCtrl(this->File_Selection_Panel,
+
+                        wxID_ANY,wxEmptyString,wxEmptyString,wxFileSelectorDefaultWildcardStr,
+
+                        wxFC_DEFAULT_STYLE | wxFC_NOSHOWHIDDEN ,wxDefaultPosition,wxSize(650,500));
+
 
     this->File_Selection_Control->Centre();
 
-    this->SelectButton = new wxButton(this->File_Selection_Dialog,wxID_OK,wxT("Select"),wxDefaultPosition, wxSize(75, 30));
 
-    this->closeButton = new wxButton(this->File_Selection_Dialog,wxID_CANCEL,wxT("Close"),wxDefaultPosition, wxSize(75, 30));
+    this->SelectButton = new wxButton(this->File_Selection_Dialog,wxID_OK,wxT(" Select "),
 
-    this->hbox->Add(this->SelectButton,0,wxALIGN_RIGHT | wxALL,10);
+                        wxDefaultPosition, wxSize(90, 45));
 
-    this->hbox->Add(this->closeButton,0,wxALIGN_RIGHT | wxALL,10);
+    this->closeButton = new wxButton(this->File_Selection_Dialog,wxID_CANCEL,wxT(" Close "),
+
+                        wxDefaultPosition, wxSize(90, 45));
+
+
+
+    this->hbox->Add(this->SelectButton,0,wxALL,5);
+
+    this->hbox->Add(this->closeButton,0,wxALL,5);
 
     this->hbox->Layout();
 
-    this->file_selection_sizer->Add(this->File_Selection_Control,0,wxEXPAND | wxALIGN_CENTER | wxALL);
+
+
+    this->file_selection_sizer->Add(this->File_Selection_Control,0, wxALL);
 
     this->File_Selection_Panel->SetSizer(this->file_selection_sizer);
 
     this->file_selection_sizer->SetSizeHints(this->File_Selection_Panel);
 
-    this->vbox->Add(this->File_Selection_Panel,0,wxEXPAND | wxALL,10);
 
-    this->vbox->Add(this->hbox,0,wxALIGN_RIGHT | wxFIXED_MINSIZE | wxALL,0);
+    this->vbox->Add(this->File_Selection_Panel,0, wxEXPAND | wxALL,20);
+
+    this->vbox->Add(this->hbox,0, wxFIXED_MINSIZE | wxALL,10);
 
     this->File_Selection_Dialog->SetSizer(this->vbox);
 
     this->vbox->SetSizeHints(this->File_Selection_Dialog);
+
 
     this->File_Selection_Dialog->Centre();
 

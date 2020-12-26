@@ -19,6 +19,7 @@ public:
  Thread_Manager_Builder();
  Thread_Manager_Builder(const Thread_Manager_Builder & orig);
  virtual ~Thread_Manager_Builder();
+ void Build_Output_Stream_File();
  void Receive_Descriptor_File_Reader(Descriptor_File_Reader * Pointer);
  void Build_Thread_Manager();
  void Receive_Constructed_Include_Directory(char * Directory);

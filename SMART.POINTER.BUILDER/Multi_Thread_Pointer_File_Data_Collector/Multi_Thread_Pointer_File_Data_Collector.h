@@ -45,6 +45,7 @@ private:
  void Place_String(char ** Pointer, char * String);
  void Place_Information(char ** Pointer,char * Information, int * index_counter);
  void Determine_New_Pointer_Class_Name();
+ void Build_Output_Stream_File();
  void Move_Header_Files();
  void Determine_Data_Type_Informations();
  void Determine_Shared_Data_Type_Instance_Name(char * Data_Type);

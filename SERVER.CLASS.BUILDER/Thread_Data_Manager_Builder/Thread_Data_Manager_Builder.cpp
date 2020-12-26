@@ -1107,7 +1107,7 @@ void Thread_Data_Manager_Builder::Build_Thread_Data_Manager(){
 
 void Thread_Data_Manager_Builder::Determine_Compiler_Command(){
 
-     char Process_Command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4',' ','\0'};
+     char Process_Command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','7',' ','\0'};
 
      char Source_File_Name [] = "Thread_Data_Manager.cpp";
 
@@ -1119,13 +1119,13 @@ void Thread_Data_Manager_Builder::Determine_Compiler_Command(){
 
      char Include_Directory_Determiner [] = {'-','I','\0'};
 
-     char Thread_Library_Name [] = {'-','l','p','t','h','r','e','a','d','\0'};
+     char Thread_Library_Name [] =  "-lwinpthread";
 
      char Space_Character [] = {' ','\0'};
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      int Source_File_Name_Size = strlen(Source_File_Name);
 
@@ -1198,11 +1198,22 @@ void Thread_Data_Manager_Builder::Determine_Compiler_Command(){
      this->Compiler_Command[index_counter] = '\0';
 }
 
+void Thread_Data_Manager_Builder::Build_Output_Stream_File(){
+
+     std::string path = "Compiler_Output";
+
+     this->FileManager.SetFilePath(path);
+
+     this->FileManager.FileOpen(RWCf);
+
+     this->FileManager.FileClose();
+}
+
 void Thread_Data_Manager_Builder::Remove_Source_File(){
 
      char Source_File_Name [] = "Thread_Data_Manager.cpp";
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
@@ -1233,7 +1244,7 @@ void Thread_Data_Manager_Builder::Remove_Header_Extra_File(){
 
      char Header_Extra_File [] = "Thread_Data_Manager.h.gch";
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
@@ -1255,7 +1266,10 @@ void Thread_Data_Manager_Builder::Remove_Header_Extra_File(){
 
      File_Path[index_counter] = '\0';
 
-     this->FileManager.Delete_File(File_Path);
+     if(this->FileManager.Is_Path_Exist(File_Path)){
+
+        this->FileManager.Delete_File(File_Path);
+     }
 
      delete [] File_Path;
 }
@@ -1265,7 +1279,7 @@ void Thread_Data_Manager_Builder::Move_Header_File(){
 
      char Header_File_Name [] = "Thread_Data_Manager.h";
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
@@ -1303,7 +1317,7 @@ void Thread_Data_Manager_Builder::Move_Header_File(){
 
      Target_Path[index_counter] = '\0';
 
-     this->FileManager.MoveFile_Win(Target_Path,Current_Path);
+     this->FileManager.MoveFile_Win(Current_Path,Target_Path);
 
      delete [] Current_Path;
 
@@ -1313,7 +1327,9 @@ void Thread_Data_Manager_Builder::Move_Header_File(){
 
 void Thread_Data_Manager_Builder::Run_System_Commands(){
 
-     int system_return_value = this->System_Interface.System_Function(this->Compiler_Command);
+     this->Build_Output_Stream_File();
+
+     int system_return_value = system(this->Compiler_Command);
 
      if(system_return_value != 0){
 

@@ -226,7 +226,7 @@ void Class_Compiler::Find_Class_Name(){
 
 void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Directory, char * Object_Files_Directory, char * Library_Name){
 
-     char compiler_input_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4',' ','-','g','\0'};
+     char compiler_input_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','7',' ','-','g','\0'};
 
      char Include_Character [] = {'-','I','\0'};
 

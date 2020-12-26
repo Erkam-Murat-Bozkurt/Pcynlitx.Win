@@ -238,7 +238,7 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
      this->Source_File_Names = new char * [10*this->Source_File_Number];
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Directory_Character_Name_Size = strlen(Directory_Character);
 

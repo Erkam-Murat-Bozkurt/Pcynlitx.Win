@@ -57,7 +57,7 @@ void Kernel::Build_Server(){
 
      std::cout << "\n";
 
-     std::cout << "\n\t#\tDescriptor file has been readed successfully";
+     std::cout << "\n\t# Descriptor file has been readed successfully";
 
      this->Factory_Data_Collector.Receive_Descriptor_File_Reader(&this->Description_Reader);
 
@@ -87,7 +87,7 @@ void Kernel::Build_Server(){
 
      this->Remove_Compiler_Output_File();
 
-     std::cout << "\n\n\t\t THE END OF THE PROGRAM\n\n";
+     std::cout << "\n\n\t THE END OF THE PROGRAM\n\n";
 }
 
 void Kernel::Construct_Smart_Pointers(){
@@ -98,7 +98,7 @@ void Kernel::Construct_Smart_Pointers(){
 
         std::cout << "\n";
 
-        std::cout << "\n\t#\tThe construction of inter-thread smart pointers";
+        std::cout << "\n\t# The construction of inter-thread smart pointers";
      }
 
      for(int i=0;i<this->Description_Reader.Get_Shared_Data_Types_Number();i++){
@@ -133,23 +133,21 @@ void Kernel::Construct_Smart_Pointers(){
 
          this->Pointer_Client_Builder.Run_System_Commands();
 
-         char * Pointer_Number = this->Translater.Translate(i+1);
+         std::cout << "\n";
+
+         std::cout << "\n\t  The smart pointer constructed.";
 
          std::cout << "\n";
 
-         std::cout << "\n\t\t The smart pointer constructed.";
+         std::cout << "\n\t  Smart pointer name (Class name): "  << this->Smart_Pointer_Builder.Get_New_Class_Name();
 
          std::cout << "\n";
 
-         std::cout << "\n\t\t Smart pointer name (Class name): "  << this->Smart_Pointer_Builder.Get_New_Class_Name();
+         std::cout << "\n\t  Data type: " << Data_Type_Holder.Data_Type;
 
          std::cout << "\n";
 
-         std::cout << "\n\t\t Data type: " << Data_Type_Holder.Data_Type;
-
-         std::cout << "\n";
-
-         std::cout << "\n\t\t Instance name: " << Data_Type_Holder.Pointer_Name;
+         std::cout << "\n\t  Instance name: " << Data_Type_Holder.Pointer_Name;
 
          this->Pointer_Client_Builder.Clear_Dynamic_Memory();
 
@@ -158,7 +156,7 @@ void Kernel::Construct_Smart_Pointers(){
 
      if(this->Description_Reader.Get_Shared_Data_Types_Number() > 0){
 
-        std::cout << "\n\n\t\t (\u2713 ) Smart pointers are ready to use";
+        std::cout << "\n\n\t  Smart pointers are ready to use";
      }
 }
 
@@ -178,23 +176,23 @@ void Kernel::Construct_Thread_Manager_Class(){
 
      std::cout << "\n";
 
-     std::cout << "\n\t#\tThe construction of the thread manager class";
+     std::cout << "\n\t# The construction of the thread manager class";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t Thread_Manager class has been constructed";
+     std::cout << "\n\t  Thread_Manager class has been constructed";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t Class name: Thread_Manager";
+     std::cout << "\n\t  Class name: Thread_Manager";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t Instance name: Manager";
+     std::cout << "\n\t  Instance name: Manager";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t (\u2713 ) Manager class is ready to use";
+     std::cout << "\n\t  Manager class is ready to use";
 }
 
 void Kernel::Construct_Thread_Manager_Class_Client(){
@@ -207,19 +205,19 @@ void Kernel::Construct_Thread_Manager_Class_Client(){
 
      std::cout << "\n";
 
-     std::cout << "\n\t#\tThe construction of the TM_Client";
+     std::cout << "\n\t# The construction of the TM_Client";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t The client of the thread manager class has been constructed";
+     std::cout << "\n\t  The client of the thread manager class has been constructed";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t Class name: TM_Client";
+     std::cout << "\n\t  Class name: TM_Client";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t (\u2713 ) TM_Client is ready to use";
+     std::cout << "\n\t  TM_Client is ready to use";
 }
 
 void Kernel::Construct_Client_Clases(){
@@ -230,7 +228,7 @@ void Kernel::Construct_Client_Clases(){
 
         std::cout << "\n";
 
-        std::cout << "\n\t#\tThe construction of the client classes";
+        std::cout << "\n\t# The construction of the client classes";
      }
 
      for(int i=0;i<this->Description_Reader.Get_Class_Number();i++){
@@ -243,15 +241,13 @@ void Kernel::Construct_Client_Clases(){
 
          this->ReBuilder.Re_Construct_Class();
 
-         char * Class_Number = this->Translater.Translate(i+1);
+         std::cout << "\n";
+
+         std::cout << "\n\t  New client class constructed.";
 
          std::cout << "\n";
 
-         std::cout << "\n\t\t New client class constructed.";
-
-         std::cout << "\n";
-
-         std::cout << "\n\t\t Class name: " << this->ReBuilder.Get_New_Class_Name();
+         std::cout << "\n\t  Class name: " << this->ReBuilder.Get_New_Class_Name();
 
          this->ReBuilder.Run_System_Commands();
 
@@ -262,7 +258,7 @@ void Kernel::Construct_Client_Clases(){
 
         std::cout << "\n";
 
-        std::cout << "\n\t\t (\u2713 ) Client classes are ready to use";
+        std::cout << "\n\t  Client classes are ready to use";
      }
 }
 
@@ -280,15 +276,15 @@ void Kernel::Construct_Server_Class(){
 
      std::cout << "\n";
 
-     std::cout << "\n\t#\tThe server class has been constructed";
+     std::cout << "\n\t# The server class has been constructed";
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t Class name: " << this->Description_Reader.Get_Server_Class_Name();
+     std::cout << "\n\t  Class name: " << this->Description_Reader.Get_Server_Class_Name();
 
      std::cout << "\n";
 
-     std::cout << "\n\t\t (\u2713 ) Server class is ready to use ";
+     std::cout << "\n\t  Server class is ready to use ";
 
      this->Srv_Builder.Clear_Dynamic_Memory();
 }
@@ -322,7 +318,7 @@ void Kernel::Construct_Main_File(){
 
 void Kernel::Remove_Compiler_Output_File(){
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      int Error_Message_File_Name_Size = strlen(Error_Message_File_Name);
 

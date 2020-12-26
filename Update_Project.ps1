@@ -1,8 +1,12 @@
 
 cd D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY
 
-rm libmptools.a
+$Exists_Lib = Test-Path -Path 'libmptools.a'
 
+if ($Exists_Lib){
+
+   rm libmptools.a
+}
 
 cd D:\PCYNLITX.PROJECT.WINDOWS
 

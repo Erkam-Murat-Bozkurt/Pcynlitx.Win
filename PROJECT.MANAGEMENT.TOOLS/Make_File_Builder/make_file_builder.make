@@ -9,7 +9,7 @@ Make_File_Builder: Make_File_Builder_Main_File.cpp Make_File_Builder.cpp \
 	DirectoryOperations.cpp Cpp_FileOperations.cpp CharOperator.cpp \
 	Make_File_Builder.h DirectoryOperations.h Cpp_FileOperations.h CharOperator.h
 
-	g++ -o Make_File_Builder.exe -I$(DIR_OPS) -I$(CPP_OPS) -I$(CHAR_OPS) \
+	g++ -std=c++17 -o Make_File_Builder.exe -I$(DIR_OPS) -I$(CPP_OPS) -I$(CHAR_OPS) \
 		-L$(DIR_OPS) -L$(CPP_OPS) -L$(CHAR_OPS) \
 		Make_File_Builder_Main_File.cpp Make_File_Builder.cpp \
 		$(DIR_OPS)\DirectoryOperations.cpp $(CPP_OPS)\Cpp_FileOperations.cpp $(CHAR_OPS)\CharOperator.cpp \

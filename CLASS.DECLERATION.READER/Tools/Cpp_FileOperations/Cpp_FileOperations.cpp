@@ -34,6 +34,10 @@ Cpp_FileOperations::Cpp_FileOperations(){
 
      this->Delete_Return_Status = 0;
 
+     this->file_open_status = false;
+
+     this->is_path_exist = false;
+
    // Constructor Function
 };
 
@@ -189,8 +193,63 @@ void Cpp_FileOperations::FileOpen(char Open_Mode){
 
      if(!this->DataFile.is_open()){
 
-        std::cout << "\n The file" << this->FilePath << " can not be opened ..";
+          std::cout << "\n ERROR:";
+
+          std::cout << "\n";
+
+          std::cout << "\n Class : Cpp_FileOperations";
+
+          std::cout << "\n";
+
+          std::cout << "\n The file " << this->FilePath << " can not be opened ..";
+
+          std::cout << "\n\n";
+
+          exit(0);
      }
+}
+
+bool Cpp_FileOperations::TryOpen(char Open_Mode){
+
+     // This function is used in order to determine whether the file exist or not
+;
+     if(Open_Mode == 'r'){
+
+        this->DataFile.open(this->FilePath,std::ios::in);
+     }
+
+     if(Open_Mode == 'w'){
+
+        this->DataFile.open(this->FilePath,std::ios::out);
+     }
+
+     if(Open_Mode == 'x'){
+
+        this->DataFile.open(this->FilePath,std::ios::in | std::ios::out);
+     }
+
+     if(Open_Mode == 'b'){
+
+        this->DataFile.open(this->FilePath,std::ios::out | std::ios::trunc);
+     }
+
+     if(Open_Mode == 'a'){
+
+        this->DataFile.open(this->FilePath,std::ios::out | std::ios::app);
+     }
+
+     this->file_open_status = false;
+
+     if(this->DataFile.is_open()){
+
+       this->file_open_status = true;
+     }
+     else{
+
+          this->file_open_status = false;
+     }
+
+     return this->file_open_status;
 }
 
 void Cpp_FileOperations::FileClose(){
@@ -275,18 +334,51 @@ void Cpp_FileOperations::CpFile(char * path, char * target_path){
      this->Record_File(target_path);
 }
 
-void Cpp_FileOperations::MoveFile_Win(char * path, char * target_path){
+void Cpp_FileOperations::MoveFile_Win(char * current_path, char * target_path){
 
-     this->CpFile(path,target_path);
+     int current_path_length = strlen(current_path);
 
-     int test = DeleteFileA(path);
+     TCHAR * current_path_pointer = new TCHAR[5*current_path_length];
 
-     if(test == 0){
+     for(int i=0;i<current_path_length;i++){
 
-        std::cout << "\n Th file stay in " << path << " can not be removed .." ;
-
-        exit(0);
+         current_path_pointer[i] = current_path[i];
      }
+
+     current_path_pointer[current_path_length] = '\0';
+
+     current_path_pointer[current_path_length+1] = '\0';
+
+
+
+     int target_path_length = strlen(target_path);
+
+     TCHAR * target_path_pointer = new TCHAR[5*target_path_length];
+
+     for(int i=0;i<target_path_length;i++){
+
+         target_path_pointer[i] = target_path[i];
+     }
+
+     target_path_pointer[target_path_length] = '\0';
+
+     target_path_pointer[target_path_length+1] = '\0';
+
+
+     CopyFile(current_path_pointer,target_path_pointer,false);
+
+
+     if(this->Is_Path_Exist(current_path)){
+
+        int test = DeleteFileA(current_path);
+
+        if(test == 0){
+
+           std::cout << "\n Th file stay in " << current_path << " can not be removed .." ;
+
+            exit(0);
+        }
+    }
 }
 
 void Cpp_FileOperations::Receive_File(char * path){
@@ -388,6 +480,22 @@ char * Cpp_FileOperations::Conver_Std_String_To_Char(std::string string_line){
        return this->CString;
 }
 
+bool Cpp_FileOperations::Is_Path_Exist(char * path){
+
+     this->is_path_exist = false;
+
+     this->SetFilePath(path);
+
+     if(this->TryOpen(Rf)){
+
+        this->is_path_exist = true;
+
+        this->FileClose();
+     }
+
+     return this->is_path_exist;
+}
+
 int Cpp_FileOperations::Delete_File(char * path){
 
      int path_length = strlen(path);
@@ -403,23 +511,34 @@ int Cpp_FileOperations::Delete_File(char * path){
 
      path_pointer[path_length+1] = '\0';
 
-     SHFILEOPSTRUCT fileop;
+     if(this->Is_Path_Exist(path_pointer)){
 
-     fileop.wFunc = FO_DELETE;
+        SHFILEOPSTRUCT fileop;
 
-     fileop.pFrom = path_pointer;
+        fileop.wFunc = FO_DELETE;
 
-     fileop.pTo = NULL;
+        fileop.pFrom = path_pointer;
 
-     fileop.hwnd = NULL;
+        fileop.pTo = NULL;
 
-     fileop.fFlags = FOF_FILESONLY | FOF_NOCONFIRMATION;
+        fileop.hwnd = NULL;
 
-     this->Delete_Return_Status = SHFileOperationA(&fileop);
+        fileop.fFlags = FOF_FILESONLY | FOF_NOCONFIRMATION;
 
-     if(this->Delete_Return_Status != 0) {
+        this->Delete_Return_Status = SHFileOperationA(&fileop);
 
-        std::cout << "\n The file can not be removed ..";
+        if(this->Delete_Return_Status != 0) {
+
+          std::cout << "\n The file can not be removed ..";
+        }
+     }
+     else{
+
+          std::cout << "\n Error inside Cpp_FileOperations";
+
+          std::cout << "\n Inside Delete_File:";
+
+          std::cout << "\n The file " << path_pointer << " is not exist..";
      }
 
      delete [] path_pointer;

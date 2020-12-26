@@ -341,7 +341,7 @@ void Server_Builder::Determine_Compiler_Command_For_Server_Class(){
 
      char Include_Therm [] = {'-','I','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Space_Character [] = {' ','\0'};
 
@@ -359,7 +359,7 @@ void Server_Builder::Determine_Compiler_Command_For_Server_Class(){
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      int String_Length = 0;
 
@@ -617,7 +617,7 @@ void Server_Builder::Determine_Compiler_Command_For_Server_Class(){
 
 void Server_Builder::Remove_Source_File(){
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
@@ -646,11 +646,22 @@ void Server_Builder::Remove_Source_File(){
      delete [] Source_File_Path;
 }
 
+void Server_Builder::Build_Output_Stream_File(){
+
+     std::string path = "Compiler_Output";
+
+     this->FileManager.SetFilePath(path);
+
+     this->FileManager.FileOpen(RWCf);
+
+     this->FileManager.FileClose();
+}
+
 void Server_Builder::Run_System_Commands(){
 
-     this->Move_Header_File();
+     this->Build_Output_Stream_File();
 
-     int system_return_value = this->System_Interface.System_Function(this->Compiler_Command_For_Server_Class);
+     int system_return_value = system(this->Compiler_Command_For_Server_Class);
 
      if(system_return_value != 0){
 
@@ -668,7 +679,7 @@ void Server_Builder::Move_Header_File(){
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Construction_Point_Name_Size = strlen(Construction_Point);
 
@@ -704,7 +715,7 @@ void Server_Builder::Move_Header_File(){
 
      Header_File_New_Path[index_counter] = '\0';
 
-     this->FileManager.MoveFile_Win(Header_File_New_Path,Header_File_Path);
+     this->FileManager.MoveFile_Win(Header_File_Path,Header_File_New_Path);
 
      delete [] Header_File_Path;
 

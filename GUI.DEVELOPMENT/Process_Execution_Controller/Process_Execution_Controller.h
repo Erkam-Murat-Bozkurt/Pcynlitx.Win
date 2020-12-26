@@ -16,6 +16,7 @@
 #include <wx/progdlg.h>
 #include <wx/textctrl.h>
 #include <wx/stc/stc.h>
+#include <wx/msgdlg.h>
 
 class Process_Execution_Controller
 {

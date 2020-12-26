@@ -28,6 +28,7 @@ public:
   char * Get_Object_File_Name() const;
 private:
   void Determine_Compiler_Command();
+  void Build_Output_Stream_File();
   void Remove_Class_Implementation_File();
   void Remove_Header_Extra();
   void Place_Information(char ** Pointer, char * Information, int * counter);

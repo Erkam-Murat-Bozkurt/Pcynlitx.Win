@@ -114,7 +114,7 @@ void Multi_Thread_Pointer_Builder::Determine_Data_Type_Informations(){
 
         int Header_File_Path_Size = Include_Directory_Name_Size + Header_File_Name_Size;
 
-        char Directory_Operator [] = {'/','\0'};
+        char Directory_Operator [] = {'\\','\0'};
 
         char * Header_File_Path = new char [10*Header_File_Path_Size];
 

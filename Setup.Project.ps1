@@ -21,11 +21,13 @@ Write-Output ""
 
 
 
-# PowerShell .\build_project_directories.ps1
+PowerShell .\build_project_directories.ps1
 
-# PowerShell .\build_project_management_tools.ps1
+PowerShell .\build_project_management_tools.ps1
 
 cd $BASE_DIRECTORY
+
+PowerShell .\Run.Make.File.Builder.sh
 
 PowerShell .\ReFactorProjectLibrary.ps1
 

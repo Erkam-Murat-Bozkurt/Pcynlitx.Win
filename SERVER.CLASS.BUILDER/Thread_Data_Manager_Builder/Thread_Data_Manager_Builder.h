@@ -5,6 +5,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <stdlib.h>
 #include "Cpp_FileOperations.h"
 #include "DirectoryOperations.h"
 #include "IntToCharTranslater.h"
@@ -22,6 +23,7 @@ public:
  void Receive_Descriptor_File_Reader(Descriptor_File_Reader * Pointer);
  void Build_Thread_Manager();
  void Receive_Constructed_Include_Directory(char * Directory);
+ void Build_Output_Stream_File();
  void Build_Thread_Data_Manager();
  void Run_System_Commands();
  void Clear_Dynamic_Memory();

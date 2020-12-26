@@ -27,7 +27,7 @@ $ClassReaderProjectPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Cl
 
 Write-Output ""
 
-Write-Output  " CLASS READER LIBRARY CONTRUCTION STARTED"
+Write-Output  "  CLASS READER LIBRARY CONSTRUCTION STARTED"
 
 Write-Output ""
 
@@ -99,9 +99,5 @@ cd $DataBaseBuilderPATH
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
 
 Write-Output "   # A make file has been derived for DataBaseBuilder class"
-
-
-
-Write-Output "   # Sub-Project has been compiled"
 
 Write-Output ""

@@ -95,7 +95,7 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
      char Object_File_Extantion [] = {'.','o','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Client_Add_Word [] = "_Client.o";
 
@@ -549,7 +549,7 @@ void Kernel_Data_Collector::Construct_New_Include_Directory(){
 
      int return_value = this->DirectoryManager.ChangeDirectory(this->New_Include_Directory_Name);
 
-     if(return_value == 0){
+     if(return_value != 0){
 
         this->Jump_To_Construction_Point();
 

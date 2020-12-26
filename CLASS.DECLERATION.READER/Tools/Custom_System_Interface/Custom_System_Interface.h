@@ -10,6 +10,8 @@
 #include <strings.h>
 #include <iostream>
 #include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
 
 class Custom_System_Interface
 {
@@ -17,11 +19,13 @@ public:
   Custom_System_Interface();
   Custom_System_Interface(const Custom_System_Interface & arg);
   virtual ~Custom_System_Interface();
-  bool System_Function(char * cmd);
+  bool Create_Process(char * cmd);
+  int System_Function(char * cmd);
 protected:
   pid_t pid;
   int status;
   bool return_status;
+  int return_value;
 };
 
 #endif /* CUSTOM_SYSTEM_INTERFACE_H */

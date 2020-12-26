@@ -105,7 +105,7 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
      this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Header_File_Names_Number_Holder,5*this->Header_File_Names_Number);
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Directory_Character_Name_Size = strlen(Directory_Character);
 

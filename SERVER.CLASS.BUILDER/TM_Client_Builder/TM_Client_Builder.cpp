@@ -476,7 +476,7 @@ void TM_Client_Builder::Build_Thread_Manager_Client(){
 
 void TM_Client_Builder::Determine_Compiler_Command(){
 
-     char compile_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4','\0'};
+     char compile_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','7','\0'};
 
      char Include_Link_Determiner [] = {'-','I','\0'};
 
@@ -484,7 +484,7 @@ void TM_Client_Builder::Determine_Compiler_Command(){
 
      char space [] = {' ','\0'};
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      char Header_File_Name [ ] = {'T','M','_','C','l','i','e','n','t','.','h','\0'};
 
@@ -496,7 +496,7 @@ void TM_Client_Builder::Determine_Compiler_Command(){
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      this->Directory_Manager.DetermineCurrentDirectory();
 
@@ -736,7 +736,7 @@ void TM_Client_Builder::Remove_Source_File(){
 
      char Source_File_Name [] = {'T','M','_','C','l','i','e','n','t','.','c','p','p','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
@@ -773,7 +773,7 @@ void TM_Client_Builder::Write_Space(int Space_Number){
 
 void TM_Client_Builder::Run_System_Commands(){
 
-     int system_return_value = this->System_Interface.System_Function(this->Compiler_Command);
+     int system_return_value = system(this->Compiler_Command);
 
      if(system_return_value != 0){
 

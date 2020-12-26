@@ -25,6 +25,7 @@ public:
  void Run_System_Commands();
  void Clear_Dynamic_Memory();
 private:
+ void Build_Output_Stream_File();
  void Build_Class_Implementation_File();
  void Determine_Base_Class_Header_File_Name();
  void Determine_Client_Class_Implementation_File_Name();

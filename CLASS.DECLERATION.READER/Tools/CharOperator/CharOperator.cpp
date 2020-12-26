@@ -87,8 +87,6 @@ int CharOperator::DetermineTotalMethodNumber(){
 
 void CharOperator::ForwardFilePointer(Cpp_FileOperations * FileManager,int stepSize){
 
-    char * pointer;
-
     for(int i=0;i<stepSize-1;i++){
 
         FileManager->ReadLine();

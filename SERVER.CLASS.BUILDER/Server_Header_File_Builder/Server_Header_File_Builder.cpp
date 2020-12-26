@@ -259,7 +259,7 @@ void Server_Header_File_Builder::Move_Header_File(){
 
      char * Header_File_Name = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Header_File_Name_Size = strlen(Header_File_Name);
 
@@ -295,7 +295,7 @@ void Server_Header_File_Builder::Move_Header_File(){
 
      New_Path_Name[index_counter] = '\0';
 
-     this->FileManager.MoveFile_Win(New_Path_Name,Current_Path_Name);
+     this->FileManager.MoveFile_Win(Current_Path_Name,New_Path_Name);
 
      delete [] Current_Path_Name;
 

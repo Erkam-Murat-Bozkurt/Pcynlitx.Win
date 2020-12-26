@@ -675,11 +675,11 @@ void Multi_Thread_Pointer_Client_Builder::Determine_Compiler_Command(){
 
      char space [] = {' ','\0'};
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
 
      Class_Data_Type * Class_Data_Type_List = this->Reader_Pointer->Get_Class_Names();
@@ -743,7 +743,7 @@ void Multi_Thread_Pointer_Client_Builder::Determine_Compiler_Command(){
 
      this->Compiler_Command = new char [10*Compiler_Command_Name_Size];
 
-     char * Server_Class_Header_File = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
+     //char * Server_Class_Header_File = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
 
      int index_counter = 0;
 
@@ -907,7 +907,7 @@ void Multi_Thread_Pointer_Client_Builder::Determine_Compiler_Command(){
 
 void Multi_Thread_Pointer_Client_Builder::Remove_Class_Implementation_File(){
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      int Client_Class_Implementation_File_Name_Size = strlen(this->Client_Class_Implementation_File_Name);
 
@@ -932,11 +932,26 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Class_Implementation_File(){
      delete [] File_Name;
 }
 
+void Multi_Thread_Pointer_Client_Builder::Build_Output_Stream_File(){
+
+     std::string path = "Compiler_Output";
+
+     this->FileManager.SetFilePath(path);
+
+     this->FileManager.FileOpen(RWCf);
+
+     this->FileManager.FileClose();
+
+     std::cout << "\n The output stream file created in Multi_Thread_Pointer_Client_Builder.";
+
+     std::cin.get();
+}
+
 void Multi_Thread_Pointer_Client_Builder::Remove_Header_Extra(){
 
      char gch_word [] = {'.','g','c','h','\0'};
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      int Header_File_Name_Size = strlen(this->Client_Class_Header_File_Name);
 
@@ -964,6 +979,8 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Header_Extra(){
 }
 
 void Multi_Thread_Pointer_Client_Builder::Run_System_Commands(){
+
+     this->Build_Output_Stream_File();
 
      int system_return_value = system(this->Compiler_Command);
 

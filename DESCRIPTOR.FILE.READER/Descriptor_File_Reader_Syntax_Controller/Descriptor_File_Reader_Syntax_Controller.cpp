@@ -154,7 +154,7 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Inter_Thread_Class_Infor
 
      int index_counter = 0;
 
-     char Directory_Operator [] = {'/','\0'};
+     char Directory_Operator [] = {'\\','\0'};
 
      char * Header_File_Name = Class_Data_Holder.Header_File_Name;
 
@@ -193,7 +193,7 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Shared_Data_Type_Informa
 
      int index_counter = 0;
 
-     char Directory_Operator [] = {'/','\0'};
+     char Directory_Operator [] = {'\\','\0'};
 
      char * Header_File_Name = Data_Holder.Header_File_Name;
 

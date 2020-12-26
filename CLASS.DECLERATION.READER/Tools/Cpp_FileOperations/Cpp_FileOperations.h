@@ -7,11 +7,14 @@
 #include <unistd.h>
 #include <string>
 #include <cstring>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <windows.h>
+#include <winbase.h>
 #include <tchar.h>
 #include <shellapi.h>
+#include <shlwapi.h>
 
 
 #define Rf   'r'     // Opens File for only reading
@@ -57,8 +60,10 @@ public:
  void Receive_File(char * path);
  void Record_File(char * path);
  char * Conver_Std_String_To_Char(std::string string_line);
+ bool Is_Path_Exist(char * path);
  void Clear_Dynamic_Memory();
 private:
+ bool TryOpen(char path);
  std::fstream DataFile;
  std::string String_Line;
  std::string string_word;
@@ -73,6 +78,8 @@ private:
  int  FileDeleteCondition;
  bool isFilePathReceive;
  bool End_Of_File_Condition;
+ bool is_path_exist;
+ bool file_open_status;
 };
 
 #endif /* CPP_FILEOPERATIONS_H */

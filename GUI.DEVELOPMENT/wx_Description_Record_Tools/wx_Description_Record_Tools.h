@@ -12,6 +12,7 @@
 #include <wx/txtstrm.h>
 #include <string>
 #include <cstring>
+#include <wx/msgdlg.h>
 #include "Custom_Notebook.h"
 #include "Project_File_Selection_Dialog.h"
 #include "Event_ID_Numbers.h"

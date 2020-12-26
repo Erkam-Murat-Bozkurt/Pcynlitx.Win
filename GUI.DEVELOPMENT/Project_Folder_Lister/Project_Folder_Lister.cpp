@@ -176,6 +176,8 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
 
          if(dirCtrl.IsOpened()){
 
+            this->total_item_number++;
+
             if(dirCtrl.HasSubDirs()){
 
               bool cond = dirCtrl.GetFirst(&dirname,wxEmptyString,

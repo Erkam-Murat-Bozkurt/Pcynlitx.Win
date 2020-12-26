@@ -690,13 +690,17 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      this->Process_Pointer->Redirect();
 
-     wxString Description_Print_Command = wxT("D:\\Pcynlitx\\bin\\Description_Printer.exe");
+     wxString Description_Print_Command = wxT("D:\\Pcynlitx_Binaries\\Description_Printer.exe ");
 
      Description_Print_Command = Description_Print_Command + Directory_Name;
+
+     //wxMessageOutput::Get()->Printf("Description_Print_Command:%s",Description_Print_Command);
 
      int Process_Exit_Status = 0;
 
      Process_Exit_Status = wxExecute(Description_Print_Command,wxEXEC_SYNC,this->Process_Pointer);
+
+     //wxMessageOutput::Get()->Printf("Process_Exit_Status:%d",Process_Exit_Status);
 
      wxString log_string = wxT("");
 
@@ -742,7 +746,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
                         "YOUR DESCRIPTIONS",
 
-                        wxDefaultPosition, wxSize(900,650),wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxRESIZE_BORDER);
+                        wxDefaultPosition, wxSize(1000,850),wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxRESIZE_BORDER);
 
             Succes_Dialog->SetVirtualSize(wxSize(2000,2000));
 

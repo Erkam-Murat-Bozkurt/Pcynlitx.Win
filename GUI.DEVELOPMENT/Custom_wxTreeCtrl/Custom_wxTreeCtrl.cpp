@@ -18,7 +18,7 @@ Custom_wxTreeCtrl::Custom_wxTreeCtrl(wxWindow *parent, wxWindowID id,
 
      wxFont tree_font(9,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
 
-                          wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
+                          wxFONTWEIGHT_NORMAL,false,"Noto Sans");
 
      this->SetFont(tree_font);
 

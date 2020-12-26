@@ -92,7 +92,7 @@ void ClassRebuilder_Data_Collector::Collect_System_Command_Informations(){
 
 void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
-     char compile_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4','\0'};
+     char compile_command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','7','\0'};
 
      char Include_Link_Determiner [] = {'-','I','\0'};
 
@@ -102,11 +102,11 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
      char space [] = {' ','\0'};
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      Class_Data_Type * Class_Data_Type_List = this->Reader_Pointer->Get_Class_Names();
 
@@ -172,7 +172,7 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
      char * Header_File_Name = this->Initializer->Get_Base_Class_Header_File_Name();
 
-     char * Server_Class_Header_File = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
+     //char * Server_Class_Header_File = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
 
      int Include_Directory_Name_Size = strlen(Header_File_Location);
 
@@ -194,7 +194,7 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
                                       New_Class_Header_File_Name_Size + Header_File_Name_Size +
 
-                                      Variable_Header_File_Name_Size;
+                                      Variable_Header_File_Name_Size + Include_Directory_Name_Size;
 
      this->Compiler_Command = new char [10*Compiler_Command_Name_Size];
 
@@ -376,7 +376,7 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
 void ClassRebuilder_Data_Collector::Remove_Class_Implementation_File(){
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      this->Directory_Manager.DetermineCurrentDirectory();
 
@@ -411,7 +411,7 @@ void ClassRebuilder_Data_Collector::Remove_Header_Extra(){
 
      char gch_word [] = {'.','g','c','h','\0'};
 
-     char directory_character [] = {'/','\0'};
+     char directory_character [] = {'\\','\0'};
 
      this->Directory_Manager.DetermineCurrentDirectory();
 
@@ -439,14 +439,30 @@ void ClassRebuilder_Data_Collector::Remove_Header_Extra(){
 
      File_Name[index_counter] = '\0';
 
-     this->File_Manager.Delete_File(File_Name);
+     if(this->File_Manager.Is_Path_Exist(File_Name)){
+
+        this->File_Manager.Delete_File(File_Name);
+     }
 
      delete [] File_Name;
 }
 
+void ClassRebuilder_Data_Collector::Build_Output_Stream_File(){
+
+     std::string path = "Compiler_Output";
+
+     this->File_Manager.SetFilePath(path);
+
+     this->File_Manager.FileOpen(RWCf);
+
+     this->File_Manager.FileClose();
+}
+
 void ClassRebuilder_Data_Collector::Run_System_Commands(){
 
-     int system_return_value = this->System_Interface.System_Function(this->Compiler_Command);
+     this->Build_Output_Stream_File();
+
+     int system_return_value = system(this->Compiler_Command);
 
      if(system_return_value != 0){
 

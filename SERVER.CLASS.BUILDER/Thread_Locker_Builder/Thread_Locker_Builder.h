@@ -16,6 +16,7 @@ public:
  Thread_Locker_Builder();
  Thread_Locker_Builder(const Thread_Locker_Builder & orig);
  virtual ~Thread_Locker_Builder();
+ void Build_Output_Stream_File();
  void Build_Thread_Locker();
  void Receive_Descriptor_File_Reader(Descriptor_File_Reader * Pointer);
  void Run_System_Commands();
