@@ -365,7 +365,7 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
  void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Instance_Names(){
 
-      int index_counter = 0, Class_Number_Counter = 0;
+      int index_counter = 0;
 
       this->Class_Instance_Data_Type_Pointer = new Class_Instance_Data_Type [10*this->Inter_Thread_Class_Number];
 
@@ -464,7 +464,6 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
       this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Class_Number_List,2*Total_Class_Number);
 
-      bool Read_Error_Condition = false;
 
       this->Class_Data_Type_Pointer = new Class_Data_Type  [10*Total_Class_Number];
 

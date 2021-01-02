@@ -117,7 +117,7 @@ void DataRecord_Tools::Determine_File_Informations(char * File_PATH){
 
      for(int i=String_Size;i>0;i--){
 
-         if(File_PATH[i] == '/'){
+         if(File_PATH[i] == '\\'){
 
             Read_Start_Point = i+1;
 
@@ -168,7 +168,7 @@ void DataRecord_Tools::Determine_Library_Name_Informations(char * Library_PATH){
 
      for(int i=String_Size;i>0;i--){
 
-         if(Library_PATH[i] == '/'){
+         if(Library_PATH[i] == '\\'){
 
             Read_Start_Point = i+1;
 

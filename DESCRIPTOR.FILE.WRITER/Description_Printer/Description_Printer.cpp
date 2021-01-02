@@ -394,8 +394,6 @@ void Description_Printer::Print_Descriptions(){
 
      int Source_File_Names_Number    = this->Description_Reader.Get_Source_File_Names_Number();
 
-     int Source_File_Location_Number = this->Description_Reader.Get_Source_File_Location_Number();
-
      if(this->Description_Reader.Get_Source_File_Names() != nullptr){
 
         std::cout << "\n\n";

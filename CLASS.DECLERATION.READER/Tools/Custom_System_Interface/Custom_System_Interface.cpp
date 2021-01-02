@@ -82,7 +82,7 @@ bool Custom_System_Interface::Create_Process(char * cmd){
      // Start the child process.
      if(!this->return_status)
      {
-          printf( "CreateProcess failed (%d).\n", GetLastError() );
+          printf( "\\n CreateProcess failed \\n");
           return this->return_status;
       }
 

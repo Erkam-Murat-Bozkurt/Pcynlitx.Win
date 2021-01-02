@@ -25,6 +25,9 @@ $Multi_Thread_Pointer_Client_Header_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SM
 
 $Multi_Thread_Pointer_Client_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Builder"
 
+$Smart_Pointer_Data_Conveyor_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Smart_Pointer_Data_Conveyor"
+
+
 $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
 
 $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
@@ -36,6 +39,30 @@ Write-Output ""
 Write-Host "   Smart pointer construction project - update process started" -ForegroundColor Cyan;
 
 Write-Output ""
+
+
+cd $Smart_Pointer_Data_Conveyor_PATH
+
+mingw32-make -f auto_make_file.make > ..\Compiler_Output.txt
+
+Copy-Item D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Smart_Pointer_Data_Conveyor\Smart_Pointer_Data_Conveyor.h -Destination $Project_Headers_Files
+
+$Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Smart_Pointer_Data_Conveyor\Smart_Pointer_Data_Conveyor.o'
+
+if ($Condition)
+{
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Smart_Pointer_Data_Conveyor.o'
+
+  if ($Exists_On_Obj_Dir){
+
+    rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Smart_Pointer_Data_Conveyor.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Smart_Pointer_Data_Conveyor\Smart_Pointer_Data_Conveyor.o -Destination $OBJECTS_DIRECTORY
+}
+
+Write-Output "   # Smart_Pointer_Data_Conveyor class has been compiled"
+
 
 
 cd $Builder_Initializer_PATH

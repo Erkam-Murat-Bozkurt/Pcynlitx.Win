@@ -205,12 +205,6 @@ void Multi_Thread_Pointer_File_Data_Collector::Build_File_List(){
 
      this->Compile_Data_Collector.Collect_Informations();
 
-     this->File_Cleaner.Remove_Source_Files(this->Data_Collector.Get_Source_File_Name_Matrix());
-
-     this->File_Cleaner.Remove_Header_File_Extras(this->Data_Collector.Get_Header_File_Name_Matrix());
-
-     this->File_Cleaner.Remove_Object_Files(this->Data_Collector.Get_Object_File_Name_Matrix());
-
      this->Determine_Header_File_Paths_In_New_Include_Directory();
 }
 
@@ -261,7 +255,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Move_Header_Files(){
 
          Header_File_New_Path[index_counter] = '\0';
 
-         this->File_Manager.MoveFile_Win(Header_File_New_Path,Header_File_Full_Path);
+         this->File_Manager.MoveFile_Win(Header_File_Full_Path,Header_File_New_Path);
 
          delete [] Header_File_Full_Path;
 
@@ -278,13 +272,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Build_Output_Stream_File(){
      this->File_Manager.FileOpen(RWCf);
 
      this->File_Manager.FileClose();
-
-
-          std::cout << "\n The output stream file created in Multi_Thread_Pointer_File_Data_Collector.";
-
-          std::cin.get();
 }
-
 
 void Multi_Thread_Pointer_File_Data_Collector::Run_System_Commands(){
 

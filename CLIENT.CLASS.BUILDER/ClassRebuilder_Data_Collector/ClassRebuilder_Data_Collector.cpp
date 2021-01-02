@@ -172,8 +172,6 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
      char * Header_File_Name = this->Initializer->Get_Base_Class_Header_File_Name();
 
-     //char * Server_Class_Header_File = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
-
      int Include_Directory_Name_Size = strlen(Header_File_Location);
 
      int Command_Name_Size = strlen(compile_command);
@@ -357,6 +355,7 @@ void ClassRebuilder_Data_Collector::Determine_Compiler_Command(){
 
      this->Compiler_Command[index_counter] = '\0';
 
+
      this->Object_File_Name = new char [10*New_Class_Name_Size];
 
      index_counter = 0;
@@ -413,23 +412,21 @@ void ClassRebuilder_Data_Collector::Remove_Header_Extra(){
 
      char directory_character [] = {'\\','\0'};
 
-     this->Directory_Manager.DetermineCurrentDirectory();
-
-     char * Current_Directory = this->Directory_Manager.GetCurrentlyWorkingDirectory();
+     char * Constructed_Directory = this->Constructed_Include_Directory;
 
      char * Header_File_Name = this->Initializer->Get_New_Header_File_Name();
 
-     int Current_Directory_Name_Size = strlen(Current_Directory);
+     int Constructed_Directory_Name_Size = strlen(Constructed_Directory);
 
      int Header_File_Name_Size = strlen(Header_File_Name);
 
-     int File_Name_Size = Current_Directory_Name_Size + Header_File_Name_Size;
+     int File_Name_Size = Constructed_Directory_Name_Size + Header_File_Name_Size;
 
      char * File_Name  = new char [10*File_Name_Size];
 
      int index_counter = 0;
 
-     this->Place_Information(&File_Name,Current_Directory,&index_counter);
+     this->Place_Information(&File_Name,Constructed_Directory,&index_counter);
 
      this->Place_Information(&File_Name,directory_character,&index_counter);
 

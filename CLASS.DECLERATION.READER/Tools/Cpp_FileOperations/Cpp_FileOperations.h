@@ -15,7 +15,11 @@
 #include <tchar.h>
 #include <shellapi.h>
 #include <shlwapi.h>
-
+#include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <errno.h>
 
 #define Rf   'r'     // Opens File for only reading
 

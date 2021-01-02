@@ -81,7 +81,6 @@ void Multi_Thread_Pointer_Builder::Receive_Newly_Constructed_Include_Directory(c
      this->Data_Collector.Receive_Newly_Constructed_Include_Directory(New_Include_Directory);
 }
 
-
 void Multi_Thread_Pointer_Builder::Determine_Data_Type_Informations(){
 
      int index_number = 0;
@@ -171,7 +170,6 @@ void Multi_Thread_Pointer_Builder::Receive_Data_Type(char * DataType){
 
      this->M_Manager_Builder.Receive_Data_Type(DataType);
 }
-
 
 void Multi_Thread_Pointer_Builder::Receive_Construction_Point(char * Construction_Point){
 

@@ -482,7 +482,20 @@ char * Cpp_FileOperations::Conver_Std_String_To_Char(std::string string_line){
 
 bool Cpp_FileOperations::Is_Path_Exist(char * path){
 
-     this->is_path_exist = false;
+     this->is_path_exist = true;
+
+     struct _stat buf;
+
+     int result = 0;
+
+     result = _stat( path, &buf );
+
+     if( result != 0 ){
+
+       this->is_path_exist = false;
+     }
+
+     /*
 
      this->SetFilePath(path);
 
@@ -492,6 +505,8 @@ bool Cpp_FileOperations::Is_Path_Exist(char * path){
 
         this->FileClose();
      }
+
+     */
 
      return this->is_path_exist;
 }

@@ -115,9 +115,7 @@ void DirectoryOperations::DetermineCurrentDirectory(){
 
      CHAR Buffer[BUFSIZE];
 
-     DWORD dwRet;
-
-     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+     GetCurrentDirectory(BUFSIZE, Buffer);
 
      char * Directory = Buffer;
 

@@ -186,13 +186,13 @@ void Included_Header_File_Names_Reader::Determine_Included_Header_Files_Number()
 
                this->Included_Header_Files_Number++;
 
-               for(int i=0;i<this->String_Line.length();i++){
+               for(size_t i=0;i<this->String_Line.length();i++){
 
                    if(this->String_Line[i] == '\"'){
 
                       int double_quotes_number = 0;
 
-                      for(int k = 0;k<this->String_Line.length();k++){
+                      for(size_t k = 0;k<this->String_Line.length();k++){
 
                           if(this->String_Line[k] == '\"'){
 
@@ -217,13 +217,13 @@ void Included_Header_File_Names_Reader::Determine_Included_Header_Files_Number()
                   }
                }
 
-              for(int i=0;i<this->String_Line.length();i++){
+              for(size_t i=0;i<this->String_Line.length();i++){
 
                   if(this->String_Line[i] == '<'){
 
                      int less_than_character_number = 0;
 
-                     for(int k = 0;k<this->String_Line.length();k++){
+                     for(size_t k = 0;k<this->String_Line.length();k++){
 
                          if(((this->String_Line[k] == '<') || (this->String_Line[k] == '>'))){
 
@@ -274,7 +274,7 @@ void Included_Header_File_Names_Reader::Read_Include_File_Names(){
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
-                for(int i=0;i<this->String_Line.length();i++){
+                for(size_t i=0;i<this->String_Line.length();i++){
 
                     if(((this->String_Line[i] == '\"') || (this->String_Line[i] == '<'))){
 
@@ -356,7 +356,7 @@ bool Included_Header_File_Names_Reader::Include_Line_Determiner(std::string Stri
 
      int Include_Word_Character_Size = strlen(Include_Word);
 
-     for(int i=0;i<String_Line.length();i++){
+     for(size_t i=0;i<String_Line.length();i++){
 
          if(String_Line[i] == Include_Word[0]){
 
@@ -391,7 +391,7 @@ void Included_Header_File_Names_Reader::Determine_C_String_Declarations(){
 
          int index_counter = 0;
 
-         for(int k=0;k< header_name.length();k++){
+         for(size_t k=0;k< header_name.length();k++){
 
              this->Header_File_Declarations_C_String[i][index_counter] = header_name[k];
 
@@ -414,7 +414,7 @@ void Included_Header_File_Names_Reader::Determine_C_String_Header_File_Names(){
 
          int index_counter = 0;
 
-         for(int k=0;k< header_name.length();k++){
+         for(size_t k=0;k< header_name.length();k++){
 
              this->Header_File_Names_C_String[i][index_counter] = header_name[k];
 

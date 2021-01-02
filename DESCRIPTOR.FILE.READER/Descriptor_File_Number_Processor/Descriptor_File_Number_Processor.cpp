@@ -48,8 +48,6 @@ int Descriptor_File_Number_Processor::Read_Record_Number_From_String_Line(char *
 
     this->Record_Number = 0;
 
-    int String_Size = strlen(String);
-
     int First_Brace_Number = this->CharacterOperations.DetermineCharacterRepitation(String,'[');
 
     int Last_Brace_Number = this->CharacterOperations.DetermineCharacterRepitation(String,']');
@@ -151,8 +149,6 @@ int Descriptor_File_Number_Processor::Read_Record_Number_From_String_Line(char *
 int Descriptor_File_Number_Processor::Read_Second_Record_Number_From_String_Line(char * String){
 
     this->Record_Number = 0;
-
-    int String_Size = strlen(String);
 
     int Record_Start_Point = 0, Record_End_Point = 0, Number_Size = 0;
 
@@ -289,8 +285,6 @@ int Descriptor_File_Number_Processor::Get_Read_Operation_Start_Point(char * Stri
     else{
 
          if(Brace_Number > 0){
-
-            int Start_Point = 0;
 
             int Search_Point = String_Size;
 

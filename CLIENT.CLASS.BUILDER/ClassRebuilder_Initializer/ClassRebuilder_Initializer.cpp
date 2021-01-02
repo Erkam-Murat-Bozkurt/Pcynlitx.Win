@@ -205,15 +205,13 @@ void ClassRebuilder_Initializer::Determine_Base_Class_Informations(){
 
      int index_counter = 0;
 
-     char Directory_Operator [] = {'/','\0'};
+     char Directory_Operator [] = {'\\','\0'};
 
      if(this->Class_Data_Type_Receive_Condition){
 
         Class_Data_Type Class_Data_Holder = this->Reader_Pointer->Get_Class_Names()[this->Index_Number];
 
         char * Class_Name = Class_Data_Holder.Class_Name;
-
-        char * Header_File_Location = Class_Data_Holder.Header_File_Location;
 
         int Class_Name_Size = strlen(Class_Name);
 
@@ -331,8 +329,6 @@ void ClassRebuilder_Initializer::Determine_Object_Name(){
 void ClassRebuilder_Initializer::Determine_New_Class_Name(){
 
      char Class_Subfix [] = {'_','C','l','i','e','n','t','\0'};
-
-     int Subfix_Name_Size     = strlen(Class_Subfix);
 
      int Base_Class_Name_Size = strlen(this->Base_Class_Name);
 

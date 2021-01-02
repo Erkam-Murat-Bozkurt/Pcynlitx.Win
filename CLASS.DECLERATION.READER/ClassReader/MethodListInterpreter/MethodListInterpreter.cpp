@@ -238,8 +238,6 @@ int MethodListInterpreter::ReadRecordedInformation(char * linePointer){
 
     int line_Size = strlen(linePointer);
 
-    char * buffer = nullptr;
-
     if(line_Size > 0){
 
        char buffer[5*line_Size];

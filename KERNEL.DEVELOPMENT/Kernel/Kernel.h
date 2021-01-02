@@ -20,6 +20,7 @@
 #include "Main_File_Builder.h"
 #include "Kernel_Data_Collector.h"
 #include "IntToCharTranslater.h"
+#include "Smart_Pointer_Data_Conveyor.h"
 
 
 class Kernel
@@ -58,6 +59,7 @@ private:
  TM_Client_Builder Thread_Manager_Client_Builder_Pointer;
  Main_File_Builder Main_File_Builder_Object;
  IntToCharTranslater Translater;
+ Smart_Pointer_Data_Conveyor SP_Data_Conveyor;
  char * Compiler_Output_File_Path;
 };
 

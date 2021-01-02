@@ -338,7 +338,7 @@ void Main_File_Builder::Move_Header_File_List_To_New_Include_Directory(){
 
      New_Path[index_counter] = '\0';
 
-     this->File_Manager.MoveFile_Win(New_Path,Current_Path);
+     this->File_Manager.MoveFile_Win(Current_Path,New_Path);
 
      delete [] New_Path;
 

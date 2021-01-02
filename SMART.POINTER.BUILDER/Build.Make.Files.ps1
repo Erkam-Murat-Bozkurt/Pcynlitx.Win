@@ -31,6 +31,9 @@ $Multi_Thread_Pointer_Client_Header_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SM
 
 $Multi_Thread_Pointer_Client_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Multi_Thread_Pointer_Client_Builder"
 
+$Smart_Pointer_Data_Conveyor_PATH="D:\PCYNLITX.PROJECT.WINDOWS\SMART.POINTER.BUILDER\Smart_Pointer_Data_Conveyor"
+
+
 $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
 
 $OBJECTS_DIRECTORY="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES"
@@ -139,5 +142,13 @@ cd $Multi_Thread_Pointer_Client_Builder_PATH
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
 
 Write-Output "   # A make file has been derived for Multi_Thread_Pointer_Client_Builder"
+
+
+
+cd $Smart_Pointer_Data_Conveyor_PATH
+
+Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
+
+Write-Output "   # A make file has been derived for Smart_Pointer_Data_Conveyor"
 
 Write-Output ""

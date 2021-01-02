@@ -134,7 +134,7 @@ void MethodInitializer::ProcessMethodInformation(){
 
 void MethodInitializer::CheckFirstBrace_Existance(){
 
-     for(int i=0;i<strlen(this->MethodLine);i++){
+     for(size_t i=0;i<strlen(this->MethodLine);i++){
 
          if(this->MethodLine[i]== '('){
 
@@ -145,7 +145,7 @@ void MethodInitializer::CheckFirstBrace_Existance(){
 
 void MethodInitializer::CheckLastBrace_Existance(){
 
-     for(int i=0;i<strlen(this->MethodLine);i++){
+     for(size_t i=0;i<strlen(this->MethodLine);i++){
 
          if(this->MethodLine[i]== ')'){
 
@@ -184,9 +184,9 @@ void MethodInitializer::RemoveSpaces(char * MethodLine,int spaceNumber,int start
         return;
      }
      else{
-           int MethodLength = strlen(this->MethodLine);
+           size_t MethodLength = strlen(this->MethodLine);
 
-           for(int i= startPoint;i<MethodLength;i++){
+           for(size_t i= startPoint;i<MethodLength;i++){
 
                this->MethodLine[i]= this->MethodLine[i+spaceNumber];
            }
@@ -437,15 +437,15 @@ void MethodInitializer::SpaceCancelProcess(){
 
 void MethodInitializer::AddSpaceAfterComma(){
 
-     int LineSize = strlen(this->MethodLine);
+     size_t LineSize = strlen(this->MethodLine);
 
-     for(int i=0;i<LineSize;i++){
+     for(size_t i=0;i<LineSize;i++){
 
          if(this->MethodLine[i] == ','){
 
             if(this->MethodLine[i+1] != ' '){
 
-               for(int k=LineSize+1;k>i;k--){
+               for(size_t k=LineSize+1;k>i;k--){
 
                    this->MethodLine[k+1] = this->MethodLine[k];
                }
@@ -460,8 +460,6 @@ void MethodInitializer::AddSpaceAfterComma(){
 
 
 void MethodInitializer::Delete_Spaces_Before_MethodName(){
-
-     int listSize = strlen(this->MethodLine);
 
      int FirstBracePosition = this->CharacterOperations.FindNextCharacterPositon(this->MethodLine,0,'(');
 
@@ -500,9 +498,9 @@ void MethodInitializer::Delete_Spaces_Before_MethodName(){
 
         int Step_Size = Space_Counter - 1;
 
-        int List_Size = strlen(this->MethodLine);
+        size_t List_Size = strlen(this->MethodLine);
 
-        for(int i= Start_Point; i< List_Size - Step_Size;i++){
+        for(size_t i= Start_Point; i< List_Size - Step_Size;i++){
 
             this->MethodLine[i] = this->MethodLine[i+Step_Size];
         }
@@ -546,17 +544,17 @@ bool MethodInitializer::is_Method_Name_Includes_operator_word(){
 
      char operator_name [] = {'o','p','e','r','a','t','o','r','\0'};
 
-     int operator_name_size = strlen(operator_name);
+     size_t operator_name_size = strlen(operator_name);
 
-     int method_size = strlen(this->MethodLine);
+     size_t method_size = strlen(this->MethodLine);
 
-     for(int i=0;i<method_size;i++){
+     for(size_t i=0;i<method_size;i++){
 
          if(this->MethodLine[i] == operator_name[0]){
 
             this->operator_word_inclusion = true;
 
-            for(int j=0;j<operator_name_size;j++){
+            for(size_t j=0;j<operator_name_size;j++){
 
                 if(this->MethodLine[i] != operator_name[j]){
 
@@ -640,7 +638,7 @@ void MethodInitializer::Delete_Spaces_Between_First_Brace_and_Method_Name(){
 
      int FirstBracePosition = this->CharacterOperations.FindNextCharacterPositon(this->MethodLine,0,'(');
 
-     int listSize = strlen(this->MethodLine);
+     size_t listSize = strlen(this->MethodLine);
 
      // FOLLOWING LINES OF CODES REMOVES POSSIBLE SPACES BETWEEN FIRST BRACE POSITION AND METHOD NAME
 
@@ -655,7 +653,7 @@ void MethodInitializer::Delete_Spaces_Between_First_Brace_and_Method_Name(){
 
         spaceCounter--;
 
-        for(int i=FirstBracePosition-spaceCounter;i<listSize+1;i++){
+        for(size_t i=FirstBracePosition-spaceCounter;i<listSize+1;i++){
 
             this->MethodLine[i] = this->MethodLine[i+spaceCounter];
         }
@@ -664,7 +662,7 @@ void MethodInitializer::Delete_Spaces_Between_First_Brace_and_Method_Name(){
 
 void MethodInitializer::Add_Space_after_predetermined_character(int character_position){
 
-     int listSize = strlen(this->MethodLine);
+     size_t listSize = strlen(this->MethodLine);
 
      if(this->MethodLine[character_position+1]!=' '){
 
@@ -679,7 +677,7 @@ void MethodInitializer::Add_Space_after_predetermined_character(int character_po
 
 void MethodInitializer::Add_Space_before_predetermined_character(int character_position){
 
-     int listSize = strlen(this->MethodLine);
+     size_t listSize = strlen(this->MethodLine);
 
      if((this->MethodLine[character_position-1]!=' ') && (character_position > 0)){
 
@@ -695,10 +693,6 @@ void MethodInitializer::Add_Space_before_predetermined_character(int character_p
 void MethodInitializer::CheckAdressCharacterBeforeFirstBrace(){
 
      bool Is_There_Operator_Word = this->is_Method_Name_Includes_operator_word();
-
-     bool Is_There_Adress_Operator_Just_Before_First_Brace = this->is_There_Adress_Character_Just_Before_Method_Brace();
-
-     int listSize = strlen(this->MethodLine);
 
      int FirstBracePosition = this->CharacterOperations.FindNextCharacterPositon(this->MethodLine,0,'(');
 
@@ -780,9 +774,9 @@ void MethodInitializer::CheckAdressCharacterBeforeFirstBrace(){
 
            while(this->MethodLine[position] == ' '){
 
-                 int listSize = strlen(this->MethodLine);
+                 size_t listSize = strlen(this->MethodLine);
 
-                 for(int i=position;i<listSize+1;i++){
+                 for(size_t i=position;i<listSize+1;i++){
 
                      this->MethodLine[i] = this->MethodLine[i+1];
                  }
@@ -796,8 +790,6 @@ void MethodInitializer::CheckAdressCharacterBeforeFirstBrace(){
 }
 
 void MethodInitializer::CheckAdressCharacterInsidePharentheses(){
-
-     int listSize = strlen(this->MethodLine);
 
      int FirstBracePosition = this->CharacterOperations.FindNextCharacterPositon(this->MethodLine,0,'(');
 

@@ -306,7 +306,7 @@ void MethodProcessor::DetermineMethodParameterNumber(){
         }
         else
         {
-           for(int i=0;i< spaceSize-1;i++){
+           for(int i=0;i<spaceSize-1;i++){
 
                if(this->MethodLine[i+FirstBrace+1]!= ' '){
 
@@ -320,64 +320,6 @@ void MethodProcessor::DetermineMethodParameterNumber(){
                }
            }
          }
-     }
-
-     bool FirstCharacterExistanceInMethodBraces = false;          // Is there a character in method braces    (something)
-
-     bool SpaceExistanceInMethodBracesAfterCharacter = false;    // Is there a space after a first character (something )
-
-     bool EmptyMethodBraces = false;                             // Is there a space between two braceses with no character ( )
-                                                                 // EMPTY Method Braceses
-
-     bool LastCharacterExistanceInMethodBraces = false;          // Is there a second character after space (something somethingelse)
-
-     int FirstCharacterPositionInMethodBraces = 0;                // The position of the first character between two braceses
-
-     int SpacePosition = 0;                                      // The position of the space between two braceses
-
-     for(int i=FirstBrace+1;i<LastBrace-1;i++){
-
-         if(this->MethodLine[i] != ' '){
-
-             FirstCharacterExistanceInMethodBraces = true;
-
-             FirstCharacterPositionInMethodBraces = i;
-
-             break;
-       }
-     }
-
-     if(FirstCharacterExistanceInMethodBraces){
-
-         for(int i=FirstCharacterPositionInMethodBraces+1;i<LastBrace-1;i++){
-
-             if(this->MethodLine[i] == ' '){
-
-                 SpaceExistanceInMethodBracesAfterCharacter = true;
-
-                 SpacePosition = i;
-             }
-         }
-
-         if(SpaceExistanceInMethodBracesAfterCharacter){
-
-            for(int i=SpacePosition+1;i<LastBrace;i++){
-
-                if(this->MethodLine[i]!= ' '){
-
-                   LastCharacterExistanceInMethodBraces = true;
-                }
-            }
-         }
-     }
-     else
-     {
-         EmptyMethodBraces = true;
-     }
-
-     if(EmptyMethodBraces){
-
-        return;
      }
 }
 

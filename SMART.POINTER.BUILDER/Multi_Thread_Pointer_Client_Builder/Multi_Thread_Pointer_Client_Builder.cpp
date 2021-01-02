@@ -927,7 +927,10 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Class_Implementation_File(){
 
      File_Name[index_counter] = '\0';
 
-     this->FileManager.Delete_File(File_Name);
+     if(this->FileManager.Is_Path_Exist(File_Name)){
+
+        this->FileManager.Delete_File(File_Name);
+     }
 
      delete [] File_Name;
 }
@@ -941,10 +944,6 @@ void Multi_Thread_Pointer_Client_Builder::Build_Output_Stream_File(){
      this->FileManager.FileOpen(RWCf);
 
      this->FileManager.FileClose();
-
-     std::cout << "\n The output stream file created in Multi_Thread_Pointer_Client_Builder.";
-
-     std::cin.get();
 }
 
 void Multi_Thread_Pointer_Client_Builder::Remove_Header_Extra(){
@@ -973,7 +972,10 @@ void Multi_Thread_Pointer_Client_Builder::Remove_Header_Extra(){
 
      File_Name[index_counter] = '\0';
 
-     this->FileManager.Delete_File(File_Name);
+     if(this->FileManager.Is_Path_Exist(File_Name)){
+
+        this->FileManager.Delete_File(File_Name);
+     }
 
      delete [] File_Name;
 }

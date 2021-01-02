@@ -65,9 +65,13 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Header_File_Extras(char ** Header
 
          Extra_File_Name[index_counter] = '\0';
 
-         this->File_Manager.Delete_File(Extra_File_Name);
+         if(this->File_Manager.Is_Path_Exist(Extra_File_Name)){
+
+            this->File_Manager.Delete_File(Extra_File_Name);
+         }
 
          delete [] Extra_File_Name;
+
      }
 }
 

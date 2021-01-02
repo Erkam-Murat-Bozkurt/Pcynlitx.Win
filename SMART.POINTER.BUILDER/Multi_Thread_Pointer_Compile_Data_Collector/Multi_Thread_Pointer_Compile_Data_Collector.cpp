@@ -182,11 +182,11 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      char Space_Character [] = {' ','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Include_Linker [] = {'-','I','\0'};
 
@@ -303,11 +303,11 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      char Space_Character [] = {' ','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Include_Linker [] = {'-','I','\0'};
 
@@ -470,11 +470,11 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char Output_Redirection_Command [] = {'2','>','\0'};
 
-     char Error_Message_File_Name [] = {'/','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
      char Space_Character [] = {' ','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char Include_Linker [] = {'-','I','\0'};
 

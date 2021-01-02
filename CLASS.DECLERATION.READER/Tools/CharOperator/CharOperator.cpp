@@ -167,7 +167,7 @@ int CharOperator::FindTheSpecificWordLine(std::string word){
       return this->WordPosition;
 }
 
-int CharOperator::CharListLength(char * Characterlist){
+size_t CharOperator::CharListLength(char * Characterlist){
 
     this->ListLength = 0;
 

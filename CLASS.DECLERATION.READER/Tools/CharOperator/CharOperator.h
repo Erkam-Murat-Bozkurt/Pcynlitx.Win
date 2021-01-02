@@ -21,7 +21,7 @@ public:
   int  FindNextCharacterPositon(char * list, int start ,char c);      // Search a character in a list starting from a given point..
   int  FindTheSpecificWordLine(std::string line);                     // The return value is the line number includes a specific word..
   void ForwardFilePointer(Cpp_FileOperations * pointer, int start);   // Move File Pointer
-  int  CharListLength(char * list);                                   // The return value is the length of a character list..
+  size_t CharListLength(char * list);                                   // The return value is the length of a character list..
   int  FindFirstCharacterPosition(char * list);                       // Finds first character position in a list
   bool CharacterCheck(char * list, char c);                           // Does exist character which selected in the list
   bool CompareString(char * firstString,char * secondString);         // Compares two string
@@ -35,7 +35,7 @@ private:
   int  CharacterPosition;
   int  CharacterRepitation;
   int  WordPosition;
-  int  ListLength;
+  size_t ListLength;
   int  FileEnd;
   int  FirstCharacterPosition;
   bool isStringsEqual;

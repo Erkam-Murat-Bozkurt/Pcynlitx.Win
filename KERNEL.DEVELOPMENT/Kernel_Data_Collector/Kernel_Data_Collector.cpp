@@ -265,8 +265,6 @@ void Kernel_Data_Collector::Remove_Object_Files(){
 
         index_counter = 0;
 
-        int Data_Manager_Class_Name_Size = strlen(Data_Manager_Class_Name) + Construction_Point_Name_Size;
-
         char * Data_Manager_Class_Object_File_Name = new char [10*Manager_Class_Name_Size];
 
         this->Place_Information(&Data_Manager_Class_Object_File_Name,Construction_Point,&index_counter);
