@@ -31,6 +31,8 @@ Header_File_Descriptions_Reader::Header_File_Descriptions_Reader(){
     this->Header_File_Names = nullptr;
 
     this->Header_File_Paths = nullptr;
+
+    this->Header_File_Names_Number = 0;
 }
 
 Header_File_Descriptions_Reader::Header_File_Descriptions_Reader(const Header_File_Descriptions_Reader & orig){
@@ -107,11 +109,11 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
      char Directory_Character [] = {'\\','\0'};
 
-     int Directory_Character_Name_Size = strlen(Directory_Character);
+     size_t Directory_Character_Name_Size = strlen(Directory_Character);
 
-     this->Header_File_Names = new char * [10*this->Header_File_Names_Number];
+     this->Header_File_Names = new char * [5*this->Header_File_Names_Number];
 
-     this->Header_File_Paths = new char * [10*this->Header_File_Names_Number];
+     this->Header_File_Paths = new char * [5*this->Header_File_Names_Number];
 
      for(int i=0;i<this->Header_File_Names_Number;i++){
 
@@ -228,17 +230,30 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
             exit(1);
          }
 
-         int String_Size = strlen(String_Line);
 
-         this->Header_File_Names[i] = new char [10*String_Size];
+
+         size_t String_Size = strlen(String_Line);
+
+         this->Header_File_Names[i] = new char [5*String_Size];
+
+         this->Place_Null(&(this->Header_File_Names[i]),5*String_Size);
+
 
          this->Place_String(&(this->Header_File_Names[i]),String_Line);
 
-         int Location_Name_Size = strlen(Header_File_Location);
+         size_t Location_Name_Size = strlen(Header_File_Location);
 
-         int Header_File_Name_Size = Directory_Character_Name_Size + Location_Name_Size + String_Size;
+         size_t Header_File_Name_Size = Directory_Character_Name_Size +
 
-         this->Header_File_Paths[i] = new char [10*Header_File_Name_Size];
+                                        Location_Name_Size + String_Size;
+
+
+
+         this->Header_File_Paths[i] = new char [5*Header_File_Name_Size];
+
+         this->Place_Null(&(this->Header_File_Paths[i]),5*Header_File_Name_Size);
+
+
 
          int Start_Point = 0, index_counter = 0;
 
@@ -251,6 +266,7 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
          this->Place_Information(&(this->Header_File_Paths[i]),String_Line,&index_counter,Start_Point);
 
          this->Header_File_Paths[i][index_counter] = '\0';
+
 
          bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(Header_File_Location,this->Header_File_Names[i]);
 
@@ -410,4 +426,12 @@ void Header_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
  int Header_File_Descriptions_Reader::Get_Header_Files_Number() const {
 
      return this->Header_File_Names_Number;
+ }
+
+ void Header_File_Descriptions_Reader::Place_Null(char ** Pointer, size_t size){
+
+      for(size_t i=0;i<size;i++){
+
+         (*Pointer)[i] = '\0';
+      }
  }

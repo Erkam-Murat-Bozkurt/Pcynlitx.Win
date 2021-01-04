@@ -337,7 +337,7 @@ void Server_Builder::Determine_File_Names(){
 
 void Server_Builder::Determine_Compiler_Command_For_Server_Class(){
 
-     char Compile_Command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4',' ','\0'};
+     char Compile_Command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','7',' ','\0'};
 
      char Include_Therm [] = {'-','I','\0'};
 

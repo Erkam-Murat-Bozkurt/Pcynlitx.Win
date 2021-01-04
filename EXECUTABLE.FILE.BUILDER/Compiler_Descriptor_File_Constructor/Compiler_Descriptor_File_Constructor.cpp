@@ -183,7 +183,7 @@ void Compiler_Descriptor_File_Constructor::Collect_Informations(){
 
      this->Determine_Server_Class_Header_File_Path();
 
-     char Thread_Library_Name [] = {'p','t','h','r','e','a','d','\0'};
+     char Thread_Library_Name [] = "winpthread";
 
      int Total_Include_Directory_Number = this->Reader_Pointer->Get_Include_Directory_Number();
 
@@ -395,7 +395,7 @@ void Compiler_Descriptor_File_Constructor::Determine_New_Include_Directory_Name(
 
      char Include_Directory_Word [] = {'_','I','n','c','l','u','d','e','_','D','i','r','e','c','t','o','r','y','\0'};
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      int Class_Name_Size = strlen(this->Reader_Pointer->Get_Server_Class_Name());
 
@@ -422,7 +422,7 @@ void Compiler_Descriptor_File_Constructor::Determine_New_Include_Directory_Name(
 
 void Compiler_Descriptor_File_Constructor::Determine_Server_Class_Header_File_Path(){
 
-     char Directory_Character [] = {'/','\0'};
+     char Directory_Character [] = {'\\','\0'};
 
      char * Server_Class_Header_File_Name = this->Reader_Pointer->Get_Server_Class_Header_File_Name();
 
@@ -643,7 +643,7 @@ void Compiler_Descriptor_File_Constructor::Build_Compiler_Descriptor_File(){
 
 char * Compiler_Descriptor_File_Constructor::Get_Header_File_Paths_In_New_Include_Directory(char * Header_File_Name){
 
-       char Directory_Character [] = {'/','\0'};
+       char Directory_Character [] = {'\\','\0'};
 
        int Directory_Name_Size   = strlen(this->New_Include_Directory_Name);
 
@@ -676,7 +676,7 @@ char *  Compiler_Descriptor_File_Constructor::Get_File_Path_For_Base_Class_Heade
 
         char * Header_File_Name = Class_Data_Type_Holder.Header_File_Name;
 
-        char Directory_Character [] = {'/','\0'};
+        char Directory_Character [] = {'\\','\0'};
 
         int Directory_Name_Size   = strlen(Header_File_Location);
 
@@ -713,7 +713,7 @@ char * Compiler_Descriptor_File_Constructor::Get_File_Path_For_Shared_Data_Type_
 
           char * Header_File_Name =  Data_Type_Holder.Header_File_Name;
 
-          char Directory_Character [] = {'/','\0'};
+          char Directory_Character [] = {'\\','\0'};
 
           int Directory_Name_Size   = strlen(Header_File_Location);
 

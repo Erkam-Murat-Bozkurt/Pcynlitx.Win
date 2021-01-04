@@ -1054,7 +1054,7 @@ void Thread_Manager_Builder::Build_Thread_Manager(){
 
 void Thread_Manager_Builder::Determine_Compiler_Command(){
 
-     char Process_Command [] = "g++ -c -std=c++14 ";
+     char Process_Command [] = "g++ -c -std=c++17 ";
 
      char Source_File_Name [] = "Thread_Manager.cpp";
 

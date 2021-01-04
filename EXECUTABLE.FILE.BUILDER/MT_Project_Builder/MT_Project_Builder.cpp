@@ -80,7 +80,7 @@ void MT_Project_Builder::Build_Project(){
 
      std::cout << "\n ";
 
-     std::cout << "\n\t\t(\u2713 ) Descriptor file information has been readed\n";
+     std::cout << "\n\t\t# Descriptor file information has been readed\n";
 
      this->File_Constructor.Receive_Descriptor_File_Reader(&this->File_Reader);
 
@@ -90,7 +90,7 @@ void MT_Project_Builder::Build_Project(){
 
      this->Directory_Manager.DetermineCurrentDirectory();
 
-     std::cout << "\n\t\t(\u2713 ) Builder started to process \n";
+     std::cout << "\n\t\t# Builder started to process \n";
 
      this->Project_Compiler.Receive_Descriptor_File_Directory(this->File_Reader.Get_Construction_Point());
 
@@ -108,7 +108,7 @@ void MT_Project_Builder::Build_Project(){
 
      this->File_Reader.Clear_Dynamic_Memory();
 
-     std::cout << "\n\t\t(\u2713 ) The executable file is ready \n\n";
+     std::cout << "\n\t\t# The executable file is ready \n\n";
 }
 
 void MT_Project_Builder::Remove_Compiler_Output_File(){

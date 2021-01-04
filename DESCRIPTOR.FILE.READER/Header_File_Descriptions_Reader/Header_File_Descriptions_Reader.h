@@ -35,6 +35,7 @@ private:
   void Print_Read_Error_Information();
   void Print_Brace_Data_Read_Error(int Readed_Data, char * Data_Type);
   bool Check_Empty_Decleration(char * String);
+  void Place_Null(char ** Pointer, size_t size);
   Descriptor_File_Data_Collector * Data_Collector_Pointer;
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;

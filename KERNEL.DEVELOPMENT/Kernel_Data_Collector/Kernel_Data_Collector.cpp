@@ -364,7 +364,10 @@ void Kernel_Data_Collector::Construct_New_Library(){
 
      Library_Name[index_counter] = '\0';
 
-     this->FileManager.Delete_File(Library_Name);
+     if(this->FileManager.Is_Path_Exist(Library_Name)){
+
+        this->FileManager.Delete_File(Library_Name);
+     }
 
      index_counter = 0;
 

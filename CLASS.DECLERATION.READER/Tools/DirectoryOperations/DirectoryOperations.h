@@ -13,6 +13,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <shellapi.h>
+#include <fileapi.h>
 #include "CharOperator.h"
 
 #define BUFSIZE MAX_PATH

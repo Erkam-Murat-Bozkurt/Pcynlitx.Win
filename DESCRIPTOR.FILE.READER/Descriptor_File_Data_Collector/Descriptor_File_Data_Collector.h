@@ -5,6 +5,8 @@
 #include <cstring>
 #include <cstdlib>
 #include <CharOperator.h>
+#include <windows.h>
+#include <stdio.h>
 #include "StringOperator.h"
 #include "DirectoryOperations.h"
 
@@ -19,8 +21,8 @@ public:
   void Receive_Descriptor_File_Name(const char * DescriptorFileName);
   void Receive_Descriptor_File_Name(char * DescriptorFileName);
   void Collect_Descriptor_File_Datas();
-  void Place_String(char ** Pointer, const char * String, int String_Size);
-  void Place_String(char ** Pointer, char * String, int String_Size);
+  void Place_String(char ** Pointer, const char * String, size_t String_Size);
+  void Place_String(char ** Pointer, char * String, size_t String_Size);
   void Clear_Dynamic_Memory();
   char * Get_DescriptorFileName() const ;
   char * Get_DescriptorFileDirectory() const;
