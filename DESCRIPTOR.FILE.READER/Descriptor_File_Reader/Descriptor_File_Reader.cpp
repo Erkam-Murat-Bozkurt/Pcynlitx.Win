@@ -248,7 +248,7 @@ void Descriptor_File_Reader::Remove_Compiler_Output_File(){
 
      int Construction_Point_Name_Size = strlen(this->Get_Construction_Point());
 
-     this->Compiler_Output_File_Path = new char [10*Construction_Point_Name_Size];
+     this->Compiler_Output_File_Path = new char [5*Construction_Point_Name_Size];
 
      int index_counter = 0;
 
@@ -293,7 +293,7 @@ void Descriptor_File_Reader::Determine_Newly_Constructed_Include_Directory(){
 
                                                          Include_Directory_Add_Word_Name_Size;
 
-     this->Constructed_Include_Directory = new char [10*Newly_Constructed_Include_Directory_Name_Size];
+     this->Constructed_Include_Directory = new char [5*Newly_Constructed_Include_Directory_Name_Size];
 
      int index_counter = 0;
 

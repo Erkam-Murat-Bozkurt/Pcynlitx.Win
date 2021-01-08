@@ -123,7 +123,7 @@ void DirectoryOperations::DetermineCurrentDirectory(){
 
      this->Memory_Delete_Condition = false;
 
-     this->CurrentDirectory = new char [10*Directory_Name_Size];
+     this->CurrentDirectory = new char [5*Directory_Name_Size];
 
      this->Place_String(&this->CurrentDirectory,Directory,Directory_Name_Size);
 }
@@ -149,7 +149,7 @@ void DirectoryOperations::DetermineSubDirectoryName(char * DirectoryName){
 
      this->Memory_Delete_Condition = false;
 
-     this->Sub_Directory  = new char [10*NewDirectory_Name_Size];
+     this->Sub_Directory  = new char [5*NewDirectory_Name_Size];
 
      int index_counter = 0;
 
@@ -193,7 +193,7 @@ void DirectoryOperations::DetermineUpperDirectoryName(){
 
      this->Memory_Delete_Condition = false;
 
-     this->Upper_Directory = new char [10*upper_directory_point];
+     this->Upper_Directory = new char [5*upper_directory_point];
 
      this->Place_String(&this->Upper_Directory,this->GetCurrentlyWorkingDirectory(),upper_directory_point);
 }
@@ -341,7 +341,7 @@ void DirectoryOperations::RecordCurrentDirectoryPATH(){
 
      this->Memory_Delete_Condition = false;
 
-     this->RecordDirectoryPATH = new char [10*Name_Size];
+     this->RecordDirectoryPATH = new char [5*Name_Size];
 
      this->Place_String(&this->RecordDirectoryPATH,this->GetCurrentlyWorkingDirectory(),Name_Size);
 }
@@ -370,34 +370,47 @@ void DirectoryOperations::Determine_File_List_In_Directory(char * Directory_Name
 
      this->File_Number = 0;
 
-     WIN32_FIND_DATA ffd;
-     HANDLE hFind = INVALID_HANDLE_VALUE;
+     WIN32_FIND_DATA ffdn;
+
+     ffdn.dwFileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+
+     HANDLE hFindn = INVALID_HANDLE_VALUE;
 
      size_t dir_name_length = strlen(Directory_Name);
 
-     TCHAR * dir_name = new TCHAR[5*dir_name_length];
+     TCHAR dir_name[MAX_PATH];
 
-     for(size_t i=0;i<dir_name_length;i++){
+     int index = 0;
 
-         dir_name[i] = Directory_Name[i];
+     for(size_t k=0;k<dir_name_length;k++){
+
+        dir_name[index] = Directory_Name[k];
+
+        index++;
      }
 
-     dir_name[dir_name_length] = '\\';
+     dir_name[index] = '\\';
 
-     dir_name[dir_name_length+1] = '*';
+     index++;
 
-     dir_name[dir_name_length+2] = '.';
+     dir_name[index] = '*';
 
-     dir_name[dir_name_length+3] = '*';
+     index++;
 
-     dir_name[dir_name_length+4] = '\0';
+     size_t next_start = index;
 
+     for(size_t k=next_start;k<MAX_PATH;k++){
 
-       // Find the first file in the directory.
+         dir_name[index] = '\0';
 
-     hFind = FindFirstFile(dir_name,&ffd);
+         index++;
+     }
 
-     if (INVALID_HANDLE_VALUE == hFind)
+     // Find the first file in the directory.
+
+     hFindn = FindFirstFile(dir_name,&ffdn);
+
+     if (INVALID_HANDLE_VALUE == hFindn)
      {
          std::cout << "\n Error in DirectoryOperations::Determine_File_List_In_Directory";
      }
@@ -405,66 +418,69 @@ void DirectoryOperations::Determine_File_List_In_Directory(char * Directory_Name
      // List all the files in the directory with some info about them.
 
      do{
-          if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+          if (ffdn.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
           {
             //std::cout << "\n this is a directory..";
           }
           else
           {
-             //filesize.LowPart = ffd.nFileSizeLow;
-             //filesize.HighPart = ffd.nFileSizeHigh;
-
              this->File_Number++;
           }
      }
-     while (FindNextFile(hFind,&ffd) != 0);
+     while (FindNextFile(hFindn,&ffdn) != 0);
 
-     FindClose(hFind);
-
-
-     this->File_List = new std::string [10*this->File_Number];
-
-     size_t index_counter = 0;
+     FindClose(hFindn);
 
 
-     hFind = FindFirstFile(dir_name, &ffd);
+     if( this->File_Number > 0 ){
 
-     if (INVALID_HANDLE_VALUE == hFind)
-     {
-         std::cout << "\n Error in DirectoryOperations::Determine_File_List_In_Directory";
-     }
+         this->File_List = new std::string [5*this->File_Number];
 
-     // List all the files in the directory with some info about them.
+         size_t index_counter = 0;
 
-     do{
-          if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-          {
-            // _tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
+         WIN32_FIND_DATA ffd;
+
+         ffd.dwFileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+
+         HANDLE hFind = INVALID_HANDLE_VALUE;
+
+
+         hFind = FindFirstFile(dir_name, &ffd);
+
+         if (INVALID_HANDLE_VALUE == hFind)
+         {
+                std::cout << "\n Error in DirectoryOperations::Determine_File_List_In_Directory";
+         }
+
+         // List all the files in the directory with some info about them.
+
+         do{
+              if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+              {
+                   // _tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
+              }
+              else{
+
+                    char * File_Name = ffd.cFileName;
+
+                    size_t file_name_size = strlen(File_Name);
+
+                    this->File_List[index_counter] = "";
+
+                    for(size_t i=0;i<file_name_size;i++){
+
+                        this->File_List[index_counter].append(1,File_Name[i]) ;
+                    }
+
+                    this->File_List[index_counter].append(1,'\0');
+
+                    index_counter++;
+              }
           }
-          else
-          {
-             //filesize.LowPart = ffd.nFileSizeLow;
-             //filesize.HighPart = ffd.nFileSizeHigh;
+          while (FindNextFile(hFind, &ffd) != 0);
 
-             char * File_Name = ffd.cFileName;
-
-             size_t file_name_size = strlen(File_Name);
-
-             this->File_List[index_counter] = "";
-
-             for(size_t i=0;i<file_name_size;i++){
-
-                 this->File_List[index_counter].append(1,File_Name[i]) ;
-             }
-
-             this->File_List[index_counter].append(1,'\0');
-
-             index_counter++;
-          }
+          FindClose(hFind);
      }
-     while (FindNextFile(hFind, &ffd) != 0);
-
-     FindClose(hFind);
 }
 
 
@@ -521,7 +537,7 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
          int File_Name_String_Size = File_Name_String.length();
 
-         File_Name = new char [10*File_Name_String_Size];
+         File_Name = new char [5*File_Name_String_Size];
 
          for(int k=0;k<File_Name_String_Size;k++){
 
@@ -532,7 +548,7 @@ void DirectoryOperations::Remove_Directory_Recursively(char * Directory_Name){
 
          int File_Path_Size = File_Name_String_Size + Directory_Name_Size;
 
-         File_Path = new char [10*File_Path_Size];
+         File_Path = new char [5*File_Path_Size];
 
          int index_counter = 0;
 

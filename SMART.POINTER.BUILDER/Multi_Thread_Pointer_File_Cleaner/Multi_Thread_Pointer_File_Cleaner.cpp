@@ -47,13 +47,13 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Header_File_Extras(char ** Header
 
      char Gch_Word [] = {'.','g','c','h','\0'};
 
-     int Gch_Word_Size = strlen(Gch_Word);
+     size_t Gch_Word_Size = strlen(Gch_Word);
 
      for(int i=0;i<3;i++){
 
-         int File_Name_Size = strlen(Header_File_Matrix[i]);
+         size_t File_Name_Size = strlen(Header_File_Matrix[i]);
 
-         int Extra_File_Name_Size = File_Name_Size + Gch_Word_Size;
+         size_t Extra_File_Name_Size = File_Name_Size + Gch_Word_Size;
 
          char * Extra_File_Name = new char [10*Extra_File_Name_Size];
 
@@ -85,9 +85,9 @@ void Multi_Thread_Pointer_File_Cleaner::Remove_Object_Files(char ** Object_File_
 
 void Multi_Thread_Pointer_File_Cleaner::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_List_Size = strlen(Information);
+     size_t Information_List_Size = strlen(Information);
 
-     for(int i=0;i<Information_List_Size;i++){
+     for(size_t i=0;i<Information_List_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 

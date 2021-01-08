@@ -213,13 +213,13 @@ void Multi_Thread_Pointer_Data_Collector::Collect_Informations(){
 
      char * Reporter_Header_File_Name = this->Reporter_Initializer.Get_NewHeaderFileName();
 
-     int Pointer_Header_File_Name_Size  = strlen(Pointer_Header_File_Name);
+     size_t Pointer_Header_File_Name_Size  = strlen(Pointer_Header_File_Name);
 
-     int Manager_Header_File_Name_Size  = strlen(Manager_Header_File_Name);
+     size_t Manager_Header_File_Name_Size  = strlen(Manager_Header_File_Name);
 
-     int Reporter_Header_File_Name_Size = strlen(Reporter_Header_File_Name);
+     size_t Reporter_Header_File_Name_Size = strlen(Reporter_Header_File_Name);
 
-     int Header_File_List_Size = Pointer_Header_File_Name_Size + Manager_Header_File_Name_Size +
+     size_t Header_File_List_Size = Pointer_Header_File_Name_Size + Manager_Header_File_Name_Size +
 
                                  Reporter_Header_File_Name_Size;
 
@@ -263,11 +263,11 @@ void Multi_Thread_Pointer_Data_Collector::Collect_Informations(){
 
      char * Reporter_Source_File_Name = this->Reporter_Initializer.Get_ClassImplementationFileName();
 
-     int Pointer_Source_File_Name_Size  = strlen(Pointer_Source_File_Name);
+     size_t Pointer_Source_File_Name_Size  = strlen(Pointer_Source_File_Name);
 
-     int Manager_Source_File_Name_Size  = strlen(Manager_Source_File_Name);
+     size_t Manager_Source_File_Name_Size  = strlen(Manager_Source_File_Name);
 
-     int Reporter_Source_File_Name_Size = strlen(Reporter_Source_File_Name);
+     size_t Reporter_Source_File_Name_Size = strlen(Reporter_Source_File_Name);
 
      int Source_File_List_Name_Size = Pointer_Source_File_Name_Size + Manager_Source_File_Name_Size
 
@@ -313,13 +313,13 @@ void Multi_Thread_Pointer_Data_Collector::Collect_Informations(){
 
      char Object_File_Extantion [] = {'.','o','\0'};
 
-     int Pointer_New_Class_Name_Size  = strlen(Pointer_New_Class_Name);
+     size_t Pointer_New_Class_Name_Size  = strlen(Pointer_New_Class_Name);
 
-     int Manager_New_Class_Name_Size  = strlen(Manager_New_Class_Name);
+     size_t Manager_New_Class_Name_Size  = strlen(Manager_New_Class_Name);
 
-     int Reporter_New_Class_Name_Size = strlen(Reporter_New_Class_Name);
+     size_t Reporter_New_Class_Name_Size = strlen(Reporter_New_Class_Name);
 
-     int Object_File_List_Size = Pointer_New_Class_Name_Size + Manager_New_Class_Name_Size +
+     size_t Object_File_List_Size = Pointer_New_Class_Name_Size + Manager_New_Class_Name_Size +
 
                                  Reporter_New_Class_Name_Size;
 
@@ -380,9 +380,9 @@ void Multi_Thread_Pointer_Data_Collector::Collect_Informations(){
 
 void Multi_Thread_Pointer_Data_Collector::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_List_Size = strlen(Information);
+     size_t Information_List_Size = strlen(Information);
 
-     for(int i=0;i<Information_List_Size;i++){
+     for(size_t i=0;i<Information_List_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 

@@ -36,7 +36,7 @@ private:
  void Build_IndexOutOfBoundError_Member_Function();
  void Build_AdressSearchError_Member_Function();
  void Build_PointerAdressChangeError_Member_Function();
- void Write_Space(const char * String, int Line_Number);
+ void Write_Space(const char * String, size_t Line_Number);
  ReportFileBuilder_HeaderWriter Header_Writer;
  Cpp_FileOperations FileManager;
  DirectoryOperations DirectoryManager;

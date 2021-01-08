@@ -84,13 +84,13 @@ void TM_Client_Header_Builder::Determine_Inclusion_Word(){
 
      char Class_Name [ ] = {'T','M','_','C','l','i','e','n','t','\0'};
 
-     int WordSize = strlen(Class_Name);
+     size_t WordSize = strlen(Class_Name);
 
      this->Memory_Delete_Condition = false;
 
      this->Inclusion_Word = new char [10*WordSize];
 
-     for(int i=0;i<WordSize;i++){
+     for(size_t i=0;i<WordSize;i++){
 
         this->Inclusion_Word[i] = this->ConvertToUpper(Class_Name[i]);
      }
@@ -110,15 +110,15 @@ void TM_Client_Header_Builder::Move_Header_File(){
 
      char Directory_Character [] = {'\\','\0'};
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     int New_Include_Directory_Name_Size = strlen(this->New_Include_Directory);
+     size_t New_Include_Directory_Name_Size = strlen(this->New_Include_Directory);
 
-     int Construction_Point_Name_Size = strlen(this->Construction_Point);
+     size_t Construction_Point_Name_Size = strlen(this->Construction_Point);
 
-     int Current_Path_Name_Size = Construction_Point_Name_Size + Header_File_Name_Size;
+     size_t Current_Path_Name_Size = Construction_Point_Name_Size + Header_File_Name_Size;
 
-     int New_Path_Name_Size = New_Include_Directory_Name_Size + Header_File_Name_Size;
+     size_t New_Path_Name_Size = New_Include_Directory_Name_Size + Header_File_Name_Size;
 
      char * Current_Path_Name = new char [10*Current_Path_Name_Size];
 
@@ -258,9 +258,9 @@ void TM_Client_Header_Builder::Build_Header_File(){
 
 void TM_Client_Header_Builder::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 

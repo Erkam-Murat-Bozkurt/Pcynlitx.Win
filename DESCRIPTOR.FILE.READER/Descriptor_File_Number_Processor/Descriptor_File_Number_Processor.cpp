@@ -126,7 +126,7 @@ int Descriptor_File_Number_Processor::Read_Record_Number_From_String_Line(char *
        return this->Record_Number;
     }
 
-    char * Character_Number = new char [10*Number_Size];
+    char * Character_Number = new char [5*Number_Size];
 
     int index_counter = 0;
 
@@ -232,7 +232,7 @@ int Descriptor_File_Number_Processor::Read_Second_Record_Number_From_String_Line
          }
          else{
 
-               char * Character_Number = new char [10*Number_Size];
+               char * Character_Number = new char [5*Number_Size];
 
                int index_counter = 0;
 

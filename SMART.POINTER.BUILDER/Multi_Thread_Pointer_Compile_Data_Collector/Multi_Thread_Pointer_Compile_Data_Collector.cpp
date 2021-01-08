@@ -131,7 +131,7 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Command_Informations
 
      char Compiler_Command [] = {'g','+','+',' ','-','c',' ','-','s','t','d','=','c','+','+','1','4','\0'};
 
-     int String_Size = strlen(Compiler_Command);
+     size_t String_Size = strlen(Compiler_Command);
 
      this->Memory_Delete_Condition = false;
 
@@ -192,13 +192,13 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char Include_Word [] = {'-','i','n','c','l','u','d','e','\0'};
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int New_Header_Name_Size = strlen(New_Header_Name);
+     size_t New_Header_Name_Size = strlen(New_Header_Name);
 
-     int Compiler_input_Command_List_Size = strlen(this->Compile_Command);
+     size_t Compiler_input_Command_List_Size = strlen(this->Compile_Command);
 
-     int Compiler_Command_Size = Compiler_input_Command_List_Size + New_Header_Name_Size +
+     size_t Compiler_Command_Size = Compiler_input_Command_List_Size + New_Header_Name_Size +
 
                                  Source_File_Name_Size + this->include_options_size;
 
@@ -317,11 +317,11 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char * ReportFileBuilder_Header_File_Name = this->Reporter_Initializer->Get_NewHeaderFileName();
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int New_Header_Name_Size = strlen(New_Header_Name);
+     size_t New_Header_Name_Size = strlen(New_Header_Name);
 
-     int Compiler_Command_Size = Source_File_Name_Size + New_Header_Name_Size + strlen(this->Compiler_Command_For_ReportFileBuilder);
+     size_t Compiler_Command_Size = Source_File_Name_Size + New_Header_Name_Size + strlen(this->Compiler_Command_For_ReportFileBuilder);
 
      this->Compiler_Command_For_Memory_Manager = new char [10*Compiler_Command_Size];
 
@@ -459,7 +459,9 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
         Header_Name = this->Pointer_Initializer->Get_DataType_IncludeFileName();
      }
 
-     bool Data_Type_Header_File_Name_Receive_Condition = this->Pointer_Initializer->Get_Data_Type_Include_File_Name_Receive_Condition();
+     bool Data_Type_Header_File_Name_Receive_Condition =
+
+                this->Pointer_Initializer->Get_Data_Type_Include_File_Name_Receive_Condition();
 
      bool Include_Directory_Receive_Condition = false;
 
@@ -488,11 +490,11 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
      char * ReportFileBuilder_Header_File_Name = this->Reporter_Initializer->Get_NewHeaderFileName();
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int New_Header_Name_Size = strlen(New_Header_Name);
+     size_t New_Header_Name_Size = strlen(New_Header_Name);
 
-     int Compiler_Command_Size = Source_File_Name_Size + New_Header_Name_Size + strlen(this->Compiler_Command_For_Memory_Manager);
+     size_t Compiler_Command_Size = Source_File_Name_Size + New_Header_Name_Size + strlen(this->Compiler_Command_For_Memory_Manager);
 
      this->Compiler_Command_For_Pointer = new char [10*Compiler_Command_Size];
 
@@ -642,9 +644,9 @@ void Multi_Thread_Pointer_Compile_Data_Collector::Determine_Compiler_Command_For
 
 void Multi_Thread_Pointer_Compile_Data_Collector::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_List_Size = strlen(Information);
+     size_t Information_List_Size = strlen(Information);
 
-     for(int i=0;i<Information_List_Size;i++){
+     for(size_t i=0;i<Information_List_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 

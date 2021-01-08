@@ -1077,25 +1077,25 @@ void Thread_Manager_Builder::Determine_Compiler_Command(){
      char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
 
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     int Locker_Class_Header_File_Name_Size = strlen(Locker_Class_Header_File_Name);
+     size_t Locker_Class_Header_File_Name_Size = strlen(Locker_Class_Header_File_Name);
 
-     int Thread_Data_Manager_Header_Builder_String_Size = strlen(Thread_Data_Manager_Header);
+     size_t Thread_Data_Manager_Header_Builder_String_Size = strlen(Thread_Data_Manager_Header);
 
-     int Process_Command_Name_Size = strlen(Process_Command);
+     size_t Process_Command_Name_Size = strlen(Process_Command);
 
-     int Thread_Library_Name_Size = strlen(Thread_Library_Name);
+     size_t Thread_Library_Name_Size = strlen(Thread_Library_Name);
 
-     int Include_Word_Name_Size = strlen(Include_Word);
+     size_t Include_Word_Name_Size = strlen(Include_Word);
 
-     int Include_Directory_Determiner_Size = strlen(Include_Directory_Determiner);
+     size_t Include_Directory_Determiner_Size = strlen(Include_Directory_Determiner);
 
-     int Current_Directory_Name_Size = strlen(this->Directory_Manager.GetCurrentlyWorkingDirectory());
+     size_t Current_Directory_Name_Size = strlen(this->Directory_Manager.GetCurrentlyWorkingDirectory());
 
-     int Compiler_Command_Size = Source_File_Name_Size + Header_File_Name_Size
+     size_t Compiler_Command_Size = Source_File_Name_Size + Header_File_Name_Size
 
                                 + Process_Command_Name_Size + Thread_Library_Name_Size
 
@@ -1170,15 +1170,15 @@ void Thread_Manager_Builder::Remove_Source_File(){
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     int Construction_Point_Size = strlen(Construction_Point);
+     size_t Construction_Point_Size = strlen(Construction_Point);
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int Locker_Class_Name_Size = strlen(Locker_Class_Name);
+     size_t Locker_Class_Name_Size = strlen(Locker_Class_Name);
 
-     int Source_File_Path_Size = Source_File_Name_Size + Construction_Point_Size;
+     size_t Source_File_Path_Size = Source_File_Name_Size + Construction_Point_Size;
 
-     int Locker_Class_Path_Size = Locker_Class_Name_Size + Construction_Point_Size;
+     size_t Locker_Class_Path_Size = Locker_Class_Name_Size + Construction_Point_Size;
 
      char * Source_File_Path = new char [10*Source_File_Path_Size];
 
@@ -1221,11 +1221,11 @@ void Thread_Manager_Builder::Remove_Header_Extra_File(){
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     int Construction_Point_Size = strlen(Construction_Point);
+     size_t Construction_Point_Size = strlen(Construction_Point);
 
-     int Header_File_Name_Size = strlen(Header_Extra_File);
+     size_t Header_File_Name_Size = strlen(Header_Extra_File);
 
-     int File_Path_Size = Construction_Point_Size  + Header_File_Name_Size;
+     size_t File_Path_Size = Construction_Point_Size  + Header_File_Name_Size;
 
      char * File_Path = new char [10*File_Path_Size];
 
@@ -1255,15 +1255,15 @@ void Thread_Manager_Builder::Move_Header_File(){
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     int Target_Directory_Size = strlen(this->Constructed_Include_Directory);
+     size_t Target_Directory_Size = strlen(this->Constructed_Include_Directory);
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     int Construction_Point_Size = strlen(Construction_Point);
+     size_t Construction_Point_Size = strlen(Construction_Point);
 
-     int Current_Path_Size = Construction_Point_Size + Header_File_Name_Size;
+     size_t Current_Path_Size = Construction_Point_Size + Header_File_Name_Size;
 
-     int Target_Path_Size = Target_Directory_Size + Header_File_Name_Size;
+     size_t Target_Path_Size = Target_Directory_Size + Header_File_Name_Size;
 
      char * Current_Path = new char [10*Current_Path_Size];
 
@@ -1297,7 +1297,7 @@ void Thread_Manager_Builder::Move_Header_File(){
 
      char Locker_Class_Header_File_Name [] = "Thread_Locker.h";
 
-     int Locker_Class_Header_File_Current_Path_Size = strlen(Locker_Class_Header_File_Name) + Construction_Point_Size;
+     size_t Locker_Class_Header_File_Current_Path_Size = strlen(Locker_Class_Header_File_Name) + Construction_Point_Size;
 
      char * Locker_Path = new char [10*Locker_Class_Header_File_Current_Path_Size];
 
@@ -1311,7 +1311,7 @@ void Thread_Manager_Builder::Move_Header_File(){
 
      Locker_Path[index_counter] = '\0';
 
-     int Locker_Target_Path_Size = Target_Directory_Size + strlen(Locker_Class_Header_File_Name);
+     size_t Locker_Target_Path_Size = Target_Directory_Size + strlen(Locker_Class_Header_File_Name);
 
      char * Locker_Target_Path = new char [10*Locker_Target_Path_Size];
 
@@ -1374,9 +1374,9 @@ void Thread_Manager_Builder::Run_System_Commands(){
 
 void Thread_Manager_Builder::Place_Information(char ** Pointer, char * Information, int * Counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
         (*Pointer)[(*Counter)] = Information[i];
 

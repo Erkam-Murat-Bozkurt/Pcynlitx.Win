@@ -80,6 +80,8 @@ private:
   void Determine_Data_Record_Numbers();
   void Print_End_of_Program();
   void Print_Read_Error_Information();
+  bool Check_Descriptor_File_Name(const char * FileName);
+  bool Check_Descriptor_File_Name(char * FileName);
   char * DescriptorFileName;
   char * DescriptorFileDirectory;
   char * ConstString;
@@ -89,6 +91,7 @@ private:
   bool Memory_Delete_Condition;
   bool DescriptorFileName_Receive_Condition;
   bool DescriptorFileDirectory_Receive_Condition;
+  bool is_descriptor_file_name_true;
 };
 
 #endif /* DESCRIPTOR_FILE_DATA_COLLECTOR_H */

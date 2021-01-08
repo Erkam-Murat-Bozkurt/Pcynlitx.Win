@@ -124,294 +124,300 @@ void Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
 
 void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 
-     int * Location_Number_holder = new int [10*this->Source_File_Location_Number];
+     if(this->Source_File_Location_Number > 0){
 
-     this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Location_Number_holder,10*this->Source_File_Location_Number);
+        int * Location_Number_holder = new int [5*this->Source_File_Location_Number];
 
-     this->Source_File_Locations_Pointer = new Source_File_Location_Data_Type [10*this->Source_File_Location_Number];
+        this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Location_Number_holder,10*this->Source_File_Location_Number);
 
-     this->Source_File_Locations = new char * [10*this->Source_File_Location_Number];
+        this->Source_File_Locations_Pointer = new Source_File_Location_Data_Type [10*this->Source_File_Location_Number];
 
-     for(int i=0;i<this->Source_File_Location_Number;i++){
+        this->Source_File_Locations = new char * [5*this->Source_File_Location_Number];
 
-         char * String_Line = this->Initializer_Pointer->Get_Source_File_Location_List()[i];
+        for(int i=0;i<this->Source_File_Location_Number;i++){
 
-         if(this->Check_Empty_Decleration(String_Line)){
+            char * String_Line = this->Initializer_Pointer->Get_Source_File_Location_List()[i];
 
-            this->Print_Read_Error_Information();
+            if(this->Check_Empty_Decleration(String_Line)){
 
-            std::cerr << "\n     In description of \"Source_File_Locations\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+               std::cerr << "\n     In description of \"Source_File_Locations\",";
 
-            std::cerr << "\n\n     but there is no decleration at that line. ";
+               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-            std::cerr << "\n\n     Please check \"Source_File_Locations\" description.";
+               std::cerr << "\n\n     but there is no decleration at that line. ";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Source_File_Locations\" description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+
+            int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
+
+            if(Location_Number == -1){
+
+               this->Print_Read_Error_Information();
+
+               std::cerr << "\n     In description of \"Source_File_Locations\",";
+
+               std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
+
+               std::cerr << "\n\n     Location number data can not be readed.";
+
+               std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+
+            if(Location_Number == -2){
+
+               this->Print_Read_Error_Information();
+
+               std::cerr << "\n     In description of \"Source_File_Locations\",";
+
+               std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
+
+               std::cerr << "\n\n     Location number data can not be readed. Please check description.";
+
+               std::cerr << "\n\n     The process will be interrupted ..";
+
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+
+            Location_Number_holder[i] = Location_Number;
+
+            bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Location_Number_holder,this->Source_File_Location_Number);
+
+            if(Number_Repitation){
+
+               this->Print_Read_Error_Information();
+
+               std::cerr << "\n     In \"Source_File_Locations\" description,";
+
+               std::cerr << "\n\n     A number for source file locations readed more than ones time !";
+
+               std::cerr << "\n\n     Each location must have different number ..";
+
+               std::cerr << "\n\n     Please check the declerations";
+
+               std::cerr << "\n\n     Process will be interrupted ..";
+
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+
+            int String_Size = strlen(String_Line);
+
+            this->Source_File_Locations_Pointer[i].Location_Number = Location_Number;
+
+            this->Source_File_Locations_Pointer[i].Source_File_Location = new char [10*String_Size];
+
+            this->Source_File_Locations[i] = new char [5*String_Size];
+
+            this->Place_String(&(this->Source_File_Locations_Pointer[i].Source_File_Location),String_Line);
+
+            this->Place_String(&(this->Source_File_Locations[i]),String_Line);
          }
 
-         int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
-
-         if(Location_Number == -1){
-
-            this->Print_Read_Error_Information();
-
-            std::cerr << "\n     In description of \"Source_File_Locations\",";
-
-            std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
-
-            std::cerr << "\n\n     Location number data can not be readed.";
-
-            std::cerr << "\n\n     Please check description. The process will be interrupted ..";
-
-            this->Print_End_of_Program();
-
-            exit(1);
-         }
-
-         if(Location_Number == -2){
-
-            this->Print_Read_Error_Information();
-
-            std::cerr << "\n     In description of \"Source_File_Locations\",";
-
-            std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
-
-            std::cerr << "\n\n     Location number data can not be readed. Please check description.";
-
-            std::cerr << "\n\n     The process will be interrupted ..";
-
-            this->Print_End_of_Program();
-
-            exit(1);
-         }
-
-         Location_Number_holder[i] = Location_Number;
-
-         bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Location_Number_holder,this->Source_File_Location_Number);
-
-         if(Number_Repitation){
-
-             this->Print_Read_Error_Information();
-
-             std::cerr << "\n     In \"Source_File_Locations\" description,";
-
-             std::cerr << "\n\n     A number for source file locations readed more than ones time !";
-
-             std::cerr << "\n\n     Each location must have different number ..";
-
-             std::cerr << "\n\n     Please check the declerations";
-
-             std::cerr << "\n\n     Process will be interrupted ..";
-
-             this->Print_End_of_Program();
-
-             exit(1);
-         }
-
-         int String_Size = strlen(String_Line);
-
-         this->Source_File_Locations_Pointer[i].Location_Number = Location_Number;
-
-         this->Source_File_Locations_Pointer[i].Source_File_Location = new char [10*String_Size];
-
-         this->Source_File_Locations[i] = new char [10*String_Size];
-
-         this->Place_String(&(this->Source_File_Locations_Pointer[i].Source_File_Location),String_Line);
-
-         this->Place_String(&(this->Source_File_Locations[i]),String_Line);
+         delete [] Location_Number_holder;
      }
-
-     delete [] Location_Number_holder;
 }
 
 void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
-     int * Source_File_Names_Number_Holder = new int [10*this->Source_File_Number];
+     if(this->Source_File_Number > 0) {
 
-     this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Source_File_Names_Number_Holder,2*this->Source_File_Number);
+        int * Source_File_Names_Number_Holder = new int [5*this->Source_File_Number];
 
-     this->Source_File_Names = new char * [10*this->Source_File_Number];
+        this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Source_File_Names_Number_Holder,2*this->Source_File_Number);
 
-     char Directory_Character [] = {'\\','\0'};
+        this->Source_File_Names = new char * [5*this->Source_File_Number];
 
-     int Directory_Character_Name_Size = strlen(Directory_Character);
+        char Directory_Character [] = {'\\','\0'};
 
-     for(int i=0;i<this->Source_File_Number;i++){
+        int Directory_Character_Name_Size = strlen(Directory_Character);
 
-         char * String_Line = this->Initializer_Pointer->Get_Source_File_List()[i];
+        for(int i=0;i<this->Source_File_Number;i++){
 
-         if(this->Check_Empty_Decleration(String_Line)){
+            char * String_Line = this->Initializer_Pointer->Get_Source_File_List()[i];
 
-            this->Print_Read_Error_Information();
+            if(this->Check_Empty_Decleration(String_Line)){
 
-            std::cerr << "\n     In description of \"Source_File_Names\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+               std::cerr << "\n     In description of \"Source_File_Names\",";
 
-            std::cerr << "\n\n     but there is no decleration at that line. ";
+               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-            std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
+               std::cerr << "\n\n     but there is no decleration at that line. ";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
-         }
+               this->Print_End_of_Program();
 
-         char * Source_File_Location = nullptr;
+               exit(1);
+            }
 
-         int String_Size = strlen(String_Line);
+            char * Source_File_Location = nullptr;
 
-         int Source_File_Names_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
+            int String_Size = strlen(String_Line);
 
-         char Source_File_Number [] = "source file number";
+            int Source_File_Names_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
-         this->Print_Brace_Data_Read_Error(Source_File_Names_Number,Source_File_Number);
+            char Source_File_Number [] = "source file number";
 
-         Source_File_Names_Number_Holder[i] = Source_File_Names_Number;
+            this->Print_Brace_Data_Read_Error(Source_File_Names_Number,Source_File_Number);
 
-         bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Source_File_Names_Number_Holder,this->Source_File_Number);
+            Source_File_Names_Number_Holder[i] = Source_File_Names_Number;
 
-         if(Number_Repitation){
+            bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Source_File_Names_Number_Holder,this->Source_File_Number);
 
-            this->Print_Read_Error_Information();
+            if(Number_Repitation){
 
-            std::cerr << "\n     In \"Source_File_Names\" description,";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     The same class number readed more than ones time ..";
+               std::cerr << "\n     In \"Source_File_Names\" description,";
 
-            std::cerr << "\n\n     Please check class number declerations";
+               std::cerr << "\n\n     The same class number readed more than ones time ..";
 
-            std::cerr << "\n\n     Process will be interrupted ..";
+               std::cerr << "\n\n     Please check class number declerations";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     Process will be interrupted ..";
 
-            exit(1);
-         }
+               this->Print_End_of_Program();
 
-         int Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
+               exit(1);
+            }
 
-         char Source_File_Location_word [] = "source file location";
+            int Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
 
-         this->Print_Brace_Data_Read_Error(Location_Number,Source_File_Location_word);
+            char Source_File_Location_word [] = "source file location";
 
-         for(int k=0;k<this->Source_File_Location_Number;k++){
+            this->Print_Brace_Data_Read_Error(Location_Number,Source_File_Location_word);
 
-             if(Location_Number == this->Source_File_Locations_Pointer[k].Location_Number){
+            for(int k=0;k<this->Source_File_Location_Number;k++){
 
-                Source_File_Location = this->Source_File_Locations_Pointer[k].Source_File_Location;
-             }
-         }
+                if(Location_Number == this->Source_File_Locations_Pointer[k].Location_Number){
 
-         if(Source_File_Location == nullptr){
+                   Source_File_Location = this->Source_File_Locations_Pointer[k].Source_File_Location;
+                }
+            }
 
-           this->Print_Read_Error_Information();
+            if(Source_File_Location == nullptr){
 
-           std::cerr << "\n\n     Source File location can not be determined !";
+               this->Print_Read_Error_Information();
 
-           std::cerr << "\n\n     Source file location number is wrong.";
+               std::cerr << "\n\n     Source File location can not be determined !";
 
-           std::cerr << "\n\n     There is no location which descripted with this number.";
+               std::cerr << "\n\n     Source file location number is wrong.";
 
-           std::cerr << "\n\n     Please check sorce file location number decleration.";
+               std::cerr << "\n\n     There is no location which descripted with this number.";
 
-           std::cerr << "\n\n     Process will be interrupted ..";
+               std::cerr << "\n\n     Please check sorce file location number decleration.";
 
-           this->Print_End_of_Program();
+               std::cerr << "\n\n     Process will be interrupted ..";
 
-           exit(1);
-         }
+               this->Print_End_of_Program();
 
-         int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
+               exit(1);
+            }
 
-         int Location_Name_Size = strlen(Source_File_Location);
+            int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
 
-         int Source_File_Name_Size = String_Size + Location_Name_Size + Directory_Character_Name_Size;
+            int Location_Name_Size = strlen(Source_File_Location);
 
-         this->Source_File_Names[i] = new char [10*Source_File_Name_Size];
+            int Source_File_Name_Size = String_Size + Location_Name_Size + Directory_Character_Name_Size;
 
-         int index_counter = 0;
+            this->Source_File_Names[i] = new char [5*Source_File_Name_Size];
 
-         for(int k=0;k<Location_Name_Size;k++){
+            int index_counter = 0;
 
-             this->Source_File_Names[i][index_counter] = Source_File_Location[k];
+            for(int k=0;k<Location_Name_Size;k++){
 
-             index_counter++;
-         }
+                this->Source_File_Names[i][index_counter] = Source_File_Location[k];
 
-         for(int k=0;k<Directory_Character_Name_Size;k++){
+                index_counter++;
+            }
 
-             this->Source_File_Names[i][index_counter] = Directory_Character[k];
+            for(int k=0;k<Directory_Character_Name_Size;k++){
 
-             index_counter++;
-         }
+                this->Source_File_Names[i][index_counter] = Directory_Character[k];
 
-         for(int k=Start_Point;k<String_Size;k++){
+                index_counter++;
+            }
 
-             this->Source_File_Names[i][index_counter] = String_Line[k];
+            for(int k=Start_Point;k<String_Size;k++){
 
-             index_counter++;
-         }
+                this->Source_File_Names[i][index_counter] = String_Line[k];
 
-         this->Source_File_Names[i][index_counter] = '\0';
+                index_counter++;
+            }
 
-         int File_Name_Size = String_Size - Start_Point;
+            this->Source_File_Names[i][index_counter] = '\0';
 
-         char * Source_File_Name_Pointer = new char [10*File_Name_Size];
+            int File_Name_Size = String_Size - Start_Point;
 
-         index_counter = 0;
+            char * Source_File_Name_Pointer = new char [5*File_Name_Size];
 
-         for(int k=Start_Point;k<String_Size;k++){
+            index_counter = 0;
 
-             Source_File_Name_Pointer[index_counter] = String_Line[k];
+            for(int k=Start_Point;k<String_Size;k++){
 
-             index_counter++;
-         }
+                Source_File_Name_Pointer[index_counter] = String_Line[k];
 
-         Source_File_Name_Pointer[index_counter] = '\0';
+                index_counter++;
+            }
 
-         bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(Source_File_Location,Source_File_Name_Pointer);
+            Source_File_Name_Pointer[index_counter] = '\0';
 
-         if(!is_that_file_exist){
+            bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(Source_File_Location,Source_File_Name_Pointer);
 
-             this->Print_Read_Error_Information();
+            if(!is_that_file_exist){
 
-             std::cerr << "\n     In description of \"Source_File_Names\",";
+               this->Print_Read_Error_Information();
 
-             std::cerr << "\n\n     there is no a file with name \"" << Source_File_Name_Pointer << "\" in directory -";
+               std::cerr << "\n     In description of \"Source_File_Names\",";
 
-             std::cerr << "\n\n    " << Source_File_Location;
+               std::cerr << "\n\n     there is no a file with name \"" << Source_File_Name_Pointer << "\" in directory -";
 
-             std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
+               std::cerr << "\n\n    " << Source_File_Location;
 
-             std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
 
-             this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-             exit(1);
-         }
+               this->Print_End_of_Program();
 
-         delete [] Source_File_Name_Pointer;
-     }
+               exit(1);
+            }
 
-     if(this->Source_File_Locations_Pointer != nullptr){
-
-        for(int i=0;i<this->Source_File_Location_Number;i++){
-
-           this->Clear_Pointer_Memory(&(this->Source_File_Locations_Pointer[i].Source_File_Location));
+            delete [] Source_File_Name_Pointer;
         }
 
-        delete [] this->Source_File_Locations_Pointer;
-     }
+        if(this->Source_File_Locations_Pointer != nullptr){
 
-     delete [] Source_File_Names_Number_Holder;
+           for(int i=0;i<this->Source_File_Location_Number;i++){
+
+               this->Clear_Pointer_Memory(&(this->Source_File_Locations_Pointer[i].Source_File_Location));
+            }
+
+            delete [] this->Source_File_Locations_Pointer;
+        }
+
+        delete [] Source_File_Names_Number_Holder;
+     }
 }
 
 

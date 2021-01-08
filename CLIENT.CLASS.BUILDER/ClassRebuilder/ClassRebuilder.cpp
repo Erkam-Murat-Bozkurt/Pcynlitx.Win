@@ -429,7 +429,7 @@ bool ClassRebuilder::Is_This_Method_Copy_Constructor(int ParameterNumber,char **
 
         int base_class_constructor_name_size = strlen(Base_Class_Name);
 
-        char * NameBuffer = new char [10*base_class_constructor_name_size];
+        char * NameBuffer = new char [5*base_class_constructor_name_size];
 
         int index_counter = 0;
 
@@ -491,7 +491,7 @@ void ClassRebuilder::Receive_New_Class_Name(){
 
      int String_Size = strlen(this->Initializer.Get_New_Class_Name());
 
-     this->New_Class_Name = new char [10*String_Size];
+     this->New_Class_Name = new char [5*String_Size];
 
      this->Place_String(&this->New_Class_Name,this->Initializer.Get_New_Class_Name(),String_Size);
 }
@@ -502,7 +502,7 @@ void ClassRebuilder::Receive_Object_File_Name(){
 
      int String_Size = strlen(File_Name);
 
-     this->Object_File_Name = new char [10*String_Size];
+     this->Object_File_Name = new char [5*String_Size];
 
      this->Place_String(&this->Object_File_Name,File_Name,String_Size);
 }
@@ -514,9 +514,9 @@ void ClassRebuilder::Print_System_Commands(){
 
 void ClassRebuilder::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 
@@ -524,9 +524,9 @@ void ClassRebuilder::Place_Information(char ** Pointer, char * Information, int 
      }
 }
 
-void ClassRebuilder::Place_String(char ** Pointer, char * String, int String_Size){
+void ClassRebuilder::Place_String(char ** Pointer, char * String, size_t String_Size){
 
-     for(int i=0;i<String_Size;i++){
+     for(size_t i=0;i<String_Size;i++){
 
         (*Pointer)[i] = String[i];
      }

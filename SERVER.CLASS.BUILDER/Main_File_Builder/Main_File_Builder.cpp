@@ -348,9 +348,9 @@ void Main_File_Builder::Move_Header_File_List_To_New_Include_Directory(){
 
 void Main_File_Builder::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 
@@ -360,9 +360,9 @@ void Main_File_Builder::Place_Information(char ** Pointer, char * Information, i
 
 void Main_File_Builder::Write_Space(const char * String){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<String_Size;i++){
+     for(size_t i=0;i<String_Size;i++){
 
          this->File_Manager.WriteToFile(" ");
      }

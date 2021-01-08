@@ -15,13 +15,13 @@ void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Count(int count) { // How ma
 
      this->type_count = count;
 
-     this->New_Class_Name = new char * [5*this->type_count];
+     this->New_Class_Name = new char * [10*this->type_count];
 
-     this->Data_Type = new char * [5*this->type_count];
+     this->Data_Type = new char * [10*this->type_count];
 
-     this->Data_Type_Include_Directory = new char * [5*this->type_count];
+     this->Data_Type_Include_Directory = new char * [10*this->type_count];
 
-     this->Instance_Name = new char * [5*this->type_count];
+     this->Instance_Name = new char * [10*this->type_count];
 
      this->Memory_Delete_Status = false;
 }
@@ -68,11 +68,11 @@ void Smart_Pointer_Data_Conveyor::Clear_Dynamic_Memory(){
 
 void Smart_Pointer_Data_Conveyor::Receive_Data_Type(char * type, int type_number){
 
-     int type_name_size = strlen(type);
+     size_t type_name_size = strlen(type);
 
-     this->Data_Type[type_number] = new char [5*type_name_size];
+     this->Data_Type[type_number] = new char [10*type_name_size];
 
-     for(int k=0;k<type_name_size;k++){
+     for(size_t k=0;k<type_name_size;k++){
 
         this->Data_Type[type_number][k] = type[k];
      }
@@ -82,11 +82,11 @@ void Smart_Pointer_Data_Conveyor::Receive_Data_Type(char * type, int type_number
 
 void Smart_Pointer_Data_Conveyor::Receive_New_Class_Name(char * class_name, int type_number){
 
-     int class_name_size = strlen(class_name);
+     size_t class_name_size = strlen(class_name);
 
-     this->New_Class_Name[type_number] = new char [5*class_name_size];
+     this->New_Class_Name[type_number] = new char [10*class_name_size];
 
-     for(int k=0;k<class_name_size;k++){
+     for(size_t k=0;k<class_name_size;k++){
 
          this->New_Class_Name[type_number][k] = class_name[k];
      }
@@ -96,11 +96,11 @@ void Smart_Pointer_Data_Conveyor::Receive_New_Class_Name(char * class_name, int 
 
 void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Instance_Name(char * Instance_Name, int type_number){
 
-     int instance_name_size = strlen(Instance_Name);
+     size_t instance_name_size = strlen(Instance_Name);
 
-     this->Instance_Name[type_number] = new char [5*instance_name_size];
+     this->Instance_Name[type_number] = new char [10*instance_name_size];
 
-     for(int k=0;k<instance_name_size;k++){
+     for(size_t k=0;k<instance_name_size;k++){
 
          this->Instance_Name[type_number][k] = Instance_Name[k];
      }
@@ -110,11 +110,11 @@ void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Instance_Name(char * Instanc
 
 void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Include_Directory(char * Directory, int type_number){
 
-     int directory_name_size = strlen(Directory);
+     size_t directory_name_size = strlen(Directory);
 
-     this->Data_Type_Include_Directory[type_number] = new char [5*directory_name_size];
+     this->Data_Type_Include_Directory[type_number] = new char [10*directory_name_size];
 
-     for(int k=0;k<directory_name_size;k++){
+     for(size_t k=0;k<directory_name_size;k++){
 
         this->Data_Type_Include_Directory[type_number][k] = Directory[k];
      }

@@ -366,7 +366,7 @@ void Kernel::Remove_Compiler_Output_File(){
 
      int Construction_Point_Name_Size = strlen(this->Description_Reader.Get_Construction_Point());
 
-     this->Compiler_Output_File_Path = new char [10*Construction_Point_Name_Size];
+     this->Compiler_Output_File_Path = new char [5*Construction_Point_Name_Size];
 
      int index_counter = 0;
 

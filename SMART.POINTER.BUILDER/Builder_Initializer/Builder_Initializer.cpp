@@ -141,9 +141,9 @@ void Builder_Initializer::Place_String(char ** Pointer, const char * String, int
 
 void Builder_Initializer::Place_Information(char ** Pointer, char * Information, int * index_counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
         (*Pointer)[(*index_counter)] = Information[i];
 
@@ -155,7 +155,7 @@ void Builder_Initializer::Set_New_Class_Name_Directly(char * New_Class_Name){
 
      this->Direct_New_Class_Name_Determination = true;
 
-     int String_Size = strlen(New_Class_Name);
+     size_t String_Size = strlen(New_Class_Name);
 
      this->New_Class_Name = new char [10*String_Size];
 
@@ -166,7 +166,7 @@ void Builder_Initializer::Set_New_Class_Name_Directly(const char * New_Class_Nam
 
      this->Direct_New_Class_Name_Determination = true;
 
-     int String_Size = strlen(New_Class_Name);
+     size_t String_Size = strlen(New_Class_Name);
 
      this->New_Class_Name = new char [10*String_Size];
 
@@ -175,16 +175,16 @@ void Builder_Initializer::Set_New_Class_Name_Directly(const char * New_Class_Nam
 
 void Builder_Initializer::Receive_Data_Type(const char * DataType){
 
-     int String_Size = strlen(DataType);
+     size_t String_Size = strlen(DataType);
 
-     this->Data_Type = new char [10*String_Size];
+     this->Data_Type = new char [5*String_Size];
 
      this->Place_String(&this->Data_Type,DataType,String_Size);
 }
 
 void Builder_Initializer::Receive_Data_Type(char * DataType){
 
-     int String_Size = strlen(DataType);
+     size_t String_Size = strlen(DataType);
 
      this->Data_Type = new char [10*String_Size];
 
@@ -193,7 +193,7 @@ void Builder_Initializer::Receive_Data_Type(char * DataType){
 
 void Builder_Initializer::Receive_Generic_Class_Name(const char * Class_Name){
 
-     int String_Size = strlen(Class_Name);
+     size_t String_Size = strlen(Class_Name);
 
      this->Generic_Class_Name = new char [10*String_Size];
 
@@ -202,7 +202,7 @@ void Builder_Initializer::Receive_Generic_Class_Name(const char * Class_Name){
 
 void Builder_Initializer::Receive_Generic_Class_Name(char * Class_Name){
 
-     int String_Size = strlen(Class_Name);
+     size_t String_Size = strlen(Class_Name);
 
      this->Generic_Class_Name = new char [10*String_Size];
 
@@ -213,7 +213,7 @@ void Builder_Initializer::Receive_Data_Type_Include_File_Name(const char * Inclu
 
      this->Data_Type_Include_File_Name_Receive_Condition = true;
 
-     int String_Size = strlen(Include_File_Name);
+     size_t String_Size = strlen(Include_File_Name);
 
      this->Data_Type_Include_File_Name = new char [10*String_Size];
 
@@ -224,7 +224,7 @@ void Builder_Initializer::Receive_Data_Type_Include_File_Name(char * Include_Fil
 
      this->Data_Type_Include_File_Name_Receive_Condition = true;
 
-     int String_Size = strlen(Include_File_Name);
+     size_t String_Size = strlen(Include_File_Name);
 
      this->Data_Type_Include_File_Name = new char [10*String_Size];
 
@@ -235,7 +235,7 @@ void Builder_Initializer::Receive_Entered_Class_Name(const char * New_Class_Name
 
      this->Entered_Class_Name_Receive_Conditon = true;
 
-     int String_Size = strlen(New_Class_Name);
+     size_t String_Size = strlen(New_Class_Name);
 
      this->Entered_Class_Name = new char [10*String_Size];
 
@@ -246,7 +246,7 @@ void Builder_Initializer::Receive_Entered_Class_Name(char * New_Class_Name){
 
      this->Entered_Class_Name_Receive_Conditon = true;
 
-     int String_Size = strlen(New_Class_Name);
+     size_t String_Size = strlen(New_Class_Name);
 
      this->Entered_Class_Name = new char [10*String_Size];
 
@@ -255,7 +255,7 @@ void Builder_Initializer::Receive_Entered_Class_Name(char * New_Class_Name){
 
 void Builder_Initializer::Receive_Base_Directory(const char * Base_Directory){
 
-     int String_Size = strlen(Base_Directory);
+     size_t String_Size = strlen(Base_Directory);
 
      this->Base_Directory = new char [10*String_Size];
 
@@ -264,7 +264,7 @@ void Builder_Initializer::Receive_Base_Directory(const char * Base_Directory){
 
 void Builder_Initializer::Receive_Base_Directory(char * Base_Directory){
 
-     int String_Size = strlen(Base_Directory);
+     size_t String_Size = strlen(Base_Directory);
 
      this->Base_Directory = new char [10*String_Size];
 
@@ -273,7 +273,7 @@ void Builder_Initializer::Receive_Base_Directory(char * Base_Directory){
 
 void Builder_Initializer::Receive_Construction_Point(const char * Construction_Point){
 
-     int String_Size = strlen(Construction_Point);
+     size_t String_Size = strlen(Construction_Point);
 
      this->Construction_Point = new char [10*String_Size];
 
@@ -282,7 +282,7 @@ void Builder_Initializer::Receive_Construction_Point(const char * Construction_P
 
 void Builder_Initializer::Receive_Construction_Point(char * Construction_Point){
 
-     int String_Size = strlen(Construction_Point);
+     size_t String_Size = strlen(Construction_Point);
 
      this->Construction_Point = new char [10*String_Size];
 
@@ -317,13 +317,13 @@ void Builder_Initializer::Set_Default_New_Class_Name(){
 
      char Subline_Character [] = {'_','\0'};
 
-     int Generic_Class_Name_WordSize = strlen(this->Generic_Class_Name);
+     size_t Generic_Class_Name_WordSize = strlen(this->Generic_Class_Name);
 
-     int DataType_Word_Size = strlen(this->Data_Type);
+     size_t DataType_Word_Size = strlen(this->Data_Type);
 
-     int TypeWord_Size = strlen(TypeWord);
+     size_t TypeWord_Size = strlen(TypeWord);
 
-     int NewClass_NameSize = Generic_Class_Name_WordSize +  DataType_Word_Size + TypeWord_Size;
+     size_t NewClass_NameSize = Generic_Class_Name_WordSize +  DataType_Word_Size + TypeWord_Size;
 
      this->New_Class_Name = new char [10*NewClass_NameSize];
 
@@ -344,13 +344,13 @@ void Builder_Initializer::Set_Default_New_Class_Name(){
 
 void Builder_Initializer::Set_Entered_New_Class_Name(){
 
-     int Generic_Class_Name_WordSize = strlen(this->Generic_Class_Name);
+     size_t Generic_Class_Name_WordSize = strlen(this->Generic_Class_Name);
 
-     int Entered_Class_Name_Size = strlen(this->Entered_Class_Name);
+     size_t Entered_Class_Name_Size = strlen(this->Entered_Class_Name);
 
      char Subline_Character [] = {'_','\0'};
 
-     int NewClass_NameSize = Generic_Class_Name_WordSize + Entered_Class_Name_Size;
+     size_t NewClass_NameSize = Generic_Class_Name_WordSize + Entered_Class_Name_Size;
 
      this->New_Class_Name = new char [10*NewClass_NameSize];
 
@@ -369,7 +369,7 @@ void Builder_Initializer::Determine_New_Header_File_Name(){
 
      char Header_Add_Word [] = {'.','h','\0'};
 
-     int NameSize = strlen(this->New_Class_Name);
+     size_t NameSize = strlen(this->New_Class_Name);
 
      this->New_Header_File_Name = new char [10*NameSize];
 
@@ -386,11 +386,11 @@ void Builder_Initializer::Determine_Class_Implementation_File_Name(){
 
      char File_Type [] = {'.','c','p','p','\0'};
 
-     int Class_Name_Size = strlen(this->Get_NewClassName());
+     size_t Class_Name_Size = strlen(this->Get_NewClassName());
 
-     int File_Type_Name_Size = strlen(File_Type);
+     size_t File_Type_Name_Size = strlen(File_Type);
 
-     int Implementation_File_Name_Size = Class_Name_Size + File_Type_Name_Size;
+     size_t Implementation_File_Name_Size = Class_Name_Size + File_Type_Name_Size;
 
      this->Class_Implementation_File_Name = new char [10*Implementation_File_Name_Size];
 
@@ -405,7 +405,7 @@ void Builder_Initializer::Determine_Class_Implementation_File_Name(){
 
 void Builder_Initializer::Determine_Constructor_Function_Names(){
 
-     int String_Size = strlen(this->New_Class_Name);
+     size_t String_Size = strlen(this->New_Class_Name);
 
      this->Constructor = new char [10*String_Size];
 
@@ -413,7 +413,7 @@ void Builder_Initializer::Determine_Constructor_Function_Names(){
 
      char Tilda_Character [] = {'~','\0'};
 
-     int DestructorNameSize = strlen(this->Constructor) + 1;
+     size_t DestructorNameSize = strlen(this->Constructor) + 1;
 
      int index_counter = 0;
 

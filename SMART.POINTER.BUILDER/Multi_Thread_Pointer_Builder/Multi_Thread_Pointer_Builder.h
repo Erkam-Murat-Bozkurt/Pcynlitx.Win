@@ -43,7 +43,7 @@ private:
  void Start_Implementation_File_Construction();
  void Build_Constructors();
  void Build_Destructor();
- void Write_Space(const char * String, int Line_Number);
+ void Write_Space(const char * String, size_t Line_Number);
  void Build_NewMemory_Member_Functions();
  void Build_DeleteMemory_Member_Function();
  void Build_ReceiveIndexBound_Member_Function();

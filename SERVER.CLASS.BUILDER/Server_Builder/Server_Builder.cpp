@@ -729,9 +729,9 @@ void Server_Builder::Update_String_Length(char * String, int * String_Length){
 
 void Server_Builder::Write_Space(const char * String){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<String_Size+1;i++){
+     for(size_t i=0;i<String_Size+1;i++){
 
          this->FileManager.WriteToFile(" ");
      }
@@ -739,9 +739,9 @@ void Server_Builder::Write_Space(const char * String){
 
 void Server_Builder::Write_Space(char * String){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<String_Size+1;i++){
+     for(size_t i=0;i<String_Size+1;i++){
 
          this->FileManager.WriteToFile(" ");
      }

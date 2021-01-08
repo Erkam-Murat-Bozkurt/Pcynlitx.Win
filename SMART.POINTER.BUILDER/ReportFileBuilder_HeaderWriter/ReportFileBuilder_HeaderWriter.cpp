@@ -101,11 +101,11 @@ char ReportFileBuilder_HeaderWriter::ConvertToUpper(char character){
 
 void ReportFileBuilder_HeaderWriter::Determine_Inclusion_Word(){
 
-     int WordSize = strlen(this->Initializer.Get_NewClassName());
+     size_t WordSize = strlen(this->Initializer.Get_NewClassName());
 
      this->InclusionWord = new char [10*WordSize];
 
-     for(int i=0;i<WordSize;i++){
+     for(size_t i=0;i<WordSize;i++){
 
         this->InclusionWord[i] = this->ConvertToUpper(this->Initializer.Get_NewClassName()[i]);
      }

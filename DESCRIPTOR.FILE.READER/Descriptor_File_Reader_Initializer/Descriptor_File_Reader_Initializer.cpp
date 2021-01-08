@@ -378,7 +378,7 @@ void Descriptor_File_Reader_Initializer::Receive_Include_Directory_List(){
 
      int Directory_Number = this->File_Data_Collector->Include_Directory_Numbers;
 
-     this->Include_Directory_List = new char * [10*Directory_Number];
+     this->Include_Directory_List = new char * [5*Directory_Number];
 
      int index_counter = 0;
 
@@ -392,7 +392,7 @@ void Descriptor_File_Reader_Initializer::Receive_Include_Directory_List(){
 
              int String_Size = strlen(String_Line);
 
-             this->Include_Directory_List[index_counter] = new char [10*String_Size];
+             this->Include_Directory_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Include_Directory_List[index_counter]),String_Line,String_Size);
 
@@ -411,7 +411,7 @@ void Descriptor_File_Reader_Initializer::Receive_Library_Directory_List(){
 
      int Directory_Number = this->File_Data_Collector->Library_Directory_Number;
 
-     this->Library_Directory_List = new char * [10*Directory_Number];
+     this->Library_Directory_List = new char * [5*Directory_Number];
 
      int index_counter = 0;
 
@@ -425,7 +425,7 @@ void Descriptor_File_Reader_Initializer::Receive_Library_Directory_List(){
 
              int String_Size = strlen(String_Line);
 
-             this->Library_Directory_List[index_counter] = new char [10*String_Size];
+             this->Library_Directory_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Library_Directory_List[index_counter]),String_Line,String_Size);
 
@@ -444,7 +444,7 @@ void Descriptor_File_Reader_Initializer::Receive_Source_File_Location_List(){
 
      int Directory_Number = this->File_Data_Collector->Source_File_Location_Number;
 
-     this->Source_File_Location_List = new char * [10*Directory_Number];
+     this->Source_File_Location_List = new char * [5*Directory_Number];
 
      int index_counter = 0;
 
@@ -458,7 +458,7 @@ void Descriptor_File_Reader_Initializer::Receive_Source_File_Location_List(){
 
              int String_Size = strlen(String_Line);
 
-             this->Source_File_Location_List[index_counter] = new char [10*String_Size];
+             this->Source_File_Location_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Source_File_Location_List[index_counter]),String_Line,String_Size);
 
@@ -477,7 +477,7 @@ void Descriptor_File_Reader_Initializer::Receive_Header_File_Names(){
 
      int Directory_Number = this->File_Data_Collector->Header_File_Names_Number;
 
-     this->Header_File_List= new char * [10*Directory_Number];
+     this->Header_File_List= new char * [5*Directory_Number];
 
      int index_counter = 0;
 
@@ -491,7 +491,7 @@ void Descriptor_File_Reader_Initializer::Receive_Header_File_Names(){
 
              int String_Size = strlen(String_Line);
 
-             this->Header_File_List[index_counter] = new char [10*String_Size];
+             this->Header_File_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Header_File_List[index_counter]),String_Line,String_Size);
 
@@ -510,7 +510,7 @@ void Descriptor_File_Reader_Initializer::Receive_Source_File_Name_List(){
 
      int Directory_Number = this->File_Data_Collector->Source_File_Number;
 
-     this->Source_File_Name_List = new char * [10*Directory_Number];
+     this->Source_File_Name_List = new char * [5*Directory_Number];
 
      int index_counter = 0;
 
@@ -524,7 +524,7 @@ void Descriptor_File_Reader_Initializer::Receive_Source_File_Name_List(){
 
              int String_Size = strlen(String_Line);
 
-             this->Source_File_Name_List[index_counter] = new char [10*String_Size];
+             this->Source_File_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Source_File_Name_List[index_counter]),String_Line,String_Size);
 
@@ -557,7 +557,7 @@ void Descriptor_File_Reader_Initializer::Receive_Library_Name_List(){
 
              int String_Size = strlen(String_Line);
 
-             this->Library_Name_List[index_counter] = new char [10*String_Size];
+             this->Library_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Library_Name_List[index_counter]),String_Line,String_Size);
 
@@ -576,7 +576,7 @@ void Descriptor_File_Reader_Initializer::Receive_Inter_Thread_Class_Header_File_
 
      int Header_File_Names_Number = this->File_Data_Collector->Inter_Thread_Class_Header_File_Names_Number;
 
-     this->Inter_Thread_Class_Header_File_List = new char * [10*Header_File_Names_Number];
+     this->Inter_Thread_Class_Header_File_List = new char * [5*Header_File_Names_Number];
 
      int index_counter = 0;
 
@@ -590,7 +590,7 @@ void Descriptor_File_Reader_Initializer::Receive_Inter_Thread_Class_Header_File_
 
              int String_Size = strlen(String_Line);
 
-             this->Inter_Thread_Class_Header_File_List[index_counter] = new char [10*String_Size];
+             this->Inter_Thread_Class_Header_File_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&(this->Inter_Thread_Class_Header_File_List[index_counter]),String_Line,String_Size);
 
@@ -623,7 +623,7 @@ void Descriptor_File_Reader_Initializer::Receive_Inter_Thread_Class_Names(){
 
              int String_Size =strlen(String_Line);
 
-             this->Inter_Thread_Class_Name_List[index_counter] = new char [10*String_Size];
+             this->Inter_Thread_Class_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Inter_Thread_Class_Name_List[index_counter],String_Line,String_Size);
 
@@ -642,7 +642,7 @@ void Descriptor_File_Reader_Initializer::Receive_Inter_Thread_Class_Instance_Nam
 
      int Class_Instance_Number = this->File_Data_Collector->Class_Instance_Number;
 
-     this->Inter_Thread_Class_Instance_Name_List = new char * [10*Class_Instance_Number];
+     this->Inter_Thread_Class_Instance_Name_List = new char * [5*Class_Instance_Number];
 
      int index_counter = 0;
 
@@ -656,7 +656,7 @@ void Descriptor_File_Reader_Initializer::Receive_Inter_Thread_Class_Instance_Nam
 
              int String_Size = strlen(String_Line);
 
-             this->Inter_Thread_Class_Instance_Name_List[index_counter] = new char [10*String_Size];
+             this->Inter_Thread_Class_Instance_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Inter_Thread_Class_Instance_Name_List[index_counter],String_Line,String_Size);
 
@@ -675,7 +675,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Data_Types(){
 
      int Data_Type_Number = this->File_Data_Collector->Shared_Data_Types_Number;
 
-     this->Shared_Data_Type_List = new char * [10*Data_Type_Number];
+     this->Shared_Data_Type_List = new char * [5*Data_Type_Number];
 
      int index_counter = 0;
 
@@ -689,7 +689,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Data_Types(){
 
              int String_Size = strlen(String_Line);
 
-             this->Shared_Data_Type_List[index_counter] = new char [10*String_Size];
+             this->Shared_Data_Type_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Shared_Data_Type_List[index_counter],String_Line,String_Size);
 
@@ -708,7 +708,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Pointer_Names(){
 
      int Pointer_Names_Number = this->File_Data_Collector->Shared_Data_Type_Pointer_Names_Number;
 
-     this->Shared_Memory_Pointer_Name_List = new char * [10*Pointer_Names_Number];
+     this->Shared_Memory_Pointer_Name_List = new char * [5*Pointer_Names_Number];
 
      int index_counter = 0;
 
@@ -722,7 +722,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Pointer_Names(){
 
              int String_Size = strlen(String_Line);
 
-             this->Shared_Memory_Pointer_Name_List[index_counter] = new char [10*String_Size];
+             this->Shared_Memory_Pointer_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Shared_Memory_Pointer_Name_List[index_counter],String_Line,String_Size);
 
@@ -741,7 +741,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Data_Types_Header
 
      int Data_Type_Number = this->File_Data_Collector->Shared_Data_Types_Number;
 
-     this->Shared_Data_Type_Header_File_List = new char * [10*Data_Type_Number];
+     this->Shared_Data_Type_Header_File_List = new char * [5*Data_Type_Number];
 
      int index_counter = 0;
 
@@ -755,7 +755,7 @@ void Descriptor_File_Reader_Initializer::Receive_Shared_Memory_Data_Types_Header
 
              int String_Size = strlen(String_Line);
 
-             this->Shared_Data_Type_Header_File_List[index_counter] = new char [10*String_Size];
+             this->Shared_Data_Type_Header_File_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Shared_Data_Type_Header_File_List[index_counter],String_Line,String_Size);
 
@@ -787,7 +787,7 @@ void Descriptor_File_Reader_Initializer::Receive_Construction_Point(){
 
              int String_Size = strlen(String_Line);
 
-             this->Construction_Directory = new char [10*String_Size];
+             this->Construction_Directory = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Construction_Directory,String_Line,String_Size);
          }
@@ -812,7 +812,7 @@ void Descriptor_File_Reader_Initializer::Receive_Main_File_Name(){
 
              int String_Size = strlen(String_Line);
 
-             this->Main_File_Name = new char [10*String_Size];
+             this->Main_File_Name = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Main_File_Name,String_Line,String_Size);
          }
@@ -837,7 +837,7 @@ void Descriptor_File_Reader_Initializer::Receive_Namespace(){
 
              int String_Size = strlen(String_Line);
 
-             this->Namespace = new char [10*String_Size];
+             this->Namespace = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Namespace,String_Line,String_Size);
          }
@@ -863,7 +863,7 @@ void Descriptor_File_Reader_Initializer::Receive_OpenMp_Support_Condition(){
 
              int String_Size = strlen(String_Line);
 
-             this->OpenMp_Support_Condition = new char [10*String_Size];
+             this->OpenMp_Support_Condition = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->OpenMp_Support_Condition,String_Line,String_Size);
          }
@@ -888,7 +888,7 @@ void Descriptor_File_Reader_Initializer::Receive_Executable_File_Name(){
 
              int String_Size = strlen(String_Line);
 
-             this->Executable_File_Name = new char [10*String_Size];
+             this->Executable_File_Name = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Executable_File_Name,String_Line,String_Size);
          }
@@ -913,7 +913,7 @@ void Descriptor_File_Reader_Initializer::Receive_Supervisor_Class_Name(){
 
              int String_Size = strlen(String_Line);
 
-             this->Supervisor_Class_Name = new char [10*String_Size];
+             this->Supervisor_Class_Name = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Supervisor_Class_Name,String_Line,String_Size);
            }
@@ -921,7 +921,7 @@ void Descriptor_File_Reader_Initializer::Receive_Supervisor_Class_Name(){
 
        int Supervisor_Class_Name_Size = strlen(this->Supervisor_Class_Name);
 
-       this->Supervisor_Class_Header_File_Name =  new char [10*Supervisor_Class_Name_Size];
+       this->Supervisor_Class_Header_File_Name =  new char [5*Supervisor_Class_Name_Size];
 
        for(int i=0;i<Supervisor_Class_Name_Size;i++){
 
@@ -945,7 +945,7 @@ void Descriptor_File_Reader_Initializer::Receive_Thread_Function_Names(){
 
      int Thread_Number = this->File_Data_Collector->Thread_Function_Number;
 
-     this->Thread_Name_List = new char * [10*Thread_Number];
+     this->Thread_Name_List = new char * [5*Thread_Number];
 
      int index_counter = 0;
 
@@ -959,7 +959,7 @@ void Descriptor_File_Reader_Initializer::Receive_Thread_Function_Names(){
 
              int String_Size = strlen(String_Line);
 
-             this->Thread_Name_List[index_counter] = new char [10*String_Size];
+             this->Thread_Name_List[index_counter] = new char [5*String_Size];
 
              this->File_Data_Collector->Place_String(&this->Thread_Name_List[index_counter],String_Line,String_Size);
 
@@ -998,7 +998,7 @@ void Descriptor_File_Reader_Initializer::Receive_Thread_Number(){
 
         int String_Size = strlen(Record_Line);
 
-        char * Record_Number_Pointer = new char [10*String_Size];
+        char * Record_Number_Pointer = new char [5*String_Size];
 
         for(int i=0;i<String_Size;i++){
 

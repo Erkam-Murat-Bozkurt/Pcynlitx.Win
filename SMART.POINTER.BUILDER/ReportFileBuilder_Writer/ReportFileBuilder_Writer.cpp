@@ -809,16 +809,16 @@ void ReportFileBuilder_Writer::Build_PointerAdressChangeError_Member_Function(){
      this->FileManager.FileClose();
 }
 
-void ReportFileBuilder_Writer::Write_Space(const char * String, int Line_Number){
+void ReportFileBuilder_Writer::Write_Space(const char * String, size_t Line_Number){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<Line_Number;i++){
+     for(size_t i=0;i<Line_Number;i++){
 
          this->FileManager.WriteToFile("\n");
      }
 
-     for(int i=0;i<String_Size+2;i++){
+     for(size_t i=0;i<String_Size+2;i++){
 
          this->FileManager.WriteToFile(" ");
      }

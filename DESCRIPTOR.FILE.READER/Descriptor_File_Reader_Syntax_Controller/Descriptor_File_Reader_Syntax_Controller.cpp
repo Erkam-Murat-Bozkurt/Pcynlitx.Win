@@ -166,7 +166,7 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Inter_Thread_Class_Infor
 
      int Header_File_Path_Size = Header_File_Name_Size + Header_File_Location_Size;
 
-     this->Header_File_Path = new char [10*Header_File_Path_Size];
+     this->Header_File_Path = new char [5*Header_File_Path_Size];
 
      this->Place_Information(&this->Header_File_Path,this->Header_File_Location,&index_counter);
 
@@ -205,7 +205,7 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Shared_Data_Type_Informa
 
      int Header_File_Path_Size = Header_File_Name_Size + Header_File_Location_Size;
 
-     this->Header_File_Path = new char [10*Header_File_Path_Size];
+     this->Header_File_Path = new char [5*Header_File_Path_Size];
 
      this->Place_Information(&this->Header_File_Path,this->Header_File_Location,&index_counter);
 

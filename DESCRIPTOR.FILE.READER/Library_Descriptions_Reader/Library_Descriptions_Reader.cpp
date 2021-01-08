@@ -120,7 +120,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
      if(this->Library_Names_Number > 0){
 
-         Library_Names_Pointer = new char * [10*this->Library_Names_Number];
+         Library_Names_Pointer = new char * [5*this->Library_Names_Number];
 
          char Library_Names_subfix [] = ".a";
 
@@ -130,7 +130,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
              int Library_Name_Size = strlen(this->Library_Names[i]);
 
-             Library_Names_Pointer[i] = new char [10*Library_Name_Size];
+             Library_Names_Pointer[i] = new char [5*Library_Name_Size];
 
              int index_counter = 0;
 
@@ -186,7 +186,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
 void Library_Descriptions_Reader::Receive_Library_Directories(){
 
-     this->Library_Directories = new char * [10*this->Library_Directory_Number];
+     this->Library_Directories = new char * [5*this->Library_Directory_Number];
 
      for(int i=0;i<this->Library_Directory_Number;i++){
 
@@ -253,7 +253,7 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
 
          int Library_Directory_Name_Size = strlen(Library_Directory);
 
-         this->Library_Directories[i] = new char [10*Library_Directory_Name_Size];
+         this->Library_Directories[i] = new char [5*Library_Directory_Name_Size];
 
          this->Place_String(&(this->Library_Directories[i]),Library_Directory);
      }
@@ -261,7 +261,7 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
 
 void Library_Descriptions_Reader::Receive_Library_Names(){
 
-     this->Library_Names = new char * [10*this->Library_Names_Number];
+     this->Library_Names = new char * [5*this->Library_Names_Number];
 
      for(int i=0;i<this->Library_Names_Number;i++){
 
@@ -326,7 +326,7 @@ void Library_Descriptions_Reader::Receive_Library_Names(){
 
          int Library_Name_Size = strlen(Library_Name);
 
-         this->Library_Names[i] = new char [10*Library_Name_Size];
+         this->Library_Names[i] = new char [5*Library_Name_Size];
 
          this->Place_String(&(this->Library_Names[i]),Library_Name);
      }

@@ -551,21 +551,21 @@ void TM_Client_Builder::Determine_Compiler_Command(){
 
      char * Current_Directory = this->Directory_Manager.GetCurrentlyWorkingDirectory();
 
-     int New_Include_Directory_Name_Size = strlen(this->Constructed_Include_Directory);
+     size_t New_Include_Directory_Name_Size = strlen(this->Constructed_Include_Directory);
 
-     int Include_Directory_Name_Size = strlen(Current_Directory);
+     size_t Include_Directory_Name_Size = strlen(Current_Directory);
 
-     int Command_Name_Size = strlen(compile_command);
+     size_t Command_Name_Size = strlen(compile_command);
 
-     int Include_Link_Determiner_Size = strlen(Include_Link_Determiner);
+     size_t Include_Link_Determiner_Size = strlen(Include_Link_Determiner);
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int itds_file_name_size = strlen(itds_file);
+     size_t itds_file_name_size = strlen(itds_file);
 
-     int Compiler_Command_Name_Size = Command_Name_Size + Source_File_Name_Size + Include_Link_Determiner_Size +
+     size_t Compiler_Command_Name_Size = Command_Name_Size + Source_File_Name_Size + Include_Link_Determiner_Size +
 
                                       Include_Directory_Name_Size +  Header_File_Name_Size + New_Include_Directory_Name_Size +
 
@@ -740,11 +740,11 @@ void TM_Client_Builder::Remove_Source_File(){
 
      char * Construction_Point = this->Reader_Pointer->Get_Construction_Point();
 
-     int Construction_Point_Name_Size = strlen(Construction_Point);
+     size_t Construction_Point_Name_Size = strlen(Construction_Point);
 
-     int Source_File_Name_Size = strlen(Source_File_Name);
+     size_t Source_File_Name_Size = strlen(Source_File_Name);
 
-     int File_Path_Size = Source_File_Name_Size + Construction_Point_Name_Size;
+     size_t File_Path_Size = Source_File_Name_Size + Construction_Point_Name_Size;
 
      char * File_Path = new char [10*File_Path_Size];
 
@@ -793,9 +793,9 @@ void TM_Client_Builder::Run_System_Commands(){
 
 void TM_Client_Builder::Place_Information(char ** Pointer, char * Information, int * counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*counter)] = Information[i];
 

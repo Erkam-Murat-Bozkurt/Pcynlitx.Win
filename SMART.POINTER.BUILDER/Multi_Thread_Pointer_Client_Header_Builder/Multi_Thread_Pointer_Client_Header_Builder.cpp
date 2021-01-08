@@ -133,24 +133,24 @@ void Multi_Thread_Pointer_Client_Header_Builder::Determine_Client_Header_File_Na
 
      char Header_Add_Word [] = {'.','h','\0'};
 
-     int Pointer_Name_Size = strlen(this->Base_Class_Name);
+     size_t Pointer_Name_Size = strlen(this->Base_Class_Name);
 
-     int Client_Add_Word_Size = strlen(Client_Add_Word);
+     size_t Client_Add_Word_Size = strlen(Client_Add_Word);
 
-     int Client_Class_Name_Size = Pointer_Name_Size + Client_Add_Word_Size;
+     size_t Client_Class_Name_Size = Pointer_Name_Size + Client_Add_Word_Size;
 
      this->Client_Class_Name = new char [10*Client_Class_Name_Size];
 
      int index_counter = 0;
 
-     for(int i=0;i<Pointer_Name_Size;i++){
+     for(size_t i=0;i<Pointer_Name_Size;i++){
 
          this->Client_Class_Name[index_counter] = this->Base_Class_Name[i];
 
          index_counter++;
      }
 
-     for(int i=0;i<Client_Add_Word_Size;i++){
+     for(size_t i=0;i<Client_Add_Word_Size;i++){
 
          this->Client_Class_Name[index_counter] = Client_Add_Word[i];
 
@@ -165,16 +165,16 @@ void Multi_Thread_Pointer_Client_Header_Builder::Determine_Client_Header_File_Na
 
      index_counter = 0;
 
-     for(int i=0;i<Client_Class_Name_Size;i++){
+     for(size_t i=0;i<Client_Class_Name_Size;i++){
 
          this->Client_Class_Header_File_Name[index_counter] = this->Client_Class_Name[i];
 
          index_counter++;
      }
 
-     int Header_Add_Word_Size = strlen(Header_Add_Word);
+     size_t Header_Add_Word_Size = strlen(Header_Add_Word);
 
-     for(int i=0;i<Header_Add_Word_Size;i++){
+     for(size_t i=0;i<Header_Add_Word_Size;i++){
 
          this->Client_Class_Header_File_Name[index_counter] = Header_Add_Word[i];
 
@@ -186,11 +186,11 @@ void Multi_Thread_Pointer_Client_Header_Builder::Determine_Client_Header_File_Na
 
 void Multi_Thread_Pointer_Client_Header_Builder::Determine_Inclusion_Word(){
 
-     int WordSize = strlen(this->Client_Class_Name);
+     size_t WordSize = strlen(this->Client_Class_Name);
 
      this->InclusionWord = new char [10*WordSize];
 
-     for(int i=0;i<WordSize;i++){
+     for(size_t i=0;i<WordSize;i++){
 
         this->InclusionWord[i] = this->ConvertToUpper(this->Client_Class_Name[i]);
      }

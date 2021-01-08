@@ -107,17 +107,17 @@ void Multi_Thread_Pointer_Builder::Determine_Data_Type_Informations(){
 
      if(Data_Type_Holder.Header_File_Name != nullptr){
 
-        int Include_Directory_Name_Size = strlen(Data_Type_Holder.Include_Directory);
+        size_t Include_Directory_Name_Size = strlen(Data_Type_Holder.Include_Directory);
 
-        int Header_File_Name_Size = strlen(Data_Type_Holder.Header_File_Name);
+        size_t Header_File_Name_Size = strlen(Data_Type_Holder.Header_File_Name);
 
-        int Header_File_Path_Size = Include_Directory_Name_Size + Header_File_Name_Size;
+        size_t Header_File_Path_Size = Include_Directory_Name_Size + Header_File_Name_Size;
 
         char Directory_Operator [] = {'\\','\0'};
 
         char * Header_File_Path = new char [10*Header_File_Path_Size];
 
-        for(int i=0;i<5*Header_File_Path_Size;i++){
+        for(size_t i=0;i<5*Header_File_Path_Size;i++){
 
             Header_File_Path[i] = '\0';
         }
@@ -1006,11 +1006,11 @@ void Multi_Thread_Pointer_Builder::Determine_Shared_Data_Type_Instance_Name(char
 
      char Subline_Character [] = {'_','\0'};
 
-     int Data_Type_Object_Name_Size = strlen(Data_Type_Name);
+     size_t Data_Type_Object_Name_Size = strlen(Data_Type_Name);
 
-     int Type_Word_List_Size = strlen(Type_Word);
+     size_t Type_Word_List_Size = strlen(Type_Word);
 
-     int Instance_Name_Size = Data_Type_Object_Name_Size + Type_Word_List_Size;
+     size_t Instance_Name_Size = Data_Type_Object_Name_Size + Type_Word_List_Size;
 
      this->Shared_Data_Type_Instance_Name = new char [10*Instance_Name_Size];
 
@@ -1032,9 +1032,9 @@ void Multi_Thread_Pointer_Builder::Run_System_Commands(){
 
 void Multi_Thread_Pointer_Builder::Place_Information(char ** Pointer, char * Information, int * index_counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*index_counter)] = Information[i];
 
@@ -1042,16 +1042,16 @@ void Multi_Thread_Pointer_Builder::Place_Information(char ** Pointer, char * Inf
      }
 }
 
-void Multi_Thread_Pointer_Builder::Write_Space(const char * String, int Line_Number){
+void Multi_Thread_Pointer_Builder::Write_Space(const char * String, size_t Line_Number){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<Line_Number;i++){
+     for(size_t i=0;i<Line_Number;i++){
 
          this->FileManager.WriteToFile("\n");
      }
 
-     for(int i=0;i<String_Size+2;i++){
+     for(size_t i=0;i<String_Size+2;i++){
 
          this->FileManager.WriteToFile(" ");
      }

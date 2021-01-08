@@ -151,9 +151,9 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_Shared_Data_Type_Instan
 
      char Subline_Character [] = {'_','\0'};
 
-     int Data_Type_Object_Name_Size = strlen(Data_Type_Name);
+     size_t Data_Type_Object_Name_Size = strlen(Data_Type_Name);
 
-     int Type_Word_List_Size = strlen(Type_Word);
+     size_t Type_Word_List_Size = strlen(Type_Word);
 
      int Instance_Name_Size = Data_Type_Object_Name_Size + Type_Word_List_Size;
 
@@ -174,7 +174,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_Shared_Data_Type_Instan
 
 void Multi_Thread_Pointer_File_Data_Collector::Receive_Newly_Constructed_Include_Directory(char * Include_Directory){
 
-     int String_Size = strlen(Include_Directory);
+     size_t String_Size = strlen(Include_Directory);
 
      this->Memory_Delete_Condition = false;
 
@@ -212,7 +212,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_New_Pointer_Class_Name(
 
      char * Class_Name = this->Data_Collector.Pointer_Initializer.Get_NewClassName();
 
-     int Class_Name_Size = strlen(Class_Name);
+     size_t Class_Name_Size = strlen(Class_Name);
 
      this->New_Class_Name = new char [10*Class_Name_Size];
 
@@ -225,7 +225,7 @@ void Multi_Thread_Pointer_File_Data_Collector::Move_Header_Files(){
 
      char Directory_Character [] = {'\\','\0'};
 
-     int Current_Directory_String_Size = strlen(Current_Directory);
+     size_t Current_Directory_String_Size = strlen(Current_Directory);
 
      char ** Header_File_Name = this->Get_Header_File_Name_Matrix();
 
@@ -318,15 +318,15 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_Header_File_Paths_In_Ne
 
      this->Header_File_Paths_In_New_Include_Directory = new char * [10];
 
-     int Directory_Name_Size = strlen(this->New_Include_Directory);
+     size_t Directory_Name_Size = strlen(this->New_Include_Directory);
 
      for(int i=0;i<3;i++){
 
          char * Header_File_Name = this->Get_Header_File_Name_Matrix()[i];
 
-         int Header_File_Name_Size = strlen(Header_File_Name);
+         size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-         int Path_Size = Directory_Name_Size + Header_File_Name_Size;
+         size_t Path_Size = Directory_Name_Size + Header_File_Name_Size;
 
          this->Header_File_Paths_In_New_Include_Directory[i] = new char [10*Path_Size];
 
@@ -344,9 +344,9 @@ void Multi_Thread_Pointer_File_Data_Collector::Determine_Header_File_Paths_In_Ne
 
 void Multi_Thread_Pointer_File_Data_Collector::Place_String(char ** Pointer, char * String){
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=0;i<String_Size;i++){
+     for(size_t i=0;i<String_Size;i++){
 
         (*Pointer)[i] = String[i];
      }
@@ -356,9 +356,9 @@ void Multi_Thread_Pointer_File_Data_Collector::Place_String(char ** Pointer, cha
 
 void Multi_Thread_Pointer_File_Data_Collector::Place_Information(char ** Pointer, char * Information, int * index_counter){
 
-     int Information_Size = strlen(Information);
+     size_t Information_Size = strlen(Information);
 
-     for(int i=0;i<Information_Size;i++){
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*index_counter)] = Information[i];
 

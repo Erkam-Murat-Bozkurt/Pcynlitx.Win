@@ -46,7 +46,7 @@ private:
  void Receive_Object_File_Name();
  void Write_Space(int Space_Number);
  void Place_Information(char ** Pointer, char * Information, int * counter);
- void Place_String(char ** Pointer, char * String, int String_Size);
+ void Place_String(char ** Pointer, char * String, size_t String_Size);
  void Clear_Pointer_Memory(char ** Pointer);
  MetaDataTranslater DataTranslater;
  ClassRebuilder_Initializer Initializer;
