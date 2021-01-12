@@ -373,7 +373,10 @@ void MainFrame::DirectoryOpen(wxCommandEvent & event)
 
         wxString DirectoryPath = dir_dialog.GetPath();
 
-        this->Dir_List_Manager->Load_Project_Directory(DirectoryPath);
+        if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
+
+           this->Dir_List_Manager->Load_Project_Directory(DirectoryPath);
+        }
 
         this->Interface_Manager.Update();
      }
@@ -1027,11 +1030,14 @@ void MainFrame::Re_Open_Project_Directory(wxCommandEvent & event)
        };
     }
     else{
-            this->Dir_List_Manager->RemoveProjectDirectory();
+           if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
-            this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
+               this->Dir_List_Manager->RemoveProjectDirectory();
 
-            this->Interface_Manager.Update();
+               this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
+
+               this->Interface_Manager.Update();
+           }
     }
 }
 
@@ -1109,7 +1115,9 @@ void MainFrame::Enter_OpenMP_Support(wxCommandEvent & event)
 {
      this->Description_Record_Data_Lose_Protection();
 
-     wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Do you want OpenMP support?"), wxT("Question"),wxYES_NO);
+     wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Do you want OpenMP support?"),
+
+              wxT("Question"),wxYES_NO);
 
      if(exit_dial->ShowModal() ==  wxNO){
 

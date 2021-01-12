@@ -113,5 +113,5 @@
 
      delete [] Project_File_Name;
 
-     exit(EXIT_SUCCESS);
+     exit(0);
  };

@@ -278,6 +278,9 @@ void Project_Folder_Lister::Load_Project_Directory(wxString Folder){
                     this->Append_Files(setpoint_path,setpoint_id);
                   }
                 }
+
+                this->Append_Files(Folder,Id);
+
               }
               else{
 
