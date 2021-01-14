@@ -118,7 +118,7 @@ void ToolBar_Initializer::Initialize_ToolBar(wxFrame * Frame_Pointer, wxAuiDockA
 
      this->toolBar->AddTool(wxID_EXIT, wxT(""),*this->close,wxT(""));
 
-     this->toolBar->AddTool(ID_RUN_EXECUTABLE,wxT(""),*this->build_library,wxT(""));
+     this->toolBar->AddTool(ID_RUN_LIBRARY_BUILDER,wxT(""),*this->build_library,wxT(""));
 
      this->toolBar->AddTool(ID_RUN_EXECUTABLE_BINARY_BUILDER,wxT(""),*this->build_executable,wxT(""));
 

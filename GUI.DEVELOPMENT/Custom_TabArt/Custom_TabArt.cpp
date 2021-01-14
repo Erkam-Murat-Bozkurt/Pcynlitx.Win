@@ -10,7 +10,7 @@
 
                              wxBITMAP_TYPE_ANY);
 
-    this->m_tabCtrlHeight = 37;
+    this->m_tabCtrlHeight = 46;
  }
 
  wxAuiTabArt * Custom_TabArt::Clone() {
@@ -27,9 +27,9 @@
 
  void Custom_TabArt::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect & rect) {
 
-      dc.SetBrush(wxColour(235,235,235));
+      dc.SetBrush(wxColour(240,240,240));
 
-      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2,rect.GetWidth()+10,rect.GetHeight()+10);
+      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2,rect.GetWidth()+15,rect.GetHeight()+15);
  }
 
  void Custom_TabArt::DrawTab(wxDC & dc, wxWindow *wnd, const wxAuiNotebookPage &page,
@@ -49,7 +49,7 @@
 
         wxFont tab_font(10,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
 
-                             wxFONTWEIGHT_NORMAL,false,"Liberation Sans");
+                             wxFONTWEIGHT_NORMAL,false,"Noto Sans");
 
         dc.SetFont(tab_font);
 
@@ -96,66 +96,66 @@
 
             wxRect r(tab_x, tab_y, tab_width, tab_height+14);
 
-            dc.SetPen(wxPen(wxColour(120,120,120)));
+            dc.SetPen(wxPen(wxColour(200,100,100)));
 
-            dc.SetBrush(wxBrush(wxColour(120,120,120)));
+            dc.SetBrush(wxBrush(wxColour(200,100,100)));
 
             // DrawRectangle member function: The first two parameters indicate the coordinates
             // of the top left corner of the rectangle
 
-            dc.DrawRectangle(r.x+3, r.y+3, r.width-3, r.height);
+            dc.DrawRectangle(r.x+3, r.y+5, r.width-3, r.height+2);
 
 
-            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+16); // left bottom corner
+            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+18); // left bottom corner
 
             border_points[1] = wxPoint(tab_x+3,tab_y+4);
 
-            border_points[2] = wxPoint(tab_x+3,tab_y+3); // left top corner
+            border_points[2] = wxPoint(tab_x+3,tab_y+4); // left top corner
 
-            border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+3); // Right top corner
+            border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+4); // Right top corner
 
             border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
 
-            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+16); // Right bottom corner
+            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+18); // Right bottom corner
 
 
-            dc.SetPen(wxPen(wxColour(150,150,150)));
+            dc.SetPen(wxPen(wxColour(200,100,100)));
 
             dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
             dc.DrawPolygon(WXSIZEOF(border_points), border_points);
 
-            dc.SetBrush(wxColour(150,150,150));
+            dc.SetBrush(wxColour(200,100,100));
        }
        else{
 
               // draw inactive tab
 
-              wxRect r(tab_x, tab_y,tab_width, tab_height+13);
+              wxRect r(tab_x, tab_y,tab_width, tab_height+15);
 
-              dc.SetPen(wxPen(wxColour(170,170,170)));
+              dc.SetPen(wxPen(wxColour(200,200,200)));
 
-              dc.SetBrush(wxBrush(wxColour(170,170,170)));
+              dc.SetBrush(wxBrush(wxColour(200,200,200)));
 
               // DrawRectangle member function: The first two parameters indicate the coordinates
               // of the top left corner of the rectangle
 
-              dc.DrawRectangle(r.x+3, r.y+3, r.width-1, r.height);
+              dc.DrawRectangle(r.x+3, r.y+5, r.width-1, r.height+2);
 
 
-              border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+7); // left bottom corner
+              border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+20); // left bottom corner
 
               border_points[1] = wxPoint(tab_x+3,tab_y+4); // left top corner
 
-              border_points[2] = wxPoint(tab_x+3,tab_y+3); // right top corner
+              border_points[2] = wxPoint(tab_x+3,tab_y+4); // right top corner
 
-              border_points[3] = wxPoint(tab_x+tab_width,tab_y+3);
+              border_points[3] = wxPoint(tab_x+tab_width+1,tab_y+4);
 
-              border_points[4] = wxPoint(tab_x+tab_width,tab_y+4);
+              border_points[4] = wxPoint(tab_x+tab_width+1,tab_y+4);
 
-              border_points[5] = wxPoint(tab_x+tab_width,tab_y+tab_height+7);
+              border_points[5] = wxPoint(tab_x+tab_width+1,tab_y+tab_height+20);
 
-              dc.SetPen(wxPen(wxColour(170,170,170)));
+              dc.SetPen(wxPen(wxColour(200,200,200)));
 
               dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
@@ -213,7 +213,7 @@
 
        dc.DrawText(draw_text,
              text_offset,
-             (tab_y + tab_height)/2 - (texty/2) + 8);
+             (tab_y + tab_height)/2 - (texty/2) + 10);
 
        *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height);
  }
@@ -245,7 +245,7 @@
         }
 
         // draw the button itself
-        dc.DrawBitmap(bmp, rect.x, rect.y+4, true);
+        dc.DrawBitmap(bmp, rect.x, rect.y+6, true);
  }
 
 

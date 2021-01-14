@@ -319,16 +319,21 @@ void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
 
 void MainFrame::OnOpen(wxCommandEvent & event)
 {
-     wxFileDialog * openFileDialog = new wxFileDialog(this);
+     if(event.GetId() == wxID_OPEN){
 
-     if (openFileDialog->ShowModal() == wxID_OK){
+       wxFileDialog * openFileDialog = new wxFileDialog(this);
 
-         wxString File_Path = openFileDialog->GetPath();
+       openFileDialog->CentreOnParent(wxBOTH);
 
-         this->Book_Manager->Open_File(File_Path);
+       if (openFileDialog->ShowModal() == wxID_OK){
+
+           wxString File_Path = openFileDialog->GetPath();
+
+           this->Book_Manager->Open_File(File_Path);
+       }
+
+       delete openFileDialog;
      }
-
-     delete openFileDialog;
 }
 
 void MainFrame::OnClose(wxCloseEvent & event)
@@ -367,178 +372,196 @@ void MainFrame::Close_Directory_Pane(wxAuiManagerEvent & event)
 
 void MainFrame::DirectoryOpen(wxCommandEvent & event)
 {
-     wxDirDialog dir_dialog(this, "Select a directory","",wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
+     if(event.GetId() == ID_SELECT_PROJECT_FOLDER){
 
-     if(dir_dialog.ShowModal() == wxID_OK){
+        wxDirDialog dir_dialog(this, "Select a directory","",
 
-        wxString DirectoryPath = dir_dialog.GetPath();
+                    wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
 
-        if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
-           this->Dir_List_Manager->Load_Project_Directory(DirectoryPath);
+        if(dir_dialog.ShowModal() == wxID_OK){
+
+           wxString DirectoryPath = dir_dialog.GetPath();
+
+           if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
+
+              this->Dir_List_Manager->Load_Project_Directory(DirectoryPath);
+           }
+
+           this->Interface_Manager.Update();
         }
 
-        this->Interface_Manager.Update();
+
+        this->Centre();
+
+        this->tree_control->Update();
+
+        this->PaintNow(this);
      }
-
-     this->Centre();
-
-     this->tree_control->Update();
-
-     this->PaintNow(this);
 }
 
 void MainFrame::File_Save(wxCommandEvent & event){
 
-     this->Book_Manager->File_Save();
+     if(event.GetId() == ID_FILE_SAVE){
+
+        this->Book_Manager->File_Save();
+     }
 }
 
 void MainFrame::SelectProjectFile(wxCommandEvent & event)
 {
-     event.Skip(true);
+     if(event.GetId() == ID_SELECT_PROJECT_FILE ){
 
-     this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this);
+       event.Skip(true);
 
-     if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
+        wxFileDialog * openFileDialog = new wxFileDialog(this,wxT("Select Project File"));
 
-        this->Descriptor_File_Path = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
+        if (openFileDialog->ShowModal() == wxID_OK){
 
-        wxDir Dir_Ctrl;
+            this->Descriptor_File_Path = openFileDialog->GetPath();
 
-        if(Dir_Ctrl.Exists(this->Descriptor_File_Path)){
+            wxDir Dir_Ctrl;
 
-           Dir_Ctrl.Open(this->Descriptor_File_Path);
+            if(Dir_Ctrl.Exists(this->Descriptor_File_Path)){
 
-           if(Dir_Ctrl.IsOpened()){
+               Dir_Ctrl.Open(this->Descriptor_File_Path);
 
-              wxMessageDialog * dial = new wxMessageDialog(NULL,
+               if(Dir_Ctrl.IsOpened()){
 
-              wxT(" This is a directory!\n A file must be selected ."),wxT("Error Message"), wxOK);
+                  wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-              dial->ShowModal();
+                    wxT(" This is a directory!\n A file must be selected ."),
 
-              return;
-           }
-        }
+                         wxT("Error Message"), wxOK);
 
-        this->Run_Command = wxT("");
+                         dial->ShowModal();
 
-        this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
-
-        int Descriptor_File_Name_Size = 0;
-
-        int Descriptor_File_Path_Size = this->Descriptor_File_Path.length();
-
-        wxString Selected_Project_Descriptor_File_Name = wxT("");
-
-        for(int k = Descriptor_File_Path_Size; k > 0; k--){
-
-            if(this->Descriptor_File_Path[k] == '\\'){
-
-                break;
+                    return;
+                }
             }
 
-            Descriptor_File_Name_Size++;
+            this->Run_Command = wxT("");
+
+            this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
+
+            int Descriptor_File_Name_Size = 0;
+
+            int Descriptor_File_Path_Size = this->Descriptor_File_Path.length();
+
+            wxString Selected_Project_Descriptor_File_Name = wxT("");
+
+            for(int k = Descriptor_File_Path_Size; k > 0; k--){
+
+                if(this->Descriptor_File_Path[k] == '\\'){
+
+                   break;
+                }
+
+                Descriptor_File_Name_Size++;
+            }
+
+            for(int i=Descriptor_File_Name_Size-1;i>0;i--){
+
+                Selected_Project_Descriptor_File_Name = Selected_Project_Descriptor_File_Name +
+
+                this->Descriptor_File_Path[Descriptor_File_Path_Size -i];
+            }
+
+            wxString Project_Descriptor_File_Name = wxT("Project_Descriptor_File.txt");
+
+            bool Project_Descriptor_File_Name_Is_Correct = true;
+
+            if(Selected_Project_Descriptor_File_Name != Project_Descriptor_File_Name){
+
+               wxString message = wxT("");
+
+               message = message + wxT(" Descriptor file name must be\"Project_Descriptor_File.txt\"");
+
+               message = message + wxT("..\n\n Different descriptor file names can not be\n");
+
+               message = message + wxT(" recognized as descriptor file!\n\n Be sure that it is the correct file?");
+
+               wxMessageDialog * dial = new wxMessageDialog(NULL,message,
+
+                    wxT("Error Message"),wxOK);
+
+               dial->ShowModal();
+
+               Project_Descriptor_File_Name_Is_Correct = false;
+            }
+
+            if(Project_Descriptor_File_Name_Is_Correct){
+
+               this->is_project_file_selected = true;
+
+               this->Process_Controller.Set_Project_File_Select_Condition(this->is_project_file_selected);
+
+               this->Process_Controller.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+
+               this->Book_Manager->Open_File(this->Descriptor_File_Path);
+
+
+               this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
+
+               this->Description_Recorder.Receive_Main_Frame_Address(this);
+
+               this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+            }
+            else{
+
+                  this->is_project_file_selected = false;
+            }
         }
 
-        for(int i=Descriptor_File_Name_Size-1;i>0;i--){
+        delete openFileDialog;
 
-             Selected_Project_Descriptor_File_Name = Selected_Project_Descriptor_File_Name +
-
-             this->Descriptor_File_Path[Descriptor_File_Path_Size -i];
-        }
-
-        wxString Project_Descriptor_File_Name = wxT("Project_Descriptor_File.txt");
-
-        bool Project_Descriptor_File_Name_Is_Correct = true;
-
-        if(Selected_Project_Descriptor_File_Name != Project_Descriptor_File_Name){
-
-           wxString message = wxT("");
-
-           message = message + wxT(" Descriptor file name must be\"Project_Descriptor_File.txt\"");
-
-           message = message + wxT("..\n\n Different descriptor file names can not be\n");
-
-           message = message + wxT(" recognized as descriptor file!\n\n Be sure that it is the correct file?");
-
-           wxMessageDialog * dial = new wxMessageDialog(NULL,message,
-
-           wxT("Error Message"),wxOK);
-
-           dial->ShowModal();
-
-           Project_Descriptor_File_Name_Is_Correct = false;
-        }
-
-        if(Project_Descriptor_File_Name_Is_Correct){
-
-           this->is_project_file_selected = true;
-
-           this->Process_Controller.Set_Project_File_Select_Condition(this->is_project_file_selected);
-
-           this->Process_Controller.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
-
-           this->Book_Manager->Open_File(this->Descriptor_File_Path);
-
-
-           this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
-
-           this->Description_Recorder.Receive_Main_Frame_Address(this);
-
-           this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
-        }
-        else{
-
-           this->is_project_file_selected = false;
-        }
+        this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
      }
-
-     this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->Destroy();
-
-     this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
 }
 
 void MainFrame::ShowProjectFile(wxCommandEvent & event)
 {
-     event.Skip(true);
+     if(event.GetId() == ID_SHOW_PROJECT_FILE){
 
-     if(this->is_project_file_selected){
+       event.Skip(true);
 
-        bool is_descriptor_file_open = false;
+        if(this->is_project_file_selected){
 
-        for(int i=0;i<20;i++){
+           bool is_descriptor_file_open = false;
 
-            wxString Path_Data =  this->Book_Manager->Get_Notebook_Page_File_Path(i);
+           for(int i=0;i<20;i++){
 
-            if(Path_Data == this->Descriptor_File_Path){
+               wxString Path_Data =  this->Book_Manager->Get_Notebook_Page_File_Path(i);
 
-               is_descriptor_file_open = true;
+               if(Path_Data == this->Descriptor_File_Path){
 
-               break;
+                  is_descriptor_file_open = true;
+
+                  break;
+               }
             }
-        }
 
-        if(is_descriptor_file_open){
+            if(is_descriptor_file_open){
 
-            this->Book_Manager->Select_File(this->Descriptor_File_Path);
-        }
-        else{
-
-             this->Book_Manager->Open_File(this->Descriptor_File_Path);
-        }
-     }
-     else{
-            wxMessageDialog * dial = new wxMessageDialog(NULL,
-
-            wxT("Descriptor file was not selected ..\nPlease select a descriptor file"),
-
-            wxT("Info"), wxOK);
-
-            if(dial->ShowModal()== wxOK){
-
-               delete dial;
+               this->Book_Manager->Select_File(this->Descriptor_File_Path);
             }
+            else{
+
+                  this->Book_Manager->Open_File(this->Descriptor_File_Path);
+            }
+          }
+          else{
+                wxMessageDialog * dial = new wxMessageDialog(NULL,
+
+                wxT("Descriptor file was not selected ..\nPlease select a descriptor file"),
+
+                    wxT("Info"), wxOK);
+
+                if(dial->ShowModal()== wxOK){
+
+                  delete dial;
+                }
+          }
      }
 }
 
@@ -553,33 +576,33 @@ void MainFrame::FileNameEdit(wxTreeEvent& event)
 
 void MainFrame::FileSelect(wxTreeEvent& event)
 {
-       event.Skip(true);
+     event.Skip(true);
 
-       event.StopPropagation();
+     event.StopPropagation();
 
-       wxTreeItemId Item = this->tree_control->GetSelection();
+     wxTreeItemId Item = this->tree_control->GetSelection();
 
-       wxString Path = this->Dir_List_Manager->GetItemPath(Item);
+     wxString Path = this->Dir_List_Manager->GetItemPath(Item);
 
-       if(this->dir_control->Exists(Path)){
+     if(this->dir_control->Exists(Path)){
 
-           if(this->Dir_List_Manager->GetTreeCtrl()->IsExpanded(Item)){
+        if(this->Dir_List_Manager->GetTreeCtrl()->IsExpanded(Item)){
 
-             this->Dir_List_Manager->GetTreeCtrl()->Collapse(Item);
+           this->Dir_List_Manager->GetTreeCtrl()->Collapse(Item);
+
+           this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
+        }
+        else{
+
+             this->Dir_List_Manager->GetTreeCtrl()->Expand(Item);
 
              this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-           }
-           else{
-
-                 this->Dir_List_Manager->GetTreeCtrl()->Expand(Item);
-
-                 this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
-           }
-       }
-       else{
+        }
+     }
+     else{
 
             this->Book_Manager->Open_File(Path);
-       }
+     }
 }
 
 
@@ -588,16 +611,22 @@ void MainFrame::FileSelect(wxTreeEvent& event)
 
 void MainFrame::RunLibraryBuilder(wxCommandEvent & event)
 {
-     this->Process_Controller.RunLibraryBuilder(&(this->Dir_List_Manager));
+     if(event.GetId() == ID_RUN_LIBRARY_BUILDER){
 
-     this->Construction_Point = wxT("");
+        this->Process_Controller.RunLibraryBuilder(&(this->Dir_List_Manager));
 
-     this->Construction_Point = this->Process_Controller.Get_Construction_Point();
+        this->Construction_Point = wxT("");
+
+        this->Construction_Point = this->Process_Controller.Get_Construction_Point();
+     }
 }
 
 void MainFrame::RunExeBuilder(wxCommandEvent & event)
 {
-     this->Process_Controller.RunExeBuilder(&(this->Dir_List_Manager));
+     if(event.GetId() == ID_RUN_EXECUTABLE_BINARY_BUILDER){
+
+        this->Process_Controller.RunExeBuilder(&(this->Dir_List_Manager));
+     }
 }
 
 void MainFrame::Process_End(wxProcessEvent & event)
@@ -607,57 +636,72 @@ void MainFrame::Process_End(wxProcessEvent & event)
 
 void MainFrame::OpenTerminal(wxCommandEvent & event)
 {
-     wxExecute(wxT("powershell.exe"),wxEXEC_ASYNC | wxEXEC_SHOW_CONSOLE);
+     if(event.GetId() == ID_OPEN_TERMINAL){
+
+        wxExecute(wxT("powershell.exe"),wxEXEC_ASYNC | wxEXEC_SHOW_CONSOLE);
+     }
 }
 
 void MainFrame::ShowAuthor(wxCommandEvent & event)
 {
-     wxString message = wxT("");
+     if(event.GetId() == ID_SHOW_AUTOR_INFO){
 
-     message = message + wxT(" The developer of the platform:\n\n");
+        wxString message = wxT("\n");
 
-     message = message + wxT(" ERKAM MURAT BOZKURT M.Sc. Control Sysytem Engineering ");
+        message = message + wxT("   ERKAM MURAT BOZKURT\n\n");
 
-     wxMessageDialog * info_dial
+        message = message + wxT("   M.Sc. Control Sysytem Engineering\n\n");
 
-     = new wxMessageDialog(NULL,message,wxT("Information"),wxOK);
+        message = message + wxT("   ORCID ID: 0000-0003-3690-2770\n\n");
 
-     if(info_dial->ShowModal() == ID_SHOW_AUTOR_INFO){
+        message = message + wxT("\n ");
 
-        delete info_dial;
-     };
+        wxRichMessageDialog * dial = new wxRichMessageDialog(this,
+
+                     message, wxT("  THE DEVELOPER OF THE PLATFORM"), wxOK|wxCENTRE);
+
+        if(dial->ShowModal() == ID_SHOW_AUTOR_INFO){
+
+           delete dial;
+        };
+     }
 }
 
 void MainFrame::ShowProjectFileLocation(wxCommandEvent & event)
 {
-     if(this->Descriptor_File_Path == wxT("")){
+     if(event.GetId() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
 
-        wxString message = wxT("Project file has not been selected yet!");
+        if(this->Descriptor_File_Path == wxT("")){
 
-          wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
+           wxString message = wxT("Project file has not been selected yet!");
 
-                                        wxT("Information"), wxOK);
+           wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
 
-          if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
+                                          wxT("Information"), wxOK);
 
-             delete info_dial;
-          };
-     }
-     else{
+           if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
 
-          wxMessageDialog * info_dial = new wxMessageDialog(NULL,this->Descriptor_File_Path,
+              delete info_dial;
+           };
+        }
+        else{
 
-                                        wxT("Information"), wxOK);
+              wxMessageDialog * info_dial = new wxMessageDialog(NULL,this->Descriptor_File_Path,
 
-          if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
+                                          wxT("Information"), wxOK);
 
-             delete info_dial;
-          };
+              if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
+
+                 delete info_dial;
+              };
+        }
      }
 }
 
 void MainFrame::ShowProjectDirectoryLocation(wxCommandEvent & event)
 {
+    if(event.GetId() == ID_SHOW_PROJECT_DIRECTORY_LOCATION){
+
      if(this->Construction_Point == wxT("")){
 
          wxMessageDialog * info_dial = new wxMessageDialog(NULL,
@@ -680,7 +724,8 @@ void MainFrame::ShowProjectDirectoryLocation(wxCommandEvent & event)
 
                delete info_dial;
             };
-     }
+      }
+    }
 }
 
 void MainFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
@@ -690,101 +735,105 @@ void MainFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
 
 void MainFrame::Show_Descriptions(wxCommandEvent & event)
 {
-     if(this->is_project_file_selected){
+     if(event.GetId() == ID_SHOW_DESCRIPTIONS){
 
-        this->Process_Controller.Show_Descriptions(this->Descriptor_File_Path);
-     }
-     else{
-            wxMessageDialog * dial = new wxMessageDialog(NULL,
+       if(this->is_project_file_selected){
 
-            wxT("Descriptor file was not selected!\nPlease select descriptor file"),
+          this->Process_Controller.Show_Descriptions(this->Descriptor_File_Path);
+       }
+       else{
+              wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-            wxT("Info"), wxOK);
+                   wxT("Descriptor file was not selected!\nPlease select descriptor file"),
 
-            dial->ShowModal();
+                   wxT("Info"), wxOK);
 
-            delete dial;
+              dial->ShowModal();
 
-            return;
+              delete dial;
+
+              return;
+       }
      }
 }
 
 void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
 {
-     this->Process_Pointer = new wxProcess(wxPROCESS_DEFAULT);
+     if(event.GetId() == ID_OPEN_EMPTY_PROJECT_FILE){
 
-     this->is_project_file_selected = false;
+        this->Process_Pointer = new wxProcess(wxPROCESS_DEFAULT);
 
-     wxDirDialog dir_dialog(this,"Select File Location","",wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
+        this->is_project_file_selected = false;
 
-     wxString DirectoryPath;
+        wxDirDialog dir_dialog(this,"Select File Location","",wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
 
-     if(dir_dialog.ShowModal() == wxID_OK){
+        wxString DirectoryPath;
 
-        DirectoryPath = dir_dialog.GetPath();
+        if(dir_dialog.ShowModal() == wxID_OK){
 
-        this->is_project_file_selected = true;
-     }
+           DirectoryPath = dir_dialog.GetPath();
 
-     this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
-
-     this->Process_Controller.Set_Project_File_Select_Condition(this->is_project_file_selected);
-
-     if(this->is_project_file_selected){
-
-        this->Descriptor_File_Path = DirectoryPath + wxT("\\Project_Descriptor_File.txt");
-
-        wxTextFile File_Manager(this->Descriptor_File_Path);
-
-        if(File_Manager.Exists()){
-
-           wxString message = wxT("");
-
-           message = message + wxT(" There is already a descriptor file in that location.\n");
-
-           message = message + wxT(" If you continue, the information in the descriptor\n");
-
-           message = message + wxT(" file will be lost ! ");
-
-           wxMessageDialog * info_dial
-
-           = new wxMessageDialog(NULL,message,
-
-           wxT("Information"), wxOK);
-
-           info_dial->ShowModal();
-
-           wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Are you sure to continue?"), wxT("Question"),wxYES_NO);
-
-           if(exit_dial->ShowModal() ==  wxID_NO){
-
-              return;
-           };
+           this->is_project_file_selected = true;
         }
 
-        wxString File_Construction_Command = wxT("Empty_Process_Descriptor_File_Builder.exe ") + DirectoryPath;
-
-        this->Sub_Process_ID = wxExecute(File_Construction_Command,wxEXEC_SYNC,this->Process_Pointer);
-
-        int exit_status = 0;
-
-        this->Process_Pointer->OnTerminate(this->Sub_Process_ID,exit_status);
-
-        this->Book_Manager->Open_File(this->Descriptor_File_Path);
-
-        this->Run_Command = wxT("");
-
-        this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
-
-        this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+        this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
 
         this->Process_Controller.Set_Project_File_Select_Condition(this->is_project_file_selected);
 
-        this->Process_Controller.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+        if(this->is_project_file_selected){
 
-        this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
+           this->Descriptor_File_Path = DirectoryPath + wxT("\\Project_Descriptor_File.txt");
 
-        this->Description_Recorder.Receive_Main_Frame_Address(this);
+           wxTextFile File_Manager(this->Descriptor_File_Path);
+
+           if(File_Manager.Exists()){
+
+              wxString message = wxT("");
+
+              message = message + wxT(" There is already a descriptor file in that location.\n");
+
+              message = message + wxT(" If you continue, the information in the descriptor\n");
+
+              message = message + wxT(" file will be lost ! ");
+
+              wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
+
+                  wxT("Information"), wxOK);
+
+              info_dial->ShowModal();
+
+              wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Are you sure to continue?"),
+
+                                                wxT("Question"),wxYES_NO);
+
+
+              if(exit_dial->ShowModal() ==  wxID_NO){
+
+                 return;
+              };
+            }
+
+            wxString File_Construction_Command = wxT("Empty_Process_Descriptor_File_Builder.exe ") + DirectoryPath;
+
+            this->Sub_Process_ID = wxExecute(File_Construction_Command,wxEXEC_SYNC,this->Process_Pointer);
+
+
+            this->Book_Manager->Open_File(this->Descriptor_File_Path);
+
+            this->Run_Command = wxT("");
+
+            this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
+
+            this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+
+            this->Process_Controller.Set_Project_File_Select_Condition(this->is_project_file_selected);
+
+            this->Process_Controller.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+
+            this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
+
+            this->Description_Recorder.Receive_Main_Frame_Address(this);
+        }
      }
 }
 
@@ -796,415 +845,506 @@ void MainFrame::OpenIntroPage(wxCommandEvent & event)
      }
 }
 
-void MainFrame::Open_Project_Web_Page(wxCommandEvent & event)
-{
-     if(event.GetId() == ID_OPEN_PROJECT_WEB_PAGE)
-     {
-        this->Book_Manager->Load_Help_Page();
-     }
-}
-
 void MainFrame::Increase_Font_Size(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_INCREASE_FONT_SIZE){
 
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+        event.StopPropagation();
 
-     if(is_this_text_file){
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
 
-        wxFont Font = this->Book_Manager->Get_Selected_Text_Ctrl()->StyleGetFont(wxSTC_C_REGEX);
+        if(is_this_text_file){
 
-        Font.SetPointSize(Font.GetPointSize()+1);
+           wxFont Font = this->Book_Manager->Get_Selected_Text_Ctrl()->StyleGetFont(wxSTC_C_REGEX);
 
-        this->Book_Manager->Set_Font(Font);
+           Font.SetPointSize(Font.GetPointSize()+1);
 
-        if(this->is_bold_style_selected){
+           this->Book_Manager->Set_Font(Font);
 
-           this->Book_Manager->Use_Bold_Styling();
+           if(this->is_bold_style_selected){
+
+              this->Book_Manager->Use_Bold_Styling();
+           }
         }
      }
 }
 
 void MainFrame::Decrease_Font_Size(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_DECREASE_FONT_SIZE){
 
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+        event.StopPropagation();
 
-     if(is_this_text_file){
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
 
-        wxFont Font = this->Book_Manager->Get_Selected_Text_Ctrl()->StyleGetFont(wxSTC_C_REGEX);
+        if(is_this_text_file){
 
-        Font.SetPointSize(Font.GetPointSize()-1);
+           wxFont Font = this->Book_Manager->Get_Selected_Text_Ctrl()->StyleGetFont(wxSTC_C_REGEX);
 
-        this->Book_Manager->Set_Font(Font);
+           Font.SetPointSize(Font.GetPointSize()-1);
 
-        if(this->is_bold_style_selected){
+           this->Book_Manager->Set_Font(Font);
 
-           this->Book_Manager->Use_Bold_Styling();
+           if(this->is_bold_style_selected){
+
+              this->Book_Manager->Use_Bold_Styling();
+            }
         }
      }
 }
 
-void MainFrame::Use_Default_Font(wxCommandEvent & WXUNUSED(event))
+void MainFrame::Use_Default_Font(wxCommandEvent & event)
 {
-     this->Book_Manager->Set_Font(*this->Default_Font);
+     if(event.GetId() == ID_USE_DEFAULT_FONT){
+
+        this->Book_Manager->Set_Font(*this->Default_Font);
+     }
 }
 
 void MainFrame::Undo_Changes(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_UNDO_CHANGES){
 
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+        event.StopPropagation();
 
-     if(is_this_text_file)
-     {
-        this->Book_Manager->Get_Selected_Text_Ctrl()->Undo();
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+
+        if(is_this_text_file){
+
+           this->Book_Manager->Get_Selected_Text_Ctrl()->Undo();
+        }
      }
 }
 
 void MainFrame::Redo_Changes(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_REDO_CHANGES){
 
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+        event.StopPropagation();
 
-     if(is_this_text_file)
-     {
-        this->Book_Manager->Get_Selected_Text_Ctrl()->Redo();
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+
+        if(is_this_text_file){
+
+           this->Book_Manager->Get_Selected_Text_Ctrl()->Redo();
+        }
      }
 }
 
 void MainFrame::Clear_Style(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() ==  ID_CLEAR_STYLE){
 
-     this->is_bold_style_selected = false;
+        event.StopPropagation();
 
-     this->Book_Manager->Clear_Style();
+        this->is_bold_style_selected = false;
+
+        this->Book_Manager->Clear_Style();
+     }
 }
 
 void MainFrame::Reload_Default_Style(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_RELOAD_STYLE){
 
-     this->is_bold_style_selected = false;
+        event.StopPropagation();
 
-     this->Book_Manager->Reload_Style();
+        this->is_bold_style_selected = false;
+
+        this->Book_Manager->Reload_Style();
+     }
 }
 
 void MainFrame::Clear_Text(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_CLEAR_TEXT){
 
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+        event.StopPropagation();
 
-     if(is_this_text_file)
-     {
-        this->Book_Manager->Get_Selected_Text_Ctrl()->ClearAll();
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+
+        if(is_this_text_file){
+
+           this->Book_Manager->Get_Selected_Text_Ctrl()->ClearAll();
+        }
      }
 }
 
 void MainFrame::Change_Cursor_Type(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_CHANGE_CURSOR_TYPE){
 
-     this->Book_Manager->Change_Cursor_Type();
+       event.StopPropagation();
+
+       this->Book_Manager->Change_Cursor_Type();
+     }
 }
 
 void MainFrame::Load_Default_Cursor(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_SET_CURSOR_TYPE_DEFAULT){
 
-     this->Book_Manager->Load_Default_Cursor();
+        event.StopPropagation();
+
+        this->Book_Manager->Load_Default_Cursor();
+     }
 }
 
 void MainFrame::Set_Caret_Line_Visible(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_SET_CARET_LINE_VISIBLE){
 
-     this->Book_Manager->Set_Caret_Line_Visible();
+       event.StopPropagation();
+
+       this->Book_Manager->Set_Caret_Line_Visible();
+     }
 }
 
 void MainFrame::Set_Caret_Line_InVisible(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_SET_CARET_LINE_INVISIBLE){
 
-     this->Book_Manager->Set_Caret_Line_InVisible();
+        event.StopPropagation();
+
+        this->Book_Manager->Set_Caret_Line_InVisible();
+     }
 }
 
 void MainFrame::Use_Block_Caret(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_USE_BLOCK_CARET){
 
-     this->Book_Manager->Use_Block_Caret();
+       event.StopPropagation();
+
+       this->Book_Manager->Use_Block_Caret();
+     }
 }
 
 void MainFrame::Use_Default_Caret(wxCommandEvent & event)
 {
-     this->Book_Manager->Use_Default_Caret();
+     if(event.GetId() == ID_USE_DEFAULT_CARET){
+
+        this->Book_Manager->Use_Default_Caret();
+     }
 }
 
 void MainFrame::Use_Bold_Styling(wxCommandEvent & event)
 {
-     event.StopPropagation();
+     if(event.GetId() == ID_BOLD_STYLE){
 
-     this->is_bold_style_selected = true;
+       event.StopPropagation();
 
-     this->Book_Manager->Use_Bold_Styling();
+       this->is_bold_style_selected = true;
+
+       this->Book_Manager->Use_Bold_Styling();
+     }
 }
 
 void MainFrame::Save_File_As(wxCommandEvent & event)
 {
-     bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
+     if(event.GetId() == ID_SAVE_AS){
 
-     if(is_this_text_file){
+        bool is_this_text_file = this->Book_Manager->Is_Current_Page_Text_File();
 
-        wxString File_Path;
+        if(is_this_text_file){
 
-        wxString message = wxT("Text files (*.txt)|*.txt|C++ Source Files (*.cpp)|");
+           wxString File_Path;
 
-        message = message + wxT("*.cpp|C Source files (*.c)|*.c|C header files (*.h)|*.h");
+           wxString message = wxT("Text files (*.txt)|*.txt|C++ Source Files (*.cpp)|");
 
-        wxFileDialog * SaveDialog = new wxFileDialog(this,wxT("Save File As ?"), wxEmptyString,
+           message = message + wxT("*.cpp|C Source files (*.c)|*.c|C header files (*.h)|*.h");
 
-        wxEmptyString, message, wxFD_OVERWRITE_PROMPT | wxFD_SAVE, wxDefaultPosition);
+           wxFileDialog * SaveDialog = new wxFileDialog(this,wxT("Save File As ?"), wxEmptyString,
 
-        if(SaveDialog->ShowModal() == wxID_OK) // If the user clicked "OK"
-        {
-           File_Path = SaveDialog->GetPath();
+           wxEmptyString, message, wxFD_OVERWRITE_PROMPT | wxFD_SAVE, wxDefaultPosition);
 
-           this->Book_Manager->Get_Selected_Text_Ctrl()->SaveFile(File_Path);
+           if(SaveDialog->ShowModal() == wxID_OK) // If the user clicked "OK"
+           {
+              File_Path = SaveDialog->GetPath();
+
+              this->Book_Manager->Get_Selected_Text_Ctrl()->SaveFile(File_Path);
+           }
+
+           SaveDialog->Destroy();
         }
-
-        SaveDialog->Destroy();
      }
 }
 
 void MainFrame::New_File(wxCommandEvent & event)
 {
-     wxString File_Path;
+     if(event.GetId() == ID_NEW_FILE){
 
-     wxFileDialog * File_Dialog = new wxFileDialog(this,wxT("New File"),
+        wxString File_Path;
 
-     wxEmptyString, wxEmptyString,wxT(""),
+        wxFileDialog * File_Dialog = new wxFileDialog(this,wxT("New File"),
 
-                   wxFD_OVERWRITE_PROMPT | wxFD_SAVE, wxDefaultPosition);
+               wxEmptyString, wxEmptyString,wxT(""),
 
-     if(File_Dialog->ShowModal() == wxID_OK) // If the user clicked "OK"
-     {
-        File_Path = File_Dialog->GetPath();
+               wxFD_OVERWRITE_PROMPT | wxFD_SAVE, wxDefaultPosition);
 
-        wxTextFile File_Manager(File_Path);
+        if(File_Dialog->ShowModal() == wxID_OK) // If the user clicked "OK"
+        {
+           File_Path = File_Dialog->GetPath();
 
-        if(!File_Manager.Exists()){
+           wxTextFile File_Manager(File_Path);
 
-           File_Manager.Create();
+           if(!File_Manager.Exists()){
+
+              File_Manager.Create();
+           }
+
+           this->Book_Manager->Add_New_File(File_Path);
         }
 
-        this->Book_Manager->Add_New_File(File_Path);
+        File_Dialog->Destroy();
      }
-
-     File_Dialog->Destroy();
 }
 
 void MainFrame::Re_Open_Project_Directory(wxCommandEvent & event)
 {
-    event.Skip(true);
+     if(event.GetId() == ID_OPEN_TREE_WIEW){
 
-    event.StopPropagation();
+        event.Skip(true);
 
-    if(this->Construction_Point == wxT("")){
+        event.StopPropagation();
 
-       wxString message = wxT("Project directory has not been determined !");
+        if(this->Construction_Point == wxT("")){
 
-       message = message + wxT("  At first, Library must be constructed !");
+           wxString message = wxT("Project directory has not been determined !");
 
-       wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
+           message = message + wxT("  At first, Library must be constructed !");
 
-       wxT("Information"), wxOK);
+           wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
 
-       if(info_dial->ShowModal() == ID_RE_OPEN_PROJECT_DIRECTORY){
+                wxT("Information"), wxOK);
 
-          delete info_dial;
-       };
-    }
-    else{
-           if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
+           if(info_dial->ShowModal() == ID_RE_OPEN_PROJECT_DIRECTORY){
 
-               this->Dir_List_Manager->RemoveProjectDirectory();
+              delete info_dial;
+           };
+        }
+        else{
+               if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
-               this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
+                   this->Dir_List_Manager->RemoveProjectDirectory();
 
-               this->Interface_Manager.Update();
-           }
-    }
+                   this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
+
+                   this->Interface_Manager.Update();
+               }
+        }
+     }
 }
 
 void MainFrame::Enter_Header_File_Location(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_HEADER_FILE_LOCATION){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Header_File_Location();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Header_File_Location();
+        }
      }
 }
 
 void MainFrame::Enter_Source_File_Location(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_SOURCE_FILE_LOCATION){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Source_File_Location();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Source_File_Location();
+        }
      }
 }
 
 void MainFrame::Enter_Library_Location(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_LIBRARY_LOCATION){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Library_Location();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Library_Location();
+        }
      }
 }
 
 void MainFrame::Enter_Header_File(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_HEADER_FILE){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Header_File();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Header_File();
+        }
      }
 }
 
 void MainFrame::Enter_Source_File(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_SOURCE_FILE_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Source_File();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Source_File();
+        }
      }
 }
 
 void MainFrame::Enter_Library_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_LIBRARY_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Library_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Library_Name();
+        }
      }
 }
 
 void MainFrame::Enter_Namespace(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_NAMESPACE){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Namespace();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Namespace();
+        }
      }
 }
 
 void MainFrame::Enter_OpenMP_Support(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_OPENMP_SUPPORT){
 
-     wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Do you want OpenMP support?"),
+        this->Description_Record_Data_Lose_Protection();
 
-              wxT("Question"),wxYES_NO);
+        wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Do you want OpenMP support?"),
 
-     if(exit_dial->ShowModal() ==  wxNO){
+            wxT("Question"),wxYES_NO);
 
-        if(this->is_descriptor_file_ready_to_record){
+        if(exit_dial->ShowModal() ==  wxNO){
 
-           this->Description_Recorder.Enter_OpenMP_Option(false);
+           if(this->is_descriptor_file_ready_to_record){
+
+              this->Description_Recorder.Enter_OpenMP_Option(false);
+           }
         }
+        else{
+
+            if(this->is_descriptor_file_ready_to_record){
+
+               this->Description_Recorder.Enter_OpenMP_Option(true);
+            }
+        };
+
+        exit_dial->Destroy();
      }
-     else{
-
-        if(this->is_descriptor_file_ready_to_record){
-
-           this->Description_Recorder.Enter_OpenMP_Option(true);
-        }
-     };
-
-     exit_dial->Destroy();
 }
 
 
 void MainFrame::Enter_Construction_Point(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_CONSTRUCTION_POINT){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Construction_Point();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Construction_Point();
+        }
      }
 }
 
 void MainFrame::Enter_Thread_Function_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_THREAD_FUNCTION_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Thread_Function_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Thread_Function_Name();
+        }
      }
 }
 
 void MainFrame::Enter_Exe_File_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_EXE_FILE_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Exe_File_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Exe_File_Name();
+        }
      }
 }
 
 void MainFrame::Enter_ITC_Class_Header_File_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_ITC_HEADER_FILE_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_ITC_Class_Header_File_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_ITC_Class_Header_File_Name();
+        }
      }
 }
 
 void MainFrame::Enter_IT_Data_Type_Header_File_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_ITD_HEADER_FILE_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_IT_Data_Type_Header_File_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_IT_Data_Type_Header_File_Name();
+        }
      }
 }
 
 void MainFrame::Enter_IT_Data_Type_Name(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_ITD_DATA_NAME){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-         this->Description_Recorder.Enter_IT_Data_Type_Name();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_IT_Data_Type_Name();
+        }
      }
 }
 
 void MainFrame::Enter_Thread_Number(wxCommandEvent & event)
 {
-     this->Description_Record_Data_Lose_Protection();
+     if(event.GetId() == ID_INPUT_THREAD_NUMBER){
 
-     if(this->is_descriptor_file_ready_to_record){
+        this->Description_Record_Data_Lose_Protection();
 
-        this->Description_Recorder.Enter_Thread_Number();
+        if(this->is_descriptor_file_ready_to_record){
+
+           this->Description_Recorder.Enter_Thread_Number();
+        }
      }
 }
 

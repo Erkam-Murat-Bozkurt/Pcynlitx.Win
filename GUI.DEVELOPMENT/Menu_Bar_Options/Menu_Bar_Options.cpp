@@ -91,7 +91,7 @@ Menu_Bar_Options::Menu_Bar_Options(){
   this->Edit->Append(ID_USE_DEFAULT_CARET,"&Use Default Caret","",wxITEM_NORMAL);
 
 
-  this->Launch_Menu->Append(ID_RUN_EXECUTABLE,"&Build Library","",wxITEM_NORMAL);
+  this->Launch_Menu->Append(ID_RUN_LIBRARY_BUILDER,"&Build Library","",wxITEM_NORMAL);
 
   this->Launch_Menu->Append(ID_RUN_EXECUTABLE_BINARY_BUILDER,"&Build Binary","",wxITEM_NORMAL);
 
@@ -105,15 +105,12 @@ Menu_Bar_Options::Menu_Bar_Options(){
 
   this->Launch_Menu->Append(ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION,"&Show Descriptor File Location","",wxITEM_NORMAL);
 
-
   this->Launch_Menu->Append(ID_SHOW_PROJECT_DIRECTORY_LOCATION,"&Show Construction Point","",wxITEM_NORMAL);
 
   this->Launch_Menu->Append(ID_RE_OPEN_PROJECT_DIRECTORY,"&Project Directory Tree View","",wxITEM_NORMAL);
 
   this->Launch_Menu->Append(ID_SHOW_DESCRIPTIONS,"&Print Your Descriptions","",wxITEM_NORMAL);
 
-
-  this->Help_Menu->Append(ID_OPEN_PROJECT_WEB_PAGE,"&Project Documentation","",wxITEM_NORMAL);
 
   this->Help_Menu->Append(ID_OPEN_INTROPAGE,"&Intro Page","",wxITEM_NORMAL);
 

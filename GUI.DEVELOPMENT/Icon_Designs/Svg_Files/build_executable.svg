@@ -31,7 +31,7 @@
      id="namedview8"
      showgrid="true"
      inkscape:zoom="41.860721"
-     inkscape:cx="-3.6923424"
+     inkscape:cx="-3.1145264"
      inkscape:cy="6.2413847"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
@@ -59,7 +59,7 @@
   <defs
      id="defs6" />
   <rect
-     style="fill:#c86464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:#c86464;fill-opacity:1;stroke:none;stroke-width:0.05;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
      width="12"
      height="12"
@@ -71,7 +71,7 @@
      inkscape:export-ydpi="500" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.375"
+     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#191919;stroke-width:0.05;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
      x="1.5359551"
      y="8.4758215"
      id="text833"><tspan
@@ -79,10 +79,10 @@
        id="tspan831"
        x="1.5359551"
        y="8.4758215"
-       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.375">E</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.05;stroke:#191919;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;">E</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.375"
+     style="font-style:normal;font-weight:normal;font-size:15px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#191919;stroke-width:0.05;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
      x="6.3324208"
      y="8.4603662"
      id="text833-9"><tspan
@@ -90,5 +90,5 @@
        id="tspan831-1"
        x="6.3324208"
        y="8.4603662"
-       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.375">x</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:7px;font-family:Lato;-inkscape-font-specification:'Lato Heavy';fill:#ffffff;fill-opacity:1;stroke-width:0.05;stroke:#191919;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;">x</tspan></text>
 </svg>

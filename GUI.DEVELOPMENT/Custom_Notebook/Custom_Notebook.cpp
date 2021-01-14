@@ -1,7 +1,6 @@
 
 #include "Custom_Notebook.h"
 
-
 Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Manager,
 
        wxFont Default_Font,wxSize size)
@@ -67,7 +66,7 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
 
    this->Refresh();
 
-   this->SetTabCtrlHeight(43);
+   this->SetTabCtrlHeight(47);
 
    this->Default_Font = Default_Font;
 
@@ -211,8 +210,6 @@ void Custom_Notebook::Load_Help_Page()
         this->NoteBook_Page_Data[Index_Number].Document_Change_In_File_Open = false;
 
         this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Initialize_Help_Page_Text(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer);
-
-        //bool is_loaded = this->AddPage(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer,wxT(" Help Page  "),true);
 
         this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Show(true);
 

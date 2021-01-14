@@ -568,9 +568,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
      Process_Exit_Status = wxExecute(Description_Print_Command,wxEXEC_SYNC,this->Process_Pointer);
 
 
-     wxString log_string = wxT("\\n\\n");
-
-     log_string = log_string  +  wxT(" The following error reports have been obtained:") +  wxT("\\n\\n ");;
+     wxString log_string = wxT("");
 
      if(Process_Exit_Status != 0){
 

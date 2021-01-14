@@ -215,7 +215,17 @@ void Description_Printer::Print_Descriptions(){
 
         std::cout << "\n\n";
 
+        std::cout << "\n\n";
+
         std::cout << Inter_Thread_Class_Descriptions;
+
+
+        std::cout << "\n\t";
+
+        for(int i=0;i<75;i++){
+
+            std::cout << "=";
+        }
 
         for(int i=0;i<Inter_Thread_Classes[0].Total_Class_Number;i++){
 
@@ -264,7 +274,16 @@ void Description_Printer::Print_Descriptions(){
 
         std::cout << "\n\n";
 
+        std::cout << "\n\n";
+
         std::cout << Smart_Pointer_Descriptions;
+
+        std::cout << "\n\t";
+
+        for(int i=0;i<75;i++){
+
+            std::cout << "=";
+        }
 
         for(int i=0;i< Inter_Thread_Data_Types[0].Total_Data_Type_Number;i++){
 
@@ -323,6 +342,13 @@ void Description_Printer::Print_Descriptions(){
         std::cout << "\n\n";
 
         std::cout << Library_Descriptions;
+
+        std::cout << "\n\t";
+
+        for(int i=0;i<75;i++){
+
+            std::cout << "=";
+        }
 
         std::cout << "\n\n";
 
@@ -438,7 +464,16 @@ void Description_Printer::Print_Descriptions(){
 
      std::cout << "\n\n";
 
+     std::cout << "\n\n";
+
      std::cout << Namespace;
+
+     std::cout << "\n\t";
+
+     for(int i=0;i<75;i++){
+
+         std::cout << "=";
+     }
 
      std::cout << "\n\n\t Namespace of the library: " << this->Description_Reader.Get_Namespace();
 
@@ -446,7 +481,16 @@ void Description_Printer::Print_Descriptions(){
 
      std::cout << "\n\n";
 
+     std::cout << "\n\n";
+
      std::cout << OpenMP_Support;
+
+     std::cout << "\n\t";
+
+     for(int i=0;i<75;i++){
+
+         std::cout << "=";
+     }
 
      std::cout << "\n\n\t OpenMP Selection: " << this->Description_Reader.Get_OpenMP_Support_Condition();
 

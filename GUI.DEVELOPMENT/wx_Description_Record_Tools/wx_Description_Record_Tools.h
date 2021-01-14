@@ -56,7 +56,11 @@ public:
   void Description_Record_Process(wxString Input_String);
   void Show_Descriptor_File_Identification_Error();
   void Scroll_To_Position();
+  wxString OpenFileDialog();
+  wxString OpenDirectoryDialog();
 private:
+  wxString selected_file_path;
+  wxString selected_directory_path;
   bool dialog_memory_delete_condition;
   ClassNameReader CN_Reader;
   Custom_Notebook * NB_Manager_Pointer;

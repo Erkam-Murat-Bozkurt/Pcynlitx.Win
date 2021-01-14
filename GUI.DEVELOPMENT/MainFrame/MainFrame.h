@@ -67,7 +67,6 @@ public:
   void ShowAuthor(wxCommandEvent & event);
   void ShowProjectFileLocation(wxCommandEvent & event);
   void ShowProjectDirectoryLocation(wxCommandEvent & event);
-  void Open_Project_Web_Page(wxCommandEvent & event);
   void Show_Descriptions(wxCommandEvent & event);
   void OnClose(wxCloseEvent & event);
   wxAuiPaneInfo Central_Pane_Info;

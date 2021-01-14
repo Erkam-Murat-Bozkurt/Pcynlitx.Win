@@ -35,6 +35,10 @@ wx_Description_Record_Tools::wx_Description_Record_Tools(){
     this->Process_Pointer = nullptr;
 
     this->Pr_File_Select_Dialog = nullptr;
+
+    this->selected_file_path = wxT("");
+
+    this->selected_directory_path = wxT("");
 }
 
 wx_Description_Record_Tools::~wx_Description_Record_Tools(){
@@ -74,14 +78,7 @@ void wx_Description_Record_Tools::Enter_Header_File_Location(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenDirectoryDialog();
 
         if(Input_Command != wxT("")){
 
@@ -110,14 +107,7 @@ void wx_Description_Record_Tools::Enter_Source_File_Location(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenDirectoryDialog();
 
         if(Input_Command != wxT("")){
 
@@ -145,14 +135,7 @@ void wx_Description_Record_Tools::Enter_Library_Location(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenDirectoryDialog();
 
         if(Input_Command != wxT("")){
 
@@ -181,14 +164,7 @@ void wx_Description_Record_Tools::Enter_Header_File(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenFileDialog();
 
         if(Input_Command != wxT("")){
 
@@ -230,14 +206,7 @@ void wx_Description_Record_Tools::Enter_Source_File(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenFileDialog();
 
         if(Input_Command != wxT("")){
 
@@ -266,14 +235,7 @@ void wx_Description_Record_Tools::Enter_Library_Name(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenFileDialog();
 
         if(Input_Command != wxT("")){
 
@@ -302,14 +264,7 @@ void wx_Description_Record_Tools::Enter_Construction_Point(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenDirectoryDialog();
 
         if(Input_Command != wxT("")){
 
@@ -460,14 +415,7 @@ void wx_Description_Record_Tools::Enter_ITC_Class_Header_File_Name(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
-
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenFileDialog();
 
         if(Input_Command != wxT("")){
 
@@ -555,14 +503,9 @@ void wx_Description_Record_Tools::Enter_IT_Data_Type_Header_File_Name(){
 
      if(this->is_project_file_selected){
 
-        this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
+        //this->Pr_File_Select_Dialog = new Project_File_Selection_Dialog(this->Frame);
 
-        if(this->Pr_File_Select_Dialog->Get_Project_File_Selection_Dialog()->ShowModal() == wxID_OK){
-
-           Input_Command = this->Pr_File_Select_Dialog->Get_File_Selection_Control()->GetPath();
-
-           this->Pr_File_Select_Dialog->Get_File_Selection_Control()->Destroy();
-        }
+        Input_Command = this->OpenFileDialog();
 
         if(Input_Command != wxT("")){
 
@@ -814,4 +757,36 @@ void wx_Description_Record_Tools::Show_Descriptor_File_Identification_Error(){
 
         delete info_dial;
      };
+}
+
+wxString wx_Description_Record_Tools::OpenFileDialog(){
+
+         this->selected_file_path = wxT("");
+
+         wxFileDialog * openFileDialog = new wxFileDialog(this->Frame);
+
+         openFileDialog->CentreOnParent(wxBOTH);
+
+         if (openFileDialog->ShowModal() == wxID_OK){
+
+             this->selected_file_path = openFileDialog->GetPath();
+         }
+
+         delete openFileDialog;
+
+         return this->selected_file_path;
+}
+
+wxString wx_Description_Record_Tools::OpenDirectoryDialog(){
+
+         this->selected_directory_path = wxT("");
+
+         wxDirDialog dir_dialog(this->Frame,"Select Directory Location","",wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
+
+         if(dir_dialog.ShowModal() == wxID_OK){
+
+            this->selected_directory_path = dir_dialog.GetPath();
+         }
+
+         return this->selected_directory_path;
 }
