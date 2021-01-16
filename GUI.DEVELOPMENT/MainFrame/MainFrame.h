@@ -56,7 +56,6 @@ public:
   void OnQuit(wxCommandEvent & event);
   void OnOpen(wxCommandEvent & event);
   void SelectProjectFile(wxCommandEvent & event);
-  void OnOpenFontDialog(wxCommandEvent & event);
   void DirectoryOpen(wxCommandEvent & event);
   void RunLibraryBuilder(wxCommandEvent & event);
   void RunExeBuilder(wxCommandEvent & event);
@@ -78,7 +77,6 @@ private:
   void OpenEmptyProjectFile(wxCommandEvent & event);
   void Increase_Font_Size(wxCommandEvent & event);
   void Decrease_Font_Size(wxCommandEvent & event);
-  void Use_Default_Font(wxCommandEvent & event);
   void Undo_Changes(wxCommandEvent & event);
   void Redo_Changes(wxCommandEvent & event);
   void Re_Open_Project_Directory(wxCommandEvent & event);

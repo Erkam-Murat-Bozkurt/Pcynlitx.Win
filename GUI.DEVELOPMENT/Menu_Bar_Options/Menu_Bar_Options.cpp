@@ -50,9 +50,9 @@ Menu_Bar_Options::Menu_Bar_Options(){
 
   this->View_Menu->Append(ID_DECREASE_FONT_SIZE,"Decrease Font Size",wxT(""),wxITEM_NORMAL);
 
-  this->View_Menu->Append(ID_FONT_DIALOG,"&Change Font","",wxITEM_NORMAL);
+  //this->View_Menu->Append(ID_FONT_DIALOG,"&Change Font","",wxITEM_NORMAL);
 
-  this->View_Menu->Append(ID_USE_DEFAULT_FONT,"&Use Default Font","",wxITEM_NORMAL);
+  //this->View_Menu->Append(ID_USE_DEFAULT_FONT,"&Use Default Font","",wxITEM_NORMAL);
 
   this->View_Menu->Append(ID_CLEAR_STYLE,"&Clear Styling","",wxITEM_NORMAL);
 

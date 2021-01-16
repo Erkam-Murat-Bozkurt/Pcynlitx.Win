@@ -28,7 +28,7 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
   this->Default_Font = new wxFont(9,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
 
-                     wxFONTWEIGHT_NORMAL,false,"Noto Mono");
+                     wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
 
   this->SetFont(*(this->Default_Font));
 
@@ -51,7 +51,7 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
 
 
-  this->SetBackgroundColour(wxColour(200,200,200));
+  this->SetBackgroundColour(wxColour(225,225,225));
 
   this->Interface_Manager.SetFlags(wxAUI_MGR_LIVE_RESIZE);
 
@@ -274,7 +274,7 @@ void MainFrame::PaintNow(wxWindow * wnd)
 
 void MainFrame::DrawBackground(wxDC & dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(wxColour(200,200,200));
+     dc.SetBrush(wxColour(225,225,225));
 
      dc.DrawRectangle(rect.GetX()-5, rect.GetY()-5, rect.GetWidth()+10,rect.GetHeight()+5);
 }
@@ -297,24 +297,6 @@ void MainFrame::OnPaint(wxPaintEvent & event)
 
         this->Dir_List_Manager->PaintNow();
      }
-}
-
-void MainFrame::OnOpenFontDialog(wxCommandEvent & WXUNUSED(event))
-{
-     wxFontData Data;
-
-     this->Font_Dialog = new wxFontDialog(this,Data);
-
-     if(this->Font_Dialog->ShowModal() == wxID_OK){
-
-        wxFontData Return_Font_Data = this->Font_Dialog->GetFontData();
-
-        wxFont Selected_Font = Return_Font_Data.GetChosenFont();
-
-        this->Book_Manager->Set_Font(Selected_Font);
-     }
-
-     delete this->Font_Dialog;
 }
 
 void MainFrame::OnOpen(wxCommandEvent & event)
@@ -442,7 +424,10 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
             this->Run_Command = wxT("");
 
-            this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
+            this->Run_Command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe "
+
+                                + this->Descriptor_File_Path;
+
 
             int Descriptor_File_Name_Size = 0;
 
@@ -650,15 +635,20 @@ void MainFrame::ShowAuthor(wxCommandEvent & event)
 
         message = message + wxT("   ERKAM MURAT BOZKURT\n\n");
 
+        message = message + wxT("   PCYNLITX Software, Istanbul / TURKEY\n\n");
+
         message = message + wxT("   M.Sc. Control Sysytem Engineering\n\n");
 
         message = message + wxT("   ORCID ID: 0000-0003-3690-2770\n\n");
 
-        message = message + wxT("\n ");
+        message = message + wxT("   http://www.pcynlitx.tech/developer/\n\n");
+
+        message = message + wxT("   pcynlitx.help@gmail.com\n\n");
+
 
         wxRichMessageDialog * dial = new wxRichMessageDialog(this,
 
-                     message, wxT("  THE DEVELOPER OF THE PLATFORM"), wxOK|wxCENTRE);
+                     message, wxT("    THE DEVELOPER OF THE PLATFORM"), wxOK|wxCENTRE);
 
         if(dial->ShowModal() == ID_SHOW_AUTOR_INFO){
 
@@ -822,7 +812,7 @@ void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
 
             this->Run_Command = wxT("");
 
-            this->Run_Command = "D:\\Pcynlitx_Binaries\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
+            this->Run_Command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe " + this->Descriptor_File_Path;
 
             this->Description_Recorder.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
 
@@ -890,14 +880,6 @@ void MainFrame::Decrease_Font_Size(wxCommandEvent & event)
               this->Book_Manager->Use_Bold_Styling();
             }
         }
-     }
-}
-
-void MainFrame::Use_Default_Font(wxCommandEvent & event)
-{
-     if(event.GetId() == ID_USE_DEFAULT_FONT){
-
-        this->Book_Manager->Set_Font(*this->Default_Font);
      }
 }
 
@@ -1233,9 +1215,12 @@ void MainFrame::Enter_OpenMP_Support(wxCommandEvent & event)
 
         this->Description_Record_Data_Lose_Protection();
 
-        wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Do you want OpenMP support?"),
+        wxMessageDialog * exit_dial = new wxMessageDialog(NULL,
+
+            wxT("Do you want OpenMP support?"),
 
             wxT("Question"),wxYES_NO);
+
 
         if(exit_dial->ShowModal() ==  wxNO){
 

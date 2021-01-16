@@ -420,10 +420,6 @@ void Compiler::Determine_Final_Command(){
 
      char Executable_File_Indicator [] = {'-','o','\0'};
 
-     char Output_Redirection_Command [] = {'2','>','\0'};
-
-     char Error_Message_File_Name [] = {'C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
-
      int Inpt_Name_Size = 0, IDir_Name_Size = 0, LDir_Name_Size = 0, SDir_Name_Size = 0, SFIN_Name_Size = 0;
 
      int HFIN_Name_Size = 0, LIBD_Name_Size = 0, Opts_Name_size = 0, ExeF_Name_Size = 0, Main_Name_Size = 0;
@@ -565,14 +561,6 @@ void Compiler::Determine_Final_Command(){
 
         this->Place_Information(&this->Final_Commad,Space_Character,&index_counter);
      }
-
-     this->Place_Information(&this->Final_Commad,Space_Character,&index_counter);
-
-     this->Place_Information(&this->Final_Commad,Output_Redirection_Command,&index_counter);
-
-     this->Place_Information(&this->Final_Commad,Space_Character,&index_counter);
-
-     this->Place_Information(&this->Final_Commad,Error_Message_File_Name,&index_counter);
 
      this->Final_Commad[index_counter] = '\0';
 }

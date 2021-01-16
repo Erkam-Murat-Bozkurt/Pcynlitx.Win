@@ -6,7 +6,7 @@
 
  Custom_TabArt::Custom_TabArt() : wxAuiDefaultTabArt()
  {
-    this->page_close_icon = new wxBitmap(wxT("D:\\Pcynlitx\\icons\\close_tab.png"),
+    this->page_close_icon = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\close_tab.png"),
 
                              wxBITMAP_TYPE_ANY);
 
@@ -162,8 +162,6 @@
               dc.DrawPolygon(WXSIZEOF(border_points), border_points);
        }
 
-       //int close_button_width = 0;
-
        // draw close button if necessary
        if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
        {
@@ -182,8 +180,6 @@
            DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
 
            *out_button_rect = rect;
-
-           //close_button_width = bmp.GetScaledWidth();
        }
 
        wxString draw_text = page.caption;
@@ -224,8 +220,6 @@
 
                             const wxBitmap& bmp, const wxColour& bkcolour, int button_state)
   {
-        //wxMessageOutput::Get()->Printf("Inside Custom_TabArt::DrawButtons");
-
         wxRect rect = _rect;
 
         if (button_state == wxAUI_BUTTON_STATE_PRESSED)
@@ -241,7 +235,7 @@
             dc.SetPen(wxPen(bkcolour.ChangeLightness(75)));
 
             // draw the background behind the button
-            dc.DrawRectangle(rect.x, rect.y+4, bmp.GetScaledWidth()-offset.x, bmp.GetScaledHeight()-offset.y);
+            dc.DrawRectangle(rect.x, rect.y+7, bmp.GetScaledWidth()-offset.x-2, bmp.GetScaledHeight()-offset.y);
         }
 
         // draw the button itself
@@ -308,9 +302,8 @@
                       bmp.GetScaledWidth(), bmp.GetScaledHeight());
       }
 
-      //dc.DrawBitmap(bmp, rect.x, rect.y, true);
 
-      this->DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, button_state);
+      this->DrawButtons(dc,wxSize(1,1), rect, bmp, *wxWHITE, button_state);
 
       *out_rect = rect;
  };

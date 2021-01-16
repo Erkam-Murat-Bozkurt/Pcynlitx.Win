@@ -33,6 +33,8 @@ Process_Execution_Controller::Process_Execution_Controller(){
 
      this->Process_Event_Counter = 0;
 
+     this->Output_Print_Number = 0;
+
      this->error_stream_status = false;
 
      this->Sub_Process_ID_Received = 0;
@@ -78,13 +80,11 @@ void Process_Execution_Controller::Construction_Point_Determination(){
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
 
-     wxString shell_command = "Descriptor_File_Reader.exe " + Directory_Name;
+     wxString shell_command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
 
      this->Process_Exit_Status = 0;
 
      this->Process_Event_Counter = 0;
-
-     this->process_end_condition = false;
 
      this->Process_Pointer = new wxProcess(this->MainFrame_Pointer,wxID_ANY);
 
@@ -200,13 +200,11 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
 
-     wxString shell_command = "D:\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
+     wxString shell_command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
 
      this->Process_Exit_Status = 0;
 
      this->Process_Event_Counter = 0;
-
-     this->process_end_condition = false;
 
      this->Process_Pointer = new wxProcess(this->MainFrame_Pointer,wxID_ANY);
 
@@ -262,8 +260,6 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
                delete this->Process_Pointer;
       }
-
-      this->Process_Event_Counter = 0;
 }
 
 void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** Dir_List_Manager){
@@ -296,21 +292,24 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            this->Process_Event_Counter = 0;
 
-           this->process_end_condition = false;
+           this->Output_Print_Number = 0;
+
+           this->error_stream_status = false;
 
            this->Process_Pointer = new wxProcess(this->MainFrame_Pointer,wxID_ANY);
 
            this->Process_Pointer->Redirect();
 
-           this->Output_File_Path = this->Construction_Point;
-
            this->Run_Command = wxT("");
 
-           this->Run_Command = wxT("D:\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ") + this->Descriptor_File_Path;
+           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ")
+
+                            + this->Descriptor_File_Path;
 
 
+           this->Sub_Process_ID_Received = wxExecute( this->Run_Command,
 
-           this->Sub_Process_ID_Received = wxExecute( this->Run_Command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER
+                                    wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER
 
                                     | wxEXEC_HIDE_CONSOLE, this->Process_Pointer);
 
@@ -319,7 +318,12 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            this->ShowProgress();
 
-           if(this->Process_Event_Counter>=1){
+
+
+           this->Process_Pointer->OnTerminate(this->Sub_Process_ID,this->Process_Exit_Status);
+
+
+           if(((this->Process_Event_Counter>=2) && (this->Process_Exit_Status == 0))){
 
               if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
@@ -329,22 +333,22 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
               this->is_library_constructed = true;
            }
 
-           delete this->Process_Pointer;
-
-          }
-          else{
+        }
+        else{
                   return;
-          }
-       }
-       else{
+        }
+      }
+      else{
               wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-              wxT("Project file was not selected ..\nPlease select a project file"), wxT("Info"), wxOK);
+                    wxT("Project file was not selected ..\nPlease select a project file"),
+
+                    wxT("Info"), wxOK);
 
               dial->ShowModal();
-       }
+      }
 
-       this->library_construction_process_start = false;
+      this->library_construction_process_start = false;
 }
 
 void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_List_Manager){
@@ -363,7 +367,9 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
            this->Process_Exit_Status = 0;
 
-           this->process_end_condition = false;
+           this->error_stream_status = false;
+
+           this->Output_Print_Number = 0;
 
            this->Process_Pointer = new wxProcess(this->MainFrame_Pointer,wxID_ANY);
 
@@ -372,8 +378,7 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
            this->Run_Command = wxT("");
 
-           this->Run_Command = wxT("D:\\Pcynlitx\\bin\\MT_Project_Builder.exe ") + this->Construction_Point;
-
+           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\MT_Project_Builder.exe ") + this->Construction_Point;
 
 
            this->Sub_Process_ID_Received = wxExecute(this->Run_Command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER
@@ -382,23 +387,28 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
            this->Sub_Process_ID = this->Process_Pointer->GetPid();
 
+           this->Process_Pointer->Redirect();
+
+
            this->ShowProgress();
 
-           if(this->Process_Event_Counter>=1){
+           this->Process_Pointer->OnTerminate(this->Sub_Process_ID,this->Process_Exit_Status);
+
+           if(((this->Process_Event_Counter>=2) && (this->Process_Exit_Status == 0))){
 
               if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
                   this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
               }
            }
-
-           delete this->Process_Pointer;
         }
         else{
 
               wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-              wxT("There is no executable file name description ..\nPlease enter executable file name first"), wxT("Info"), wxOK);
+              wxT("There is no executable file name description ..\nPlease enter executable file name first"),
+
+                   wxT("Info"), wxOK);
 
               dial->ShowModal();
         }
@@ -435,9 +445,20 @@ void Process_Execution_Controller::ShowProgress(){
 
                       wxPD_APP_MODAL | wxPD_SMOOTH  );
 
-        bool cont = true;
 
         for(int i=0;i<=max;i++){
+
+            bool construction_continue = false;
+
+            if( this->library_construction_process_start || this->exe_file_construction_process_start ){
+
+               construction_continue = true;
+            }
+
+            if(!construction_continue){
+
+                break;
+            }
 
             if(this->error_stream_status){
 
@@ -459,20 +480,7 @@ void Process_Execution_Controller::ShowProgress(){
 
             wxSleep(1);
 
-            cont = dialog.Update(i);
-
-            if(!cont)
-            {
-                 int answer  = wxMessageBox(wxT("Do you really want to cancel?"),
-
-                      wxT("Progress dialog question"), wxYES_NO | wxICON_QUESTION);
-
-                 if(answer == wxYES){
-
-                     break;
-                 }
-
-            }
+            dialog.Update(i);
         }
 
         dialog.Resume();
@@ -481,15 +489,19 @@ void Process_Execution_Controller::ShowProgress(){
 
 void Process_Execution_Controller::Process_End(int exit_status){
 
-     this->process_end_condition = true;
-
      this->Process_Exit_Status = exit_status;
 
      this->Process_Event_Counter++;
 
      if( this->library_construction_process_start || this->exe_file_construction_process_start){
 
-         this->Print_Construction_Process_Output();
+         if(this->Output_Print_Number<1){
+
+            this->Output_Print_Number++;
+
+           this->Print_Construction_Process_Output();
+
+         }
      }
 }
 
@@ -516,16 +528,12 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
 
               this->error_stream_status = true;
 
-              this->Process_Event_Counter = 0;
-
               this->Print_Error_Stream(title);
         }
      }
      else{
 
           this->error_stream_status = true;
-
-          this->Process_Event_Counter = 0;
 
           this->Print_Error_Stream(title);
      }
@@ -558,7 +566,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      this->Process_Pointer->Redirect();
 
-     wxString Description_Print_Command = wxT("D:\\Pcynlitx_Binaries\\Description_Printer.exe ");
+     wxString Description_Print_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\Description_Printer.exe ");
 
      Description_Print_Command = Description_Print_Command + Directory_Name;
 
@@ -566,7 +574,6 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
      int Process_Exit_Status = 0;
 
      Process_Exit_Status = wxExecute(Description_Print_Command,wxEXEC_SYNC,this->Process_Pointer);
-
 
      wxString log_string = wxT("");
 
@@ -691,20 +698,24 @@ void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
 void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
-     wxString log_string = wxT("\n\n  ");
-
-     log_string = log_string  +  wxT("The following error reports have been obtained:") +  wxT("\n\n  ");;
-
      wxInputStream * Error_Stream = this->Process_Pointer->GetErrorStream( );
 
-     wxTextInputStream tStream(*Error_Stream);
+     wxChar buffer = '\0';
 
-     while(!Error_Stream->Eof())
-     {
-        log_string = log_string + tStream.ReadLine() + wxT("\n  ");
+     wxString std_error = wxT("ERROR REPORTS:\n\n");
+
+     if(Error_Stream->CanRead()){
+
+        do{
+
+            Error_Stream->Read(&buffer,1);
+
+            std_error.Append(buffer,1);
+
+        }while(!Error_Stream->Eof());
      }
 
-     this->Print_Text(log_string,wxT("ERROR IN CONSTRUCTION"));
+     this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
 }
 
 void Process_Execution_Controller::Print_Output_Stream(wxString title){

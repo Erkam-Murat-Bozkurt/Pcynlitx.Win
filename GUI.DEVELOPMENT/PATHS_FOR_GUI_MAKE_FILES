@@ -10,13 +10,13 @@ LIB_2=C:\wxWidgets-3.1.4\lib\gcc_lib\dll
 SRC=C:\wxWidgets-3.1.4\src\msw
 
 
-Library_1=-lwxmsw31ud_core -lwxbase31ud -lwxtiffd -lwxjpegd -lwxpngd -lwxzlibd -lwxregexud -lwxexpatd -lwxbase31ud_xml -lwxmsw31ud_aui
+Library_1=-lwxmsw31u_core -lwxbase31u -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lwxbase31u_xml -lwxmsw31u_aui
 
-Library_2=-lwxmsw31ud_stc -lwxscintillad -lwxbase31ud_net -lwxmsw31ud_xrc -lwxmsw31ud_richtext
+Library_2=-lwxmsw31u_stc -lwxscintilla -lwxbase31u_net -lwxmsw31u_xrc -lwxmsw31u_richtext
 
-Library_3=-lwxmsw31ud_webview -lwxmsw31ud_ribbon -lwxmsw31ud_propgrid -lwxmsw31ud_html
+Library_3=-lwxmsw31u_webview -lwxmsw31u_ribbon -lwxmsw31u_propgrid -lwxmsw31u_html
 
-Library_4=-lwxmsw31ud_adv -lwxmsw31ud_gl -lwxmsw31ud_media -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm
+Library_4=-lwxmsw31u_adv -lwxmsw31u_gl -lwxmsw31u_media -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm
 
 Library_5=-lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lwininet -luxtheme -loleacc
 
@@ -36,4 +36,4 @@ INCLUDE_DIRECTORIES=-I$(INC1) -I$(INC2) -I$(ID)
 
 LIBRARY_DIRECTORIES=-L$(LIB_1) -L$(LIB_2) -L$(OD) -L$(LD) -L$(GUI_PATH) -L$(SRC) -Wl,--subsystem,windows -mwindows
 
-CONFIGS=-static -static-libgcc -static-libstdc++ -DHAVE_W32API_H -D__WXMSW__ -D_UNICODE -D_WXUSE_UNICODE 
+CONFIGS=-static -static-libgcc -static-libstdc++ -DHAVE_W32API_H -D__WXMSW__ -D_UNICODE -D_WXUSE_UNICODE

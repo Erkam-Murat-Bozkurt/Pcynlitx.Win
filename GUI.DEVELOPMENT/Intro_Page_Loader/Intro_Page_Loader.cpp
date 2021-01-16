@@ -15,7 +15,7 @@ Intro_Page_Loader::Intro_Page_Loader(wxWindow * parent,wxSize page_size, int tab
 
      this->Memory_Delete_Condition = false;
 
-     this->intro_page_bitmap  = new wxBitmap(wxT("D:\\Pcynlitx\\Intro_File.png"), wxBITMAP_TYPE_PNG);
+     this->intro_page_bitmap  = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\Intro_File.png"), wxBITMAP_TYPE_PNG);
 
      this->intro_page_image = this->intro_page_bitmap->ConvertToImage();
 

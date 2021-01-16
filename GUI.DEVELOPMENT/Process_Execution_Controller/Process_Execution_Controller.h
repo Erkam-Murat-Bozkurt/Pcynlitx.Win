@@ -47,19 +47,18 @@ private:
   wxString Descriptor_File_Path;
   wxString Construction_Point;
   wxString Run_Command;
-  wxString Output_File_Path;
   bool is_library_constructed;
   bool is_construction_point_determined;
   int Process_Exit_Status;
   bool is_executable_file_name_determined;
   bool is_project_file_selected;
-  bool process_end_condition;
   bool error_stream_status;
   bool library_construction_process_start;
   bool exe_file_construction_process_start;
   long Sub_Process_ID;
   long Sub_Process_ID_Received;
   int  Process_Event_Counter;
+  int Output_Print_Number;
 };
 
 #endif /* PROCESS_EXECUTION_CONTROLLER_H */
