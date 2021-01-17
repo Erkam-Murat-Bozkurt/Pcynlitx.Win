@@ -29,7 +29,7 @@
 
       dc.SetBrush(wxColour(240,240,240));
 
-      dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2,rect.GetWidth()+15,rect.GetHeight()+15);
+      dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1,rect.GetWidth()+2,rect.GetHeight()+2);
  }
 
  void Custom_TabArt::DrawTab(wxDC & dc, wxWindow *wnd, const wxAuiNotebookPage &page,
@@ -121,11 +121,9 @@
 
             dc.SetPen(wxPen(wxColour(200,100,100)));
 
-            dc.SetBrush(*wxTRANSPARENT_BRUSH);
+            dc.SetBrush(wxColour(200,100,100));
 
             dc.DrawPolygon(WXSIZEOF(border_points), border_points);
-
-            dc.SetBrush(wxColour(200,100,100));
        }
        else{
 
@@ -157,7 +155,7 @@
 
               dc.SetPen(wxPen(wxColour(200,200,200)));
 
-              dc.SetBrush(*wxTRANSPARENT_BRUSH);
+              dc.SetBrush(wxColour(200,200,200));
 
               dc.DrawPolygon(WXSIZEOF(border_points), border_points);
        }
@@ -211,7 +209,7 @@
              text_offset,
              (tab_y + tab_height)/2 - (texty/2) + 10);
 
-       *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height);
+       *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);
  }
 
 
@@ -235,7 +233,9 @@
             dc.SetPen(wxPen(bkcolour.ChangeLightness(75)));
 
             // draw the background behind the button
-            dc.DrawRectangle(rect.x, rect.y+7, bmp.GetScaledWidth()-offset.x-2, bmp.GetScaledHeight()-offset.y);
+            dc.DrawRectangle(rect.x, rect.y+7, bmp.GetScaledWidth()-offset.x-2,
+
+                 bmp.GetScaledHeight()-offset.y);
         }
 
         // draw the button itself

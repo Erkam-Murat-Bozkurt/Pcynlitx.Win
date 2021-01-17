@@ -50,10 +50,6 @@ Menu_Bar_Options::Menu_Bar_Options(){
 
   this->View_Menu->Append(ID_DECREASE_FONT_SIZE,"Decrease Font Size",wxT(""),wxITEM_NORMAL);
 
-  //this->View_Menu->Append(ID_FONT_DIALOG,"&Change Font","",wxITEM_NORMAL);
-
-  //this->View_Menu->Append(ID_USE_DEFAULT_FONT,"&Use Default Font","",wxITEM_NORMAL);
-
   this->View_Menu->Append(ID_CLEAR_STYLE,"&Clear Styling","",wxITEM_NORMAL);
 
   this->View_Menu->Append(ID_RELOAD_STYLE,"&Reload Default Style","",wxITEM_NORMAL);
@@ -107,7 +103,7 @@ Menu_Bar_Options::Menu_Bar_Options(){
 
   this->Launch_Menu->Append(ID_SHOW_PROJECT_DIRECTORY_LOCATION,"&Show Construction Point","",wxITEM_NORMAL);
 
-  this->Launch_Menu->Append(ID_RE_OPEN_PROJECT_DIRECTORY,"&Project Directory Tree View","",wxITEM_NORMAL);
+  this->Launch_Menu->Append(ID_OPEN_TREE_WIEW,"&List Project Directory in Tree View","",wxITEM_NORMAL);
 
   this->Launch_Menu->Append(ID_SHOW_DESCRIPTIONS,"&Print Your Descriptions","",wxITEM_NORMAL);
 

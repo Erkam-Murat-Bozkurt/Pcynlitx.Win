@@ -623,7 +623,7 @@ void MainFrame::OpenTerminal(wxCommandEvent & event)
 {
      if(event.GetId() == ID_OPEN_TERMINAL){
 
-        wxExecute(wxT("powershell.exe"),wxEXEC_ASYNC | wxEXEC_SHOW_CONSOLE);
+        wxExecute(wxT("powershell.exe"),wxEXEC_SYNC | wxEXEC_SHOW_CONSOLE);
      }
 }
 
@@ -803,9 +803,35 @@ void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
               };
             }
 
-            wxString File_Construction_Command = wxT("Empty_Process_Descriptor_File_Builder.exe ") + DirectoryPath;
+            wxString Working_Directory = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\");
 
-            this->Sub_Process_ID = wxExecute(File_Construction_Command,wxEXEC_SYNC,this->Process_Pointer);
+            wxString Command = wxT("Empty_Process_Descriptor_File_Builder.exe ");
+
+            wxString File_Construction_Command = Working_Directory + Command + DirectoryPath;
+
+            this->Sub_Process_ID = wxExecute(File_Construction_Command,wxEXEC_SYNC
+
+                          | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
+
+
+            wxSleep(0.5);
+
+            wxString message = wxT("\n\n");
+
+            message = message + wxT("    A NEW EMPTY DESCRIPTOR FILE CONSTRUCTED     ");
+
+            message = message + wxT("\n\n");
+
+            message = message + wxT("    ON THE SPECIFIED DIRECTORY        ");
+
+            message = message + wxT("\n\n");
+
+            wxRichMessageDialog * dial = new wxRichMessageDialog(this,
+
+                       message, wxT("     THE CONSTRUCTION REPORT\t"), wxOK|wxCENTRE);
+
+            dial->ShowModal();
+
 
 
             this->Book_Manager->Open_File(this->Descriptor_File_Path);
@@ -1100,7 +1126,7 @@ void MainFrame::Re_Open_Project_Directory(wxCommandEvent & event)
 
                 wxT("Information"), wxOK);
 
-           if(info_dial->ShowModal() == ID_RE_OPEN_PROJECT_DIRECTORY){
+           if(info_dial->ShowModal() == ID_OPEN_TREE_WIEW){
 
               delete info_dial;
            };

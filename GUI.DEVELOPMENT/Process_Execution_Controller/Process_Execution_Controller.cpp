@@ -92,7 +92,10 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
 
 
-     this->Process_Exit_Status = wxExecute(shell_command,wxEXEC_SYNC,this->Process_Pointer);
+     this->Process_Exit_Status = wxExecute(shell_command,wxEXEC_SYNC
+
+                    | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
+
 
      wxString log_string = wxT("");
 
@@ -157,7 +160,6 @@ void Process_Execution_Controller::Construction_Point_Determination(){
                 wxString remove_command = wxT("PowerShell Remove-Item -Path  ") + Info_File;
 
                 wxExecute(remove_command,wxEXEC_SYNC | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE ,NULL);
-
              }
              else{
 
@@ -210,7 +212,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
      this->Process_Pointer->Redirect();
 
-     this->Sub_Process_ID_Received = wxExecute(shell_command,wxEXEC_SYNC,this->Process_Pointer);
+     this->Sub_Process_ID_Received = wxExecute(shell_command,wxEXEC_SYNC  | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
 
      this->Sub_Process_ID = this->Process_Pointer->GetPid();
 
@@ -573,7 +575,10 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      int Process_Exit_Status = 0;
 
-     Process_Exit_Status = wxExecute(Description_Print_Command,wxEXEC_SYNC,this->Process_Pointer);
+     Process_Exit_Status = wxExecute(Description_Print_Command,wxEXEC_SYNC
+
+                      | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
+
 
      wxString log_string = wxT("");
 
@@ -687,11 +692,11 @@ void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
      wxTextCtrl * Succes_Text = new wxTextCtrl(Succes_Dialog,wxID_ANY,std_out,
 
-                                 wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_LEFT);
+                                 wxDefaultPosition,wxSize(950,650), wxTE_MULTILINE | wxTE_LEFT);
 
      Succes_Text->Centre(wxBOTH);
 
-     Succes_Dialog->ShowModal();
+     Succes_Dialog->ShowWindowModal();
 
      delete Succes_Text;
 }
@@ -740,6 +745,8 @@ void Process_Execution_Controller::Print_Output_Stream(wxString title){
      }
 
      this->Process_Pointer->CloseOutput();
+
+     this->MainFrame_Pointer->Raise();
 }
 
 void Process_Execution_Controller::Set_Project_File_Select_Condition(bool condition){
