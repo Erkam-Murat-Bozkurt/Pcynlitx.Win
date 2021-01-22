@@ -17,6 +17,10 @@ cd D:\PCYNLITX.PROJECT.WINDOWS\PROJECT.MANAGEMENT.TOOLS\Make_File_Builder
 
 PowerShell .\Make_File_Builder_Construction.ps1
 
+cd D:\PCYNLITX.PROJECT.WINDOWS\PROJECT.MANAGEMENT.TOOLS\Convert_Repo_To_Single_File
+
+PowerShell .\Convert_Repo_To_Source.ps1
+
 cd D:\PCYNLITX.PROJECT.WINDOWS\PROJECT.MANAGEMENT.TOOLS
 
 PowerShell .\Set_Ignoring_Files.ps1

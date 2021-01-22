@@ -72,6 +72,7 @@ private:
  std::string String_Line;
  std::string string_word;
  std::string FilePath;
+ std::string * File_Content;
  bool Memory_Delete_Condition;
  char * CString;
  char * CString_FilePATH;

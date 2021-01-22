@@ -18,6 +18,8 @@ $HeaderFileBuilderPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Too
 
 $Custom_System_Interface_PATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Custom_System_Interface"
 
+$Document_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Document_Builder"
+
 $ToolsPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools"
 
 $Project_Headers_Files="D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.HEADER.FILES"
@@ -243,6 +245,55 @@ if ($Condition)
 Write-Output "   # Custom_System_Interface class has been compiled "
 
 
+
+
+cd $Document_Builder_PATH
+
+mingw32-make -f auto_make_file.make > ..\Compiler_Output.txt
+
+Copy-Item D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Document_Builder\Document_Builder.h -Destination $Project_Headers_Files
+
+$Condition = Test-Path -Path 'D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Document_Builder\Document_Builder.o'
+
+if ($Condition)
+{
+  $Exists_On_Obj_Dir = Test-Path -Path 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Document_Builder.o'
+
+  if($Exists_On_Obj_Dir){
+
+     rm 'D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY\OBJECT.FILES\Document_Builder.o'
+  }
+
+  Move-Item -Path D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Document_Builder\Document_Builder.o -Destination $OBJECTS_DIRECTORY
+}
+
+Write-Output ""
+
+Write-Output "   # Document_Builder class has been compiled "
+
+Write-Output ""
+
+Write-Host "   # The construction of the Document_Builder started .." -ForegroundColor Magenta
+
+Write-Output ""
+
+mingw32-make -f document_builder.make > Compiler_Output.txt
+
+
+$Condition = Test-Path -Path 'D:\Pcynlitx_Binaries\Document_Builder.exe'
+
+if ($Condition )
+{
+     rm D:\Pcynlitx_Binaries\Document_Builder.exe
+}
+
+mv Document_Builder.exe D:\Pcynlitx_Binaries
+
+Write-Output ""
+
+Write-Output "   Document_Builder has been constructed :-)"
+
+Write-Output ""
 
 Write-Output ""
 

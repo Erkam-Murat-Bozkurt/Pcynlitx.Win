@@ -1,7 +1,7 @@
 
 /*
 
-Copyright ©  2019,  Erkam Murat Bozkurt
+Copyright ©  2021,  Erkam Murat Bozkurt
 
 This file is part of the research project which is carried by Erkam Murat Bozkurt.
 
@@ -212,7 +212,7 @@ void Cpp_FileOperations::FileOpen(char Open_Mode){
 bool Cpp_FileOperations::TryOpen(char Open_Mode){
 
      // This function is used in order to determine whether the file exist or not
-;
+
      if(Open_Mode == 'r'){
 
         this->DataFile.open(this->FilePath,std::ios::in);

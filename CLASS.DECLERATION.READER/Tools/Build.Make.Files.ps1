@@ -23,7 +23,8 @@ $HeaderFileBuilderPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Too
 
 $Custom_System_Interface_PATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Custom_System_Interface"
 
-$ToolsPATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools"
+$Document_Builder_PATH="D:\PCYNLITX.PROJECT.WINDOWS\CLASS.DECLERATION.READER\Tools\Document_Builder"
+
 
 Write-Output ""
 
@@ -50,8 +51,6 @@ cd $DirectoryOperationsPATH
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
 
 Write-Output "   # A make file has been derived for DirectoryOperations class .."
-
-
 
 
 cd $IntToCharTranslaterPATH
@@ -96,5 +95,12 @@ cd $Custom_System_Interface_PATH
 Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
 
 Write-Output "   # A make file has been derived for Custom_System_Interface class .."
+
+
+cd $Document_Builder_PATH
+
+Make_File_Builder.exe  $HEADERS_DIRECTORY $OBJECTS_DIRECTORY $LIBRARY_DIRECTORY mptools
+
+Write-Output "   # A make file has been derived for Document_Builder class .."
 
 Write-Output ""
