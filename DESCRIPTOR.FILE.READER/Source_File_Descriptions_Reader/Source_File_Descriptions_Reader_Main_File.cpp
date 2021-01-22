@@ -18,9 +18,9 @@
 
      Source_File_Descriptions_Reader SF_Descriptions_Reader;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -54,7 +54,9 @@
 
         for(int i=0;i<Source_File_Location_Number;i++){
 
-            std::cout << "\n\n  [" << i+1 << "] " << SF_Descriptions_Reader.Get_Source_File_Locations()[i];
+            std::cout << "\n\n  [" << i+1 << "] "
+
+                      << SF_Descriptions_Reader.Get_Source_File_Locations()[i];
         }
      }
      else{
@@ -70,7 +72,9 @@
 
         for(int i=0;i<Source_File_Number;i++){
 
-            std::cout << "\n\n  [" << i+1 << "] " << SF_Descriptions_Reader.Get_Source_File_Names()[i];
+            std::cout << "\n\n  [" << i+1 << "] "
+
+                      << SF_Descriptions_Reader.Get_Source_File_Names()[i];
         }
      }
      else{

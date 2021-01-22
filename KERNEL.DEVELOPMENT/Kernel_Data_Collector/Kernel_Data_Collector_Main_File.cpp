@@ -9,9 +9,9 @@
 
      Descriptor_File_Reader File_Reader;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 

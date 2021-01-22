@@ -6,7 +6,9 @@
 
 int main(){
 
-    const char * Method = "    ~AutoCodeGenerator(int number, char character);";
+    // This program is used for testing 
+
+    const char * Method = " ~AutoCodeGenerator(int number, char character);";
 
     int startPoint = 0;
 
@@ -57,23 +59,41 @@ int main(){
 
     Receiver.ReceiveMethodLine(MethodLine);
 
-    std::cout << "\n Method Line syntax error status :" << Receiver.getMethodSyntaxErrorStatus();
+    std::cout << "\n Method Line syntax error status :"
 
-    std::cout << "\n Method Line :" << Receiver.getMethodLine();
+              << Receiver.getMethodSyntaxErrorStatus();
 
-    std::cout << "\n Class name  :" << Receiver.getClassName();
+    std::cout << "\n Method Line :"
 
-    std::cout << "\n Method Parenthes :" << Receiver.getMethodParenthes();
+              << Receiver.getMethodLine();
 
-    std::cout << "\n Method parameter number  :" << Receiver.getMethodParameterNumber();
+    std::cout << "\n Class name  :"
 
-    std::cout << "\n Class constructor status :" << Receiver.getClassConstructorStatus();
+              << Receiver.getClassName();
 
-    std::cout << "\n Class destructor status  :" << Receiver.getClassDestructorStatus();
+    std::cout << "\n Method Parenthes :"
 
-    std::cout << "\n Class Constructor Name   :" << Receiver.getClassConstructorName();
+              << Receiver.getMethodParenthes();
 
-    std::cout << "\n Class Destructor Name    :" << Receiver.getClassDestructorName();
+    std::cout << "\n Method parameter number  :"
+
+              << Receiver.getMethodParameterNumber();
+
+    std::cout << "\n Class constructor status :"
+
+              << Receiver.getClassConstructorStatus();
+
+    std::cout << "\n Class destructor status  :"
+
+              << Receiver.getClassDestructorStatus();
+
+    std::cout << "\n Class Constructor Name   :"
+
+              << Receiver.getClassConstructorName();
+
+    std::cout << "\n Class Destructor Name    :"
+
+              << Receiver.getClassDestructorName();
 
     std::cout << "\n The end of the file ..\n\n";
 

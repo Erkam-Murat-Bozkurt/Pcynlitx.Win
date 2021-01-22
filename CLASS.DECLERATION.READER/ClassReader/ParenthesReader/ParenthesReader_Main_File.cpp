@@ -31,7 +31,9 @@ int main( ){
 
    SynCntr.CheckMethodSyntax();
 
-   std::cout << "\n Syntax Error Condition:" << SynCntr.getSyntaxErrorCondition();
+   std::cout << "\n Syntax Error Condition:"
+
+             << SynCntr.getSyntaxErrorCondition();
 
    if(SynCntr.getClassConstructorName()[0] == '\0'){
 
@@ -39,7 +41,9 @@ int main( ){
    }
    else{
 
-        std::cout << "\n SynCntr.getClassConstructorName():" << SynCntr.getClassConstructorName();
+        std::cout << "\n SynCntr.getClassConstructorName():"
+
+                  << SynCntr.getClassConstructorName();
    }
 
    ParenthesReader PhObject;
@@ -48,7 +52,9 @@ int main( ){
 
    PhObject.ReadMethodParenthes(pointer);
 
-   std::cout << "\n Method Parameter Number: " << PhObject.getMethodParameterNumber();
+   std::cout << "\n Method Parameter Number: "
+
+             << PhObject.getMethodParameterNumber();
 
    std::cout << "\n";
 

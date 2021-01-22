@@ -7,13 +7,15 @@
 
      Process_Supervisor_Descriptor_File_Reader File_Reader;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 
-     int Total_Data_Type_Number = File_Reader.Get_Shared_Data_Types()[0].Total_Data_Type_Number;
+     int Total_Data_Type_Number
+
+              = File_Reader.Get_Shared_Data_Types()[0].Total_Data_Type_Number;
 
      char * Data_Type = File_Reader.Get_Shared_Data_Types()[0].Data_Type;
 
@@ -29,15 +31,23 @@
 
      if(Total_Data_Type_Number > 0){
 
-        std::cout << "\n Data Type        : " << Data_Type << "#";
+        std::cout << "\n Data Type        : "
 
-        std::cout << "\n Data Number      : " << Data_Number << "#";
+                  << Data_Type << "#";
 
-        std::cout << "\n Pointer Name     : " << Pointer_Name << "#";
+        std::cout << "\n Data Number      : "
+
+                  << Data_Number << "#";
+
+        std::cout << "\n Pointer Name     : "
+
+                  << Pointer_Name << "#";
 
         if(Header_File_Name != nullptr){
 
-            std::cout << "\n Header file name : " << Header_File_Name << "#";
+            std::cout << "\n Header file name : "
+
+                      << Header_File_Name << "#";
         }
         else{
 
@@ -46,7 +56,9 @@
 
         if(Include_Directory != nullptr){
 
-           std::cout << "\n Include_Directory: " << Include_Directory << "#";
+           std::cout << "\n Include_Directory: "
+
+                     << Include_Directory << "#";
         }
         else{
               std::cout << "\n  There is no include directory ..";
@@ -69,31 +81,43 @@
 
      Data_Collector.Collect_Informations();
 
-     std::cout << "\n Header File Name List :" << Data_Collector.Get_Header_File_Name_List() << "#";
+     std::cout << "\n Header File Name List :"
 
-     std::cout << "\n Source File Name List :" << Data_Collector.Get_Source_File_Name_List() << "#";
+               << Data_Collector.Get_Header_File_Name_List() << "#";
+
+     std::cout << "\n Source File Name List :"
+
+               << Data_Collector.Get_Source_File_Name_List() << "#";
 
      std::cout << "\n Header_File_Name_Matrix:";
 
      for(int i=0;i<3;i++){
 
-         std::cout << "\n                         :" << Data_Collector.Get_Header_File_Name_Matrix()[i] << "#";
+         std::cout << "\n                         :"
+
+                   << Data_Collector.Get_Header_File_Name_Matrix()[i] << "#";
      }
 
      std::cout << "\n Source_File_Name_Matrix:";
 
      for(int i=0;i<3;i++){
 
-         std::cout << "\n                         :" << Data_Collector.Get_Source_File_Name_Matrix()[i] << "#";
+         std::cout << "\n                         :"
+
+                   << Data_Collector.Get_Source_File_Name_Matrix()[i] << "#";
      }
 
-     std::cout << "\n\n Object_File_List:" << Data_Collector.Get_Object_File_List() << "#";
+     std::cout << "\n\n Object_File_List:"
+
+               << Data_Collector.Get_Object_File_List() << "#";
 
      std::cout << "\n\n Object_File_Name_Matrix:";
 
      for(int i=0;i<3;i++){
 
-         std::cout << "\n                         :" << Data_Collector.Get_Object_File_Name_Matrix()[i] << "#";
+         std::cout << "\n                         :"
+
+                   << Data_Collector.Get_Object_File_Name_Matrix()[i] << "#";
      }
 
      Data_Collector.Clear_Dynamic_Memory();

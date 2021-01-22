@@ -19,9 +19,9 @@
 
      Descriptor_File_Number_Processor Number_Processor;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 

@@ -36,7 +36,9 @@ void PrintMethods(MethodListReader * MLrObject){
          }
          else{
 
-              std::cout << "\n Public Method [" << i << "]: " << MLrObject->GetPublicMethods()[i];
+              std::cout << "\n Public Method [" << i << "]: "
+
+                        << MLrObject->GetPublicMethods()[i];
          }
      }
 
@@ -50,7 +52,9 @@ void PrintMethods(MethodListReader * MLrObject){
          }
          else{
 
-              std::cout << "\n Private Method [" << i << "]: " << MLrObject->GetPrivateMethods()[i];
+              std::cout << "\n Private Method [" << i << "]: "
+
+                        << MLrObject->GetPrivateMethods()[i];
          }
      }
 
@@ -65,7 +69,9 @@ void PrintMethods(MethodListReader * MLrObject){
          }
          else{
 
-              std::cout << "\n Protected Method [" << i << "]: " << MLrObject->GetProtectedMethods()[i];
+              std::cout << "\n Protected Method [" << i << "]: "
+
+                        << MLrObject->GetProtectedMethods()[i];
          }
      }
 }

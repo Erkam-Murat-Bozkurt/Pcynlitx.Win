@@ -7,9 +7,9 @@ int main(int argc, char** argv){
 
     Process_Supervisor_Descriptor_File_Reader File_Reader;
 
-    File_Reader.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+    File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-    File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
     File_Reader.Receive_Descriptor_File_Infomations();
 
@@ -29,15 +29,23 @@ int main(int argc, char** argv){
 
     if(Total_Data_Type_Number > 0){
 
-       std::cout << "\n Data Type        : " << Data_Type << "#";
+       std::cout << "\n Data Type        : "
 
-       std::cout << "\n Data Number      : " << Data_Number << "#";
+                 << Data_Type << "#";
 
-       std::cout << "\n Pointer Name     : " << Pointer_Name << "#";
+       std::cout << "\n Data Number      : "
+
+                 << Data_Number << "#";
+
+       std::cout << "\n Pointer Name     : "
+
+                 << Pointer_Name << "#";
 
        if(Header_File_Name != nullptr){
 
-          std::cout << "\n Header file name : " << Header_File_Name << "#";
+          std::cout << "\n Header file name : "
+
+                    << Header_File_Name << "#";
        }
        else{
 
@@ -46,7 +54,9 @@ int main(int argc, char** argv){
 
        if(Include_Directory != nullptr){
 
-          std::cout << "\n Include_Directory: " << Include_Directory << "#";
+          std::cout << "\n Include_Directory: "
+
+                     << Include_Directory << "#";
        }
        else{
               std::cout << "\n  There is no include directory ..";

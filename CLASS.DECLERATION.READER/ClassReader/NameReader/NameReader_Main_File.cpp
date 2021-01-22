@@ -14,9 +14,13 @@ void PrintMethodName(NameReader * NrObject);
 
 int main(int argc, char ** argv){
 
+    // The class ( MethodListReader ) reads method lists which constructed by
+
+    // MethodReader type object From ProcessInitialization segment
+
     DirectoryOperations DirectoryManager;
 
-    MethodListReader Reader; // This class reads method lists which constructed by MethodReader type object From ProcessInitialization segment
+    MethodListReader Reader;
 
     MethodReceiver * Receiver;
 
@@ -26,9 +30,9 @@ int main(int argc, char ** argv){
 
     char Class_Name [] = "CFileOperations";
 
-    char Include_Directory_Path [] = "/home/erkam/META.PROGRAMMING.PROJECT/CLASS.DECLERATION.READER/ClassReader";
+    char Include_Directory_Path [] = "D:\\TestHeaders";
 
-    char Construction_Point [] = "/home/erkam/META.PROGRAMMING.PROJECT/CLASS.DECLERATION.READER/ClassReader/NameReader";
+    char Construction_Point [] = "D:\\TestDirectory";
 
     MethodReader Class_Method_Reader;
 

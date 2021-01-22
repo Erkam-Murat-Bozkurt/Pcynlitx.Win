@@ -33,7 +33,9 @@ Smart_Pointer_Data_Conveyor::Smart_Pointer_Data_Conveyor(){
      this->Memory_Delete_Status = true;
 }
 
-void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Count(int count) { // How many data type has been declareted.
+void Smart_Pointer_Data_Conveyor::Receive_Data_Type_Count(int count) {
+
+      // How many data type has been declareted.
 
      this->type_count = count;
 

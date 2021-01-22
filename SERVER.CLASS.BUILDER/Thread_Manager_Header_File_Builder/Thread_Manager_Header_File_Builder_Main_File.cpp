@@ -8,9 +8,9 @@
 
      Process_Supervisor_Descriptor_File_Reader File_Reader;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/IntelligentObject/TestDirectory");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 

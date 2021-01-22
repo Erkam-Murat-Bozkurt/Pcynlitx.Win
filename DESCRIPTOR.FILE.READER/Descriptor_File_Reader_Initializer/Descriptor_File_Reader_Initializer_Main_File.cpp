@@ -9,9 +9,9 @@
 
      Descriptor_File_Reader_Initializer Reader_Initializer;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -201,17 +201,29 @@
           std::cout << " There is no thread names ..";
      }
 
-     std::cout << "\n\n \e[1;3;37;44m Construction Point: \e[0m \n\n  " << Reader_Initializer.Get_Construction_Directory() << "#";
+     std::cout << "\n\n \e[1;3;37;44m Construction Point: \e[0m \n\n  "
 
-     std::cout << "\n\n \e[1;3;37;44m Server_Class_Name: \e[0m \n\n  " << Reader_Initializer.Get_Server_Class_Name() << "#";
+               << Reader_Initializer.Get_Construction_Directory() << "#";
 
-     std::cout << "\n\n \e[1;3;37;44m Server_Class_Header_File_Name: \e[0m \n\n  " << Reader_Initializer.Get_Server_Class_Header_File_Name() << "#";
+     std::cout << "\n\n \e[1;3;37;44m Server_Class_Name: \e[0m \n\n  "
 
-     std::cout << "\n\n \e[1;3;37;44m Main_File_Name: \e[0m \n\n  " << Reader_Initializer.Get_Main_File_Name();
+               << Reader_Initializer.Get_Server_Class_Name() << "#";
 
-     std::cout << "\n\n \e[1;3;37;44m Executable_File_Name: \e[0m \n\n  " << Reader_Initializer.Get_Executable_File_Name();
+     std::cout << "\n\n \e[1;3;37;44m Server_Class_Header_File_Name: \e[0m \n\n  "
 
-     std::cout << "\n\n \e[1;3;37;44m Thread Number: \e[0m \n\n  " << Reader_Initializer.Get_Thread_Number();
+               << Reader_Initializer.Get_Server_Class_Header_File_Name() << "#";
+
+     std::cout << "\n\n \e[1;3;37;44m Main_File_Name: \e[0m \n\n  "
+
+               << Reader_Initializer.Get_Main_File_Name();
+
+     std::cout << "\n\n \e[1;3;37;44m Executable_File_Name: \e[0m \n\n  "
+
+               << Reader_Initializer.Get_Executable_File_Name();
+
+     std::cout << "\n\n \e[1;3;37;44m Thread Number: \e[0m \n\n  "
+
+               << Reader_Initializer.Get_Thread_Number();
 
      File_Data_Collector.Clear_Dynamic_Memory();
 

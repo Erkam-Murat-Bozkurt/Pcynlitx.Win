@@ -29,7 +29,9 @@ int main(){
 
     SynCntr.ReceiveMethod(Pointer);
 
-    std::cout << "\n SynCntr.getClassConstructorName():" << SynCntr.getClassConstructorName();
+    std::cout << "\n SynCntr.getClassConstructorName():"
+
+              << SynCntr.getClassConstructorName();
 
     SynCntr.CheckMethodSyntax();
 
@@ -45,7 +47,9 @@ int main(){
       std::cout << "\n The MethodLine :" << SynCntr.getMethodLine();
     }
 
-    std::cout << "\n Is There a comma at the end of the method ? " << SynCntr.getEndCommaExistance();
+    std::cout << "\n Is There a comma at the end of the method ? "
+
+              << SynCntr.getEndCommaExistance();
 
     delete [] Pointer;
 

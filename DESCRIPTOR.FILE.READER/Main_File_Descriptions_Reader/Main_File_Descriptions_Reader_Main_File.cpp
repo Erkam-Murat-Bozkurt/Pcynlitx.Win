@@ -15,9 +15,9 @@
 
      Main_File_Descriptions_Reader MF_Descriptions_Reader;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/IntelligentObject/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -71,11 +71,17 @@
             std::cout << " There is no Executable_File_Name ..";
      }
 
-     std::cout << "\n\n  \e[7;3m Construction Point:\e[0m\n\n  "    << MF_Descriptions_Reader.Get_Construction_Point() << "#";
+     std::cout << "\n\n  \e[7;3m Construction Point:\e[0m\n\n  "
 
-     std::cout << "\n\n  \e[7;3m Supervisor_Class_Name:\e[0m\n\n  " << MF_Descriptions_Reader.Get_Server_Class_Name() << "#";
+               << MF_Descriptions_Reader.Get_Construction_Point() << "#";
 
-     std::cout << "\n\n  \e[7;3m Supervisor_Class_Header_File_Name:\e[0m\n\n  " << MF_Descriptions_Reader.Get_Server_Class_Header_File_Name() << "#";
+     std::cout << "\n\n  \e[7;3m Supervisor_Class_Name:\e[0m\n\n  "
+
+               << MF_Descriptions_Reader.Get_Server_Class_Name() << "#";
+
+     std::cout << "\n\n  \e[7;3m Supervisor_Class_Header_File_Name:\e[0m\n\n  "
+
+               << MF_Descriptions_Reader.Get_Server_Class_Header_File_Name() << "#";
 
      std::cout << "\n\n \e[1;3m # THE END OF THE PROGRAM # \e[0m  \n\n";
 

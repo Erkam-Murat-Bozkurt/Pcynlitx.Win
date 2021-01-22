@@ -5,15 +5,17 @@
 
  int main(int argc, char** argv){
 
-     char Newly_Constructed_Directory [ ] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory/Thread_Server_Include_Directory";
+     char Newly_Constructed_Directory [ ]
+
+            = "D:\\TestDirectory\\Thread_Server_Include_Directory";
 
      // ********************************************************************
 
      Process_Supervisor_Descriptor_File_Reader File_Reader;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 
@@ -44,17 +46,29 @@
      Initializer.Determine_Informations();
 
 
-     std::cout << "\n New Constructor Name:" << Initializer.Get_New_Class_Constructor_Name();
+     std::cout << "\n New Constructor Name:"
 
-     std::cout << "\n New Destructor Name:"  << Initializer.Get_New_Class_Destructor_Name();
+               << Initializer.Get_New_Class_Constructor_Name();
 
-     std::cout << "\n Base Class Destructor Name:" << Initializer.Get_Base_Class_Destructor_Name();
+     std::cout << "\n New Destructor Name:"
 
-     std::cout << "\n New Class Name:" << Initializer.Get_New_Class_Name();
+               << Initializer.Get_New_Class_Destructor_Name();
 
-     std::cout << "\n New Header File Name:" << Initializer.Get_New_Header_File_Name();
+     std::cout << "\n Base Class Destructor Name:"
 
-     std::cout << "\n New Class Implementation File Name:" << Initializer.Get_New_Class_Implementation_File_Name();
+               << Initializer.Get_Base_Class_Destructor_Name();
+
+     std::cout << "\n New Class Name:"
+
+               << Initializer.Get_New_Class_Name();
+
+     std::cout << "\n New Header File Name:"
+
+               << Initializer.Get_New_Header_File_Name();
+
+     std::cout << "\n New Class Implementation File Name:"
+
+               << Initializer.Get_New_Class_Implementation_File_Name();
 
      int Index_Number = Initializer.Get_Index_Number_For_Descriptor_File_Reader();
 
@@ -76,42 +90,64 @@
         Base_Class_Constructor_Name = Data_Holder[Index_Number].Data_Type;
      }
 
-     std::cout << "\n Base class constructor name:" << Initializer.Get_Base_Class_Name();
+     std::cout << "\n Base class constructor name:"
 
-     std::cout << "\n Base class destructor name:" << Initializer.Get_Base_Class_Destructor_Name();
+               << Initializer.Get_Base_Class_Name();
 
-     std::cout << "\n Is this Base class Constructor:" << Initializer.Is_This_Method_Base_Class_Constructor(Base_Class_Constructor_Name);
+     std::cout << "\n Base class destructor name:"
 
-      std::cout << "\n Is this Base class Constructor:" << Initializer.Is_This_Method_Base_Class_Constructor(Initializer.Get_Base_Class_Name());
+               << Initializer.Get_Base_Class_Destructor_Name();
 
-     std::cout << "\n Is this Base Class Destructor:" << Initializer.Is_This_Method_Base_Class_Destructor(Initializer.Get_Base_Class_Destructor_Name());
+     std::cout << "\n Is this Base class Constructor:"
 
-     std::cout << "\n Object Name:" << Initializer.Get_Object_Name();
+               << Initializer.Is_This_Method_Base_Class_Constructor(Base_Class_Constructor_Name);
+
+      std::cout << "\n Is this Base class Constructor:"
+
+                << Initializer.Is_This_Method_Base_Class_Constructor(Initializer.Get_Base_Class_Name());
+
+     std::cout << "\n Is this Base Class Destructor:"
+
+               << Initializer.Is_This_Method_Base_Class_Destructor(Initializer.Get_Base_Class_Destructor_Name());
+
+     std::cout << "\n Object Name:"
+
+               << Initializer.Get_Object_Name();
 
 
      if(Initializer.Get_Base_Class_Header_File_Name() != nullptr){
 
-        std::cout << "\n Base Class Header File Name:" << Initializer.Get_Base_Class_Header_File_Name();
+        std::cout << "\n Base Class Header File Name:"
+
+                  << Initializer.Get_Base_Class_Header_File_Name();
      }
 
      if(Initializer.Get_Base_Class_Header_File_Path() != nullptr){
 
-        std::cout << "\n Base_Class_Header_File_Path:" << Initializer.Get_Base_Class_Header_File_Path();
+        std::cout << "\n Base_Class_Header_File_Path:"
+
+                  << Initializer.Get_Base_Class_Header_File_Path();
      }
 
      if(Initializer.Get_Base_Class_Header_File_Location() != nullptr){
 
-        std::cout << "\n Base_Class_Header_File_Location:" << Initializer.Get_Base_Class_Header_File_Location();
+        std::cout << "\n Base_Class_Header_File_Location:"
+
+                  << Initializer.Get_Base_Class_Header_File_Location();
      }
 
      if(Initializer.Get_Base_Class_Name() != nullptr){
 
-        std::cout << "\n Base_Class_Name:" <<  Initializer.Get_Base_Class_Name();
+        std::cout << "\n Base_Class_Name:"
+
+                  <<  Initializer.Get_Base_Class_Name();
      }
 
      if(Initializer.Get_Base_Class_Instance_Name() != nullptr){
 
-        std::cout << "\n Base_Class_Instance_Name:" << Initializer.Get_Base_Class_Instance_Name();
+        std::cout << "\n Base_Class_Instance_Name:"
+
+                  << Initializer.Get_Base_Class_Instance_Name();
      }
 
      Initializer.Clear_Dynamic_Memory();

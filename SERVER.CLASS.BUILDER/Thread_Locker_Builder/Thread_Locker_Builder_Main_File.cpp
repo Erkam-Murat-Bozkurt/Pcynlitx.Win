@@ -6,7 +6,7 @@
 
      Thread_Locker_Builder Builder;
 
-     char Newly_Constructed_Directory [] = "/home/erkam/TestDirectory";
+     char Newly_Constructed_Directory [] = "D:\\TestDirectory";
 
      Builder.Receive_Supervisor_Newly_Constructed_Include_Directory(Newly_Constructed_Directory);
 

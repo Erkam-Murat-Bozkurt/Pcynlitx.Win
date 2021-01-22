@@ -21,9 +21,9 @@ int main(){
 
     char Class_Name [] = "CFileOperations";
 
-    char Include_Directory_Path [] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory/TestHeaderFile";
+    char Include_Directory_Path [] = "D:\\TestHeaderFile";
 
-    char Construction_Point [] = "/home/erkam/META.PROGRAMMING.PROJECT/CLASS.DECLERATION.READER/ClassReader/MethodInterpreter";
+    char Construction_Point [] = "D:\\TestDirectory";
 
     Reader.ReceiveIncludeDirectoryPATH(Include_Directory_Path);
 
@@ -120,22 +120,41 @@ void PrintMethod(MethodInterpreter * MhObject){
      if(MhObject->getMethodSyntaxErrorStatus()){
 
         std::cout << "\n\n ";
-        std::cout << "\n RN:" << MhObject->GetClassName() << "-M" << MhObject->getMethodIDNumber() << "-START";
+
+        std::cout << "\n RN:" << MhObject->GetClassName()
+
+                  << "-M" << MhObject->getMethodIDNumber()
+
+                  << "-START";
+
         std::cout << "\n";
 
         std::cout << "\n    [SYNTAX ERROR]";
 
-        std::cout << "\n\n M" << MhObject->getMethodIDNumber() << "-END";
+        std::cout << "\n\n M"
+
+                  << MhObject->getMethodIDNumber()
+
+                  << "-END";
+
         std::cout << "\n";
      }
      else{
             std::cout << "\n\n ";
-            std::cout << "\n RN:" << MhObject->GetClassName() << "-M" << MhObject->getMethodIDNumber() << "-START";
+
+            std::cout << "\n RN:" << MhObject->GetClassName()
+
+                      << "-M" << MhObject->getMethodIDNumber()
+
+                      << "-START";
+
             std::cout << "\n";
 
             std::cout << "\n Method Error Status     : false";
 
-            std::cout << "\n Method Name             : " << MhObject->getMethodName();
+            std::cout << "\n Method Name             : "
+
+                      << MhObject->getMethodName();
 
             std::cout << "\n Method Return Type      : ";
 
@@ -148,9 +167,17 @@ void PrintMethod(MethodInterpreter * MhObject){
                   std::cout << MhObject->getMethodReturnType();
             }
 
-            std::cout << "\n Method Parameter Number : " << MhObject->getMethodParameterNumber();
-            std::cout << "\n Method ID Number        : " << MhObject->getMethodIDNumber();
-            std::cout << "\n Method Acess Type       : " << MhObject->getMethodAccessType();
+            std::cout << "\n Method Parameter Number : "
+
+                      << MhObject->getMethodParameterNumber();
+
+            std::cout << "\n Method ID Number        : "
+
+                      << MhObject->getMethodIDNumber();
+
+            std::cout << "\n Method Acess Type       : "
+
+                      << MhObject->getMethodAccessType();
 
             std::cout << "\n Method Parameter Types    ";
 
@@ -165,6 +192,7 @@ void PrintMethod(MethodInterpreter * MhObject){
             for(int i=0;i<MhObject->getMethodParameterNumber();i++){
 
                   std::cout << "\n                         : ";
+
                   std::cout <<  MhObject->getMethodParameterTypes()[i];
             }
 
@@ -193,7 +221,9 @@ void PrintMethod(MethodInterpreter * MhObject){
 
             }
 
-            std::cout << "\n\n M" << MhObject->getMethodIDNumber() << "-END";
+            std::cout << "\n\n M" << MhObject->getMethodIDNumber()
+
+                      << "-END";
 
             std::cout << "\n";
       }

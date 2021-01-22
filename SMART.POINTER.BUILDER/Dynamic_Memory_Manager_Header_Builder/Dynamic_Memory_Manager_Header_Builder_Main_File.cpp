@@ -31,9 +31,11 @@
 
      char * Data_Type_Header_File_Pointer = new char [5*Data_Type_Name_Header_File_Name_Size];
 
-     Place_Information(&Data_Type_Header_File_Pointer,Data_Type_Header_File_Name,Data_Type_Name_Header_File_Name_Size);
+     Place_Information(&Data_Type_Header_File_Pointer,Data_Type_Header_File_Name,
 
-     const char * Construction_Point = "/home/erkam/Smart.Pointer.Builder/Dynamic_Memory_Manager_Header_Builder";
+                Data_Type_Name_Header_File_Name_Size);
+
+     const char * Construction_Point = "D:\\TestDirectory";
 
      int Construction_Point_Name_Size = strlen(Construction_Point);
 

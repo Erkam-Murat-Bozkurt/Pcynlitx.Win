@@ -13,13 +13,21 @@ int main(int argc, char ** argv){
 
     Recorder.Read_Data_Records(Data_Type);
 
-    std::cout << "\n Data record number:" << Recorder.Get_Data_Type_Record_Number();
+    std::cout << "\n Data record number:"
 
-    std::cout << "\n Up record number:" << Recorder.Get_Up_Record_Number();
+              << Recorder.Get_Data_Type_Record_Number();
+
+    std::cout << "\n Up record number:"
+
+              << Recorder.Get_Up_Record_Number();
 
     for(int i=0;i<Recorder.Get_Data_Type_Record_Number();i++){
 
-       std::cout << "\n Recorder.Get_Data_Type_Records()[" << i << "]:" << Recorder.Get_Data_Type_Records()[i] << "#";
+       std::cout << "\n Recorder.Get_Data_Type_Records()["
+
+                 << i << "]:"
+
+                 << Recorder.Get_Data_Type_Records()[i]  << "#";
     }
 
     Recorder.Clear_Dynamic_Memory();

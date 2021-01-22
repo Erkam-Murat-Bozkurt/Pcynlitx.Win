@@ -181,10 +181,6 @@ int main(){
 
       delete [] ClassName_Pointer;
 
-      //ClassName.Clear_Dynamic_Memory();
-
-      //Reader.Clear_Dynamic_Memory();
-
       return 0;
 }
 

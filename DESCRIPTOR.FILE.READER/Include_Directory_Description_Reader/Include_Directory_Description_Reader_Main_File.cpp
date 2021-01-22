@@ -15,9 +15,9 @@
 
      Include_Directory_Description_Reader ID_Description_Reader;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/IntelligentObject/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -33,7 +33,9 @@
 
      ID_Description_Reader.Read_Include_Directory_Descriptions();
 
-     int Total_Include_Directory_Number = ID_Description_Reader.Get_Include_Directory()[0].Total_Include_Directory_Number;
+     int Total_Include_Directory_Number
+
+         = ID_Description_Reader.Get_Include_Directory()[0].Total_Include_Directory_Number;
 
      if(Total_Include_Directory_Number > 0){
 

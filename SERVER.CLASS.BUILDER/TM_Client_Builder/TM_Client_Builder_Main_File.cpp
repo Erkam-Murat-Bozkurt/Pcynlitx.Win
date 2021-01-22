@@ -9,9 +9,9 @@ int main(int argc, char ** argv){
 
     Descriptor_File_Reader File_Reader;
 
-    File_Reader.Receive_Descriptor_File_Directory("/home/erkam/Project_Apps");
+    File_Reader.Receive_Descriptor_File_Directory("D:\\Project_Apps");
 
-    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File");
+    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
     File_Reader.Receive_Descriptor_File_Infomations();
 

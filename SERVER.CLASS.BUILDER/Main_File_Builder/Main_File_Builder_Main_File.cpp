@@ -7,15 +7,15 @@ int main(int argc, char ** argv){
 
     Process_Supervisor_Descriptor_File_Reader File_Reader;
 
-    File_Reader.Receive_Descriptor_File_Directory("/home/erkam/TestDirectory");
+    File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-    File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
     File_Reader.Receive_Descriptor_File_Infomations();
 
     Main_File_Builder File_Builder;
 
-    char New_Include_Directory_Name [] = "Sample_Supervisor_Include_Directory";
+    char New_Include_Directory_Name [] = "Thread_Server_Include_Directory";
 
     File_Builder.Receive_Descriptor_File_Object_Addres(&File_Reader);
 

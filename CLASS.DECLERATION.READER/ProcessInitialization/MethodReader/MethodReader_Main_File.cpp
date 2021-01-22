@@ -59,15 +59,24 @@ int main(int argc, char** argv){
 
     std::cout << "\n\n\n RECORD FILE INFORMATIONS:";
 
-    std::cout << "\n\n     Class Name                 :" << Reader.GetClassName();
+    std::cout << "\n\n     Class Name                 :"
 
-    std::cout << "\n\n     Method List File Name      :" << Reader.GetRecordFilePath();
+              << Reader.GetClassName();
 
-    std::cout << "\n\n     Method List Meta File Path :" << Reader.GetMetaDataFilePath();
+    std::cout << "\n\n     Method List File Name      :"
 
-    std::cout << "\n\n     Data Record Directory      :" << Reader.GetDataRecordDirectory();
+              << Reader.GetRecordFilePath();
+
+    std::cout << "\n\n     Method List Meta File Path :"
+
+              << Reader.GetMetaDataFilePath();
+
+    std::cout << "\n\n     Data Record Directory      :"
+
+              << Reader.GetDataRecordDirectory();
 
     Reader.Clear_Dynamic_Memory();
+
 
     std::cout << "\n\n\n The end of the program ..\n\n";
 

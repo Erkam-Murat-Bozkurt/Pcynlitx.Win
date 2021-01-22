@@ -12,9 +12,9 @@
 
      DirectoryOperations DirectoryManager;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Reader.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 
@@ -28,7 +28,9 @@
 
      Initializer.Determine_Informations();
 
-     char Newly_Constructed_Directory [ ] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/ClassRebuilder";
+     char Newly_Constructed_Directory [ ]
+
+          = "D:\\TestDirectory\\Thread_Server_Include_Directory";
 
      ClassRebuilder_Data_Collector Data_Collector;
 

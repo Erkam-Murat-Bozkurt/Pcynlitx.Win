@@ -8,15 +8,17 @@
 
      Descriptor_File_Reader File_Reader;
 
-     File_Reader.Receive_Descriptor_File_Directory("/home/erkam/ThreadStack_Apps");
+     File_Reader.Receive_Descriptor_File_Directory("D:\\Pcynlitx_Apps");
 
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File");
+     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Reader.Receive_Descriptor_File_Infomations();
 
      ClassRebuilder Rebuilder;
 
-     char Newly_Constructed_Directory [] = "/home/erkam/ThreadStack_Apps/Thread_Server_Include_Directory";
+     char Newly_Constructed_Directory []
+
+          = "D:\\Pcynlitx_Apps\\Thread_Server_Include_Directory";
 
      int Class_Number = 2;
 
@@ -40,9 +42,13 @@
 
      Rebuilder.Re_Construct_Class();
 
-     std::cout << "\n New_Class_Name:" << Rebuilder.Get_New_Class_Name() << "#";
+     std::cout << "\n New_Class_Name:"
 
-     std::cout << "\n Object_File_Name:" << Rebuilder.Get_Object_File_Name() << "#";
+               << Rebuilder.Get_New_Class_Name() << "#";
+
+     std::cout << "\n Object_File_Name:"
+
+               << Rebuilder.Get_Object_File_Name() << "#";
 
      Rebuilder.Print_System_Commands();
 

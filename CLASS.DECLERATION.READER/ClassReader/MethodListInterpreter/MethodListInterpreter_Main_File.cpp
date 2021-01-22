@@ -12,23 +12,35 @@ int main(int argc, char** argv){
 
    if(Interpreter.GetPublicDeclerationExistance()){
 
-       std::cout << "\n Public Method Number :" << Interpreter.GetPublicMethodNumber();
+       std::cout << "\n Public Method Number :"
 
-       std::cout << "\n Public methods start line :" << Interpreter.GetPublicRecordsStartLine();
+                 << Interpreter.GetPublicMethodNumber();
+
+       std::cout << "\n Public methods start line :"
+
+                 << Interpreter.GetPublicRecordsStartLine();
    }
 
    if(Interpreter.GetPrivateDeclerationExistance()){
 
-      std::cout << "\n Private Method Number :" << Interpreter.GetPrivateMethodNumber();
+      std::cout << "\n Private Method Number :"
 
-      std::cout << "\n Private methods start line :" << Interpreter.GetPrivateRecordsStartLine();
+                << Interpreter.GetPrivateMethodNumber();
+
+      std::cout << "\n Private methods start line :"
+
+                << Interpreter.GetPrivateRecordsStartLine();
    }
 
    if( Interpreter.GetProtectedDeclerationExistance()){
 
-      std::cout << "\n Protected Method Number :" << Interpreter.GetProtectedMethodNumber();
+      std::cout << "\n Protected Method Number :"
 
-      std::cout << "\n Protected methods start line :" << Interpreter.GetProtectedRecordsStartLine();
+                << Interpreter.GetProtectedMethodNumber();
+
+      std::cout << "\n Protected methods start line :"
+
+                << Interpreter.GetProtectedRecordsStartLine();
    }
 
    Interpreter.Clear_Dynamic_Memory();

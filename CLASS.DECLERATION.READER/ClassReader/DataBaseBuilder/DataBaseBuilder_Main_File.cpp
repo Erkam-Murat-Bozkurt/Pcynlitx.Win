@@ -9,15 +9,15 @@ int main(int argc, char** argv){
 
     DataBaseBuilder DB_Builder;
 
-    char Include_Directory_PATH [] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory/TestHeaderFile";
+    char Include_Directory_PATH [] = "D:\\TestHeaderFile";
 
     Reader.ReceiveIncludeDirectoryPATH(Include_Directory_PATH);
 
-    char Construction_Point [] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory";
+    char Construction_Point [] = "D:\\TestDirectory";
 
     Reader.ReceiveDataBaseConstructionPoint(Construction_Point);
 
-    char File_Name [] = "/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory/TestHeaderFile/IntToCharTranslater.h";
+    char File_Name [] = "IntToCharTranslater.h";
 
     Reader.Receive_Header_File_Path(File_Name);
 
@@ -37,32 +37,48 @@ int main(int argc, char** argv){
 
     for(int i=0;i<DB_Builder.Get_Public_Method_Number();i++){
 
-       std::cout << "\n\n METHOD ID NUMBER: " << DB_Builder.Get_Public_Method_Datas()[i].Method_ID_Number;
+       std::cout << "\n\n METHOD ID NUMBER: "
+
+                 << DB_Builder.Get_Public_Method_Datas()[i].Method_ID_Number;
 
        std::cout << "\n";
 
-       std::cout << "\n        Syntax_Error_Status: " <<  DB_Builder.Get_Public_Method_Datas()[i].Syntax_Error_Status;
+       std::cout << "\n        Syntax_Error_Status: "
 
-       std::cout << "\n        Parameter_Number   : " <<  DB_Builder.Get_Public_Method_Datas()[i].Parameter_Number;
+                <<  DB_Builder.Get_Public_Method_Datas()[i].Syntax_Error_Status;
 
-       std::cout << "\n        Method_Name        : " <<  DB_Builder.Get_Public_Method_Datas()[i].Method_Name;
+       std::cout << "\n        Parameter_Number   : "
 
-       std::cout << "\n        Return_Type        : " <<  DB_Builder.Get_Public_Method_Datas()[i].Return_Type;
+                <<  DB_Builder.Get_Public_Method_Datas()[i].Parameter_Number;
 
-       std::cout << "\n        Acess_Type         : " <<  DB_Builder.Get_Public_Method_Datas()[i].Acess_Type;
+       std::cout << "\n        Method_Name        : "
+
+                 <<  DB_Builder.Get_Public_Method_Datas()[i].Method_Name;
+
+       std::cout << "\n        Return_Type        : "
+
+                 <<  DB_Builder.Get_Public_Method_Datas()[i].Return_Type;
+
+       std::cout << "\n        Acess_Type         : "
+
+                 <<  DB_Builder.Get_Public_Method_Datas()[i].Acess_Type;
 
        std::cout << "\n        Parameter_Types    : ";
 
        for(int k=0;k<DB_Builder.Get_Public_Method_Datas()[i].Parameter_Number;k++){
 
-           std::cout << "\n                             " << DB_Builder.Get_Public_Method_Datas()[i].Parameter_Types[k];
+           std::cout << "\n                             "
+
+                     << DB_Builder.Get_Public_Method_Datas()[i].Parameter_Types[k];
        }
 
        std::cout << "\n        Parameter_Names    : ";
 
        for(int k=0;k<DB_Builder.Get_Public_Method_Datas()[i].Parameter_Number;k++){
 
-           std::cout << "\n                             " << DB_Builder.Get_Public_Method_Datas()[i].Parameter_Names[k];
+           std::cout << "\n                             "
+
+                     << DB_Builder.Get_Public_Method_Datas()[i].Parameter_Names[k];
        }
 
        std::cout << "\n";

@@ -28,7 +28,7 @@
 
      Place_Information(&Data_Type,Data_Type_Name,Data_Type_Name_Size);
 
-     const char * Construction_Point_Name = "/home/erkam/Smart.Pointer.Builder/Multi_Thread_Pointer_File_Data_Collector";
+     const char * Construction_Point_Name = "D:\\TestDirectory";
 
      int Construction_Point_Name_Size = strlen(Construction_Point_Name);
 
@@ -52,7 +52,7 @@
 
      Place_Information(&Header_File_Name_Pointer,Data_Type_Header_File_Name,Header_File_Name_Size);
 
-     const char * Include_Directory = "/home/erkam/Smart.Pointer.Builder/Builder_Initializer";
+     const char * Include_Directory = "D:\\TestHeaders";
 
      int Include_Directory_Size = strlen(Include_Directory);
 
@@ -80,11 +80,17 @@
 
      Compiler_Data_Collector.Collect_Informations();
 
-     std::cout << "\n\n Pointer Compiler Command :" << Compiler_Data_Collector.Get_Compiler_Command_For_Pointer() << "\n\n";
+     std::cout << "\n\n Pointer Compiler Command :"
 
-     std::cout << "\n\n Memory Manager Compiler Command :" << Compiler_Data_Collector.Get_Compiler_Command_For_Memory_Manager_Builder()  << "\n\n";
+               << Compiler_Data_Collector.Get_Compiler_Command_For_Pointer() << "\n\n";
 
-     std::cout << "\n\n Report File Builder Compiler Command :" << Compiler_Data_Collector.Get_Compiler_Command_For_ReportFile_Builder() << "\n\n";
+     std::cout << "\n\n Memory Manager Compiler Command :"
+
+               << Compiler_Data_Collector.Get_Compiler_Command_For_Memory_Manager_Builder()  << "\n\n";
+
+     std::cout << "\n\n Report File Builder Compiler Command :"
+
+               << Compiler_Data_Collector.Get_Compiler_Command_For_ReportFile_Builder() << "\n\n";
 
      Data_Collector.Clear_Dynamic_Memory();
 

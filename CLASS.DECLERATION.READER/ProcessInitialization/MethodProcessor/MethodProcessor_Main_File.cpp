@@ -4,6 +4,8 @@
 
 int main(){
 
+    // constructıon a random method for test
+
     const char * method = "   float & ~IntegerSum( );;";
 
     char * pointer = new char[strlen(method)];
@@ -12,6 +14,9 @@ int main(){
 
         pointer[i]=method[i];
     }
+
+
+    // Testing MethodProcessor class
 
     MethodProcessor MPr;
 
@@ -23,15 +28,27 @@ int main(){
 
     MPr.CollectInformation();
 
-    std::cout << "MethodName:" << MPr.getMethodName();
 
-    std::cout << "\n\n MPr.getMethodLine():" << MPr.getMethodLine();
+    // Printing operations
 
-    std::cout << "\n Class Constructor Status:" << MPr.getClassConstructorStatus();
+    std::cout << "\n\n MethodName:"
 
-    std::cout << "\n Class Destructor Status :" << MPr.getClassDestructorStatus();
+              << MPr.getMethodName();
+
+    std::cout << "\n\n MPr.getMethodLine():"
+
+              << MPr.getMethodLine();
+
+    std::cout << "\n\n Class Constructor Status:"
+
+              << MPr.getClassConstructorStatus();
+
+    std::cout << "\n\n Class Destructor Status :"
+
+              << MPr.getClassDestructorStatus();
 
     delete [] pointer;
+
 
     std::cout << "\n\n The end of the program ..\n\n";
 

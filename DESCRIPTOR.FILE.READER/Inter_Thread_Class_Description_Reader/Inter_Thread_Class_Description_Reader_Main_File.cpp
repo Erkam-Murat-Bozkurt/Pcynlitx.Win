@@ -18,9 +18,9 @@
 
      Inter_Thread_Class_Description_Reader Class_Description_Reader;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -54,24 +54,38 @@
 
         for(int i=0;i<Total_Class_Number;i++){
 
-            std::cout << "\n  Class Name      : " << Class_Description_Reader.Get_Class_Names()[i].Class_Name << "#";
+            std::cout << "\n  Class Name      : "
 
-            std::cout << "\n  Class Number    : " << Class_Description_Reader.Get_Class_Names()[i].Class_Number << "#";
+                      << Class_Description_Reader.Get_Class_Names()[i].Class_Name << "#";
 
-            std::cout << "\n  Class Instace   : " << Class_Description_Reader.Get_Class_Names()[i].Class_Instance_Name << "#";
+            std::cout << "\n  Class Number    : "
 
-            std::cout << "\n  Header File     : " << Class_Description_Reader.Get_Class_Names()[i].Header_File_Name << "#";
+                      << Class_Description_Reader.Get_Class_Names()[i].Class_Number << "#";
 
-            std::cout << "\n  Header Location : " << Class_Description_Reader.Get_Class_Names()[i].Header_File_Location << "#";
+            std::cout << "\n  Class Instace   : "
+
+                      << Class_Description_Reader.Get_Class_Names()[i].Class_Instance_Name << "#";
+
+            std::cout << "\n  Header File     : "
+
+                      << Class_Description_Reader.Get_Class_Names()[i].Header_File_Name << "#";
+
+            std::cout << "\n  Header Location : "
+
+                      << Class_Description_Reader.Get_Class_Names()[i].Header_File_Location << "#";
 
             std::cout << "\n";
         }
      }
      else{
 
-            std::cout << "\n\n \e[1;37;42m Class Names:\e[0m" << "\n\n There is no class name";
+            std::cout << "\n\n \e[1;37;42m Class Names:\e[0m"
 
-            std::cout << "\n\n \e[1;37;42m Object Names:\e[0m" << "\n\n There is no class instance name";
+                      << "\n\n There is no class name";
+
+            std::cout << "\n\n \e[1;37;42m Object Names:\e[0m"
+
+                      << "\n\n There is no class instance name";
      }
 
      std::cout << "\n\n \e[1;3m # THE END OF THE PROGRAM # \e[0m  \n\n";

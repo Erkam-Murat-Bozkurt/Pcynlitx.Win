@@ -5,9 +5,13 @@ void Place_String(char ** Pointer, const char * String);
 
 int main(){
 
-    const char * Project_Object_Files_Location = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY\\OBJECT.FILES";
+    const char * Project_Object_Files_Location
 
-    const char * Library_Directory_Decleration = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY";
+          = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY\\OBJECT.FILES";
+
+    const char * Library_Directory_Decleration
+
+          = "D:\\PCYNLITX.WIND.IMPL.LIBRARY\\PROJECT.LIBRARY";
 
     const char * Library_Name_Decleration = "mptools";
 

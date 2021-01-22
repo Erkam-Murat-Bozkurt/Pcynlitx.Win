@@ -5,6 +5,8 @@
 
 int main(){
 
+    // A METHOD DEFINITION FOR TEST
+
     const char * method = "   float &   operator&( );";
 
     int listSize = strlen(method);
@@ -18,15 +20,22 @@ int main(){
 
     pointer[listSize] = '\0';
 
+
+    // Testing the MethodInitializer class
+
     MethodInitializer MPr;
 
     MPr.ReceiveMethod(pointer);
 
     MPr.ProcessMethodInformation();
 
-    std::cout << "\n\n MPr.getMethodLine():" << MPr.getMethodLine();
+    std::cout << "\n\n MPr.getMethodLine():"
 
-    std::cout << "\n\n MPr.getMethodInitializerErrorCondition():" << MPr.getMethodInitializerErrorCondition();
+              << MPr.getMethodLine();
+
+    std::cout << "\n\n MPr.getMethodInitializerErrorCondition():"
+
+              << MPr.getMethodInitializerErrorCondition();
 
     delete [] pointer;
 

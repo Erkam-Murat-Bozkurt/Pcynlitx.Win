@@ -7,9 +7,9 @@
 
      Descriptor_File_Reader Des_File_Reader;
 
-     Des_File_Reader.Receive_Descriptor_File_Directory("/home/erkam/Project_Apps");
+     Des_File_Reader.Receive_Descriptor_File_Directory("D:\\Project_Apps");
 
-     Des_File_Reader.Receive_Descriptor_File_Name("/home/erkam/Project_Apps/Project_Descriptor_File");
+     Des_File_Reader.Receive_Descriptor_File_Name("D:\\Project_Apps\\Project_Descriptor_File");
 
      Des_File_Reader.Receive_Descriptor_File_Infomations();;
 

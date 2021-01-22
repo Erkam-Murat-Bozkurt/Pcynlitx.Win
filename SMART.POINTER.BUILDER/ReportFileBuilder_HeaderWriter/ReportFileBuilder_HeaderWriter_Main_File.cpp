@@ -23,13 +23,15 @@
 
      Place_Information(&Data_Type_Name,Data_Type,Data_Type_Name_Size);
 
-     const char * Construction_Point = "/home/erkam/Smart.Pointer.Builder/ReportFileBuilder_HeaderWriter";
+     const char * Construction_Point = "D:\\TestDirectory";
 
      int Construction_Point_Name_Size = strlen(Construction_Point);
 
      char * Construction_Point_Pointer = new char [5*Construction_Point_Name_Size];
 
-     Place_Information(&Construction_Point_Pointer,Construction_Point,Construction_Point_Name_Size);
+     Place_Information(&Construction_Point_Pointer,
+
+                    Construction_Point,Construction_Point_Name_Size);
 
      const char * Entered_Class_Name = "SmartPointer";
 

@@ -18,9 +18,9 @@
 
      Inter_Thread_Data_Type_Description_Reader Data_Type_Description_Reader;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
+     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
+     File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -54,15 +54,24 @@
 
         for(int i=0;i<Total_Data_Type_Number;i++){
 
-            std::cout << "\n  Data Type        : " << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Data_Type << "#";
+            std::cout << "\n  Data Type        : "
 
-            std::cout << "\n  Data Number      : " << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Data_Number << "#";
+                      << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Data_Type << "#";
 
-            std::cout << "\n  Pointer Name     : " << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Pointer_Name << "#";
+            std::cout << "\n  Data Number      : "
+
+                      << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Data_Number << "#";
+
+            std::cout << "\n  Pointer Name     : "
+
+                      << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Pointer_Name << "#";
+
 
             if(Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Header_File_Name != nullptr){
 
-                std::cout << "\n  Header file name : " << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Header_File_Name << "#";
+                std::cout << "\n  Header file name : "
+
+                          << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Header_File_Name << "#";
             }
             else{
 
@@ -71,7 +80,9 @@
 
             if(Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Include_Directory != nullptr){
 
-                std::cout << "\n  Include_Directory: " << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Include_Directory << "#";
+                std::cout << "\n  Include_Directory: "
+
+                          << Data_Type_Description_Reader.Get_Shared_Data_Types()[i].Include_Directory << "#";
             }
             else{
 

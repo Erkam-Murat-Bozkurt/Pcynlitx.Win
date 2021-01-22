@@ -31,7 +31,9 @@ int main(){
 
     DirectoryManager.DetermineCurrentDirectory();
 
-    std::cout << "\n Current Directory :" << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
+    std::cout << "\n Current Directory :"
+
+         << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
 
 
     DirectoryManager.RecordCurrentDirectoryPATH();
@@ -82,13 +84,18 @@ int main(){
 
     DirectoryManager.DetermineCurrentDirectory();
 
-    std::cout << "\n Current Directory :" << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
+    std::cout << "\n Current Directory :"
+
+         << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
 
     DirectoryManager.ReturnRecordedDirectoryPATH();
 
     DirectoryManager.DetermineCurrentDirectory();
 
-    std::cout << "\n Current Directory :" << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
+
+    std::cout << "\n Current Directory :"
+
+         << DirectoryManager.GetCurrentlyWorkingDirectory() << "\n";
 
     char Target_Directory [] = "D:\\DirectoryOperations\\NewDirectory";
 
@@ -105,7 +112,9 @@ int main(){
 
     char Target_File_Name [] =  "TestFile_1";
 
-    bool is_there_file = DirectoryManager.Search_File_in_Directory(Target_Directory,Target_File_Name);
+    bool is_there_file
+
+          = DirectoryManager.Search_File_in_Directory(Target_Directory,Target_File_Name);
 
     if(is_there_file){
 
