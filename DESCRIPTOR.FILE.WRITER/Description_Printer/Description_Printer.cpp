@@ -492,8 +492,6 @@ void Description_Printer::Print_Descriptions(){
          std::cout << "=";
      }
 
-     std::cout << "\n\n\t OpenMP Selection: " << this->Description_Reader.Get_OpenMP_Support_Condition();
-
      std::cout << "\n\n";
 
      std::cout << "\n\t# THE END OF THE DESCRIPTIONS";

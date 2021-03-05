@@ -19,9 +19,9 @@ int main(int argc, char** argv){
 
     Header_File_Descriptions_Reader HF_Descriptions_Reader;
 
-    File_Data_Collector.Receive_Descriptor_File_Directory("D:\\TestDirectory");
+    File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/META.PROGRAMMING.PROJECT/SEMI.AUTONOM.THREAD.MANAGEMENT/TestDirectory");
 
-    File_Data_Collector.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
+    File_Data_Collector.Receive_Descriptor_File_Name("Supervisor_Constructor_Descriptor_File");
 
     File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -55,9 +55,7 @@ int main(int argc, char** argv){
 
        for(int i=0;i<Header_File_Number;i++){
 
-           std::cout << "\n\n  [" << i+1 << "] "
-
-                     << HF_Descriptions_Reader.Get_Header_File_Names()[i];
+           std::cout << "\n\n  [" << i+1 << "] " << HF_Descriptions_Reader.Get_Header_File_Names()[i];
        }
     }
     else{
@@ -71,9 +69,7 @@ int main(int argc, char** argv){
 
        for(int i=0;i<Header_File_Number;i++){
 
-           std::cout << "\n\n  [" << i+1 << "] "
-
-                     << HF_Descriptions_Reader.Get_Header_File_Paths()[i];
+           std::cout << "\n\n  [" << i+1 << "] " << HF_Descriptions_Reader.Get_Header_File_Paths()[i];
        }
     }
     else{

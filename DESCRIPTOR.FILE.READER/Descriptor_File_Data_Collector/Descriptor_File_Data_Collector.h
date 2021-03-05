@@ -5,7 +5,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <CharOperator.h>
-#include <windows.h>
 #include <stdio.h>
 #include "StringOperator.h"
 #include "DirectoryOperations.h"
@@ -48,8 +47,6 @@ public:
   int Record_Line_Number_for_Total_Thread_Number;
   int Thread_Function_Number;
   int Namespace_Record_Number;
-  int OpenMP_Support_Condition_Record_Number;
-  bool OpenMP_Support;
   int Include_Directory_Record_Area[2];
   int Library_Directories_Record_Area[2];
   int Source_File_Locations_Record_Area[2];
@@ -69,7 +66,6 @@ public:
   int Thread_Numbers_Record_Area[2];
   int Thread_Names_Record_Area[2];
   int Namespace_Record_Area[2];
-  int OpenMP_Support_Record_Area[2];
 private:
   void ReadConstString(const char * ConstString);
   char * GetConstString() const;

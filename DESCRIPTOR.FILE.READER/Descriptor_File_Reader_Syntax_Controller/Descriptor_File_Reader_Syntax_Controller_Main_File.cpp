@@ -8,7 +8,7 @@ int main(int argc, char** argv){
 
     File_Reader.Receive_Descriptor_File_Directory(argv[1]);
 
-    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
+    File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File");
 
     File_Reader.Receive_Descriptor_File_Infomations();
 

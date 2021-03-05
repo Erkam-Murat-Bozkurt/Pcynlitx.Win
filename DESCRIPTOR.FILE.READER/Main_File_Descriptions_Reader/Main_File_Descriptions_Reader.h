@@ -24,7 +24,6 @@ public:
   char *  Get_Server_Class_Header_File_Name() const;
   char *  Get_Main_File_Name() const;
   char *  Get_Namespace() const;
-  char *  Get_OpenMP_Support_Condition() const;
   char *  Get_Executable_File_Name() const;
   char *  Get_Construction_Point() const;
   char ** Get_Thread_Function_Names() const;

@@ -200,7 +200,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
 
             this->Include_Directory_Pointer[index_counter].Total_Include_Directory_Number = this->Include_Directory_Number;
 
-            int String_Size = strlen(String_Line);
+            size_t String_Size = strlen(String_Line);
 
             this->Include_Directory_Pointer[index_counter].Include_Directory = new char [10*String_Size];
 
@@ -251,7 +251,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
                      exit(1);
                   }
 
-                  int String_Size = strlen(String_Line);
+                  size_t String_Size = strlen(String_Line);
 
                   int Data_Type_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
@@ -389,7 +389,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
                          char * File_Location = this->Include_Directory_Pointer[k].Include_Directory;
 
-                         int Location_Name_Size = strlen(File_Location);
+                         size_t Location_Name_Size = strlen(File_Location);
 
                          this->Shared_Memory_Header_Pointer[i].Include_Directory = new char [10*Location_Name_Size];
 
@@ -538,7 +538,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Na
 
             this->Shared_Memory_Pointer_Names_Holder[index_counter].Data_Type_Number = Data_Type_Number;
 
-            int String_Size = strlen(String_Line);
+            size_t String_Size = strlen(String_Line);
 
             this->Shared_Memory_Pointer_Names_Holder[index_counter].Pointer_Names = new char [10*String_Size];
 
@@ -592,7 +592,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
                exit(1);
             }
 
-            int String_Size = strlen(String_Line);
+            size_t String_Size = strlen(String_Line);
 
             this->Shared_Memory_Data_Type_Pointer[index_counter].Data_Type = new char [10*String_Size];
 
@@ -813,7 +813,7 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
                    char * Pointer_Name = this->Shared_Memory_Pointer_Names_Holder[k].Pointer_Names;
 
-                   int Name_Size = strlen(Pointer_Name);
+                   size_t Name_Size = strlen(Pointer_Name);
 
                    this->Shared_Memory_Data_Type_Pointer[index_counter].Pointer_Name = new char [10*Name_Size];
 
@@ -902,11 +902,11 @@ void Inter_Thread_Data_Type_Description_Reader::Place_String(char ** Pointer, ch
 
      int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
      int index_counter = 0;
 
-     for(int i=Start_Point;i<String_Size;i++){
+     for(size_t i=Start_Point;i<String_Size;i++){
 
          (*Pointer)[index_counter] = String[i];
 
@@ -922,9 +922,9 @@ bool Inter_Thread_Data_Type_Description_Reader::Check_Empty_Decleration(char * S
 
      int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=Start_Point;i<String_Size;i++){
+     for(size_t i=Start_Point;i<String_Size;i++){
 
          if(((String[i] != ' ') && (String[i] != '\t') && (String[i] != '\n') && (String[i] != '\0'))){
 

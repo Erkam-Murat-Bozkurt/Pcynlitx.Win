@@ -27,7 +27,6 @@ public:
   void Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer);
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
-  void Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer);
   void Read_Source_File_Descriptions();
   int  Get_Header_Files_Number() const;
   int  Get_Source_File_Location_Number() const;
@@ -43,7 +42,7 @@ private:
   void Receive_Source_File_Locations();
   void Receive_Source_File_Names();
   void Place_String(char ** Pointer, char * String);
-  void Place_Information(char ** Pointer, char * Information, int * index_counter, int Start_Point);
+  void Place_Information(char ** Pointer, char * Information, int * index_counter, size_t Start_Point);
   void Clear_Pointer_Memory(char ** Pointer);
   void Print_End_of_Program();
   void Print_Read_Error_Information();
@@ -52,7 +51,6 @@ private:
   Descriptor_File_Data_Collector * Data_Collector_Pointer;
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;
-  Include_Directory_Description_Reader * ID_Description_Reader;
   Source_File_Location_Data_Type * Source_File_Locations_Pointer;
   DirectoryOperations Directory_Manager;
   int Header_File_Names_Number;

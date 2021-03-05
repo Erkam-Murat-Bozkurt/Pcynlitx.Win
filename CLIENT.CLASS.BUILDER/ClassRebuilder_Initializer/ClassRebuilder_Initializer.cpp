@@ -313,7 +313,7 @@ void ClassRebuilder_Initializer::Determine_Base_Class_Informations(){
 
 void ClassRebuilder_Initializer::Determine_Included_Header_Files(){
 
-     this->Header_Files_Name_Reader.Determine_Included_Header_File_Names(this->Base_Class_Header_File_Name);
+     this->Header_Files_Name_Reader.Determine_Included_Header_File_Names(this->Base_Class_Header_File_Path);
 }
 
 

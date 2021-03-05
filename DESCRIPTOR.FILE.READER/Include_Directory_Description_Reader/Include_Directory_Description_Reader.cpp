@@ -199,7 +199,7 @@ void Include_Directory_Description_Reader::Receive_Include_Directory(){
 
               this->Include_Directory_Pointer[index_counter].Total_Include_Directory_Number = this->Include_Directory_Number;
 
-              int String_Size = strlen(String_Line);
+              size_t String_Size = strlen(String_Line);
 
               this->Include_Directory_Pointer[index_counter].Include_Directory = new char [10*String_Size];
 
@@ -226,11 +226,11 @@ void Include_Directory_Description_Reader::Receive_Include_Directory(){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
       int index_counter = 0;
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           (*Pointer)[index_counter] = String[i];
 

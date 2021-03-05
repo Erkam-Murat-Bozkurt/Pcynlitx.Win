@@ -93,11 +93,6 @@ void Source_File_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_N
      this->Number_Processor_Pointer = Pointer;
 }
 
-void Source_File_Descriptions_Reader::Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer){
-
-     this->ID_Description_Reader = Pointer;
-}
-
 void Source_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
 
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
@@ -126,13 +121,13 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 
      if(this->Source_File_Location_Number > 0){
 
-        int * Location_Number_holder = new int [5*this->Source_File_Location_Number];
+        int * Location_Number_holder = new int [10*this->Source_File_Location_Number];
 
         this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Location_Number_holder,10*this->Source_File_Location_Number);
 
         this->Source_File_Locations_Pointer = new Source_File_Location_Data_Type [10*this->Source_File_Location_Number];
 
-        this->Source_File_Locations = new char * [5*this->Source_File_Location_Number];
+        this->Source_File_Locations = new char * [10*this->Source_File_Location_Number];
 
         for(int i=0;i<this->Source_File_Location_Number;i++){
 
@@ -216,13 +211,13 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
                exit(1);
             }
 
-            int String_Size = strlen(String_Line);
+            size_t String_Size = strlen(String_Line);
 
             this->Source_File_Locations_Pointer[i].Location_Number = Location_Number;
 
             this->Source_File_Locations_Pointer[i].Source_File_Location = new char [10*String_Size];
 
-            this->Source_File_Locations[i] = new char [5*String_Size];
+            this->Source_File_Locations[i] = new char [10*String_Size];
 
             this->Place_String(&(this->Source_File_Locations_Pointer[i].Source_File_Location),String_Line);
 
@@ -237,15 +232,15 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
      if(this->Source_File_Number > 0) {
 
-        int * Source_File_Names_Number_Holder = new int [5*this->Source_File_Number];
+        int * Source_File_Names_Number_Holder = new int [10*this->Source_File_Number];
 
         this->Number_Processor_Pointer->Set_Zero_For_Integer_List(&Source_File_Names_Number_Holder,2*this->Source_File_Number);
 
-        this->Source_File_Names = new char * [5*this->Source_File_Number];
+        this->Source_File_Names = new char * [10*this->Source_File_Number];
 
         char Directory_Character [] = {'\\','\0'};
 
-        int Directory_Character_Name_Size = strlen(Directory_Character);
+        size_t Directory_Character_Name_Size = strlen(Directory_Character);
 
         for(int i=0;i<this->Source_File_Number;i++){
 
@@ -272,7 +267,7 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             char * Source_File_Location = nullptr;
 
-            int String_Size = strlen(String_Line);
+            size_t String_Size = strlen(String_Line);
 
             int Source_File_Names_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
@@ -336,29 +331,29 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
 
-            int Location_Name_Size = strlen(Source_File_Location);
+            size_t Location_Name_Size = strlen(Source_File_Location);
 
-            int Source_File_Name_Size = String_Size + Location_Name_Size + Directory_Character_Name_Size;
+            size_t Source_File_Name_Size = String_Size + Location_Name_Size + Directory_Character_Name_Size;
 
-            this->Source_File_Names[i] = new char [5*Source_File_Name_Size];
+            this->Source_File_Names[i] = new char [10*Source_File_Name_Size];
 
             int index_counter = 0;
 
-            for(int k=0;k<Location_Name_Size;k++){
+            for(size_t k=0;k<Location_Name_Size;k++){
 
                 this->Source_File_Names[i][index_counter] = Source_File_Location[k];
 
                 index_counter++;
             }
 
-            for(int k=0;k<Directory_Character_Name_Size;k++){
+            for(size_t k=0;k<Directory_Character_Name_Size;k++){
 
                 this->Source_File_Names[i][index_counter] = Directory_Character[k];
 
                 index_counter++;
             }
 
-            for(int k=Start_Point;k<String_Size;k++){
+            for(size_t k=Start_Point;k<String_Size;k++){
 
                 this->Source_File_Names[i][index_counter] = String_Line[k];
 
@@ -367,13 +362,13 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             this->Source_File_Names[i][index_counter] = '\0';
 
-            int File_Name_Size = String_Size - Start_Point;
+            size_t File_Name_Size = String_Size - Start_Point;
 
-            char * Source_File_Name_Pointer = new char [5*File_Name_Size];
+            char * Source_File_Name_Pointer = new char [10*File_Name_Size];
 
             index_counter = 0;
 
-            for(int k=Start_Point;k<String_Size;k++){
+            for(size_t k=Start_Point;k<String_Size;k++){
 
                 Source_File_Name_Pointer[index_counter] = String_Line[k];
 
@@ -482,11 +477,13 @@ void Source_File_Descriptions_Reader::Print_Brace_Data_Read_Error(int Readed_Dat
      }
 }
 
-void Source_File_Descriptions_Reader::Place_Information(char ** Pointer, char * Information, int * index_counter, int Start_Point){
+void Source_File_Descriptions_Reader::Place_Information(char ** Pointer, char * Information,
 
-     int String_Size = strlen(Information);
+     int * index_counter, size_t Start_Point){
 
-     for(int i=Start_Point;i<String_Size;i++){
+     size_t String_Size = strlen(Information);
+
+     for(size_t i=Start_Point;i<String_Size;i++){
 
          (*Pointer)[(*index_counter)] = Information[i];
 
@@ -510,9 +507,9 @@ void Source_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           if(((String[i] != ' ') && (String[i] != '\t') && (String[i] != '\n') && (String[i] != '\0'))){
 
@@ -528,11 +525,11 @@ void Source_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
       int index_counter = 0;
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           (*Pointer)[index_counter] = String[i];
 

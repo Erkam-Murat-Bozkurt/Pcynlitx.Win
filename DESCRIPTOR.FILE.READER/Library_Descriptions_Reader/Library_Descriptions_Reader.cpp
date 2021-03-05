@@ -120,7 +120,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
      if(this->Library_Names_Number > 0){
 
-         Library_Names_Pointer = new char * [5*this->Library_Names_Number];
+         Library_Names_Pointer = new char * [10*this->Library_Names_Number];
 
          char Library_Names_subfix [] = ".a";
 
@@ -130,7 +130,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
              int Library_Name_Size = strlen(this->Library_Names[i]);
 
-             Library_Names_Pointer[i] = new char [5*Library_Name_Size];
+             Library_Names_Pointer[i] = new char [10*Library_Name_Size];
 
              int index_counter = 0;
 
@@ -186,7 +186,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
 void Library_Descriptions_Reader::Receive_Library_Directories(){
 
-     this->Library_Directories = new char * [5*this->Library_Directory_Number];
+     this->Library_Directories = new char * [10*this->Library_Directory_Number];
 
      for(int i=0;i<this->Library_Directory_Number;i++){
 
@@ -251,9 +251,9 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
             exit(1);
          }
 
-         int Library_Directory_Name_Size = strlen(Library_Directory);
+         size_t Library_Directory_Name_Size = strlen(Library_Directory);
 
-         this->Library_Directories[i] = new char [5*Library_Directory_Name_Size];
+         this->Library_Directories[i] = new char [10*Library_Directory_Name_Size];
 
          this->Place_String(&(this->Library_Directories[i]),Library_Directory);
      }
@@ -261,7 +261,7 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
 
 void Library_Descriptions_Reader::Receive_Library_Names(){
 
-     this->Library_Names = new char * [5*this->Library_Names_Number];
+     this->Library_Names = new char * [10*this->Library_Names_Number];
 
      for(int i=0;i<this->Library_Names_Number;i++){
 
@@ -324,7 +324,7 @@ void Library_Descriptions_Reader::Receive_Library_Names(){
             exit(1);
          }
 
-         int Library_Name_Size = strlen(Library_Name);
+         size_t Library_Name_Size = strlen(Library_Name);
 
          this->Library_Names[i] = new char [5*Library_Name_Size];
 
@@ -338,11 +338,13 @@ bool Library_Descriptions_Reader::Check_Empty_Decleration(char * String){
 
      int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-     int String_Size = strlen(String);
+     size_t String_Size = strlen(String);
 
-     for(int i=Start_Point;i<String_Size;i++){
+     for(size_t i=Start_Point;i<String_Size;i++){
 
-         if(((String[i] != ' ') && (String[i] != '\t') && (String[i] != '\n') && (String[i] != '\0'))){
+         if(((String[i] != ' ') && (String[i] != '\t')
+
+             && (String[i] != '\n') && (String[i] != '\0'))){
 
              this->is_empty_decleration = false;
          }
@@ -385,9 +387,9 @@ void Library_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
  void Library_Descriptions_Reader::Place_Information(char ** Pointer, char * String, int * index_counter){
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
-      for(int i=0;i<String_Size;i++){
+      for(size_t i=0;i<String_Size;i++){
 
           (*Pointer)[(*index_counter)] = String[i];
 
@@ -399,11 +401,11 @@ void Library_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
       int index_counter = 0;
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           (*Pointer)[index_counter] = String[i];
 

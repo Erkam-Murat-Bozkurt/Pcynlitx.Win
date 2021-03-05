@@ -4,7 +4,6 @@
  #include "DirectoryOperations.h"
  #include <cstring>
  #include <iostream>
- #include <windows.h>
 
  int main(int argc, char** argv){
 
@@ -22,15 +21,15 @@
 
      char File_Name [] = "\\Construction_Point_Holder";
 
-     int Directory_Size = strlen(argv[1]);
+     size_t Directory_Size = strlen(argv[1]);
 
-     int File_Name_Size = strlen(File_Name);
+     size_t File_Name_Size = strlen(File_Name);
 
-     int Path_Size = Directory_Size + File_Name_Size;
+     size_t Path_Size = Directory_Size + File_Name_Size;
 
      char * Construction_Point_File = new char [5*Path_Size];
 
-     for(int i= 0;i<Path_Size;i++){
+     for(size_t i= 0;i<Path_Size;i++){
 
          Construction_Point_File[i] = '\0';
      }

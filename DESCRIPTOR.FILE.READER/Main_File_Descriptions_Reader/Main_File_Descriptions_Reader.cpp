@@ -37,8 +37,6 @@ Main_File_Descriptions_Reader::Main_File_Descriptions_Reader(){
 
      this->Namespace = nullptr;
 
-     this->OpenMP_Support_Condition = nullptr;
-
      this->Executable_File_Name = nullptr;
 
      this->Thread_Function_Number = 0;
@@ -87,8 +85,6 @@ void Main_File_Descriptions_Reader::Clear_Dynamic_Memory(){
         this->Clear_Pointer_Memory(&this->Executable_File_Name);
 
         this->Clear_Pointer_Memory(&this->Namespace);
-
-        this->Clear_Pointer_Memory(&this->OpenMP_Support_Condition);
      }
 }
 
@@ -161,26 +157,11 @@ void Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
 
         char Namespace_Info [] = {'p','c','y','n','l','i','t','x','\0'};
 
-        int Name_Size = strlen(Namespace_Info);
+        size_t Name_Size = strlen(Namespace_Info);
 
-        this->Namespace = new char [5*Name_Size];
+        this->Namespace = new char [10*Name_Size];
 
         this->Place_String(&this->Namespace,Namespace_Info);
-     }
-
-     if(this->Data_Collector_Pointer->OpenMP_Support_Condition_Record_Number > 0){
-
-        this->Receive_OpenMP_Support_Condition();
-     }
-     else{
-
-        char OpenMp_Info [] = {'f','a','l','s','e','\0'};
-
-        int Condition_Size = strlen(OpenMp_Info);
-
-        this->OpenMP_Support_Condition = new char [5*Condition_Size];
-
-        this->Place_String(&this->OpenMP_Support_Condition,OpenMp_Info);
      }
 }
 
@@ -188,9 +169,9 @@ void Main_File_Descriptions_Reader::Receive_Construction_Point(){
 
      char * String_Line = this->Initializer_Pointer->Get_Construction_Directory();
 
-     int String_Size = strlen(String_Line);
+     size_t String_Size = strlen(String_Line);
 
-     this->Construction_Point = new char [5*String_Size];
+     this->Construction_Point = new char [10*String_Size];
 
      this->Place_String(&this->Construction_Point,String_Line);
 }
@@ -199,9 +180,9 @@ void Main_File_Descriptions_Reader::Receive_Main_File_Name(){
 
      char * File_Name = this->Initializer_Pointer->Get_Main_File_Name();
 
-     int File_Name_Size = strlen(File_Name);
+     size_t File_Name_Size = strlen(File_Name);
 
-     this->Main_File_Name = new char [5*File_Name_Size];
+     this->Main_File_Name = new char [10*File_Name_Size];
 
      this->Place_String(&this->Main_File_Name,File_Name);
 }
@@ -210,32 +191,20 @@ void Main_File_Descriptions_Reader::Receive_Namespace(){
 
      char * Namespace_Info = this->Initializer_Pointer->Get_Namespace();
 
-     int Name_Size = strlen(Namespace_Info);
+     size_t Name_Size = strlen(Namespace_Info);
 
-     this->Namespace = new char [5*Name_Size];
+     this->Namespace = new char [10*Name_Size];
 
      this->Place_String(&this->Namespace,Namespace_Info);
-}
-
-
-void Main_File_Descriptions_Reader::Receive_OpenMP_Support_Condition(){
-
-     char * OpenMP_Support = this->Initializer_Pointer->Get_OpenMP_Support_Condition();
-
-     int Condition_Size = strlen(OpenMP_Support);
-
-     this->OpenMP_Support_Condition = new char [5*Condition_Size];
-
-     this->Place_String(&this->OpenMP_Support_Condition,OpenMP_Support);
 }
 
 void Main_File_Descriptions_Reader::Receive_Executable_File_Name(){
 
      char * File_Name = this->Initializer_Pointer->Get_Executable_File_Name();
 
-     int File_Name_Size = strlen(File_Name);
+     size_t File_Name_Size = strlen(File_Name);
 
-     this->Executable_File_Name = new char [5*File_Name_Size];
+     this->Executable_File_Name = new char [10*File_Name_Size];
 
      this->Place_String(&this->Executable_File_Name,File_Name);
 }
@@ -244,32 +213,32 @@ void Main_File_Descriptions_Reader::Receive_Server_Class_Name(){
 
      char * Class_Name = this->Initializer_Pointer->Get_Server_Class_Name();
 
-     int Class_Name_Size = strlen(Class_Name);
+     size_t Class_Name_Size = strlen(Class_Name);
 
-     this->Server_Class_Name = new char [5*Class_Name_Size];
+     this->Server_Class_Name = new char [10*Class_Name_Size];
 
      this->Place_String(&this->Server_Class_Name,Class_Name);
 
      char * Header_File_Name = this->Initializer_Pointer->Get_Server_Class_Header_File_Name();
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     this->Server_Class_Header_File_Name =  new char [5*Header_File_Name_Size];
+     this->Server_Class_Header_File_Name =  new char [10*Header_File_Name_Size];
 
      this->Place_String(&this->Server_Class_Header_File_Name,Header_File_Name);
 }
 
 void Main_File_Descriptions_Reader::Receive_Thread_Function_Names(){
 
-     this->Thread_Function_Names = new char * [5*this->Thread_Function_Number];
+     this->Thread_Function_Names = new char * [10*this->Thread_Function_Number];
 
      for(int i=0;i<this->Thread_Function_Number;i++){
 
          char * String_Line = this->Initializer_Pointer->Get_Thread_Names_List()[i];
 
-         int String_Size = strlen(String_Line);
+         size_t String_Size = strlen(String_Line);
 
-         this->Thread_Function_Names[i] = new char [5*String_Size];
+         this->Thread_Function_Names[i] = new char [10*String_Size];
 
          this->Place_String(&(this->Thread_Function_Names[i]),String_Line);
      }
@@ -289,11 +258,11 @@ void Main_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
       int index_counter = 0;
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           (*Pointer)[index_counter] = String[i];
 
@@ -326,11 +295,6 @@ void Main_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
  char * Main_File_Descriptions_Reader::Get_Namespace() const {
 
         return this->Namespace;
- }
-
- char * Main_File_Descriptions_Reader::Get_OpenMP_Support_Condition() const {
-
-        return this->OpenMP_Support_Condition;
  }
 
  char * Main_File_Descriptions_Reader::Get_Executable_File_Name() const {

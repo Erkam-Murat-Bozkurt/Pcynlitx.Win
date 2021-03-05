@@ -81,8 +81,6 @@ Descriptor_File_Data_Collector::Descriptor_File_Data_Collector(){
 
       this->Namespace_Record_Number = 0;
 
-      this->OpenMP_Support_Condition_Record_Number = 0;
-
       this->is_descriptor_file_name_true = true;
 }
 
@@ -601,19 +599,13 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
       this->Namespace_Record_Area[0] = this->Data_Record_StartLine;
 
       this->Namespace_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("OpenMP_Support","}");
-
-      this->OpenMP_Support_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->OpenMP_Support_Record_Area[1] = this->Data_Record_EndLine;
  }
 
  void Descriptor_File_Data_Collector::Determine_Data_Record_Area(const char * Start_Point, const char * End_Point){
 
       /* If a file or directory includes a name of description such as the word Namespace_Record_Area
 
-         or  OpenMP_Support, decleration reader reads the wrong file line.
+         decleration reader reads the wrong file line.
 
          Therefore, the following codelines are updated in order to prevent from this error */
 
@@ -632,7 +624,7 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
       size_t search_string_size = start_word_size + end_brace_size + Start_Point_Size;
 
-      char * search_string = new char [5*search_string_size];
+      char * search_string = new char [10*search_string_size];
 
       int index_counter = 0;
 
@@ -738,7 +730,7 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
       size_t String_Size = strlen(ConstString);
 
-      this->ConstString = new char [5*String_Size];
+      this->ConstString = new char [10*String_Size];
 
       this->Place_String(&this->ConstString,ConstString,String_Size);
  }
@@ -860,12 +852,6 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
       End_Point = this->Namespace_Record_Area[1];
 
       this->Namespace_Record_Number = this->Determine_Record_Number(Start_Point,End_Point);
-
-      Start_Point = this->OpenMP_Support_Record_Area[0];
-
-      End_Point = this->OpenMP_Support_Record_Area[1];
-
-      this->OpenMP_Support_Condition_Record_Number = this->Determine_Record_Number(Start_Point,End_Point);
  }
 
  int Descriptor_File_Data_Collector::Determine_Record_Number(int Start_Point, int End_Point){
@@ -882,7 +868,10 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
          for(size_t k=0;k<String_Size;k++){
 
-             if(((this->StringOperations.GetStringBuffer()[k] == '{') || (this->StringOperations.GetStringBuffer()[k] == '}'))){
+             if(((this->StringOperations.GetStringBuffer()[k] == '{')
+
+                  || (this->StringOperations.GetStringBuffer()[k] == '}')))
+             {
 
                  is_it_a_brace = true;
 
@@ -890,7 +879,12 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
              }
          }
 
-         while((this->StringOperations.GetStringBuffer()[0] == '\t') || (this->StringOperations.GetStringBuffer()[0] == '\b') || (this->StringOperations.GetStringBuffer()[0] == ' ')){
+         while((this->StringOperations.GetStringBuffer()[0] == '\t')
+
+                || (this->StringOperations.GetStringBuffer()[0] == '\b')
+
+                || (this->StringOperations.GetStringBuffer()[0] == ' '))
+          {
 
                size_t String_Size = strlen(this->StringOperations.GetStringBuffer());
 
@@ -1017,9 +1011,10 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
       char true_name [] = "Project_Descriptor_File.txt";
 
+
       size_t FileName_Size = strlen(FileName);
 
-      char * file_name = new char [5*FileName_Size]; // Conversation from "const char *"  to "char *""
+      char * file_name = new char [10*FileName_Size]; // Conversation from "const char *"  to "char *""
 
       for(size_t i=0;i<FileName_Size;i++){
 

@@ -166,7 +166,7 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Inter_Thread_Class_Infor
 
      int Header_File_Path_Size = Header_File_Name_Size + Header_File_Location_Size;
 
-     this->Header_File_Path = new char [5*Header_File_Path_Size];
+     this->Header_File_Path = new char [10*Header_File_Path_Size];
 
      this->Place_Information(&this->Header_File_Path,this->Header_File_Location,&index_counter);
 
@@ -199,13 +199,13 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Shared_Data_Type_Informa
 
      this->Header_File_Location = Data_Holder.Include_Directory;
 
-     int Header_File_Location_Size = strlen(this->Header_File_Location);
+     size_t Header_File_Location_Size = strlen(this->Header_File_Location);
 
-     int Header_File_Name_Size = strlen(Header_File_Name);
+     size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-     int Header_File_Path_Size = Header_File_Name_Size + Header_File_Location_Size;
+     size_t Header_File_Path_Size = Header_File_Name_Size + Header_File_Location_Size;
 
-     this->Header_File_Path = new char [5*Header_File_Path_Size];
+     this->Header_File_Path = new char [10*Header_File_Path_Size];
 
      this->Place_Information(&this->Header_File_Path,this->Header_File_Location,&index_counter);
 
@@ -226,11 +226,13 @@ void Descriptor_File_Reader_Syntax_Controler::Place_String(char ** Pointer, char
      (*Pointer)[String_Size] = '\0';
 }
 
-void Descriptor_File_Reader_Syntax_Controler::Place_Information(char ** Pointer, char * Information, int * index_counter){
+void Descriptor_File_Reader_Syntax_Controler::Place_Information(char ** Pointer,
 
-     int Information_Size = strlen(Information);
+     char * Information, int * index_counter){
 
-     for(int i=0;i<Information_Size;i++){
+     size_t Information_Size = strlen(Information);
+
+     for(size_t i=0;i<Information_Size;i++){
 
          (*Pointer)[(*index_counter)] = Information[i];
 

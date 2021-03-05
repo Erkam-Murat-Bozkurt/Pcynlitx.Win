@@ -113,9 +113,9 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
         size_t Directory_Character_Name_Size = strlen(Directory_Character);
 
-        this->Header_File_Names = new char * [5*this->Header_File_Names_Number];
+        this->Header_File_Names = new char * [10*this->Header_File_Names_Number];
 
-        this->Header_File_Paths = new char * [5*this->Header_File_Names_Number];
+        this->Header_File_Paths = new char * [10*this->Header_File_Names_Number];
 
         for(int i=0;i<this->Header_File_Names_Number;i++){
 
@@ -235,9 +235,9 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
              size_t String_Size = strlen(String_Line);
 
-             this->Header_File_Names[i] = new char [5*String_Size];
+             this->Header_File_Names[i] = new char [10*String_Size];
 
-             this->Place_Null(&(this->Header_File_Names[i]),5*String_Size);
+             this->Place_Null(&(this->Header_File_Names[i]),10*String_Size);
 
 
              this->Place_String(&(this->Header_File_Names[i]),String_Line);
@@ -250,9 +250,9 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
 
 
-             this->Header_File_Paths[i] = new char [5*Header_File_Name_Size];
+             this->Header_File_Paths[i] = new char [10*Header_File_Name_Size];
 
-             this->Place_Null(&(this->Header_File_Paths[i]),5*Header_File_Name_Size);
+             this->Place_Null(&(this->Header_File_Paths[i]),10*Header_File_Name_Size);
 
 
 
@@ -377,9 +377,9 @@ bool Header_File_Descriptions_Reader::Check_Empty_Decleration(char * String){
 
 void Header_File_Descriptions_Reader::Place_Information(char ** Pointer, char * Information, int * index_counter, int Start_Point){
 
-     int String_Size = strlen(Information);
+     size_t String_Size = strlen(Information);
 
-     for(int i=Start_Point;i<String_Size;i++){
+     for(size_t i=Start_Point;i<String_Size;i++){
 
          (*Pointer)[(*index_counter)] = Information[i];
 
@@ -401,11 +401,11 @@ void Header_File_Descriptions_Reader::Clear_Pointer_Memory(char ** Pointer){
 
       int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String);
 
-      int String_Size = strlen(String);
+      size_t String_Size = strlen(String);
 
       int index_counter = 0;
 
-      for(int i=Start_Point;i<String_Size;i++){
+      for(size_t i=Start_Point;i<String_Size;i++){
 
           (*Pointer)[index_counter] = String[i];
 

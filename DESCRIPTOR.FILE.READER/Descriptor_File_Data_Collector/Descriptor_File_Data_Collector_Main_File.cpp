@@ -13,20 +13,15 @@
 
      Descriptor_File_Data_Collector File_Data_Collector;
 
-     File_Data_Collector.Receive_Descriptor_File_Directory("D:\\OpenMP_Support_Test");
+     File_Data_Collector.Receive_Descriptor_File_Directory("/home/erkam/OpenMP_Support_Test");
 
-     File_Data_Collector.Receive_Descriptor_File_Name("D:\\OpenMP_Support_Test\\Project_Descriptor_File.txt");
+     File_Data_Collector.Receive_Descriptor_File_Name("/home/erkam/OpenMP_Support_Test/Project_Descriptor_File");
 
      File_Data_Collector.Collect_Descriptor_File_Datas();
 
+     std::cout << "\n\n \e[1;3;37;44m DescriptorFileDirectory:\e[0m " << File_Data_Collector.Get_DescriptorFileDirectory() << "#";
 
-     std::cout << "\n\n \e[1;3;37;44m DescriptorFileDirectory:\e[0m "
-
-               << File_Data_Collector.Get_DescriptorFileDirectory() << "#";
-
-     std::cout << "\n\n \e[1;3;37;44m DescriptorFileName:\e[0m "
-
-               << File_Data_Collector.Get_DescriptorFileName() << "#";
+     std::cout << "\n\n \e[1;3;37;44m DescriptorFileName:\e[0m "      << File_Data_Collector.Get_DescriptorFileName() << "#";
 
      std::cout << "\n\n \e[1;3;37;44m Include_Directory_Record_Area:\e[0m\n";
 

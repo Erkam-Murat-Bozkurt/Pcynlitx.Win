@@ -96,7 +96,6 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
                     | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
 
-
      wxString log_string = wxT("");
 
      if(this->Process_Exit_Status != 0){
@@ -212,7 +211,9 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
      this->Process_Pointer->Redirect();
 
-     this->Sub_Process_ID_Received = wxExecute(shell_command,wxEXEC_SYNC  | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
+     this->Sub_Process_ID_Received = wxExecute(shell_command,wxEXEC_SYNC
+
+                  | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
 
      this->Sub_Process_ID = this->Process_Pointer->GetPid();
 
@@ -304,6 +305,7 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            this->Run_Command = wxT("");
 
+
            this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ")
 
                             + this->Descriptor_File_Path;
@@ -380,7 +382,9 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
            this->Run_Command = wxT("");
 
-           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\MT_Project_Builder.exe ") + this->Construction_Point;
+           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\MT_Project_Builder.exe ") +
+
+                            this->Construction_Point;
 
 
            this->Sub_Process_ID_Received = wxExecute(this->Run_Command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER

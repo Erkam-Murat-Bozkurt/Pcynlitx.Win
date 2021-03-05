@@ -18,7 +18,6 @@ public:
   int     Get_Source_File_Number() const;
   char *  Get_Main_File_Name() const;
   char *  Get_Namespace() const;
-  char *  Get_OpenMP_Support_Condition() const;
   char *  Get_Executable_File_Name() const;
   char *  Get_Server_Class_Name() const;
   char *  Get_Server_Class_Header_File_Name() const;
@@ -58,14 +57,12 @@ private:
   void Receive_Thread_Function_Names();
   void Receive_Thread_Number();
   void Receive_Namespace();
-  void Receive_OpenMp_Support_Condition();
   Descriptor_File_Data_Collector * File_Data_Collector;
   IntToCharTranslater Translater;
   bool Memory_Delete_Condition;
   int     Thread_Number;
   char *  Main_File_Name;
   char *  Namespace;
-  char *  OpenMp_Support_Condition;
   char *  Executable_File_Name;
   char *  Supervisor_Class_Name;
   char *  Supervisor_Class_Header_File_Name;

@@ -165,8 +165,6 @@ void Descriptor_File_Reader::Receive_Source_File_Descriptions(){
 
      this->SF_Descriptions_Reader.Receive_Number_Processor(&this->Number_Processor);
 
-     this->SF_Descriptions_Reader.Receive_Include_Directory_Description_Reader(&this->ID_Description_Reader);
-
      this->SF_Descriptions_Reader.Read_Source_File_Descriptions();
 }
 
@@ -248,7 +246,7 @@ void Descriptor_File_Reader::Remove_Compiler_Output_File(){
 
      int Construction_Point_Name_Size = strlen(this->Get_Construction_Point());
 
-     this->Compiler_Output_File_Path = new char [5*Construction_Point_Name_Size];
+     this->Compiler_Output_File_Path = new char [10*Construction_Point_Name_Size];
 
      int index_counter = 0;
 
@@ -293,7 +291,7 @@ void Descriptor_File_Reader::Determine_Newly_Constructed_Include_Directory(){
 
                                                          Include_Directory_Add_Word_Name_Size;
 
-     this->Constructed_Include_Directory = new char [5*Newly_Constructed_Include_Directory_Name_Size];
+     this->Constructed_Include_Directory = new char [10*Newly_Constructed_Include_Directory_Name_Size];
 
      int index_counter = 0;
 
@@ -348,11 +346,6 @@ char * Descriptor_File_Reader::Get_Main_File_Name() const {
 char * Descriptor_File_Reader::Get_Namespace() const {
 
        return this->MF_Descriptions_Reader.Get_Namespace();
-}
-
-char * Descriptor_File_Reader::Get_OpenMP_Support_Condition() const {
-
-       return this->MF_Descriptions_Reader.Get_OpenMP_Support_Condition();
 }
 
 char * Descriptor_File_Reader::Get_Executable_File_Name() const {
