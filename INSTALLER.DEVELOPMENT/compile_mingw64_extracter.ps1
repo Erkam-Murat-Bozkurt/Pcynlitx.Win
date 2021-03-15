@@ -1,0 +1,1 @@
+g++ -o extract_mingw64 extract_mingw64.cpp
