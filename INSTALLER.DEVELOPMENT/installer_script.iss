@@ -45,11 +45,10 @@ Source: "D:\Pcynlitx\icons\*"; DestDir: "{app}\\icons"; Flags: ignoreversion rec
 Source: "D:\Pcynlitx\Intro_File.png"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Pcynlitx\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "{app}";  Flags: ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "D:\Pcynlitx\README.txt"; DestDir: "{app}";  Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\icons\pcynlitx.ico"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\icons\pcynlitx.ico"; Tasks: desktopicon
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\bin\{#MyAppExeName}"; IconFilename: "{app}\icons\pcynlitx.ico"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\Mingw64.Setup.exe"; WorkingDir: "{app}"; 
