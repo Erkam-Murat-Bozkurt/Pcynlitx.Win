@@ -2,6 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Pcynlitx"
+#define Mingw64_Installer "Mingw64 Installer"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "Erkam Murat Bozkurt M.Sc Control Systems Engineering"
 #define MyAppURL "https://www.pcynlitx.tech/"
@@ -40,12 +41,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "D:\Pcynlitx\bin\{#MyAppExeName}"; DestDir: "{app}\\bin"; Flags: ignoreversion
 Source: "D:\Pcynlitx\bin\*"; DestDir: "{app}\\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Pcynlitx\7z\*"; DestDir: "{app}\\7z"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Pcynlitx\mingw64.7z"; DestDir: "{app}\\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Pcynlitx\icons\*"; DestDir: "{app}\\icons"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Pcynlitx\Intro_File.png"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Pcynlitx\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Pcynlitx\extract_mingw64.exe"; DestDir: "{app}";  Flags: ignoreversion
+Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "{app}";  Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -53,7 +52,7 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\icons\pcynlitx.ico"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\icons\pcynlitx.ico"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\extract_mingw64.exe"; WorkingDir: "{app}"
+Filename: "{app}\Mingw64.Setup.exe"; WorkingDir: "{app}"; 
 Filename: "{app}\bin\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
  
 
