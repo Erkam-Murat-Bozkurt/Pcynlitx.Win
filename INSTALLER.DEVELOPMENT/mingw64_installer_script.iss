@@ -16,10 +16,10 @@ AppVersion={#MyAppVersion}
 DefaultDirName={autopf}\Mingw64
 DisableDirPage=yes
 DisableProgramGroupPage=yes
-LicenseFile=D:\Mingw64_Installer\LICENSE.txt
-OutputDir=D:\Mingw64_Installer
+LicenseFile=D:\My_Mingw64_Installer\LICENSE.txt
+OutputDir=D:\My_Mingw64_Installer
 OutputBaseFilename=Mingw64.Setup
-SetupIconFile=D:\Mingw64_Installer\icon.ico
+SetupIconFile=D:\My_Mingw64_Installer\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -28,10 +28,10 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "D:\Mingw64_Installer\7z\*"; DestDir: "{autopf}\Mingw64\7z"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Mingw64_Installer\mingw64.7z"; DestDir: "{autopf}\Mingw64\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Mingw64_Installer\LICENSE.txt"; DestDir: "{autopf}\Mingw64"; Flags: ignoreversion
-Source: "D:\Mingw64_Installer\extract_mingw64.exe"; DestDir: "{autopf}\Mingw64";  Flags: ignoreversion
+Source: "D:\My_Mingw64_Installer\7z\*"; DestDir: "{autopf}\Mingw64\7z"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\My_Mingw64_Installer\mingw64.7z"; DestDir: "{autopf}\Mingw64\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\My_Mingw64_Installer\LICENSE.txt"; DestDir: "{autopf}\Mingw64"; Flags: ignoreversion
+Source: "D:\My_Mingw64_Installer\extract_mingw64.exe"; DestDir: "{autopf}\Mingw64";  Flags: ignoreversion
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{autopf}\Mingw64\mingw64"

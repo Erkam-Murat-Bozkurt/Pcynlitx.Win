@@ -24,17 +24,17 @@ int main(){
 
     char path_1 [] = "C:\\Program Files (x86)\\Pcynlitx;";
 
-    char path_2 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64;";
+    char path_2 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64;";
 
-    char path_3 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64\\bin;";
+    char path_3 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64\\bin;";
 
-    char path_4 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64\\include;";
+    char path_4 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64\\include;";
 
-    char path_5 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64\\x86_64-w64-mingw32;";
+    char path_5 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64\\x86_64-w64-mingw32;";
 
-    char path_6 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64\\x86_64-w64-mingw32\\include;";
+    char path_6 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64\\x86_64-w64-mingw32\\include;";
 
-    char path_7 [] = "C:\\Program Files (x86)\\Pcynlitx\\Mingw64\\mingw64\\x86_64-w64-mingw32\\lib;\" /f";
+    char path_7 [] = "C:\\Program Files (x86)\\Mingw64\\mingw64\\x86_64-w64-mingw32\\lib;\" /f";
 
     size_t reg_exe_size = strlen(reg_exe);
 
