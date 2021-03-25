@@ -707,24 +707,44 @@ void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
 void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
-     wxInputStream * Error_Stream = this->Process_Pointer->GetErrorStream( );
+     wxString output_path = this->Construction_Point + wxT("/Compiler_Output");
 
-     wxChar buffer = '\0';
+     wxTextFile Output_file;
+     Output_file.Open(output_path);
 
+     wxString str;
      wxString std_error = wxT("ERROR REPORTS:\n\n");
 
-     if(Error_Stream->CanRead()){
+     if(Output_file.IsOpened()) // READ COMPILER OUTPUT IF EXISTS
+     {
+        str = Output_file.GetFirstLine();
 
-        do{
+        while(!Output_file.Eof()){
 
-            Error_Stream->Read(&buffer,1);
+              str = str + Output_file.GetNextLine();
+        }
 
-            std_error.Append(buffer,1);
+        std_error = wxT("ERROR REPORTS:\n\n") + str;
+      }
+      else{  // READ ERROR STREAM IF COMPILER OUTPUT DOES NOT EXIST
 
-        }while(!Error_Stream->Eof());
-     }
+              wxInputStream * Error_Stream = this->Process_Pointer->GetErrorStream( );
 
-     this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
+              wxChar buffer = '\0';
+
+              if(Error_Stream->CanRead()){
+
+                 do{
+
+                    Error_Stream->Read(&buffer,1);
+
+                    std_error.Append(buffer,1);
+
+                }while(!Error_Stream->Eof());
+              }
+      }
+
+      this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
 }
 
 void Process_Execution_Controller::Print_Output_Stream(wxString title){
