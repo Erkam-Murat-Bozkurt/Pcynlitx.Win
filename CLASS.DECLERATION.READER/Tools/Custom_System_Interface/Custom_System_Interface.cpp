@@ -74,6 +74,8 @@ int Custom_System_Interface::System_Function(char * cmd){
         std::cout << "\n the process has been ended with exit code:" << exit_code;
 
         std::cout << "\n\n";
+
+        exit(EXIT_FAILURE);
      }
 
      return this->return_value;

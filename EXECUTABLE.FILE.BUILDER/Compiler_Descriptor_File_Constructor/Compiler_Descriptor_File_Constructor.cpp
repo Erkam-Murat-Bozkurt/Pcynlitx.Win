@@ -645,11 +645,11 @@ char * Compiler_Descriptor_File_Constructor::Get_Header_File_Paths_In_New_Includ
 
        char Directory_Character [] = {'\\','\0'};
 
-       int Directory_Name_Size   = strlen(this->New_Include_Directory_Name);
+       size_t Directory_Name_Size   = strlen(this->New_Include_Directory_Name);
 
-       int Header_File_Name_Size = strlen(Header_File_Name);
+       size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-       int Path_Size = Directory_Name_Size + Header_File_Name_Size;
+       size_t Path_Size = Directory_Name_Size + Header_File_Name_Size;
 
        this->Clear_Pointer_Memory(&this->Header_File_Path_In_New_Include_Directory);
 
@@ -678,11 +678,11 @@ char *  Compiler_Descriptor_File_Constructor::Get_File_Path_For_Base_Class_Heade
 
         char Directory_Character [] = {'\\','\0'};
 
-        int Directory_Name_Size   = strlen(Header_File_Location);
+        size_t Directory_Name_Size   = strlen(Header_File_Location);
 
-        int Header_File_Name_Size = strlen(Header_File_Name);
+        size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-        int Path_Size = Directory_Name_Size + Header_File_Name_Size;
+        size_t Path_Size = Directory_Name_Size + Header_File_Name_Size;
 
         this->Clear_Pointer_Memory(&this->Base_Class_Header_File_Path);
 
@@ -715,11 +715,11 @@ char * Compiler_Descriptor_File_Constructor::Get_File_Path_For_Shared_Data_Type_
 
           char Directory_Character [] = {'\\','\0'};
 
-          int Directory_Name_Size   = strlen(Header_File_Location);
+          size_t Directory_Name_Size   = strlen(Header_File_Location);
 
-          int Header_File_Name_Size = strlen(Header_File_Name);
+          size_t Header_File_Name_Size = strlen(Header_File_Name);
 
-          int Path_Size = Directory_Name_Size + Header_File_Name_Size;
+          size_t Path_Size = Directory_Name_Size + Header_File_Name_Size;
 
           this->Shared_Data_Type_Header_File_Path = new char [10*Path_Size];
 
@@ -747,11 +747,11 @@ char * Compiler_Descriptor_File_Constructor::Get_Client_Class_Header_File_Name(c
 
        this->Clear_Pointer_Memory(&this->Client_Class_Name);
 
-       int Class_Name_Size = strlen(Class_Name);
+       size_t Class_Name_Size = strlen(Class_Name);
 
-       int Subfix_Name_Size = strlen(Client_Subfix);
+       size_t Subfix_Name_Size = strlen(Client_Subfix);
 
-       int Client_Class_Name_Size = Class_Name_Size + Subfix_Name_Size;
+       size_t Client_Class_Name_Size = Class_Name_Size + Subfix_Name_Size;
 
        this->Client_Class_Name = new char [10*Client_Class_Name_Size];
 
@@ -770,11 +770,11 @@ char * Compiler_Descriptor_File_Constructor::Get_Shared_Data_Type_Pointer_Header
 
        this->Clear_Pointer_Memory(&this->Shared_Data_Type_Pointer_Header_File_Name);
 
-       int Type_Subfix_Name_Size = strlen(Type_Subfix);
+       size_t Type_Subfix_Name_Size = strlen(Type_Subfix);
 
-       int Data_Type_Name_Size = strlen(Data_Type);
+       size_t Data_Type_Name_Size = strlen(Data_Type);
 
-       int Pointer_Name_Size = Type_Subfix_Name_Size + Data_Type_Name_Size;
+       size_t Pointer_Name_Size = Type_Subfix_Name_Size + Data_Type_Name_Size;
 
        this->Shared_Data_Type_Pointer_Header_File_Name = new char [10*Pointer_Name_Size];
 

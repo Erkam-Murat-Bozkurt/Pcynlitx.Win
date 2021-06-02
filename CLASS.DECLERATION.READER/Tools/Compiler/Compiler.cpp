@@ -131,9 +131,9 @@ void Compiler::Receive_Descriptor_File_Infomations(){
 
 void Compiler::Build_Project(){
 
-     int system_return_value = system(this->Final_Commad);
+     int system_return_value = this->System_Interface.System_Function(this->Final_Commad);
 
-     if(system_return_value != 0){
+     if(system_return_value == 0){
 
         std::cout << "An error occured in compling process ..";
 
@@ -558,8 +558,6 @@ void Compiler::Determine_Final_Command(){
      if(this->Descriptor_File_Reader.Library_Names_Number > 0){
 
         this->Place_Information(&this->Final_Commad,this->Libraries_Decleration_Command,&index_counter);
-
-        this->Place_Information(&this->Final_Commad,Space_Character,&index_counter);
      }
 
      this->Final_Commad[index_counter] = '\0';

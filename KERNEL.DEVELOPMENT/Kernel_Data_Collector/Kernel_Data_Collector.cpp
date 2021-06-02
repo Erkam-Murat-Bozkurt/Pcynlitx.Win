@@ -387,9 +387,9 @@ void Kernel_Data_Collector::Construct_New_Library(){
 
      this->Jump_To_Construction_Point();
 
-     int system_return_value = system(this->Library_Construction_Command);
+     int system_return_value = this->System_Interface.System_Function(this->Library_Construction_Command);
 
-     if(system_return_value != 0){
+     if(system_return_value == 0){
 
         std::cerr << "An error occured in library construction ..";
 

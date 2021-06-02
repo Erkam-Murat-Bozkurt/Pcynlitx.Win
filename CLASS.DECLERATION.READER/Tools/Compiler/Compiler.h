@@ -5,6 +5,8 @@
 #include <cstring>
 #include <cstdlib>
 #include "Compiler_Descriptor_File_Reader.h"
+#include "Custom_System_Interface.h"
+
 
 class Compiler
 {
@@ -34,6 +36,7 @@ private:
  void Determine_Final_Command();
  void Export_Path_Information(char * Directory);
  Compiler_Descriptor_File_Reader Descriptor_File_Reader;
+ Custom_System_Interface System_Interface;
  bool    Memory_Delete_Condition;
  char *  Include_Directory_Decleration_Command;
  char *  Library_Directory_Decleration_Command;

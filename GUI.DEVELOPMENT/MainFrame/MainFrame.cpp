@@ -26,7 +26,7 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
         wxDefaultPosition, wxSize(1200,950),wxDEFAULT_FRAME_STYLE)
 {
 
-  this->Default_Font = new wxFont(9,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
+  this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
 
                      wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
 
@@ -813,9 +813,6 @@ void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
 
                           | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE,this->Process_Pointer);
 
-
-            wxSleep(0.5);
-
             wxString message = wxT("\n\n");
 
             message = message + wxT("    A NEW EMPTY DESCRIPTOR FILE CONSTRUCTED     ");
@@ -1232,38 +1229,6 @@ void MainFrame::Enter_Namespace(wxCommandEvent & event)
 
            this->Description_Recorder.Enter_Namespace();
         }
-     }
-}
-
-void MainFrame::Enter_OpenMP_Support(wxCommandEvent & event)
-{
-     if(event.GetId() == ID_OPENMP_SUPPORT){
-
-        this->Description_Record_Data_Lose_Protection();
-
-        wxMessageDialog * exit_dial = new wxMessageDialog(NULL,
-
-            wxT("Do you want OpenMP support?"),
-
-            wxT("Question"),wxYES_NO);
-
-
-        if(exit_dial->ShowModal() ==  wxNO){
-
-           if(this->is_descriptor_file_ready_to_record){
-
-              this->Description_Recorder.Enter_OpenMP_Option(false);
-           }
-        }
-        else{
-
-            if(this->is_descriptor_file_ready_to_record){
-
-               this->Description_Recorder.Enter_OpenMP_Option(true);
-            }
-        };
-
-        exit_dial->Destroy();
      }
 }
 

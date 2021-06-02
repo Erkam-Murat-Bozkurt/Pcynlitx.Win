@@ -25,6 +25,8 @@ Process_Execution_Controller::Process_Execution_Controller(){
 
      this->Descriptor_File_Path = wxT("");
 
+     this->Construction_Point_Holder_Path = wxT("");
+
      this->is_project_file_selected = false;
 
      this->is_library_constructed = false;
@@ -140,9 +142,9 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
        if(this->Process_Exit_Status == 0){
 
-          wxString Info_File = Directory_Name + wxT("\\Construction_Point_Holder");
+          this->Construction_Point_Holder_Path = Directory_Name + wxT("\\Construction_Point_Holder");
 
-          wxTextFile File_Manager(Info_File);
+          wxTextFile File_Manager(this->Construction_Point_Holder_Path);
 
           File_Manager.Create();
 
@@ -156,7 +158,9 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
                 this->is_construction_point_determined = true;
 
-                wxString remove_command = wxT("PowerShell Remove-Item -Path  ") + Info_File;
+                wxString remove_command = wxT("PowerShell Remove-Item -Path  ") +
+
+                                        this->Construction_Point_Holder_Path;
 
                 wxExecute(remove_command,wxEXEC_SYNC | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE ,NULL);
              }
@@ -263,6 +267,8 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
 
                delete this->Process_Pointer;
       }
+
+      this->Remove_Construction_Point_Holder_File();
 }
 
 void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** Dir_List_Manager){
@@ -322,10 +328,7 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            this->ShowProgress();
 
-
-
            this->Process_Pointer->OnTerminate(this->Sub_Process_ID,this->Process_Exit_Status);
-
 
            if(((this->Process_Event_Counter>=2) && (this->Process_Exit_Status == 0))){
 
@@ -353,6 +356,7 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
       }
 
       this->library_construction_process_start = false;
+
 }
 
 void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_List_Manager){
@@ -394,7 +398,6 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
            this->Sub_Process_ID = this->Process_Pointer->GetPid();
 
            this->Process_Pointer->Redirect();
-
 
            this->ShowProgress();
 
@@ -707,24 +710,28 @@ void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
 void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
-     wxString output_path = this->Construction_Point + wxT("/Compiler_Output");
+     wxString output_path = this->Construction_Point + wxT("\\Compiler_Output");
 
      wxTextFile Output_file;
-     Output_file.Open(output_path);
 
      wxString str;
      wxString std_error = wxT("ERROR REPORTS:\n\n");
 
-     if(Output_file.IsOpened()) // READ COMPILER OUTPUT IF EXISTS
-     {
-        str = Output_file.GetFirstLine();
+     if(Output_file.Exists()){
 
-        while(!Output_file.Eof()){
+        Output_file.Open(output_path);
 
-              str = str + Output_file.GetNextLine();
+        if(Output_file.IsOpened()) // READ COMPILER OUTPUT IF EXISTS
+        {
+           str = Output_file.GetFirstLine();
+
+           while(!Output_file.Eof()){
+
+                 str = str + Output_file.GetNextLine();
+           }
+
+           std_error = wxT("ERROR REPORTS:\n\n") + str;
         }
-
-        std_error = wxT("ERROR REPORTS:\n\n") + str;
       }
       else{  // READ ERROR STREAM IF COMPILER OUTPUT DOES NOT EXIST
 
@@ -771,6 +778,27 @@ void Process_Execution_Controller::Print_Output_Stream(wxString title){
      this->Process_Pointer->CloseOutput();
 
      this->MainFrame_Pointer->Raise();
+}
+
+void Process_Execution_Controller::Remove_Construction_Point_Holder_File(){
+
+     wxTextFile File_Manager(this->Construction_Point_Holder_Path);
+
+     File_Manager.Create();
+
+     if(File_Manager.Exists()){
+
+        File_Manager.Open();
+
+        if(File_Manager.IsOpened()){
+
+           wxString remove_command = wxT("PowerShell Remove-Item -Path ") +
+
+                   this->Construction_Point_Holder_Path;
+
+           wxExecute(remove_command,wxEXEC_SYNC | wxEXEC_MAKE_GROUP_LEADER | wxEXEC_HIDE_CONSOLE ,NULL);
+        }
+     }
 }
 
 void Process_Execution_Controller::Set_Project_File_Select_Condition(bool condition){
