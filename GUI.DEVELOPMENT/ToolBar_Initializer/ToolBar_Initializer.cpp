@@ -58,23 +58,23 @@ ToolBar_Initializer::~ToolBar_Initializer(){
 
 void ToolBar_Initializer::Initialize_ToolBar(wxFrame * Frame_Pointer, wxAuiDockArt * Dock_Art_Pointer, wxAuiManager * Interface_Manager){
 
-     this->close = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\close.png"), wxBITMAP_TYPE_ANY);
+     this->close = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\close.png"), wxBITMAP_TYPE_ANY);
 
-     this->build_library = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\archive.png"),wxBITMAP_TYPE_ANY);
+     this->build_library = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\archive.png"),wxBITMAP_TYPE_ANY);
 
-     this->build_executable = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\build_executable.png"),wxBITMAP_TYPE_ANY);
+     this->build_executable = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\build_executable.png"),wxBITMAP_TYPE_ANY);
 
-     this->Select_Project_File = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\select_project_file.png"),wxBITMAP_TYPE_ANY);
+     this->Select_Project_File = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\select_project_file.png"),wxBITMAP_TYPE_ANY);
 
-     this->Empty_Project_File = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\empty_project_file.png"),wxBITMAP_TYPE_ANY);
+     this->Empty_Project_File = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\empty_project_file.png"),wxBITMAP_TYPE_ANY);
 
-     this->open_terminal = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\open_terminal.png"),wxBITMAP_TYPE_ANY);
+     this->open_terminal = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\open_terminal.png"),wxBITMAP_TYPE_ANY);
 
-     this->file_save = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\file_save.png"),wxBITMAP_TYPE_ANY);
+     this->file_save = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\file_save.png"),wxBITMAP_TYPE_ANY);
 
-     this->open_tree_view = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\open_tree_view.png"),wxBITMAP_TYPE_ANY);
+     this->open_tree_view = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\open_tree_view.png"),wxBITMAP_TYPE_ANY);
 
-     this->print_descriptions = new wxBitmap(wxT("C:\\Program Files (x86)\\Pcynlitx\\icons\\print_descriptions.png"),wxBITMAP_TYPE_ANY);
+     this->print_descriptions = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\print_descriptions.png"),wxBITMAP_TYPE_ANY);
 
      this->toolBar = new wxAuiToolBar(Frame_Pointer,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxAUI_TB_PLAIN_BACKGROUND);
 

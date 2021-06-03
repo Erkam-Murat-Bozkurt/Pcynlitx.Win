@@ -82,7 +82,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
 
-     wxString shell_command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
+     wxString shell_command = "C:\\Program Files\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
 
      this->Process_Exit_Status = 0;
 
@@ -205,7 +205,7 @@ void Process_Execution_Controller::Control_Executable_File_Name(){
          Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
      }
 
-     wxString shell_command = "C:\\Program Files (x86)\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
+     wxString shell_command = "C:\\Program Files\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
 
      this->Process_Exit_Status = 0;
 
@@ -312,7 +312,7 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
            this->Run_Command = wxT("");
 
 
-           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ")
+           this->Run_Command = wxT("C:\\Program Files\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ")
 
                             + this->Descriptor_File_Path;
 
@@ -386,7 +386,7 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
 
            this->Run_Command = wxT("");
 
-           this->Run_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\MT_Project_Builder.exe ") +
+           this->Run_Command = wxT("C:\\Program Files\\Pcynlitx\\bin\\MT_Project_Builder.exe ") +
 
                             this->Construction_Point;
 
@@ -575,7 +575,7 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
      this->Process_Pointer->Redirect();
 
-     wxString Description_Print_Command = wxT("C:\\Program Files (x86)\\Pcynlitx\\bin\\Description_Printer.exe ");
+     wxString Description_Print_Command = wxT("C:\\Program Files\\Pcynlitx\\bin\\Description_Printer.exe ");
 
      Description_Print_Command = Description_Print_Command + Directory_Name;
 

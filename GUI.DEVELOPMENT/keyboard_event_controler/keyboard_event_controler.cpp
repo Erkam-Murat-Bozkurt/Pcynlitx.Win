@@ -266,8 +266,6 @@ int keyboard_event_controler::Get_Line_Indentation(wxStyledTextCtrl * text_ctrl,
 
     bool is_line_empty = this->Check_Is_Line_Empty(line_string);
 
-    //bool is_caret_at_start = this->Check_Is_Caret_At_Start(text_ctrl,line_number);
-
     int line_counter = line_number;
 
     while(((is_line_empty) && (line_counter > 0))){

@@ -6,7 +6,7 @@ Download page: https://sourceforge.net/projects/mingw-w64/files/
 
 The package: x86_64-posix-seh
 
-Download and unzip the files to the directory "C:\" or "C:\Program Files (x86)"
+Download and unzip the files to the directory "C:\" or "C:\Program Files"
 
 
 
@@ -40,17 +40,17 @@ C:\mingw64\x86_64-w64-mingw32\lib
 
 
 
-For the location  "C:\Program Files (x86)"
+For the location  "C:\Program Files"
 ------------------------------------------
 
-C:\Program Files (x86)\mingw64
+C:\Program Files\mingw64
 
-C:\Program Files (x86)\mingw64\bin
+C:\Program Files\mingw64\bin
 
-C:\Program Files (x86)\mingw64\include
+C:\Program Files\mingw64\include
 
-C:\Program Files (x86)\mingw64\x86_64-w64-mingw32
+C:\Program Files\mingw64\x86_64-w64-mingw32
 
-C:\Program Files (x86)\mingw64\x86_64-w64-mingw32\include
+C:\Program Files\mingw64\x86_64-w64-mingw32\include
 
-C:\Program Files (x86)\mingw64\x86_64-w64-mingw32\lib
+C:\Program Files\mingw64\x86_64-w64-mingw32\lib

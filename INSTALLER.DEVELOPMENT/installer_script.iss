@@ -7,6 +7,7 @@
 #define MyAppPublisher "Erkam Murat Bozkurt M.Sc Control Systems Engineering"
 #define MyAppURL "https://www.pcynlitx.tech/"
 #define MyAppExeName "Pcynlitx.exe"
+#define TargetDir "C:\Program Files\Pcynlitx"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -19,7 +20,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\{#MyAppName}
+DefaultDirName=C:\Program Files\Pcynlitx
 DisableDirPage=yes
 DisableProgramGroupPage=yes
 LicenseFile=D:\Pcynlitx\LICENSE.txt
@@ -39,19 +40,19 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Pcynlitx\bin\{#MyAppExeName}"; DestDir: "{app}\\bin"; Flags: ignoreversion
-Source: "D:\Pcynlitx\bin\*"; DestDir: "{app}\\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Pcynlitx\icons\*"; DestDir: "{app}\\icons"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Pcynlitx\Intro_File.png"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Pcynlitx\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "{app}";  Flags: ignoreversion
-Source: "D:\Pcynlitx\README.txt"; DestDir: "{app}";  Flags: ignoreversion
+Source: "D:\Pcynlitx\bin\{#MyAppExeName}"; DestDir: "C:\Program Files\Pcynlitx\bin"; Flags: ignoreversion
+Source: "D:\Pcynlitx\bin\*"; DestDir: "C:\Program Files\Pcynlitx\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Pcynlitx\icons\*"; DestDir: "C:\Program Files\Pcynlitx\icons"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Pcynlitx\Intro_File.png"; DestDir: "C:\Program Files\Pcynlitx"; Flags: ignoreversion
+Source: "D:\Pcynlitx\LICENSE.txt"; DestDir: "C:\Program Files\Pcynlitx"; Flags: ignoreversion
+Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion
+Source: "D:\Pcynlitx\README.txt"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion
 
 [Icons]
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\bin\{#MyAppExeName}"; IconFilename: "{app}\icons\pcynlitx.ico"; Tasks: desktopicon
+Name: "{autodesktop}\{#MyAppName}"; Filename: "C:\Program Files\Pcynlitx\bin\{#MyAppExeName}"; IconFilename: "C:\Program Files\Pcynlitx\icons\pcynlitx.ico"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\Mingw64.Setup.exe"; WorkingDir: "{app}"; 
-Filename: "{app}\bin\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "C:\Program Files\Pcynlitx\Mingw64.Setup.exe"; WorkingDir: "C:\Program Files\Pcynlitx"; 
+Filename: "C:\Program Files\Pcynlitx\bin\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
  
 
