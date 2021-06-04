@@ -21,7 +21,7 @@ public:
   void Receive_Descriptor_File_Directory(char * DescriptorFileDirectory);
   void Receive_Descriptor_File_Name(const char * DescriptorFileName);
   void Receive_Descriptor_File_Name(char * DescriptorFileName);
-  void Build_Project();
+  int  Build_Project();
   void Clear_Dynamic_Memory();
 private:
   void Remove_Compiler_Output_File();
@@ -31,6 +31,7 @@ private:
   DirectoryOperations Directory_Manager;
   Cpp_FileOperations File_Manager;
   bool Memory_Delete_Condition;
+  int  construction_success;
   char * Compiler_Output_File_Path;
 };
 

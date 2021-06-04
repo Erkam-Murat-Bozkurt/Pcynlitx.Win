@@ -4,21 +4,40 @@
 
 int main(int argc, char ** argv){
 
+    if(argc <2){
+
+      std::cout << "\n";
+
+      std::cout << "\n the usage MT_Project_Builder.exe <Project_Directory>";
+
+      std::cout << "\n\n";
+
+      exit(0);
+    }
+
     std::cout << "\n";
 
     std::cout << "\n\t\tBINARY FILE CONSTRUCTION PROCESS REPORT!";
 
     MT_Project_Builder Builder;
 
+
     Builder.Receive_Descriptor_File_Directory(argv[1]);
 
     Builder.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
 
-    Builder.Build_Project();
+    int construction_success = Builder.Build_Project();
 
     Builder.Clear_Dynamic_Memory();
 
     std::cout << "\n";
 
-    exit(0);
+    if(construction_success != 0){
+
+       exit(EXIT_FAILURE);
+    }
+    else{
+
+        exit(0);
+    }
 }

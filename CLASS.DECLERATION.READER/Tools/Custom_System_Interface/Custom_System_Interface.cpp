@@ -42,7 +42,7 @@ Custom_System_Interface::~Custom_System_Interface(){
 
 int Custom_System_Interface::System_Function(char * cmd){
 
-     this->return_value = 2;
+     this->return_value = 0;
 
      STARTUPINFO startupInfo;
 
@@ -65,7 +65,7 @@ int Custom_System_Interface::System_Function(char * cmd){
 
      CloseHandle(processInformation.hProcess);
 
-     if(exit_code != 0){
+     if(((exit_code != 0) || (this->return_value == 0))){
 
         std::cout << "\n The system function executing a command (an exacutable binary)";
 
@@ -75,10 +75,16 @@ int Custom_System_Interface::System_Function(char * cmd){
 
         std::cout << "\n\n";
 
-        exit(EXIT_FAILURE);
-     }
+        this->return_value = exit_code;
 
-     return this->return_value;
+        return this->return_value;
+     }
+     else{
+
+          this->return_value = 0;
+
+          return this->return_value;
+     }
 }
 
 bool Custom_System_Interface::Create_Process(char * cmd){

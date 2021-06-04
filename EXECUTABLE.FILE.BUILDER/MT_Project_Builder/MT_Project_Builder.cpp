@@ -24,6 +24,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 MT_Project_Builder::MT_Project_Builder(){
 
     this->Memory_Delete_Condition = false;
+
+    this->construction_success = 0;
 }
 
 MT_Project_Builder::MT_Project_Builder(const MT_Project_Builder & orig){
@@ -72,7 +74,7 @@ void MT_Project_Builder::Receive_Descriptor_File_Name(char * DescriptorFileName)
      this->File_Reader.Receive_Descriptor_File_Name(DescriptorFileName);
 }
 
-void MT_Project_Builder::Build_Project(){
+int  MT_Project_Builder::Build_Project(){
 
      this->File_Reader.Receive_Descriptor_File_Infomations();
 
@@ -98,7 +100,14 @@ void MT_Project_Builder::Build_Project(){
 
      this->Project_Compiler.Receive_Descriptor_File_Infomations();
 
-     this->Project_Compiler.Build_Project();
+     int return_value = this->Project_Compiler.Build_Project();
+
+     if(return_value!=0){
+
+        this->construction_success = 1;
+
+        return this->construction_success;
+     }
 
      char Compiler_Descriptor_File_Name [] = "Compiler_Descriptor_File";
 
@@ -109,6 +118,8 @@ void MT_Project_Builder::Build_Project(){
      this->File_Reader.Clear_Dynamic_Memory();
 
      std::cout << "\n\t\t# The executable file is ready \n\n";
+
+     return this->construction_success;
 }
 
 void MT_Project_Builder::Remove_Compiler_Output_File(){

@@ -19,9 +19,9 @@ public:
  void Receive_Descriptor_File_Name(const char * DescriptorFileName);
  void Receive_Descriptor_File_Name(char * DescriptorFileName);
  void Receive_Descriptor_File_Infomations();
- void Build_Project();
  void Clear_Dynamic_Memory();
  char * Get_Compiler_Command();
+ int Build_Project();
 private:
  void Place_Information(char ** Pointer, char * Information, int * index_counter);
  void Clear_Pointer_Memory(char ** Pointer);
@@ -46,6 +46,7 @@ private:
  char *  Libraries_Decleration_Command;
  char *  Option_List_Decleration_Command;
  char *  Final_Commad;
+ int compiler_return_value;
 };
 
 #endif /* COMPILER_H */

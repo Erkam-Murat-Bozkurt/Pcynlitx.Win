@@ -41,6 +41,8 @@ Compiler::Compiler(){
      this->Option_List_Decleration_Command = nullptr;
 
      this->Final_Commad = nullptr;
+
+     this->compiler_return_value = 0;
 };
 
 Compiler::Compiler(const Compiler & orig){
@@ -129,17 +131,27 @@ void Compiler::Receive_Descriptor_File_Infomations(){
      this->Determine_Final_Command();
 }
 
-void Compiler::Build_Project(){
+int Compiler::Build_Project(){
 
      int system_return_value = this->System_Interface.System_Function(this->Final_Commad);
+     
+     if(system_return_value != 0){
 
-     if(system_return_value == 0){
+        std::cout << "\n COMPILER ERROR..";
 
-        std::cout << "An error occured in compling process ..";
+        std::cout << "\n An error occured in compling process ..";
 
-        std::cerr << "An error occured in compling process ..";
+        std::cout << "\n\n ";
 
-        exit(1);
+        this->compiler_return_value = 1;
+
+        return this->compiler_return_value;
+     }
+     else{
+
+          this->compiler_return_value = 0;
+
+          return this->compiler_return_value;
      }
 }
 

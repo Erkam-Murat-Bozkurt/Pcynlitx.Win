@@ -356,7 +356,6 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
       }
 
       this->library_construction_process_start = false;
-
 }
 
 void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_List_Manager){
@@ -526,6 +525,8 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
 
           title = wxT("  THREAD MANAGEMENT LIBRARY CONSTRUCTION REPORT  ");
      }
+
+     wxMessageOutput::Get()->Printf("this->Process_Exit_Status, %d!", this->Process_Exit_Status);
 
      if(this->Process_Exit_Status == 0){
 
@@ -732,6 +733,8 @@ void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
            std_error = wxT("ERROR REPORTS:\n\n") + str;
         }
+
+        this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
       }
       else{  // READ ERROR STREAM IF COMPILER OUTPUT DOES NOT EXIST
 
@@ -749,9 +752,9 @@ void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
                 }while(!Error_Stream->Eof());
               }
-      }
 
-      this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
+              this->Print_Text(std_error,wxT("ERROR IN CONSTRUCTION"));
+      }
 }
 
 void Process_Execution_Controller::Print_Output_Stream(wxString title){
