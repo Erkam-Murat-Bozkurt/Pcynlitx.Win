@@ -46,6 +46,8 @@ Process_Execution_Controller::Process_Execution_Controller(){
      this->library_construction_process_start = false;
 
      this->exe_file_construction_process_start = false;
+
+     this->sleep_time = 0;
 }
 
 Process_Execution_Controller::~Process_Execution_Controller(){
@@ -92,7 +94,19 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
      this->Process_Pointer->Redirect();
 
+     this->Descriptor_Reader.Receive_Descriptor_File_Directory(Directory_Name);
 
+     char DescriptorFileName [] = "Project_Descriptor_File.txt";
+
+     this->Descriptor_Reader.Receive_Descriptor_File_Name(DescriptorFileName);
+
+     this->Descriptor_Reader.Receive_Descriptor_File_Infomations();
+
+     int inter_class_number = this->Descriptor_Reader.Get_Class_Number();
+
+     int smart_pointer_number =  this->Descriptor_Reader.Get_Shared_Data_Types_Number();
+
+     this->sleep_time = inter_class_number + smart_pointer_number;
 
      this->Process_Exit_Status = wxExecute(shell_command,wxEXEC_SYNC
 
@@ -339,7 +353,6 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
               this->is_library_constructed = true;
            }
-
         }
         else{
                   return;
@@ -436,7 +449,7 @@ void Process_Execution_Controller::ShowProgress(){
 
      if(this->Process_Event_Counter < 1){
 
-        int max = 10;
+        int max = 10*this->sleep_time;
 
         wxString Process_Label;
 
@@ -486,6 +499,8 @@ void Process_Execution_Controller::ShowProgress(){
                 }
             }
 
+            this->sleep_time = this->sleep_time*0.5;
+
             wxSleep(1);
 
             dialog.Update(i);
@@ -525,8 +540,6 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
 
           title = wxT("  THREAD MANAGEMENT LIBRARY CONSTRUCTION REPORT  ");
      }
-
-     wxMessageOutput::Get()->Printf("this->Process_Exit_Status, %d!", this->Process_Exit_Status);
 
      if(this->Process_Exit_Status == 0){
 

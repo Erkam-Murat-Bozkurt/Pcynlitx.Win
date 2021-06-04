@@ -4,6 +4,7 @@
 
 #include "Event_ID_Numbers.h"
 #include "Custom_Tree_View_Panel.h"
+#include "Descriptor_File_Reader.h"
 #include <wx\wx.h>
 #include <wx\frame.h>
 #include <wx\panel.h>
@@ -41,6 +42,7 @@ public:
   void Print_Error_Stream(wxString title);
   void Print_Output_Stream(wxString title);
 private:
+  Descriptor_File_Reader Descriptor_Reader;
   void Remove_Construction_Point_Holder_File();
   wxFrame * MainFrame_Pointer;
   Custom_Tree_View_Panel * Dir_List_Manager;
@@ -61,6 +63,7 @@ private:
   long Sub_Process_ID_Received;
   int  Process_Event_Counter;
   int Output_Print_Number;
+  int sleep_time;
 };
 
 #endif /* PROCESS_EXECUTION_CONTROLLER_H */
