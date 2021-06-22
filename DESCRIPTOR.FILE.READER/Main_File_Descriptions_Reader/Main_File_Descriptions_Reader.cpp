@@ -23,6 +23,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 Main_File_Descriptions_Reader::Main_File_Descriptions_Reader(){
 
+     this->Memory_Allocation_Started = false;
+
      this->Memory_Delete_Condition = false;
 
      this->Construction_Point = nullptr;
@@ -50,7 +52,7 @@ Main_File_Descriptions_Reader::Main_File_Descriptions_Reader(const Main_File_Des
 
 Main_File_Descriptions_Reader::~Main_File_Descriptions_Reader(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
      }
@@ -58,7 +60,7 @@ Main_File_Descriptions_Reader::~Main_File_Descriptions_Reader(){
 
 void Main_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -90,20 +92,28 @@ void Main_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
 void Main_File_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Main_File_Descriptions_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Main_File_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Main_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Thread_Function_Number = this->Data_Collector_Pointer->Thread_Function_Number;
 
@@ -130,6 +140,8 @@ void Main_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector()
 }
 
 void Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
 

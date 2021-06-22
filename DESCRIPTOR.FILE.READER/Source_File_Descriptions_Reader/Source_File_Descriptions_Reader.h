@@ -58,6 +58,7 @@ private:
   int Source_File_Location_Number;
   int Include_Directory_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool is_empty_decleration;
   char ** Source_File_Locations;
   char ** Source_File_Names;

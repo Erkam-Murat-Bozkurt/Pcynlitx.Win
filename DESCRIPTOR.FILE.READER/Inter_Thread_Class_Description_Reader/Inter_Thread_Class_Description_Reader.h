@@ -72,6 +72,7 @@ private:
   int Inter_Thread_Class_Header_File_Names_Number;
   int Include_Directory_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool is_empty_decleration;
 };
 

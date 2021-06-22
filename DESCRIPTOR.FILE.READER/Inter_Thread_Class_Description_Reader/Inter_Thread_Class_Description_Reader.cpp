@@ -49,6 +49,8 @@ Inter_Thread_Class_Description_Reader::Inter_Thread_Class_Description_Reader(){
      this->Inter_Thread_Class_Number = 0;
 
      this->Inter_Thread_Class_Header_File_Names_Number = 0;
+
+     this->Memory_Allocation_Started = false;
 }
 
 Inter_Thread_Class_Description_Reader::Inter_Thread_Class_Description_Reader(const Inter_Thread_Class_Description_Reader & orig){
@@ -57,7 +59,7 @@ Inter_Thread_Class_Description_Reader::Inter_Thread_Class_Description_Reader(con
 
 Inter_Thread_Class_Description_Reader::~Inter_Thread_Class_Description_Reader(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
         this->Clear_Dynamic_Memory();
      }
@@ -65,7 +67,7 @@ Inter_Thread_Class_Description_Reader::~Inter_Thread_Class_Description_Reader(){
 
 void Inter_Thread_Class_Description_Reader::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -93,15 +95,21 @@ void Inter_Thread_Class_Description_Reader::Clear_Dynamic_Memory(){
 
 void Inter_Thread_Class_Description_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Inter_Thread_Class_Description_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Initializer_Pointer = Pointer;
 }
 
 void Inter_Thread_Class_Description_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Number_Processor_Pointer = Pointer;
 }
@@ -115,6 +123,8 @@ void Inter_Thread_Class_Description_Reader::Receive_Include_Directory_Descriptio
 
 void Inter_Thread_Class_Description_Reader::Set_Informations_Comes_From_Data_Collector(){
 
+     this->Memory_Allocation_Started = true;
+
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 
      this->Inter_Thread_Class_Number = this->Data_Collector_Pointer->Class_Number;
@@ -125,6 +135,8 @@ void Inter_Thread_Class_Description_Reader::Set_Informations_Comes_From_Data_Col
 }
 
 void Inter_Thread_Class_Description_Reader::Read_Inter_Thread_Class_Descriptions(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Memory_Delete_Condition = false;
 
@@ -141,6 +153,8 @@ void Inter_Thread_Class_Description_Reader::Read_Inter_Thread_Class_Descriptions
 }
 
 void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_File_Names(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Inter_Thread_Class_Header_File_Names_Number > 0){
 
@@ -371,6 +385,8 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
  void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Instance_Names(){
 
+      this->Memory_Allocation_Started = true;
+
       if(this->Inter_Thread_Class_Number){
 
          int index_counter = 0;
@@ -454,6 +470,8 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
  }
 
  void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Names(){
+
+      this->Memory_Allocation_Started = true;
 
       if(this->Inter_Thread_Class_Number){
 

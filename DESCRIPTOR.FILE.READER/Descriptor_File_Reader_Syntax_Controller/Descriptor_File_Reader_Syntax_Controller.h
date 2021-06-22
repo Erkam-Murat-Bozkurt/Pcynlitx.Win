@@ -26,6 +26,7 @@ private:
   void Determine_Shared_Data_Type_Informations(Shared_Memory_Data_Type Data_Holder);
   MemberFunctionReader FunctionReader;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool Class_Data_Type_Receive_Condition;
   bool Shared_Data_Type_Receive_Condition;
   Class_Data_Type * Class_Data_Type_Holder;

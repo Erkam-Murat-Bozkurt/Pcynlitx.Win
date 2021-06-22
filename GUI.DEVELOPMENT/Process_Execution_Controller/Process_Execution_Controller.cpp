@@ -449,7 +449,12 @@ void Process_Execution_Controller::ShowProgress(){
 
      if(this->Process_Event_Counter < 1){
 
-        int max = 10*this->sleep_time;
+        int max = 10; // The maximum num of iteration for progress bar.
+
+        if(!this->is_library_constructed){
+
+            max = 10*this->sleep_time;
+        }
 
         wxString Process_Label;
 
@@ -465,7 +470,6 @@ void Process_Execution_Controller::ShowProgress(){
         wxProgressDialog dialog(wxT(""),Process_Label,max,this->MainFrame_Pointer,
 
                       wxPD_APP_MODAL | wxPD_SMOOTH  );
-
 
         for(int i=0;i<=max;i++){
 
@@ -541,6 +545,8 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
           title = wxT("  THREAD MANAGEMENT LIBRARY CONSTRUCTION REPORT  ");
      }
 
+     //wxMessageOutput::Get()->Printf("this->Process_Exit_Status=%d",this->Process_Exit_Status);
+
      if(this->Process_Exit_Status == 0){
 
         if(this->Sub_Process_ID == this->Sub_Process_ID_Received){
@@ -550,6 +556,8 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
         else{
 
               this->error_stream_status = true;
+
+              wxMessageOutput::Get()->Printf("Before Print_Error_Stream %s");
 
               this->Print_Error_Stream(title);
         }
@@ -701,7 +709,6 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
      }
 }
 
-
 void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
      wxDialog * Succes_Dialog = new wxDialog(this->MainFrame_Pointer,
@@ -731,9 +738,9 @@ void Process_Execution_Controller::Print_Error_Stream(wxString title){
      wxString str;
      wxString std_error = wxT("ERROR REPORTS:\n\n");
 
-     if(Output_file.Exists()){
+     Output_file.Open(output_path);
 
-        Output_file.Open(output_path);
+     if(Output_file.Exists()){
 
         if(Output_file.IsOpened()) // READ COMPILER OUTPUT IF EXISTS
         {

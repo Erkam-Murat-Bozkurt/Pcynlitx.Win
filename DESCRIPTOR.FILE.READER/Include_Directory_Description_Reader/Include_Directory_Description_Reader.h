@@ -43,6 +43,7 @@ private:
   Include_Directory_Type   * Include_Directory_Pointer;
   int Include_Directory_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool is_empty_decleration;
 };
 

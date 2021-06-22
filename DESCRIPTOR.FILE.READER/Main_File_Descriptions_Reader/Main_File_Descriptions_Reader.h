@@ -54,6 +54,7 @@ private:
   char *  Server_Class_Header_File_Name;
   char ** Thread_Function_Names;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   int Thread_Function_Number;
   int Thread_Number;
 };

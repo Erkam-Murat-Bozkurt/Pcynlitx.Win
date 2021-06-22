@@ -31,7 +31,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Source: "D:\My_Mingw64_Installer\7z\*"; DestDir: "C:\Program Files\Mingw64\7z"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\My_Mingw64_Installer\mingw64.7z"; DestDir: "C:\Program Files\Mingw64"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\My_Mingw64_Installer\LICENSE.txt"; DestDir: "C:\Program Files\Mingw64"; Flags: ignoreversion
-Source: "D:\My_Mingw64_Installer\extract_mingw64.exe"; DestDir: "C:\Program Files\Mingw64";  Flags: ignoreversion
+Source: "D:\My_Mingw64_Installer\extract_mingw64.exe"; DestDir: "C:\Program Files\Mingw64";  Flags: ignoreversion deleteafterinstall
+Source: "D:\My_Mingw64_Installer\libwinpthread-1.dll"; DestDir: "C:\Program Files\Mingw64";  Flags: ignoreversion deleteafterinstall
+
 
 [UninstallDelete]
 Type: filesandordirs; Name: "C:\Program Files\Mingw64\mingw64"

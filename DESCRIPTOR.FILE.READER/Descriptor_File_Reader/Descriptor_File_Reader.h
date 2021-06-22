@@ -80,6 +80,7 @@ private:
  Main_File_Descriptions_Reader MF_Descriptions_Reader;
  Descriptor_File_Reader_Syntax_Controler Syntax_Controler;
  bool Memory_Delete_Condition;
+ bool Memory_Allocation_Started;
  char * Compiler_Output_File_Path;
  char * Constructed_Include_Directory;
 };

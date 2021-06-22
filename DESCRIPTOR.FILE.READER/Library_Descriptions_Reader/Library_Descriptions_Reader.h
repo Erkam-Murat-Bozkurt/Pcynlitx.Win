@@ -43,6 +43,7 @@ private:
   int Library_Directory_Number;
   int Library_Names_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool is_empty_decleration;
 };
 

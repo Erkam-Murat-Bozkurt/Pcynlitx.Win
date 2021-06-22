@@ -44,6 +44,7 @@ private:
   char ** Header_File_Names;
   char ** Header_File_Paths;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   int Header_File_Names_Number;
   int Include_Directory_Number;
   bool is_empty_decleration;

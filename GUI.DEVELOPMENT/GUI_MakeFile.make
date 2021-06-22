@@ -19,7 +19,7 @@ Pcynlitx.exe : wxLauncher.cpp MainFrame.o Process_Execution_Controller.o keyboar
 							Project_Folder_Lister.h Style_Loader.h Custom_DockArt.h \
               Custom_wxPanel.h Custom_wxTreeCtrl.h Custom_Window.h
 
-	g++ -std=c++11 $(CONFIGS) $(INCLUDE_DIRECTORIES) $(LIBRARY_DIRECTORIES)  \
+	g++ -std=c++11 -o Pcynlitx.exe $(CONFIGS) $(INCLUDE_DIRECTORIES) $(LIBRARY_DIRECTORIES)  \
  	       wxLauncher.cpp $(OD)\MainFrame.o $(OD)\Process_Execution_Controller.o $(OD)\keyboard_event_controler.o \
 				 $(OD)\Custom_Notebook.o $(OD)\Custom_TabArt.o $(OD)\Custom_Tree_View_Panel.o $(OD)\Custom_Close_Button.o \
 				 $(OD)\wx_Description_Record_Tools.o $(OD)\Menu_Bar_Options.o $(OD)\ToolBar_Initializer.o $(OD)\Project_File_Selection_Dialog.o \
@@ -35,4 +35,4 @@ Pcynlitx.exe : wxLauncher.cpp MainFrame.o Process_Execution_Controller.o keyboar
 	       -include Custom_TabArt.h -include Custom_TextCtrl.h -include Custom_DockArt.h  \
 			   -include Intro_Page_Loader.h -include Help_Page_Loader.h -include Custom_Window.h -include Custom_wxPanel.h \
 			   -include Event_ID_Numbers.h -include Custom_wxTreeCtrl.h -include wxDirTraverser_executer.h \
-				  -Wl,-Bstatic $(LINKING_LIBRARIES) -o Pcynlitx.exe -static-libgcc -static-libstdc++
+				  -Wl,-Bstatic $(LINKING_LIBRARIES)

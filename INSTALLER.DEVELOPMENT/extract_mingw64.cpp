@@ -22,7 +22,7 @@ int main(){
 
     char reg_exe [] = "reg.exe add HKCU\\Environment /v Path /t REG_SZ /d \"%Path%";
 
-    char path_1 [] = "C:\\Program Files\\Pcynlitx;";
+    char path_1 [] = ";C:\\Program Files\\Pcynlitx;";
 
     char path_2 [] = "C:\\Program Files\\Mingw64\\mingw64;";
 

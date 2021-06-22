@@ -82,6 +82,8 @@ Descriptor_File_Data_Collector::Descriptor_File_Data_Collector(){
       this->Namespace_Record_Number = 0;
 
       this->is_descriptor_file_name_true = true;
+
+      this->Memory_Allocation_Started = false;
 }
 
 Descriptor_File_Data_Collector::Descriptor_File_Data_Collector(const Descriptor_File_Data_Collector & orig){
@@ -90,7 +92,7 @@ Descriptor_File_Data_Collector::Descriptor_File_Data_Collector(const Descriptor_
 
 Descriptor_File_Data_Collector::~Descriptor_File_Data_Collector(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
      }
@@ -98,7 +100,7 @@ Descriptor_File_Data_Collector::~Descriptor_File_Data_Collector(){
 
 void Descriptor_File_Data_Collector::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -122,6 +124,8 @@ void Descriptor_File_Data_Collector::Clear_Dynamic_Memory(){
 
 void Descriptor_File_Data_Collector::Receive_Descriptor_File_Directory(const char * DescriptorFileDirectory){
 
+     this->Memory_Allocation_Started = true;
+
      size_t String_Size = strlen(DescriptorFileDirectory);
 
      this->Memory_Delete_Condition = false;
@@ -135,6 +139,8 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Directory(const cha
 
 void Descriptor_File_Data_Collector::Receive_Descriptor_File_Directory(char * DescriptorFileDirectory){
 
+     this->Memory_Allocation_Started = true;
+
      size_t String_Size = strlen(DescriptorFileDirectory);
 
      this->Memory_Delete_Condition = false;
@@ -147,6 +153,8 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Directory(char * De
  }
 
 void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(const char * DescriptorFileName){
+
+     this->Memory_Allocation_Started = true;
 
      this->Check_Descriptor_File_Name(DescriptorFileName);
 
@@ -171,6 +179,8 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(const char * D
  }
 
 void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * DescriptorFileName){
+
+     this->Memory_Allocation_Started = true;
 
      this->Check_Descriptor_File_Name(DescriptorFileName);
 

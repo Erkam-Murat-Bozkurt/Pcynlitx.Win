@@ -34,6 +34,8 @@ Descriptor_File_Reader_Syntax_Controler::Descriptor_File_Reader_Syntax_Controler
       this->Header_File_Path = nullptr;
 
       this->Construction_Point = nullptr;
+
+      this->Memory_Allocation_Started = false;
 }
 
 Descriptor_File_Reader_Syntax_Controler::Descriptor_File_Reader_Syntax_Controler(const Descriptor_File_Reader_Syntax_Controler & orig){
@@ -43,7 +45,7 @@ Descriptor_File_Reader_Syntax_Controler::Descriptor_File_Reader_Syntax_Controler
 
 Descriptor_File_Reader_Syntax_Controler::~Descriptor_File_Reader_Syntax_Controler(){
 
-        if(!this->Memory_Delete_Condition){
+        if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
            this->Clear_Dynamic_Memory();
         }
@@ -51,7 +53,7 @@ Descriptor_File_Reader_Syntax_Controler::~Descriptor_File_Reader_Syntax_Controle
 
 void Descriptor_File_Reader_Syntax_Controler::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -67,29 +69,41 @@ void Descriptor_File_Reader_Syntax_Controler::Clear_Dynamic_Memory(){
 void Descriptor_File_Reader_Syntax_Controler::Receive_Construction_Point(char * Construction_Point){
 
      this->Construction_Point = Construction_Point;
+
+     this->Memory_Allocation_Started = true;
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Determine_Class_Data_Type_Receive_Condition(bool condition){
 
      this->Class_Data_Type_Receive_Condition = condition;
+
+     this->Memory_Allocation_Started = true;
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Determine_Shared_Data_Type_Receive_Condition(bool condition){
 
      this->Shared_Data_Type_Receive_Condition = condition;
+
+     this->Memory_Allocation_Started = true;
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Receive_Inter_Thread_Class_Data(Class_Data_Type * Data){
 
      this->Class_Data_Type_Holder = Data;
+
+     this->Memory_Allocation_Started = true;
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Receive_Inter_Thread_Data_Type_Data(Shared_Memory_Data_Type * Data){
 
      this->Shared_Memory_Data_Type_Holder = Data;
+
+     this->Memory_Allocation_Started = true;
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Control_Process_Syntax(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Class_Data_Type_Receive_Condition){
 
@@ -140,6 +154,8 @@ void Descriptor_File_Reader_Syntax_Controler::Control_Process_Syntax(){
 
 void Descriptor_File_Reader_Syntax_Controler::Determine_Inter_Thread_Class_Informations(Class_Data_Type Class_Data_Holder){
 
+     this->Memory_Allocation_Started = true;
+
      if(this->Header_File_Path != nullptr){
 
         delete [] this->Header_File_Path;
@@ -178,6 +194,8 @@ void Descriptor_File_Reader_Syntax_Controler::Determine_Inter_Thread_Class_Infor
 }
 
 void Descriptor_File_Reader_Syntax_Controler::Determine_Shared_Data_Type_Informations(Shared_Memory_Data_Type Data_Holder){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Header_File_Path != nullptr){
 

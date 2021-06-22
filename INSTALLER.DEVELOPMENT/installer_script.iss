@@ -7,7 +7,6 @@
 #define MyAppPublisher "Erkam Murat Bozkurt M.Sc Control Systems Engineering"
 #define MyAppURL "https://www.pcynlitx.tech/"
 #define MyAppExeName "Pcynlitx.exe"
-#define TargetDir "C:\Program Files\Pcynlitx"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -15,12 +14,11 @@
 AppId={{4A8B47E0-9ECF-43FB-B9CF-182533C62FB3}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName=C:\Program Files\Pcynlitx
+DefaultDirName={autopf}\{#MyAppName}
 DisableDirPage=yes
 DisableProgramGroupPage=yes
 LicenseFile=D:\Pcynlitx\LICENSE.txt
@@ -40,19 +38,28 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Pcynlitx\bin\{#MyAppExeName}"; DestDir: "C:\Program Files\Pcynlitx\bin"; Flags: ignoreversion
+Source: "D:\Pcynlitx\bin\Pcynlitx.exe"; DestDir: "C:\Program Files\Pcynlitx\bin"; Flags: ignoreversion
+Source: "D:\Pcynlitx\7z\*"; DestDir: "C:\Program Files\Pcynlitx\7z"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Pcynlitx\bin\*"; DestDir: "C:\Program Files\Pcynlitx\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Pcynlitx\icons\*"; DestDir: "C:\Program Files\Pcynlitx\icons"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Pcynlitx\Intro_File.png"; DestDir: "C:\Program Files\Pcynlitx"; Flags: ignoreversion
 Source: "D:\Pcynlitx\LICENSE.txt"; DestDir: "C:\Program Files\Pcynlitx"; Flags: ignoreversion
-Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion
-Source: "D:\Pcynlitx\README.txt"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion
+Source: "D:\Pcynlitx\Mingw64.Setup.exe"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion deleteafterinstall
+Source: "D:\Pcynlitx\setup_fonts.exe"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion deleteafterinstall
+Source: "D:\Pcynlitx\libwinpthread-1.dll"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion deleteafterinstall
+Source: "D:\Pcynlitx\liberation-fonts-ttf-2.1.4.tar"; DestDir: "C:\Program Files\Pcynlitx";  Flags: ignoreversion
+
 
 [Icons]
 Name: "{autodesktop}\{#MyAppName}"; Filename: "C:\Program Files\Pcynlitx\bin\{#MyAppExeName}"; IconFilename: "C:\Program Files\Pcynlitx\icons\pcynlitx.ico"; Tasks: desktopicon
 
+[UninstallDelete]
+Type: filesandordirs; Name: "C:\Program Files\Pcynlitx"
+
 [Run]
-Filename: "C:\Program Files\Pcynlitx\Mingw64.Setup.exe"; WorkingDir: "C:\Program Files\Pcynlitx"; 
-Filename: "C:\Program Files\Pcynlitx\bin\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "C:\Program Files\Pcynlitx\setup_fonts.exe"; WorkingDir: "C:\Program Files\Pcynlitx";  Flags:runascurrentuser  runhidden; 
+Filename: "C:\Program Files\Pcynlitx\Mingw64.Setup.exe"; WorkingDir: "C:\Program Files\Pcynlitx";
+Filename: "C:\Program Files\Pcynlitx\bin\Pcynlitx.exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
  
 

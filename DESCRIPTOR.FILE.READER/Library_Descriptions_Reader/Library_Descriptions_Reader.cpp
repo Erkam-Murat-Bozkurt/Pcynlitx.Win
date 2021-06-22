@@ -34,6 +34,8 @@ Library_Descriptions_Reader::Library_Descriptions_Reader(){
      this->Library_Directory_Number = 0;
 
      this->Library_Names_Number = 0;
+
+     this->Memory_Allocation_Started = false;
 }
 
 Library_Descriptions_Reader::Library_Descriptions_Reader(const Library_Descriptions_Reader & orig){
@@ -42,7 +44,7 @@ Library_Descriptions_Reader::Library_Descriptions_Reader(const Library_Descripti
 
 Library_Descriptions_Reader::~Library_Descriptions_Reader(){
 
-    if(!this->Memory_Delete_Condition){
+    if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
         this->Clear_Dynamic_Memory();
     }
@@ -50,7 +52,7 @@ Library_Descriptions_Reader::~Library_Descriptions_Reader(){
 
 void Library_Descriptions_Reader::Clear_Dynamic_Memory(){
 
-    if(!this->Memory_Delete_Condition){
+    if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
         this->Memory_Delete_Condition = true;
 
@@ -82,20 +84,28 @@ void Library_Descriptions_Reader::Clear_Dynamic_Memory(){
 
 void Library_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Library_Descriptions_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Library_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Library_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Library_Directory_Number = this->Data_Collector_Pointer->Library_Directory_Number;
 
@@ -103,6 +113,8 @@ void Library_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
 }
 
 void Library_Descriptions_Reader::Read_Library_Descriptions(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
 
@@ -186,6 +198,8 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
 void Library_Descriptions_Reader::Receive_Library_Directories(){
 
+     this->Memory_Allocation_Started = true;
+
      this->Library_Directories = new char * [10*this->Library_Directory_Number];
 
      for(int i=0;i<this->Library_Directory_Number;i++){
@@ -261,6 +275,8 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
 
 void Library_Descriptions_Reader::Receive_Library_Names(){
 
+     this->Memory_Allocation_Started = true;
+
      this->Library_Names = new char * [10*this->Library_Names_Number];
 
      for(int i=0;i<this->Library_Names_Number;i++){
@@ -333,6 +349,8 @@ void Library_Descriptions_Reader::Receive_Library_Names(){
 }
 
 bool Library_Descriptions_Reader::Check_Empty_Decleration(char * String){
+
+     this->Memory_Allocation_Started = true;
 
      this->is_empty_decleration = true;
 

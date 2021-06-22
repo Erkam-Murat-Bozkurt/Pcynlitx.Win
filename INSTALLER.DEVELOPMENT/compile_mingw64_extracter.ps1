@@ -1,1 +1,2 @@
-g++ -o extract_mingw64 extract_mingw64.cpp
+
+g++ -o extract_mingw64.exe extract_mingw64.cpp -static-libstdc++ -static-libgcc

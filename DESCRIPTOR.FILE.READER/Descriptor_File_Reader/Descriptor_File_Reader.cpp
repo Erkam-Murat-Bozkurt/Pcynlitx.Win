@@ -25,6 +25,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
        this->Memory_Delete_Condition = false;
 
+       this->Memory_Allocation_Started = false;
+
        this->Constructed_Include_Directory = nullptr;
  }
 
@@ -34,7 +36,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  Descriptor_File_Reader::~Descriptor_File_Reader(){
 
-       if(!this->Memory_Delete_Condition){
+       if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
            this->Clear_Dynamic_Memory();
        }
@@ -42,7 +44,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  void Descriptor_File_Reader::Clear_Dynamic_Memory(){
 
-      if(!this->Memory_Delete_Condition){
+      if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
           this->Memory_Delete_Condition = true;
 
@@ -69,25 +71,35 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  void Descriptor_File_Reader::Receive_Descriptor_File_Directory(const char * DescriptorFileDirectory){
 
+      this->Memory_Allocation_Started = true;
+
       this->File_Data_Collector.Receive_Descriptor_File_Directory(DescriptorFileDirectory);
  }
 
  void Descriptor_File_Reader::Receive_Descriptor_File_Directory(char * DescriptorFileDirectory){
+
+      this->Memory_Allocation_Started = true;
 
       this->File_Data_Collector.Receive_Descriptor_File_Directory(DescriptorFileDirectory);
  }
 
  void Descriptor_File_Reader::Receive_Descriptor_File_Name(const char * DescriptorFileName){
 
+      this->Memory_Allocation_Started = true;
+
       this->File_Data_Collector.Receive_Descriptor_File_Name(DescriptorFileName);
  }
 
  void Descriptor_File_Reader::Receive_Descriptor_File_Name(char * DescriptorFileName){
 
+      this->Memory_Allocation_Started = true;
+
       this->File_Data_Collector.Receive_Descriptor_File_Name(DescriptorFileName);
  }
 
  void Descriptor_File_Reader::Receive_Descriptor_File_Infomations(){
+
+      this->Memory_Allocation_Started = true;
 
       this->File_Data_Collector.Collect_Descriptor_File_Datas();
 
@@ -121,6 +133,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
  }
 
  void Descriptor_File_Reader::Receive_Include_Directory_Descriptions(){
+
+      this->Memory_Allocation_Started = true;
 
       this->ID_Description_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -167,7 +181,6 @@ void Descriptor_File_Reader::Receive_Source_File_Descriptions(){
 
      this->SF_Descriptions_Reader.Read_Source_File_Descriptions();
 }
-
 
 void Descriptor_File_Reader::Receive_Header_File_Descriptions(){
 

@@ -61,6 +61,7 @@ Descriptor_File_Reader_Initializer::Descriptor_File_Reader_Initializer(){
 
      this->Namespace = nullptr;
 
+     this->Memory_Allocation_Started = false;
 }
 
 Descriptor_File_Reader_Initializer::Descriptor_File_Reader_Initializer(const Descriptor_File_Reader_Initializer &){
@@ -69,7 +70,7 @@ Descriptor_File_Reader_Initializer::Descriptor_File_Reader_Initializer(const Des
 
 Descriptor_File_Reader_Initializer::~Descriptor_File_Reader_Initializer(){
 
-      if(!this->Memory_Delete_Condition){
+      if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
       }
@@ -77,7 +78,7 @@ Descriptor_File_Reader_Initializer::~Descriptor_File_Reader_Initializer(){
 
 void Descriptor_File_Reader_Initializer::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -275,6 +276,8 @@ void Descriptor_File_Reader_Initializer::Receve_Data_Collector(Descriptor_File_D
 void Descriptor_File_Reader_Initializer::Read_File_Lists(){
 
      this->Memory_Delete_Condition = false;
+
+     this->Memory_Allocation_Started = true;
 
      if(this->File_Data_Collector->Include_Directory_Numbers > 0){
 

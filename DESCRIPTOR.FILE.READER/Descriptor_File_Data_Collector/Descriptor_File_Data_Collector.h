@@ -85,6 +85,7 @@ private:
   int  Data_Record_EndLine;
   int  Record_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool DescriptorFileName_Receive_Condition;
   bool DescriptorFileDirectory_Receive_Condition;
   bool is_descriptor_file_name_true;

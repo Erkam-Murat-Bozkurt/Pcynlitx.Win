@@ -25,6 +25,8 @@ Source_File_Descriptions_Reader::Source_File_Descriptions_Reader(){
 
      this->Memory_Delete_Condition = false;
 
+     this->Memory_Allocation_Started = false;
+
      this->is_empty_decleration = true;
 
      this->Source_File_Locations_Pointer = nullptr;
@@ -40,7 +42,7 @@ Source_File_Descriptions_Reader::Source_File_Descriptions_Reader(const Source_Fi
 
 Source_File_Descriptions_Reader::~Source_File_Descriptions_Reader(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
      }
@@ -48,7 +50,7 @@ Source_File_Descriptions_Reader::~Source_File_Descriptions_Reader(){
 
 void Source_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -80,20 +82,28 @@ void Source_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
 void Source_File_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Source_File_Descriptions_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Source_File_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Source_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 
@@ -103,6 +113,8 @@ void Source_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector
 }
 
 void Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
 
@@ -118,6 +130,8 @@ void Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
 }
 
 void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Source_File_Location_Number > 0){
 
@@ -229,6 +243,8 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 }
 
 void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Source_File_Number > 0) {
 
@@ -414,7 +430,6 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
         delete [] Source_File_Names_Number_Holder;
      }
 }
-
 
 void Source_File_Descriptions_Reader::Print_Read_Error_Information(){
 

@@ -73,6 +73,7 @@ private:
   int Shared_Data_Types_Number;
   int Include_Directory_Number;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   bool is_empty_decleration;
 };
 

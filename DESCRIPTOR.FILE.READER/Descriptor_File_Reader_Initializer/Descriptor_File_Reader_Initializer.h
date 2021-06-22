@@ -60,6 +60,7 @@ private:
   Descriptor_File_Data_Collector * File_Data_Collector;
   IntToCharTranslater Translater;
   bool Memory_Delete_Condition;
+  bool Memory_Allocation_Started;
   int     Thread_Number;
   char *  Main_File_Name;
   char *  Namespace;

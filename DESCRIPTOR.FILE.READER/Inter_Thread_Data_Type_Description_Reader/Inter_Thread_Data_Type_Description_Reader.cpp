@@ -48,6 +48,8 @@ Inter_Thread_Data_Type_Description_Reader::Inter_Thread_Data_Type_Description_Re
     this->Shared_Data_Types_Number = 0;
 
     this->Include_Directory_Number = 0;
+
+    this->Memory_Allocation_Started = false;
 }
 
 Inter_Thread_Data_Type_Description_Reader::Inter_Thread_Data_Type_Description_Reader(const Inter_Thread_Data_Type_Description_Reader & orig){
@@ -56,7 +58,7 @@ Inter_Thread_Data_Type_Description_Reader::Inter_Thread_Data_Type_Description_Re
 
 Inter_Thread_Data_Type_Description_Reader::~Inter_Thread_Data_Type_Description_Reader(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
     }
@@ -64,7 +66,7 @@ Inter_Thread_Data_Type_Description_Reader::~Inter_Thread_Data_Type_Description_R
 
 void Inter_Thread_Data_Type_Description_Reader::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -90,20 +92,28 @@ void Inter_Thread_Data_Type_Description_Reader::Clear_Dynamic_Memory(){
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->ID_Description_Reader = Pointer;
 
@@ -111,6 +121,8 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory_Descri
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 
@@ -122,6 +134,8 @@ void Inter_Thread_Data_Type_Description_Reader::Set_Informations_Comes_From_Data
 void Inter_Thread_Data_Type_Description_Reader::Read_Inter_Thread_Data_Type_Descriptions(){
 
      this->Memory_Delete_Condition = false;
+
+     this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
 
@@ -141,6 +155,8 @@ void Inter_Thread_Data_Type_Description_Reader::Read_Inter_Thread_Data_Type_Desc
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Include_Directory_Number > 0){
 
@@ -215,6 +231,8 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
 
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types_Header_File_Names(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Shared_Data_Types_Number > 0){
 
@@ -468,6 +486,8 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 }
 
 void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Names(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Shared_Data_Types_Number > 0){
 

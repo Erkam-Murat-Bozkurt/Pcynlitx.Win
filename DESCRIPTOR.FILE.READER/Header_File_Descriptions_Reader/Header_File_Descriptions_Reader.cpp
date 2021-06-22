@@ -33,6 +33,8 @@ Header_File_Descriptions_Reader::Header_File_Descriptions_Reader(){
     this->Header_File_Paths = nullptr;
 
     this->Header_File_Names_Number = 0;
+
+    this->Memory_Allocation_Started = false;
 }
 
 Header_File_Descriptions_Reader::Header_File_Descriptions_Reader(const Header_File_Descriptions_Reader & orig){
@@ -41,7 +43,7 @@ Header_File_Descriptions_Reader::Header_File_Descriptions_Reader(const Header_Fi
 
 Header_File_Descriptions_Reader::~Header_File_Descriptions_Reader(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Clear_Dynamic_Memory();
      }
@@ -49,7 +51,7 @@ Header_File_Descriptions_Reader::~Header_File_Descriptions_Reader(){
 
 void Header_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
-     if(!this->Memory_Delete_Condition){
+     if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
          this->Memory_Delete_Condition = true;
 
@@ -72,25 +74,35 @@ void Header_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
 void Header_File_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Header_File_Descriptions_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Header_File_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Header_File_Descriptions_Reader::Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->ID_Description_Reader = Pointer;
 }
 
 void Header_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 
@@ -98,6 +110,8 @@ void Header_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector
 }
 
 void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
+
+     this->Memory_Allocation_Started = true;
 
      if(this->Header_File_Names_Number > 0){
 

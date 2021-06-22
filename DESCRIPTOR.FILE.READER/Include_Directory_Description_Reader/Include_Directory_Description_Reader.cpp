@@ -36,6 +36,8 @@ Include_Directory_Description_Reader::Include_Directory_Description_Reader(){
     this->Number_Processor_Pointer = nullptr;
 
     this->Include_Directory_Number = 0;
+
+    this->Memory_Allocation_Started = false;
 }
 
 Include_Directory_Description_Reader::Include_Directory_Description_Reader(const Include_Directory_Description_Reader & orig){
@@ -44,7 +46,7 @@ Include_Directory_Description_Reader::Include_Directory_Description_Reader(const
 
 Include_Directory_Description_Reader::~Include_Directory_Description_Reader(){
 
-      if(!this->Memory_Delete_Condition){
+      if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
            this->Clear_Dynamic_Memory();
       }
@@ -52,7 +54,7 @@ Include_Directory_Description_Reader::~Include_Directory_Description_Reader(){
 
 void Include_Directory_Description_Reader::Clear_Dynamic_Memory(){
 
-      if(!this->Memory_Delete_Condition){
+      if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
 
           this->Memory_Delete_Condition = true;
 
@@ -72,25 +74,35 @@ void Include_Directory_Description_Reader::Clear_Dynamic_Memory(){
 
 void Include_Directory_Description_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Data_Collector_Pointer = Pointer;
 }
 
 void Include_Directory_Description_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
+
+     this->Memory_Allocation_Started = true;
 
      this->Initializer_Pointer = Pointer;
 }
 
 void Include_Directory_Description_Reader::Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer){
 
+     this->Memory_Allocation_Started = true;
+
      this->Number_Processor_Pointer = Pointer;
 }
 
 void Include_Directory_Description_Reader::Set_Informations_Comes_From_Data_Collector(){
 
+     this->Memory_Allocation_Started = true;
+
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 }
 
 void Include_Directory_Description_Reader::Read_Include_Directory_Descriptions(){
+
+     this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
 
@@ -101,6 +113,8 @@ void Include_Directory_Description_Reader::Read_Include_Directory_Descriptions()
 }
 
 void Include_Directory_Description_Reader::Receive_Include_Directory(){
+
+     this->Memory_Allocation_Started = true;
 
      int index_counter = 0;
 

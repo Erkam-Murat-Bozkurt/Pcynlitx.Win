@@ -7,6 +7,8 @@ LIB_1=C:\wxWidgets-3.1.4\lib\gcc_lib
 
 LIB_2=C:\wxWidgets-3.1.4\lib\gcc_lib\dll
 
+LIB_3=C:\migw64\lib\gcc\x86_64-w64-mingw32\8.1.0
+
 SRC=C:\wxWidgets-3.1.4\src\msw
 
 
@@ -20,6 +22,8 @@ Library_4=-lwxmsw31u_adv -lwxmsw31u_gl -lwxmsw31u_media -lkernel32 -luser32 -lgd
 
 Library_5=-lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lwininet -luxtheme -loleacc
 
+Library_6=-lgcc -lstdc++
+
 Project_Library=-lmptools
 
 Shared_Libraries=-shared -lwxmsw314ud_aui_gcc810_x64.dll -lwxmsw314ud_stc_gcc810_x64.dll -lwxmsw314ud_core_gcc810_x64.dll
@@ -30,10 +34,10 @@ LD=D:\PCYNLITX.WIND.IMPL.LIBRARY\PROJECT.LIBRARY
 
 GUI_PATH=D:\PCYNLITX.PROJECT.WINDOWS\GUI.DEVELOPMENT
 
-LINKING_LIBRARIES=$(Library_1) $(Library_2) $(Library_3) $(Library_4) $(Library_5) $(Project_Library)
+LINKING_LIBRARIES=$(Library_1) $(Library_2)  $(Library_3) $(Library_4) $(Library_5) $(Library_6) $(Project_Library)
 
 INCLUDE_DIRECTORIES=-I$(INC1) -I$(INC2) -I$(ID)
 
-LIBRARY_DIRECTORIES=-L$(LIB_1) -L$(LIB_2) -L$(OD) -L$(LD) -L$(GUI_PATH) -L$(SRC) -Wl,--subsystem,windows -mwindows
+LIBRARY_DIRECTORIES=-L$(LIB_1) -L$(LIB_2) -L$(LIB_3) -L$(OD) -L$(LD) -L$(GUI_PATH) -L$(SRC) -Wl,--subsystem,windows -mwindows
 
 CONFIGS=-static -static-libgcc -static-libstdc++ -DHAVE_W32API_H -D__WXMSW__ -D_UNICODE -D_WXUSE_UNICODE
