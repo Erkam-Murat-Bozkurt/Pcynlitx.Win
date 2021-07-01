@@ -25,13 +25,16 @@ public:
   void Clear_Dynamic_Memory();
 private:
   void Remove_Compiler_Output_File();
+  void Determine_Compiler_Output_File_Path();
+  bool Is_There_Error_On_Buffer();
   Descriptor_File_Reader File_Reader;
   Compiler_Descriptor_File_Constructor File_Constructor;
   Compiler Project_Compiler;
   DirectoryOperations Directory_Manager;
   Cpp_FileOperations File_Manager;
   bool Memory_Delete_Condition;
-  int  construction_success;
+  bool Is_There_Std_Error_Message;
+  int construction_success;
   char * Compiler_Output_File_Path;
 };
 

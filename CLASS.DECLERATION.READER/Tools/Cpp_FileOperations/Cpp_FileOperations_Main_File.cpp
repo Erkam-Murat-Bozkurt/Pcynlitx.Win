@@ -7,31 +7,45 @@
 
      Cpp_FileOperations FileManager;
 
-     int integer = 12345;
-
-     std::string numbers = std::to_string(integer);
-
-     std::cout << "\n numbers:" << numbers;
-
      char PATH [] = "Sample.txt";
-
-     char TARGET_PATH [] = "Target.txt";
 
      FileManager.SetFilePath(PATH);
 
-     std::cout << "\n File Path:" << FileManager.GetFilePath();
-
-     std::cin.get();
-
      FileManager.FileOpen(RWCf);
-
-     FileManager.WriteToFile(" Hello world ..!\n");
-
-     FileManager.WriteToFile(" This is an example file operation ..!\n");
 
      FileManager.FileClose();
 
-     FileManager.CpFile(PATH,TARGET_PATH);
+    if( FileManager.Is_This_File_Empty(PATH)){
+
+       std::cout << "\n\n The file is empty..";
+    }
+    else{
+
+        std::cout << "\n The file is not empty..";
+    }
+
+    std::cin.get();
+
+    FileManager.SetFilePath(PATH);
+
+    FileManager.FileOpen(Wf);
+
+    FileManager.WriteToFile(" Hello world ..!\n");
+
+    FileManager.WriteToFile(" This is an example file operation ..!\n");
+
+    FileManager.FileClose();
+
+    if( FileManager.Is_This_File_Empty(PATH)){
+
+         std::cout << "\n\n The file is empty..";
+    }
+    else{
+
+         std::cout << "\n The file is not empty..";
+
+       }
+
 
      std::cout << "\n\n The end of the program ..\n\n";
 

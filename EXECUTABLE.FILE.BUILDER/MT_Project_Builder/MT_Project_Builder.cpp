@@ -25,7 +25,7 @@ MT_Project_Builder::MT_Project_Builder(){
 
     this->Memory_Delete_Condition = false;
 
-    this->construction_success = 0;
+    this->construction_success = 1;
 }
 
 MT_Project_Builder::MT_Project_Builder(const MT_Project_Builder & orig){
@@ -51,6 +51,8 @@ void MT_Project_Builder::Clear_Dynamic_Memory(){
          this->File_Constructor.Clear_Dynamic_Memory();
 
          this->File_Reader.Clear_Dynamic_Memory();
+
+         delete [] this->Compiler_Output_File_Path;
      }
 }
 
@@ -78,6 +80,8 @@ int  MT_Project_Builder::Build_Project(){
 
      this->File_Reader.Receive_Descriptor_File_Infomations();
 
+     this->Determine_Compiler_Output_File_Path();
+
      this->Remove_Compiler_Output_File();
 
      std::cout << "\n ";
@@ -87,8 +91,6 @@ int  MT_Project_Builder::Build_Project(){
      this->File_Constructor.Receive_Descriptor_File_Reader(&this->File_Reader);
 
      this->File_Constructor.Build_Compiler_Descriptor_File();
-
-     this->File_Constructor.Clear_Dynamic_Memory();
 
      this->Directory_Manager.DetermineCurrentDirectory();
 
@@ -106,31 +108,58 @@ int  MT_Project_Builder::Build_Project(){
 
         this->construction_success = 1;
 
-        return this->construction_success;
+        std::cout << "\n MT_Project_Builder will return :" << this->construction_success;
      }
 
      char Compiler_Descriptor_File_Name [] = "Compiler_Descriptor_File";
 
      this->File_Manager.Delete_File(Compiler_Descriptor_File_Name);
 
-     this->Remove_Compiler_Output_File();
+     if(this->File_Manager.Is_This_File_Empty(this->Compiler_Output_File_Path)){
 
-     this->File_Reader.Clear_Dynamic_Memory();
+        this->construction_success = 0;
+     }
+     else{
+
+           this->construction_success = 1;
+     }
 
      std::cout << "\n\t\t# The executable file is ready \n\n";
 
      return this->construction_success;
 }
 
-void MT_Project_Builder::Remove_Compiler_Output_File(){
+bool MT_Project_Builder::Is_There_Error_On_Buffer(){
 
-     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     this->Is_There_Std_Error_Message = false;
 
-     int Error_Message_File_Name_Size = strlen(Error_Message_File_Name);
+     this->Is_There_Std_Error_Message = this->File_Manager.Is_This_File_Empty(this->Compiler_Output_File_Path);
+
+     return this->Is_There_Std_Error_Message;
+}
+
+void MT_Project_Builder::Determine_Compiler_Output_File_Path(){
+
+     char Compiler_Output_File_Name [] = "Compiler_Output.txt";
+
+     int Compiler_Output_File_Name_Size = strlen(Compiler_Output_File_Name);
 
      int Construction_Point_Name_Size = strlen(this->File_Reader.Get_Construction_Point());
 
-     this->Compiler_Output_File_Path = new char [10*Construction_Point_Name_Size];
+     int Compiler_Output_File_Path_Size = Compiler_Output_File_Name_Size + Construction_Point_Name_Size;
+
+
+     bool is_directory_operator_exist = false;
+
+     for(int i=Construction_Point_Name_Size-10;i<Construction_Point_Name_Size;i++){
+
+         if(this->File_Reader.Get_Construction_Point()[i] == '\\'){
+
+            is_directory_operator_exist = true;
+         }
+     }
+
+     this->Compiler_Output_File_Path = new char [10*Compiler_Output_File_Path_Size];
 
      int index_counter = 0;
 
@@ -141,14 +170,24 @@ void MT_Project_Builder::Remove_Compiler_Output_File(){
          index_counter++;
      }
 
-     for(int i=0;i<Error_Message_File_Name_Size;i++){
+     if(!is_directory_operator_exist){
 
-         this->Compiler_Output_File_Path[index_counter] = Error_Message_File_Name[i];
+         this->Compiler_Output_File_Path[index_counter] = '\\';
+
+         index_counter++;
+     }
+
+     for(int i=0;i<Compiler_Output_File_Name_Size;i++){
+
+         this->Compiler_Output_File_Path[index_counter] = Compiler_Output_File_Name[i];
 
          index_counter++;
      }
 
      this->Compiler_Output_File_Path[index_counter] = '\0';
+}
+
+void MT_Project_Builder::Remove_Compiler_Output_File(){
 
      int Is_Compiler_Output_File_Exist = access(this->Compiler_Output_File_Path,F_OK);
 
@@ -156,6 +195,4 @@ void MT_Project_Builder::Remove_Compiler_Output_File(){
 
         this->File_Manager.Delete_File(this->Compiler_Output_File_Path);
      }
-
-     delete [] this->Compiler_Output_File_Path;
 }

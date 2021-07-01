@@ -335,7 +335,7 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
                                     wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER
 
-                                    | wxEXEC_HIDE_CONSOLE, this->Process_Pointer);
+                                  , this->Process_Pointer);
 
 
            this->Sub_Process_ID = this->Process_Pointer->GetPid();
@@ -403,9 +403,9 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
                             this->Construction_Point;
 
 
-           this->Sub_Process_ID_Received = wxExecute(this->Run_Command,wxEXEC_ASYNC | wxEXEC_MAKE_GROUP_LEADER
+           this->Sub_Process_ID_Received = wxExecute(this->Run_Command,wxEXEC_ASYNC |
 
-                                    | wxEXEC_HIDE_CONSOLE ,this->Process_Pointer);
+                                        wxEXEC_HIDE_CONSOLE | wxEXEC_NODISABLE  ,this->Process_Pointer);
 
            this->Sub_Process_ID = this->Process_Pointer->GetPid();
 
@@ -527,7 +527,6 @@ void Process_Execution_Controller::Process_End(int exit_status){
             this->Output_Print_Number++;
 
            this->Print_Construction_Process_Output();
-
          }
      }
 }
@@ -545,8 +544,6 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
           title = wxT("  THREAD MANAGEMENT LIBRARY CONSTRUCTION REPORT  ");
      }
 
-     //wxMessageOutput::Get()->Printf("this->Process_Exit_Status=%d",this->Process_Exit_Status);
-
      if(this->Process_Exit_Status == 0){
 
         if(this->Sub_Process_ID == this->Sub_Process_ID_Received){
@@ -556,8 +553,6 @@ void Process_Execution_Controller::Print_Construction_Process_Output(){
         else{
 
               this->error_stream_status = true;
-
-              wxMessageOutput::Get()->Printf("Before Print_Error_Stream %s");
 
               this->Print_Error_Stream(title);
         }
@@ -731,7 +726,7 @@ void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
 void Process_Execution_Controller::Print_Error_Stream(wxString title){
 
-     wxString output_path = this->Construction_Point + wxT("\\Compiler_Output");
+     wxString output_path = this->Construction_Point + wxT("\\Compiler_Output.txt");
 
      wxTextFile Output_file;
 

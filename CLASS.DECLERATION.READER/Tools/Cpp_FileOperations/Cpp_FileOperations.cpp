@@ -38,6 +38,8 @@ Cpp_FileOperations::Cpp_FileOperations(){
 
      this->is_path_exist = false;
 
+     this->File_Content = "";
+
    // Constructor Function
 };
 
@@ -379,6 +381,40 @@ void Cpp_FileOperations::MoveFile_Win(char * current_path, char * target_path){
             exit(0);
         }
     }
+}
+
+std::string Cpp_FileOperations::Receive_File_As_std_string(char * path){
+
+     this->SetFilePath(path);
+
+     this->FileOpen(Rf);
+
+     do{
+             std::string string_line = this->ReadLine();
+
+             this->File_Content = this->File_Content + string_line;
+
+     }while(!this->Control_End_of_File());
+
+     this->FileClose();
+
+     return this->File_Content;
+}
+
+bool Cpp_FileOperations::Is_This_File_Empty(char * path){
+
+     this->Receive_File_As_std_string(path);
+
+     this->Is_File_Empty = true;
+
+     std::string empty_string = "";
+
+     if(this->File_Content!=empty_string){
+
+        this->Is_File_Empty = false;
+     }
+
+     return this->Is_File_Empty;
 }
 
 void Cpp_FileOperations::Receive_File(char * path){

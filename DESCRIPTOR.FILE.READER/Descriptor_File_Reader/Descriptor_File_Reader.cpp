@@ -253,11 +253,21 @@ void Descriptor_File_Reader::Control_Process_Header_Files_Syntax(){
 
 void Descriptor_File_Reader::Remove_Compiler_Output_File(){
 
-     char Error_Message_File_Name [] = {'\\','C','o','m','p','i','l','e','r','_','O','u','t','p','u','t','\0'};
+     char Compiler_Output_File_Name [] = "Compiler_Output.txt";
 
-     int Error_Message_File_Name_Size = strlen(Error_Message_File_Name);
+     int Compiler_Output_File_Name_Size = strlen(Compiler_Output_File_Name);
 
      int Construction_Point_Name_Size = strlen(this->Get_Construction_Point());
+
+     bool is_directory_operator_exist = false;
+
+     for(int i=Construction_Point_Name_Size-10;i<Construction_Point_Name_Size;i++){
+
+         if(this->Get_Construction_Point()[i] == '\\'){
+
+            is_directory_operator_exist = true;
+         }
+     }
 
      this->Compiler_Output_File_Path = new char [10*Construction_Point_Name_Size];
 
@@ -270,9 +280,16 @@ void Descriptor_File_Reader::Remove_Compiler_Output_File(){
          index_counter++;
      }
 
-     for(int i=0;i<Error_Message_File_Name_Size;i++){
+     if(!is_directory_operator_exist){
 
-         this->Compiler_Output_File_Path[index_counter] = Error_Message_File_Name[i];
+         this->Compiler_Output_File_Path[index_counter] = '\\';
+
+         index_counter++;
+     }
+
+     for(int i=0;i<Compiler_Output_File_Name_Size;i++){
+
+         this->Compiler_Output_File_Path[index_counter] = Compiler_Output_File_Name[i];
 
          index_counter++;
      }

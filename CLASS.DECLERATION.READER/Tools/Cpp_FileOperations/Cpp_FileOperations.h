@@ -58,6 +58,7 @@ public:
  bool Control_End_of_File();
  std::string Read();
  std::string ReadLine();
+ std::string Receive_File_As_std_string(char * path);
  char * GetFilePath();
  char * ReadLine_as_Cstring();
  void Determine_Base_File_Size(char * path);
@@ -65,6 +66,7 @@ public:
  void Record_File(char * path);
  char * Conver_Std_String_To_Char(std::string string_line);
  bool Is_Path_Exist(char * path);
+ bool Is_This_File_Empty(char * path);
  void Clear_Dynamic_Memory();
 private:
  bool TryOpen(char path);
@@ -72,8 +74,9 @@ private:
  std::string String_Line;
  std::string string_word;
  std::string FilePath;
- std::string * File_Content;
+ std::string File_Content;
  bool Memory_Delete_Condition;
+ bool Is_File_Empty;
  char * CString;
  char * CString_FilePATH;
  char ** File_Index;

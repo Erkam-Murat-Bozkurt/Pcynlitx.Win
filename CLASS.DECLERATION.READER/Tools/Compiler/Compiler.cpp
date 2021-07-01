@@ -133,9 +133,9 @@ void Compiler::Receive_Descriptor_File_Infomations(){
 
 int Compiler::Build_Project(){
 
-     int system_return_value = this->System_Interface.System_Function(this->Final_Commad);
-     
-     if(system_return_value != 0){
+     int system_return_value = system(this->Final_Commad);
+
+     if(system_return_value == -1){
 
         std::cout << "\n COMPILER ERROR..";
 
@@ -432,6 +432,8 @@ void Compiler::Determine_Final_Command(){
 
      char Executable_File_Indicator [] = {'-','o','\0'};
 
+     char Compiler_Output_File [] = " 2> Compiler_Output.txt";
+
      int Inpt_Name_Size = 0, IDir_Name_Size = 0, LDir_Name_Size = 0, SDir_Name_Size = 0, SFIN_Name_Size = 0;
 
      int HFIN_Name_Size = 0, LIBD_Name_Size = 0, Opts_Name_size = 0, ExeF_Name_Size = 0, Main_Name_Size = 0;
@@ -571,6 +573,8 @@ void Compiler::Determine_Final_Command(){
 
         this->Place_Information(&this->Final_Commad,this->Libraries_Decleration_Command,&index_counter);
      }
+
+       this->Place_Information(&this->Final_Commad,Compiler_Output_File,&index_counter);
 
      this->Final_Commad[index_counter] = '\0';
 }
