@@ -86,6 +86,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
      wxString shell_command = "C:\\Program Files\\Pcynlitx\\bin\\Descriptor_File_Reader.exe " + Directory_Name;
 
+
      this->Process_Exit_Status = 0;
 
      this->Process_Event_Counter = 0;
@@ -93,20 +94,6 @@ void Process_Execution_Controller::Construction_Point_Determination(){
      this->Process_Pointer = new wxProcess(this->MainFrame_Pointer,wxID_ANY);
 
      this->Process_Pointer->Redirect();
-
-     this->Descriptor_Reader.Receive_Descriptor_File_Directory(Directory_Name);
-
-     char DescriptorFileName [] = "Project_Descriptor_File.txt";
-
-     this->Descriptor_Reader.Receive_Descriptor_File_Name(DescriptorFileName);
-
-     this->Descriptor_Reader.Receive_Descriptor_File_Infomations();
-
-     int inter_class_number = this->Descriptor_Reader.Get_Class_Number();
-
-     int smart_pointer_number =  this->Descriptor_Reader.Get_Shared_Data_Types_Number();
-
-     this->sleep_time = inter_class_number + smart_pointer_number;
 
      this->Process_Exit_Status = wxExecute(shell_command,wxEXEC_SYNC
 
@@ -153,6 +140,7 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
             delete this->Process_Pointer;
        }
+
 
        if(this->Process_Exit_Status == 0){
 
@@ -310,6 +298,8 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
         this->Construction_Point_Determination();
 
         if(this->is_construction_point_determined){
+
+           this->sleep_time_determination();
 
            this->Process_Exit_Status = 0;
 
@@ -702,6 +692,44 @@ void Process_Execution_Controller::Show_Descriptions(wxString Descriptor_File_Pa
 
             delete Succes_Dialog;
      }
+}
+
+void Process_Execution_Controller::sleep_time_determination(){
+
+     int Descriptor_File_Name_Size = 0;
+
+     for(int k=this->Descriptor_File_Path.length();k>0;k--){
+
+         if(this->Descriptor_File_Path[k] == '\\'){
+
+            break;
+         }
+
+         Descriptor_File_Name_Size++;
+     }
+
+     int Directory_Name_Size = this->Descriptor_File_Path.length() - Descriptor_File_Name_Size;
+
+     wxString Directory_Name = wxT("");
+
+     for(int k=0;k<Directory_Name_Size;k++){
+
+         Directory_Name = Directory_Name + this->Descriptor_File_Path[k];
+     }
+
+     this->Descriptor_Reader.Receive_Descriptor_File_Directory(Directory_Name);
+
+     char DescriptorFileName [] = "Project_Descriptor_File.txt";
+
+     this->Descriptor_Reader.Receive_Descriptor_File_Name(DescriptorFileName);
+
+     this->Descriptor_Reader.Receive_Descriptor_File_Infomations();
+
+     int inter_class_number = this->Descriptor_Reader.Get_Class_Number();
+
+     int smart_pointer_number =  this->Descriptor_Reader.Get_Shared_Data_Types_Number();
+
+     this->sleep_time = inter_class_number + smart_pointer_number;
 }
 
 void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){

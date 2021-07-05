@@ -39,7 +39,7 @@ public:
   Method_Datas * Get_Private_Method_Datas();
   Method_Datas * Get_Protected_Method_Datas();
 private:
-  void Receive_String(char ** Pointer, char * Method_Name, int String_Size);
+  void Receive_String(char ** Pointer, char * Method_Name, size_t String_Size);
   void Set_Currently_Working_Directory(char * path);
   void Clear_Method_Data(Method_Datas * Pointer);
   void Clear_Pointer_Memory(char ** Pointer);

@@ -407,11 +407,13 @@ bool Cpp_FileOperations::Is_This_File_Empty(char * path){
 
      this->Is_File_Empty = true;
 
-     std::string empty_string = "";
+     char * string = Conver_Std_String_To_Char(this->File_Content);
 
-     if(this->File_Content!=empty_string){
+     size_t string_size = strlen(string);
 
-        this->Is_File_Empty = false;
+     if(string_size>0){
+
+       this->Is_File_Empty = false;
      }
 
      return this->Is_File_Empty;
@@ -530,19 +532,6 @@ bool Cpp_FileOperations::Is_Path_Exist(char * path){
 
        this->is_path_exist = false;
      }
-
-     /*
-
-     this->SetFilePath(path);
-
-     if(this->TryOpen(Rf)){
-
-        this->is_path_exist = true;
-
-        this->FileClose();
-     }
-
-     */
 
      return this->is_path_exist;
 }

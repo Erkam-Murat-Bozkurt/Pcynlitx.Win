@@ -130,9 +130,17 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
      char ** Library_Names_Pointer = nullptr;
 
+
      if(this->Library_Names_Number > 0){
 
+         // The initialization of the pointer holding library names
+
          Library_Names_Pointer = new char * [10*this->Library_Names_Number];
+
+         for(int i=0;i<this->Library_Names_Number;i++){
+
+             Library_Names_Pointer[i] = nullptr;
+         }
 
          char Library_Names_subfix [] = ".a";
 
@@ -140,7 +148,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
          for(int i=0;i<this->Library_Names_Number;i++){
 
-             int Library_Name_Size = strlen(this->Library_Names[i]);
+             size_t Library_Name_Size = strlen(this->Library_Names[i]);
 
              Library_Names_Pointer[i] = new char [10*Library_Name_Size];
 
@@ -163,6 +171,7 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
          for(int k=0;((k<this->Library_Directory_Number) && (!is_that_library_exist));k++){
 
              is_that_library_exist = this->Directory_Manager.Search_File_in_Directory(this->Library_Directories[k],Library_Names_Pointer[i]);
+
          }
 
          if(!is_that_library_exist){

@@ -54,8 +54,11 @@ int Custom_System_Interface::System_Function(char * cmd){
 
      ZeroMemory(&processInformation,sizeof(processInformation));
 
-     this->return_value = CreateProcessA(NULL,cmd,NULL,NULL,TRUE,NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,&processInformation);
+     this->return_value = CreateProcessA(NULL,cmd,NULL,NULL,TRUE,
 
+                          NORMAL_PRIORITY_CLASS,NULL,NULL,&startupInfo,
+
+                          &processInformation);
 
      WaitForSingleObject( processInformation.hProcess, INFINITE );
 

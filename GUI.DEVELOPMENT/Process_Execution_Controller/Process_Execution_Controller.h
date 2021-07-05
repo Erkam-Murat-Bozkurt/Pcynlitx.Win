@@ -44,6 +44,7 @@ public:
 private:
   Descriptor_File_Reader Descriptor_Reader;
   void Remove_Construction_Point_Holder_File();
+  void sleep_time_determination();
   wxFrame * MainFrame_Pointer;
   Custom_Tree_View_Panel * Dir_List_Manager;
   wxProcess * Process_Pointer;

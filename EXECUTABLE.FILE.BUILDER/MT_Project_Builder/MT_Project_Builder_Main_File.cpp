@@ -29,8 +29,6 @@ int main(int argc, char ** argv){
 
     Builder.Clear_Dynamic_Memory();
 
-    std::cout << "\n";
-
     if(construction_success_status != 0){
 
        std::cout << "\n\t\tThe Construction has been failed..";

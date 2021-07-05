@@ -38,6 +38,8 @@ MethodReader::MethodReader(){
      this->ProtectedMethodNumber = 0;
 
      this->Memory_Delete_Condition = true;
+
+     this->SyntaxOperations = nullptr;
 }
 
 MethodReader::MethodReader(const MethodReader & orig){ }
@@ -63,9 +65,12 @@ void MethodReader::Clear_Dynamic_Memory(){
                 this->Clear_Pointer_Memory(&(this->PublicMethods[i]));
             }
 
-            delete [] this->PublicMethods;
+            if(this->PublicMethods != nullptr){
 
-            this->PublicMethods = nullptr;
+              delete [] this->PublicMethods;
+
+              this->PublicMethods = nullptr;
+            }
          }
 
          if(this->PrivateMethodNumber > 0){
@@ -75,9 +80,12 @@ void MethodReader::Clear_Dynamic_Memory(){
                 this->Clear_Pointer_Memory(&(this->PrivateMethods[i]));
             }
 
-            delete [] this->PrivateMethods;
+            if(this->PrivateMethods != nullptr){
 
-            this->PrivateMethods = nullptr;
+              delete [] this->PrivateMethods;
+
+              this->PrivateMethods = nullptr;
+            }
          }
 
 
@@ -88,9 +96,12 @@ void MethodReader::Clear_Dynamic_Memory(){
                 this->Clear_Pointer_Memory(&(this->ProtectedMethods[i]));
             }
 
-            delete [] this->ProtectedMethods;
+            if(this->ProtectedMethods != nullptr){
 
-            this->ProtectedMethods = nullptr;
+               delete [] this->ProtectedMethods;
+
+               this->ProtectedMethods = nullptr;
+            }
          }
       }
 
@@ -301,7 +312,9 @@ void MethodReader::ExtractClassMethods(){
 
             std::cerr << "\n\n  {";
 
-            std::cerr << "\n     There is a syntax error in \"" << this->ClassNameDeterminer.getClassName() << "\" class -";
+            std::cerr << "\n     There is a syntax error in \""
+
+                      << this->ClassNameDeterminer.getClassName() << "\" class -";
 
             std::cerr << "\n\n     decleration. The acess types of some functions can not be determined!";
 
@@ -331,7 +344,14 @@ void MethodReader::DeterminePublicMethods(){
 
         int PublicArea = this->SetPointExplorer.getPublicDeclerationArea();
 
-        this->PublicMethods = new char * [10*PublicArea];
+        int alloc_size = 10*PublicArea; // This area is allocated for safety.
+
+        this->PublicMethods = new char * [alloc_size];
+
+        for(int i=0;i<alloc_size;i++){
+
+            this->PublicMethods[i] = nullptr;
+        }
 
         for(int i=0;i<PublicArea;i++){
 
@@ -372,11 +392,13 @@ void MethodReader::DeterminePublicMethods(){
                   exit(EXIT_FAILURE);
                }
 
-               int String_Size = strlen(this->SyntaxOperations->getMethodLine());
+               size_t String_Size = strlen(this->SyntaxOperations->getMethodLine());
 
                this->PublicMethods[this->PublicMethodNumber] = new char [10*String_Size];
 
-               this->ReceiveMethodLine(&(this->PublicMethods[this->PublicMethodNumber]),this->SyntaxOperations->getMethodLine());
+               this->ReceiveMethodLine(&(this->PublicMethods[this->PublicMethodNumber]),
+
+                    this->SyntaxOperations->getMethodLine());
 
                this->PublicMethodNumber++;
 
@@ -402,7 +424,14 @@ void MethodReader::DeterminePrivateMethods(){
 
         int PrivateArea = this->SetPointExplorer.getPrivateDeclerationArea();
 
-        this->PrivateMethods = new char * [10*PrivateArea];
+        int alloc_size = 10*PrivateArea;
+
+        this->PrivateMethods = new char * [alloc_size];
+
+        for(int i=0;i<alloc_size;i++){
+
+            this->PrivateMethods[i] = nullptr;
+        }
 
         for(int i=0;i<PrivateArea;i++){
 
@@ -434,7 +463,9 @@ void MethodReader::DeterminePrivateMethods(){
 
                   std::cerr << "\n\n  {";
 
-                  std::cerr << "\n     There is a syntax error in \"" << this->ClassNameDeterminer.getClassName() << "\" class -";
+                  std::cerr << "\n     There is a syntax error in \""
+
+                            << this->ClassNameDeterminer.getClassName() << "\" class -";
 
                   std::cerr << "\n\n     private member function declarations.";
 
@@ -449,11 +480,13 @@ void MethodReader::DeterminePrivateMethods(){
                   exit(EXIT_FAILURE);
                }
 
-               int String_Size = strlen(this->SyntaxOperations->getMethodLine());
+               size_t String_Size = strlen(this->SyntaxOperations->getMethodLine());
 
                this->PrivateMethods[this->PrivateMethodNumber] = new char [10*String_Size];
 
-               this->ReceiveMethodLine(&this->PrivateMethods[this->PrivateMethodNumber],this->SyntaxOperations->getMethodLine());
+               this->ReceiveMethodLine(&this->PrivateMethods[this->PrivateMethodNumber],
+
+                      this->SyntaxOperations->getMethodLine());
 
                this->PrivateMethodNumber++;
 
@@ -479,7 +512,14 @@ void MethodReader::DetermineProtectedMethods(){
 
         int ProtectedArea = this->SetPointExplorer.getProtectedDeclerationArea();
 
-        this->ProtectedMethods = new char * [10*ProtectedArea];
+        int alloc_size = 10*ProtectedArea;
+
+        this->ProtectedMethods = new char * [alloc_size];
+
+        for(int i=0;i<alloc_size;i++){
+
+            this->ProtectedMethods[i] = nullptr;
+        }
 
         for(int i=0;i<ProtectedArea;i++){
 
@@ -511,7 +551,9 @@ void MethodReader::DetermineProtectedMethods(){
 
                   std::cerr << "\n\n  {";
 
-                  std::cerr << "\n     There is a syntax error in \"" << this->ClassNameDeterminer.getClassName() << "\" class -";
+                  std::cerr << "\n     There is a syntax error in \""
+
+                            << this->ClassNameDeterminer.getClassName() << "\" class -";
 
                   std::cerr << "\n\n     protected methods declarations.";
 
@@ -526,11 +568,13 @@ void MethodReader::DetermineProtectedMethods(){
                   exit(EXIT_FAILURE);
                }
 
-               int String_Size = strlen(this->SyntaxOperations->getMethodLine());
+               size_t String_Size = strlen(this->SyntaxOperations->getMethodLine());
 
                this->ProtectedMethods[this->ProtectedMethodNumber] = new char [10*String_Size];
 
-               this->ReceiveMethodLine(&this->ProtectedMethods[this->ProtectedMethodNumber],this->SyntaxOperations->getMethodLine());
+               this->ReceiveMethodLine(&this->ProtectedMethods[this->ProtectedMethodNumber],
+
+                      this->SyntaxOperations->getMethodLine());
 
                this->ProtectedMethodNumber++;
 
@@ -544,11 +588,11 @@ void MethodReader::DetermineProtectedMethods(){
 
 void MethodReader::ReceiveMethodLine(char ** MethodPointer,char * MethodLine){
 
-     int MethodLineSize = strlen(MethodLine);
+     size_t MethodLineSize = strlen(MethodLine);
 
      int index_counter = 0;
 
-     for(int i=0;i<MethodLineSize;i++){
+     for(size_t i=0;i<MethodLineSize;i++){
 
          if(MethodLine[i] != '\n'){
 

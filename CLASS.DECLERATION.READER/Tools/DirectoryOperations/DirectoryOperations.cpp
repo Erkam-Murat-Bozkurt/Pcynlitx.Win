@@ -434,7 +434,14 @@ void DirectoryOperations::Determine_File_List_In_Directory(char * Directory_Name
 
      if( this->File_Number > 0 ){
 
-         this->File_List = new std::string [5*this->File_Number];
+         int alloc_size = 5*this->File_Number;
+
+         this->File_List = new std::string [alloc_size];
+
+         for(int i=0;i<alloc_size;i++){
+
+             this->File_List[i] = "";
+         }
 
          size_t index_counter = 0;
 

@@ -9,6 +9,13 @@
 
      Descriptor_File_Reader File_Reader;
 
+     if(argc != 2){
+
+        std::cout << "\n\n The usage: Descriptor_File_Reader <Project Directory> \n\n";
+
+        exit(0);
+     }
+
      File_Reader.Receive_Descriptor_File_Directory(argv[1]);
 
      File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");

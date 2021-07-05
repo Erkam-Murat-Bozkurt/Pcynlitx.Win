@@ -24,8 +24,7 @@ public:
  char * GetHeaderFilePath();
  char * GetDataBaseConstructionPoint();
 private:
- void Place_String(char ** Pointer, char * String, int String_Size);
- void Place_String(char ** Pointer, const  char * String, int String_Size);
+ void Place_String(char ** Pointer, char * String, size_t String_Size);
  void Clear_Pointer_Memory(char ** Pointer);
  void DetermineRecordFilePath();
  void DetermineClassName();

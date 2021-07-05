@@ -154,7 +154,7 @@ void DataBaseBuilder::Build_DataBase(MethodReader * Reader){
 
      this->Reader.ReadMethodList();
 
-     int String_Size = strlen(Reader->GetClassName());
+     size_t String_Size = strlen(Reader->GetClassName());
 
      this->Class_Name = new char [10*String_Size];
 
@@ -314,7 +314,7 @@ void DataBaseBuilder::Receive_Method_Datas(Method_Datas * Data_Holder){
 
      // Place Return type information
 
-     int Return_Type_Size = strlen(this->Interpreter.getMethodReturnType());
+     size_t Return_Type_Size = strlen(this->Interpreter.getMethodReturnType());
 
      if(Return_Type_Size > 0){
 
@@ -334,7 +334,7 @@ void DataBaseBuilder::Receive_Method_Datas(Method_Datas * Data_Holder){
 
      // Place Acess type information
 
-     int Acess_Type_Size = strlen(this->Interpreter.getMethodAccessType());
+     size_t Acess_Type_Size = strlen(this->Interpreter.getMethodAccessType());
 
      Data_Holder->Acess_Type = new char [10*Acess_Type_Size];
 
@@ -350,7 +350,7 @@ void DataBaseBuilder::Receive_Method_Datas(Method_Datas * Data_Holder){
 
         for(int k=0;k<Parameter_Number;k++){
 
-            int Parameter_Name_Size = strlen(this->Interpreter.getMethodParameterNames()[k]);
+            size_t Parameter_Name_Size = strlen(this->Interpreter.getMethodParameterNames()[k]);
 
             if(Parameter_Name_Size == 0){
 
@@ -365,14 +365,18 @@ void DataBaseBuilder::Receive_Method_Datas(Method_Datas * Data_Holder){
 
                   Data_Holder->Parameter_Names[k] = new char [10*Parameter_Name_Size];
 
-                  this->Receive_String(&(Data_Holder->Parameter_Names[k]),this->Interpreter.getMethodParameterNames()[k],Parameter_Name_Size);
+                  this->Receive_String(&(Data_Holder->Parameter_Names[k]),
+
+                      this->Interpreter.getMethodParameterNames()[k],Parameter_Name_Size);
             }
 
-            int Parameter_Type_Size = strlen(this->Interpreter.getMethodParameterTypes()[k]);
+            size_t Parameter_Type_Size = strlen(this->Interpreter.getMethodParameterTypes()[k]);
 
             Data_Holder->Parameter_Types[k] = new char [10*Parameter_Type_Size];
 
-            this->Receive_String(&(Data_Holder->Parameter_Types[k]),this->Interpreter.getMethodParameterTypes()[k],Parameter_Type_Size);
+            this->Receive_String(&(Data_Holder->Parameter_Types[k]),
+
+                    this->Interpreter.getMethodParameterTypes()[k],Parameter_Type_Size);
         }
      }
      else{
@@ -401,9 +405,9 @@ void DataBaseBuilder::Clear_Interpreter_Memory(){
      this->Interpreter.Clear_Dynamic_Memory();
 }
 
-void DataBaseBuilder::Receive_String(char ** Pointer, char * String, int String_Size){
+void DataBaseBuilder::Receive_String(char ** Pointer, char * String, size_t String_Size){
 
-     for(int i=0;i<String_Size;i++){
+     for(size_t i=0;i<String_Size;i++){
 
          (*Pointer)[i] = String[i];
      }

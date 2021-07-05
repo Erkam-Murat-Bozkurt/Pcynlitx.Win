@@ -107,8 +107,6 @@ int  MT_Project_Builder::Build_Project(){
      if(return_value!=0){
 
         this->construction_success = 1;
-
-        std::cout << "\n MT_Project_Builder will return :" << this->construction_success;
      }
 
      char Compiler_Descriptor_File_Name [] = "Compiler_Descriptor_File";

@@ -86,7 +86,7 @@ void ListFileOrganizer::Clear_Pointer_Memory(char ** Pointer){
 
 void ListFileOrganizer::ReceiveIncludeDirectoryPATH(char * IncludeDirectory){
 
-     int String_Size = strlen(IncludeDirectory);
+     size_t String_Size = strlen(IncludeDirectory);
 
      this->IncludeDirectoryPATH = new char [10*String_Size];
 
@@ -97,7 +97,7 @@ void ListFileOrganizer::ReceiveIncludeDirectoryPATH(char * IncludeDirectory){
 
 void ListFileOrganizer::ReceiveDataBaseConstructionPoint(char * ConstructionPoint){
 
-     int String_Size = strlen(ConstructionPoint);
+     size_t String_Size = strlen(ConstructionPoint);
 
      this->DataBaseConstructionPoint = new char [10*String_Size];
 
@@ -108,7 +108,7 @@ void ListFileOrganizer::ReceiveDataBaseConstructionPoint(char * ConstructionPoin
 
 void ListFileOrganizer::Set_Target_Header_File_Path(char * Target_Header_File_Path){
 
-     int String_Size = strlen(Target_Header_File_Path);
+     size_t String_Size = strlen(Target_Header_File_Path);
 
      this->HeaderFilePath = new char [10*String_Size];
 
@@ -143,35 +143,38 @@ void ListFileOrganizer::DetermineRecordFilePath(){
 
      char meta_file_name [] = {'_','M','F','\0'};
 
-     int meta_file_name_size = strlen(meta_file_name);
+     size_t meta_file_name_size = strlen(meta_file_name);
 
-     int Word_size = strlen(decleration_list_word);
+     size_t Word_size = strlen(decleration_list_word);
 
-     int ClassNameSize = strlen(this->ClassNameDeterminer.getClassName());
+     size_t ClassNameSize = strlen(this->ClassNameDeterminer.getClassName());
 
-     int ConstructionPoint_Name_Size = strlen(this->DataBaseConstructionPoint);
+     size_t ConstructionPoint_Name_Size = strlen(this->DataBaseConstructionPoint);
 
-     int ListNameSize = Word_size + ClassNameSize + ConstructionPoint_Name_Size;
+     size_t ListNameSize = Word_size + ClassNameSize + ConstructionPoint_Name_Size;
 
      this->Record_File_Path = new char [10*ListNameSize];
 
-     for(int i=0;i<5*ListNameSize;i++){
+     for(size_t i=0;i<5*ListNameSize;i++){
 
          this->Record_File_Path[i] = '\0';
      }
 
      int counter = 0;
 
-     for(int i=0;i<ConstructionPoint_Name_Size;i++){
+     for(size_t i=0;i<ConstructionPoint_Name_Size;i++){
 
          this->Record_File_Path[counter] = this->DataBaseConstructionPoint[i];
 
          counter++;
      }
 
-     for(int i=0;i<ClassNameSize;i++){
+     for(size_t i=0;i<ClassNameSize;i++){
 
-         if((this->ClassNameDeterminer.getClassName()[i] != '\0') && (this->ClassNameDeterminer.getClassName()[i] != ' ')){
+         if((this->ClassNameDeterminer.getClassName()[i] != '\0')
+
+              && (this->ClassNameDeterminer.getClassName()[i] != ' '))
+         {
 
               this->Record_File_Path[counter] = this->ClassNameDeterminer.getClassName()[i];
 
@@ -179,7 +182,7 @@ void ListFileOrganizer::DetermineRecordFilePath(){
          }
      }
 
-     for(int i=0;i<Word_size;i++){
+     for(size_t i=0;i<Word_size;i++){
 
          if(!(decleration_list_word[i]=='\0')){
 
@@ -193,18 +196,18 @@ void ListFileOrganizer::DetermineRecordFilePath(){
 
      this->Record_File_Path[counter] = '\0';
 
-     int MetaFileNameSize = ListNameSize + meta_file_name_size;
+     size_t MetaFileNameSize = ListNameSize + meta_file_name_size;
 
      this->Meta_File_Path = new char [10*MetaFileNameSize];
 
-     for(int i=0;i<5*MetaFileNameSize;i++){
+     for(size_t i=0;i<5*MetaFileNameSize;i++){
 
          this->Meta_File_Path[i] = '\0';
      }
 
      counter = 0;
 
-     for(int i=0;i<ListNameSize;i++){
+     for(size_t i=0;i<ListNameSize;i++){
 
          if((this->Record_File_Path[i] != '\0') && (this->Record_File_Path[i] != ' ')){
 
@@ -214,7 +217,7 @@ void ListFileOrganizer::DetermineRecordFilePath(){
          }
      }
 
-     for(int i=0;i<meta_file_name_size;i++){
+     for(size_t i=0;i<meta_file_name_size;i++){
 
          if((this->Record_File_Path[i] != '\0') && (this->Record_File_Path[i] != ' ')){
 
@@ -230,19 +233,9 @@ void ListFileOrganizer::DetermineRecordFilePath(){
 }
 
 
-void ListFileOrganizer::Place_String(char ** Pointer,char * String, int String_Size){
+void ListFileOrganizer::Place_String(char ** Pointer,char * String, size_t String_Size){
 
-     for(int i=0;i<String_Size;i++){
-
-         (*Pointer)[i] = String[i];
-     }
-
-     (*Pointer)[String_Size] = '\0';
-}
-
-void ListFileOrganizer::Place_String(char ** Pointer, const char * String, int String_Size){
-
-     for(int i=0;i<String_Size;i++){
+     for(size_t i=0;i<String_Size;i++){
 
          (*Pointer)[i] = String[i];
      }
