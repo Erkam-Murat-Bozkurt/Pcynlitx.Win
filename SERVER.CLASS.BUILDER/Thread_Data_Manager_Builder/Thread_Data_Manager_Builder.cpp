@@ -109,6 +109,10 @@ void Thread_Data_Manager_Builder::Build_Thread_Data_Manager(){
 
      this->FileManager.WriteToFile("\n");
 
+     this->FileManager.WriteToFile("\n      this->The_First_Thread_Execution_Function = 0;");
+
+     this->FileManager.WriteToFile("\n");
+
      this->FileManager.WriteToFile("\n      this->Total_Thread_Number = ");
 
      int Total_Thread_Number = this->Reader_Pointer->Get_Thread_Number();
@@ -276,6 +280,13 @@ void Thread_Data_Manager_Builder::Build_Thread_Data_Manager(){
          this->FileManager.WriteToFile(this->Translater.Translate(i));
 
          this->FileManager.WriteToFile("].Rescue_Permission = false;");
+
+
+         this->FileManager.WriteToFile("\n      this->Function_Names_Data_List[");
+
+         this->FileManager.WriteToFile(this->Translater.Translate(i));
+
+         this->FileManager.WriteToFile("].function_block_wait_status = 0;");
      }
 
      this->FileManager.WriteToFile("\n };");
@@ -1097,6 +1108,96 @@ void Thread_Data_Manager_Builder::Build_Thread_Data_Manager(){
 
      this->FileManager.WriteToFile("\n");
 
+
+     // SET FUNCTION BLOCK STATUS IMPLEMENTATION ( Set_Block_Function_Wait_Status(int status)  ) ----------------------------------------------------
+
+     this->FileManager.WriteToFile("\n void ");
+
+     this->FileManager.WriteToFile(name_space);
+
+     this->FileManager.WriteToFile("::Thread_Data_Manager::Set_Block_Function_Wait_Status(std::string Function_Name, int status){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int Function_Name_Number = 0;");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      this->Get_Thread_Function_Name_Number(Function_Name,&Function_Name_Number);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      this->Function_Names_Data_List[Function_Name_Number].function_block_wait_status = status;");
+
+     this->FileManager.WriteToFile("\n };");
+
+     this->FileManager.WriteToFile("\n");
+
+
+
+
+     // GET FUNCTION BLOCK STATUS IMPLEMENTATION ( Get_Block_Function_Wait_Status(int status)  ) ----------------------------------------------------
+
+     this->FileManager.WriteToFile("\n int ");
+
+     this->FileManager.WriteToFile(name_space);
+
+     this->FileManager.WriteToFile("::Thread_Data_Manager::Get_Block_Function_Wait_Status(std::string Function_Name) {");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int Function_Name_Number = 0;");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      this->Get_Thread_Function_Name_Number(Function_Name,&Function_Name_Number);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      return this->Function_Names_Data_List[Function_Name_Number].function_block_wait_status;");
+
+     this->FileManager.WriteToFile("\n };");
+
+     this->FileManager.WriteToFile("\n");
+
+
+
+
+     // GET THE FIRST THREAD THE EXECUTING THE FUNCTION IMPLEMENTATION ( Get_Block_Status(int Thread_Number)  ) ----------------------------------------------------
+
+     this->FileManager.WriteToFile("\n int ");
+
+     this->FileManager.WriteToFile(name_space);
+
+     this->FileManager.WriteToFile("::Thread_Data_Manager::GetFirstThreadExecutingFunction(std::string Function_Name) {");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n       this->The_First_Thread_Execution_Function = 0;");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n       for(int i=0;i<this->Total_Thread_Number;i++){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n           if(this->Thread_Data_List[i].Thread_Function_Name == Function_Name){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n              this->The_First_Thread_Execution_Function = i;");
+
+     this->FileManager.WriteToFile("\n           }");
+
+     this->FileManager.WriteToFile("\n       }");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n       return this->The_First_Thread_Execution_Function;");
+
+     this->FileManager.WriteToFile("\n };");
+
+     this->FileManager.WriteToFile("\n");
 
      this->FileManager.FileClose();
 

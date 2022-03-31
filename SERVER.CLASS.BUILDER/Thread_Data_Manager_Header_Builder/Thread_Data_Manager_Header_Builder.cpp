@@ -119,6 +119,8 @@ void Thread_Data_Manager_Header_Builder::Build_Thread_Data_Manager_Header_File()
 
      this->FileManager.WriteToFile("\n    int  Enter_Counter;");
 
+     this->FileManager.WriteToFile("\n    int  function_block_wait_status;");
+
      this->FileManager.WriteToFile("\n    int  Two_Prm_Function_Enter_Counter;");
 
      this->FileManager.WriteToFile("\n    std::string Thread_Function_Name;");
@@ -207,11 +209,17 @@ void Thread_Data_Manager_Header_Builder::Build_Thread_Data_Manager_Header_File()
 
      this->FileManager.WriteToFile("\n    bool Get_Thread_Operational_Status(int Thread_Number) const;");
 
+     this->FileManager.WriteToFile("\n    int  GetFirstThreadExecutingFunction(std::string Function_Name);");
+
      this->FileManager.WriteToFile("\n    void Get_Thread_Function_Name_Number(std::string Function_Name, int * Function_Name_Number);");
 
      this->FileManager.WriteToFile("\n    void Stop_Thread(std::unique_lock<std::mutex> * mtx, int thread_number);");
 
      this->FileManager.WriteToFile("\n    void Activate_Thread(int thread_number);");
+
+     this->FileManager.WriteToFile("\n    void Set_Block_Function_Wait_Status(std::string function, int status);");
+
+     this->FileManager.WriteToFile("\n    int Get_Block_Function_Wait_Status(std::string function);");
 
      this->FileManager.WriteToFile("\n    void Exit();");
 
@@ -228,6 +236,8 @@ void Thread_Data_Manager_Header_Builder::Build_Thread_Data_Manager_Header_File()
      this->FileManager.WriteToFile("\n    int Thread_Function_Number;");
 
      this->FileManager.WriteToFile("\n    int Caller_Thread_Number;");
+
+     this->FileManager.WriteToFile("\n    int The_First_Thread_Execution_Function;");
 
      this->FileManager.WriteToFile("\n    bool Dead_Lock_Risk;");
 

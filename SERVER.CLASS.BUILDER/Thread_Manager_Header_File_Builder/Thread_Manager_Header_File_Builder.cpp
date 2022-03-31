@@ -139,6 +139,10 @@ void Thread_Manager_Header_File_Builder::Build_Thread_Manager_Header_File(){
 
      this->FileManager.WriteToFile("\n    bool Get_Thread_Block_Status(int Thread_Number) const;");
 
+     this->FileManager.WriteToFile("\n    void function_switch(std::string function_1, std::string function_2);");
+
+     this->FileManager.WriteToFile("\n    void reset_function_switch(std::string function_1, std::string function_2);");
+
      this->FileManager.WriteToFile("\n    void yield();");
 
      this->FileManager.WriteToFile("\n   private:");

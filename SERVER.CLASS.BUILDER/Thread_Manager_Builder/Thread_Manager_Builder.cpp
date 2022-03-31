@@ -742,6 +742,14 @@ void Thread_Manager_Builder::Build_Thread_Manager(){
 
      this->FileManager.WriteToFile("\n");
 
+     this->FileManager.WriteToFile("\n              int status = 0;");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n              this->Data_Manager.Set_Block_Function_Wait_Status(Function_Name,status);");
+
+     this->FileManager.WriteToFile("\n");
+
      this->FileManager.WriteToFile("\n              this->Data_Manager.Set_Function_Rescue_Permission(Function_Name,true);");
 
      this->FileManager.WriteToFile("\n           }");
@@ -794,11 +802,20 @@ void Thread_Manager_Builder::Build_Thread_Manager(){
 
      this->FileManager.WriteToFile("\n");
 
-     this->FileManager.WriteToFile("\n                  this->Data_Manager.Stop_Thread(&Function_lock,Thread_Number);");   // Thread Stop Point
+     this->FileManager.WriteToFile("\n                 int status = 1;");
 
      this->FileManager.WriteToFile("\n");
 
-     this->FileManager.WriteToFile("\n                  Function_lock.unlock();");
+     this->FileManager.WriteToFile("\n                 this->Data_Manager.Set_Block_Function_Wait_Status(Function_Name,status);");
+
+     this->FileManager.WriteToFile("\n");
+
+
+     this->FileManager.WriteToFile("\n                 this->Data_Manager.Stop_Thread(&Function_lock,Thread_Number);");   // Thread Stop Point
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n                 Function_lock.unlock();");
 
      this->FileManager.WriteToFile("\n           }");
 
@@ -1027,6 +1044,106 @@ void Thread_Manager_Builder::Build_Thread_Manager(){
      this->FileManager.WriteToFile("\n };");
 
      this->FileManager.WriteToFile("\n");
+
+
+
+     // YEILD  ---------------------------------------------------------------------------------------------------
+
+     this->FileManager.WriteToFile("\n void ");
+
+     this->FileManager.WriteToFile(name_space);
+
+     this->FileManager.WriteToFile("::Thread_Manager::function_switch(std::string function_1, std::string function_2){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int thr_num_func_1 = this->Data_Manager.GetFirstThreadExecutingFunction(function_1);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int thr_num_func_2 = this->Data_Manager.GetFirstThreadExecutingFunction(function_2);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int func_2_block_status = this->Data_Manager.Get_Block_Function_Wait_Status(function_2);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      if(func_2_block_status > 0){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n         this->rescue(function_2,thr_num_func_1);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      };");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      this->wait(function_1,thr_num_func_2);");
+
+     this->FileManager.WriteToFile("\n };");
+
+     this->FileManager.WriteToFile("\n");
+
+
+     // YEILD  ---------------------------------------------------------------------------------------------------
+
+     this->FileManager.WriteToFile("\n void ");
+
+     this->FileManager.WriteToFile(name_space);
+
+     this->FileManager.WriteToFile("::Thread_Manager::reset_function_switch(std::string function_1, std::string function_2){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int thr_num_func_1 = this->Data_Manager.GetFirstThreadExecutingFunction(function_1);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int thr_num_func_2 = this->Data_Manager.GetFirstThreadExecutingFunction(function_2);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int func_1_block_status = this->Data_Manager.Get_Block_Function_Wait_Status(function_1);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      int func_2_block_status = this->Data_Manager.Get_Block_Function_Wait_Status(function_2);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      if(func_1_block_status > 0){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n         this->rescue(function_1,thr_num_func_2);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      };");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      if(func_2_block_status > 0){");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n         this->rescue(function_2,thr_num_func_1);");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n      };");
+
+     this->FileManager.WriteToFile("\n");
+
+     this->FileManager.WriteToFile("\n };");
+
+     this->FileManager.WriteToFile("\n");
+
 
 
      // YEILD  ---------------------------------------------------------------------------------------------------

@@ -469,6 +469,40 @@ void TM_Client_Builder::Build_Thread_Manager_Client(){
 
      this->File_Manager.WriteToFile("\n };");
 
+
+     this->File_Manager.WriteToFile("\n\n");
+
+     this->File_Manager.WriteToFile(" void ");
+
+     this->File_Manager.WriteToFile(name_space);
+
+     this->File_Manager.WriteToFile("::TM_Client::function_switch(std::string function_1, std::string function_2) {");
+
+     this->File_Manager.WriteToFile("\n\n");
+
+     this->Write_Space(5);
+
+     this->File_Manager.WriteToFile("return this->Connection_Pointer->function_switch(function_1,function_2);");
+
+     this->File_Manager.WriteToFile("\n };");
+
+
+     this->File_Manager.WriteToFile("\n\n");
+
+     this->File_Manager.WriteToFile(" void ");
+
+     this->File_Manager.WriteToFile(name_space);
+
+     this->File_Manager.WriteToFile("::TM_Client::reset_function_switch(std::string function_1, std::string function_2) {");
+
+     this->File_Manager.WriteToFile("\n\n");
+
+     this->Write_Space(5);
+
+     this->File_Manager.WriteToFile("return this->Connection_Pointer->reset_function_switch(function_1,function_2);");
+
+     this->File_Manager.WriteToFile("\n };");
+
      this->File_Manager.FileClose();
 
      this->Run_System_Commands();

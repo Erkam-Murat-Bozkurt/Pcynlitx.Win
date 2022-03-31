@@ -213,9 +213,9 @@ void TM_Client_Header_Builder::Build_Header_File(){
 
      this->File_Manager.WriteToFile("\n    void switch_wait(int Number);");
 
-     this->File_Manager.WriteToFile("\n     void start_serial(int start_number, int end_number, int thread_number);");
+     this->File_Manager.WriteToFile("\n    void start_serial(int start_number, int end_number, int thread_number);");
 
-     this->File_Manager.WriteToFile("\n     void end_serial(int start_number, int end_number, int thread_number);");
+     this->File_Manager.WriteToFile("\n    void end_serial(int start_number, int end_number, int thread_number);");
 
      this->File_Manager.WriteToFile("\n    void wait(int Number, int Rescuer_Thread);");
 
@@ -230,6 +230,10 @@ void TM_Client_Header_Builder::Build_Header_File(){
      this->File_Manager.WriteToFile("\n    void rescue(int Number, int Rescuer_Thread_Number);");
 
      this->File_Manager.WriteToFile("\n    void rescue(std::string Function_Name, int Rescuer_Thread_Number);");
+
+     this->File_Manager.WriteToFile("\n    void function_switch(std::string function_1, std::string function_2);");
+
+     this->File_Manager.WriteToFile("\n    void reset_function_switch(std::string function_1, std::string function_2);");
 
      this->File_Manager.WriteToFile("\n    void Exit();");
 
