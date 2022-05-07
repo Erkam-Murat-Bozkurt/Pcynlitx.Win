@@ -246,7 +246,7 @@ void Test_Program_Builder::Determine_Compiler_System_Command(const char * Header
 
      char Linker_Character [] = {'-','l','\0'};
 
-     char Directory_Character [] = {'\\','\0'};
+     //char Directory_Character [] = {'\\','\0'};
 
      char Space_Character [] = {' ','\0'};
 
@@ -361,7 +361,7 @@ void Test_Program_Builder::Determine_Included_Header_Files_Number(){
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
-               for(int i=0;i<this->String_Line.length();i++){
+               for(size_t i=0;i<this->String_Line.length();i++){
 
                    if(this->String_Line[i] == '\"'){
 
@@ -369,7 +369,7 @@ void Test_Program_Builder::Determine_Included_Header_Files_Number(){
 
                       int double_quotes_numner = 0;
 
-                      for(int k = 0;k<this->String_Line.length();k++){
+                      for(size_t k = 0;k<this->String_Line.length();k++){
 
                           if(this->String_Line[k] == '\"'){
 
@@ -416,7 +416,7 @@ void Test_Program_Builder::Read_Include_File_Names(){
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
-                for(int i=0;i<this->String_Line.length();i++){
+                for(size_t i=0;i<this->String_Line.length();i++){
 
                     if(this->String_Line[i] == '\"'){
 
@@ -497,15 +497,15 @@ bool Test_Program_Builder::Include_Line_Determiner(std::string String_Line){
 
      char Include_Word [] = {'i','n','c','l','u','d','e','\0'};
 
-     int Include_Word_Character_Size = strlen(Include_Word);
+     size_t Include_Word_Character_Size = strlen(Include_Word);
 
-     for(int i=0;i<String_Line.length();i++){
+     for(size_t i=0;i<String_Line.length();i++){
 
          if(String_Line[i] == Include_Word[0]){
 
             this->Include_Line_Condition = true;
 
-            for(int k=0;k<Include_Word_Character_Size;k++){
+            for(size_t k=0;k<Include_Word_Character_Size;k++){
 
                if(String_Line[i+k] != Include_Word[k]){
 

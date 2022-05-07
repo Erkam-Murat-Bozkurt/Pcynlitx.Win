@@ -143,9 +143,9 @@ void Class_Compiler::Find_Class_Name(){
 
      CHAR Buffer[BUFSIZE];
 
-     DWORD dwRet;
+     //DWORD dwRet;
 
-     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+     GetCurrentDirectory(BUFSIZE, Buffer);
 
      char * Current_Directory = Buffer;
 
@@ -232,19 +232,19 @@ void Class_Compiler::Determine_Compiler_System_Command(char * Header_Files_Direc
 
      char Source_File_Directory_Character [] = {'-','L','\0'};
 
-     char Directory_Character [] = {'\\','\0'};
+     //char Directory_Character [] = {'\\','\0'};
 
      char include_word [] = {'-','i','n','c','l','u','d','e','\0'};
 
      char Space_Character [] = {' ','\0'};
 
-     char Linker_Character [] = {'-','l','\0'};
+     //char Linker_Character [] = {'-','l','\0'};
 
      CHAR Buffer[BUFSIZE];
 
-     DWORD dwRet;
+     //DWORD dwRet;
 
-     dwRet =  GetCurrentDirectory(BUFSIZE, Buffer);
+     GetCurrentDirectory(BUFSIZE, Buffer);
 
      char * Current_Directory = Buffer;
 
@@ -338,7 +338,7 @@ void Class_Compiler::Determine_Included_Header_Files_Number(){
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
-               for(int i=0;i<this->String_Line.length();i++){
+               for(size_t i=0;i<this->String_Line.length();i++){
 
                    if(this->String_Line[i] == '\"'){
 
@@ -346,7 +346,7 @@ void Class_Compiler::Determine_Included_Header_Files_Number(){
 
                       int double_quotes_numner = 0;
 
-                      for(int k = 0;k<this->String_Line.length();k++){
+                      for(size_t k = 0;k<this->String_Line.length();k++){
 
                           if(this->String_Line[k] == '\"'){
 
@@ -392,7 +392,7 @@ void Class_Compiler::Read_Include_File_Names(){
 
             if(this->Include_Line_Determiner(this->String_Line)){
 
-                for(int i=0;i<this->String_Line.length();i++){
+                for(size_t i=0;i<this->String_Line.length();i++){
 
                     if(this->String_Line[i] == '\"'){
 
@@ -471,13 +471,13 @@ void Class_Compiler::Copy_Header_File(char * Header_Files_Directory){
 
      char Directory_Character [] = {'/','\0'};
 
-     char Space_Character [] = {' ','\0'};
+     //char Space_Character [] = {' ','\0'};
 
      CHAR Buffer[BUFSIZE];
 
-     DWORD dwRet;
+     //DWORD dwRet;
 
-     dwRet =  GetCurrentDirectory(BUFSIZE, Buffer);
+     GetCurrentDirectory(BUFSIZE, Buffer);
 
      char * Current_Directory = Buffer;
 
@@ -524,9 +524,9 @@ void Class_Compiler::Send_Object_File(char * Object_Files_Directory){
 
      char Buffer[BUFSIZE];
 
-     DWORD dwRet;
+     //DWORD dwRet;
 
-     dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+     GetCurrentDirectory(BUFSIZE, Buffer);
 
      char * Current_Directory = Buffer;
 
@@ -571,7 +571,7 @@ bool Class_Compiler::Include_Line_Determiner(std::string String_Line){
 
      int Include_Word_Character_Size = strlen(Include_Word);
 
-     for(int i=0;i<String_Line.length();i++){
+     for(size_t i=0;i<String_Line.length();i++){
 
          if(String_Line[i] == Include_Word[0]){
 
