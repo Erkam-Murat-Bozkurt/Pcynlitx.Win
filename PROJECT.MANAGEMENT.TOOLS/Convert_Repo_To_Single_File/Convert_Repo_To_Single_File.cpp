@@ -121,6 +121,13 @@ void Convert_Repo_To_Single_File::List_Files_in_Repo(){
      this->DirectoryManager.ChangeDirectory(this->Repo_Directory);
 
      int system_return_value = system(Listing_Command);
+
+     if(system_return_value == -1){
+
+         std::cout << "\n git repo file list can not be printed ..";
+
+         exit(0);
+     }
 }
 
 void Convert_Repo_To_Single_File::Determine_File_Size(){
