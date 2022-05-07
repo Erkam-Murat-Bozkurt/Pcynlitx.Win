@@ -520,7 +520,7 @@ void Class_Compiler::Send_Object_File(char * Object_Files_Directory){
 
      char Directory_Character [] = {'\\','\0'};
 
-     char Space_Character [] = {' ','\0'};
+     //char Space_Character [] = {' ','\0'};
 
      char Buffer[BUFSIZE];
 
