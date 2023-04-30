@@ -27,11 +27,11 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  Custom_TabArt::Custom_TabArt() : wxAuiDefaultTabArt()
  {
-    this->page_close_icon = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\close_tab.png"),
+    this->page_close_icon = new wxBitmap(wxT("D:\\Pcynlitx_Build_Platform\\icons\\close_tab.png"),
 
                              wxBITMAP_TYPE_ANY);
 
-    this->m_tabCtrlHeight = 46;
+    this->m_tabCtrlHeight = 40;
  }
 
  wxAuiTabArt * Custom_TabArt::Clone() {
@@ -48,7 +48,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  void Custom_TabArt::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect & rect) {
 
-      dc.SetBrush(wxColour(240,240,240));
+      dc.SetBrush(wxBrush(wnd->GetBackgroundColour()));
+
+
+      //dc.SetBrush(wxColour(150,150,150));
 
       dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1,rect.GetWidth()+2,rect.GetHeight()+2);
  }
@@ -57,180 +60,199 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
                  const wxRect & in_rect, int close_button_state,
 
-                 wxRect *out_tab_rect, wxRect * out_button_rect, int * x_extent)
+                 wxRect * out_tab_rect, wxRect * out_button_rect, int * x_extent)
  {
 
-        wxCoord normal_textx, normal_texty;
+       wxCoord normal_textx, normal_texty;
 
-        wxCoord selected_textx, selected_texty;
+       wxCoord selected_textx, selected_texty;
 
-        wxCoord texty;
+       wxCoord texty;
 
-        wxString caption = page.caption;
-
-        wxFont tab_font(10,wxFONTFAMILY_MODERN,wxFONTSTYLE_NORMAL,
-
-                             wxFONTWEIGHT_NORMAL,false,"Liberation Mono");
-
-        dc.SetFont(tab_font);
-
-        dc.GetTextExtent(caption, &selected_textx, &selected_texty);
-
-        dc.SetFont(tab_font);
-
-        dc.GetTextExtent(caption, &normal_textx, &normal_texty);
-
-        // figure out the size of the tab
-        wxSize tab_size = GetTabSize(dc,wnd,page.caption,page.bitmap,
-
-                                     page.active,close_button_state,x_extent);
-
-        wxCoord tab_height = tab_size.y;
-
-        wxCoord tab_width = tab_size.x;
-
-        wxCoord tab_x = in_rect.x-4;
-
-        wxCoord tab_y = in_rect.y;
-
-        if (page.active)
-        {
-            dc.SetFont(tab_font);
-
-            texty = selected_texty;
-        }
-        else
-        {
-               dc.SetFont(tab_font);
-
-               texty = normal_texty;
-        }
+       wxString caption = page.caption;
 
 
-        wxPoint border_points[6];
+       dc.SetFont(wnd->GetFont());
 
-        if (page.active)
-        {
-             // draw active tab
+       dc.GetTextExtent(caption, &selected_textx, &selected_texty);
 
-             // draw base background color
+       dc.GetTextExtent(caption, &normal_textx, &normal_texty);
 
-            wxRect r(tab_x, tab_y, tab_width, tab_height+14);
+       // figure out the size of the tab
+       wxSize tab_size = GetTabSize(dc,wnd,page.caption,page.bitmap,
 
-            dc.SetPen(wxPen(wxColour(200,100,100)));
+                                    page.active,close_button_state,x_extent);
 
-            dc.SetBrush(wxBrush(wxColour(200,100,100)));
+       wxCoord tab_height = tab_size.y;
 
-            // DrawRectangle member function: The first two parameters indicate the coordinates
-            // of the top left corner of the rectangle
+       wxCoord tab_width = tab_size.x;
 
-            dc.DrawRectangle(r.x+3, r.y+5, r.width-3, r.height+2);
+       wxCoord tab_x = in_rect.x-4;
 
+       wxCoord tab_y = in_rect.y;
 
-            border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+18); // left bottom corner
-
-            border_points[1] = wxPoint(tab_x+3,tab_y+4);
-
-            border_points[2] = wxPoint(tab_x+3,tab_y+4); // left top corner
-
-            border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+4); // Right top corner
-
-            border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
-
-            border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+18); // Right bottom corner
-
-
-            dc.SetPen(wxPen(wxColour(200,100,100)));
-
-            dc.SetBrush(wxColour(200,100,100));
-
-            dc.DrawPolygon(WXSIZEOF(border_points), border_points);
-       }
-       else{
-
-              // draw inactive tab
-
-              wxRect r(tab_x, tab_y,tab_width, tab_height+15);
-
-              dc.SetPen(wxPen(wxColour(200,200,200)));
-
-              dc.SetBrush(wxBrush(wxColour(200,200,200)));
-
-              // DrawRectangle member function: The first two parameters indicate the coordinates
-              // of the top left corner of the rectangle
-
-              dc.DrawRectangle(r.x+3, r.y+5, r.width-1, r.height+2);
-
-
-              border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+20); // left bottom corner
-
-              border_points[1] = wxPoint(tab_x+3,tab_y+4); // left top corner
-
-              border_points[2] = wxPoint(tab_x+3,tab_y+4); // right top corner
-
-              border_points[3] = wxPoint(tab_x+tab_width+1,tab_y+4);
-
-              border_points[4] = wxPoint(tab_x+tab_width+1,tab_y+4);
-
-              border_points[5] = wxPoint(tab_x+tab_width+1,tab_y+tab_height+20);
-
-              dc.SetPen(wxPen(wxColour(200,200,200)));
-
-              dc.SetBrush(wxColour(200,200,200));
-
-              dc.DrawPolygon(WXSIZEOF(border_points), border_points);
-       }
-
-       // draw close button if necessary
-       if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
+       if (page.active)
        {
-           wxBitmap bmp;
-           if (page.active)
+           dc.SetFont(wnd->GetFont());
 
-               bmp = *this->page_close_icon;
-
-           else
-               bmp = m_disabledCloseBmp;
-
-           wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 8,
-                       tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2) + 6,
-                       bmp.GetScaledWidth(),
-                       tab_height - 1);
-           DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
-
-           *out_button_rect = rect;
+           texty = selected_texty;
        }
+       else
+       {
+           dc.SetFont(wnd->GetFont());
 
-       wxString draw_text = page.caption;
-
-       wxSize Text_Extend = dc.GetTextExtent(draw_text);
-
-
-       int text_offset = tab_x + (tab_width-Text_Extend.x)/2;
-
-       // set minimum text offset
-
-       if (text_offset < tab_x + tab_height){
-
-           text_offset = tab_x + tab_height -12;
+           texty = normal_texty;
        }
 
 
-       if(page.active){
+       wxPoint border_points[6];
 
-           dc.SetTextForeground(wxColour(240,240,240));
-       }
-       else{
+       if (page.active)
+       {
+           // draw active tab
 
-             dc.SetTextForeground(wxColour(70,70,70));
-       }
+           // draw base background color
+
+           wxRect r(tab_x, tab_y, tab_width, tab_height+14);
+
+           //dc.SetPen(wxPen(wxColour(200,100,100)));
+
+           //dc.SetBrush(wxBrush(wxColour(200,100,100)));
 
 
-       dc.DrawText(draw_text,
-             text_offset,
-             (tab_y + tab_height)/2 - (texty/2) + 10);
+           dc.SetPen(wxPen(wxColour(200,100,100)));
 
-       *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);
+           dc.SetBrush(wxBrush(wxColour(200,100,100)));
+
+
+
+           // DrawRectangle member function: The first two parameters indicate the coordinates
+           // of the top left corner of the rectangle
+
+           dc.DrawRectangle(r.x+3, r.y+7, r.width-3, r.height+4);
+
+
+           border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+18); // left bottom corner
+
+           border_points[1] = wxPoint(tab_x+3,tab_y+4);
+
+           border_points[2] = wxPoint(tab_x+3,tab_y+4); // left top corner
+
+           border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+4); // Right top corner
+
+           border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
+
+           border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+18); // Right bottom corner
+
+
+           dc.SetPen(wxPen(wxColour(200,100,100)));
+
+           dc.SetBrush(wxColour(200,100,100));
+
+           dc.DrawPolygon(WXSIZEOF(border_points), border_points);
+        }
+        else{
+
+                // draw inactive tab
+
+                wxRect r(tab_x, tab_y,tab_width, tab_height+15);
+
+                dc.SetPen(wxPen(wxColour(200,200,200)));
+
+                dc.SetBrush(wxBrush(wxColour(200,200,200)));
+
+                // DrawRectangle member function: The first two parameters indicate the coordinates
+                // of the top left corner of the rectangle
+
+                dc.DrawRectangle(r.x+3, r.y+7, r.width-1, r.height+4);
+
+
+                border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+20); // left bottom corner
+
+                border_points[1] = wxPoint(tab_x+3,tab_y+4); // left top corner
+
+                border_points[2] = wxPoint(tab_x+3,tab_y+4); // right top corner
+
+                border_points[3] = wxPoint(tab_x+tab_width+1,tab_y+4);
+
+                border_points[4] = wxPoint(tab_x+tab_width+1,tab_y+4);
+
+                border_points[5] = wxPoint(tab_x+tab_width+1,tab_y+tab_height+20);
+
+                dc.SetPen(wxPen(wxColour(200,200,200)));
+
+                dc.SetBrush(wxColour(200,200,200));
+
+                dc.DrawPolygon(WXSIZEOF(border_points), border_points);
+        }
+
+
+
+
+        // draw close button if necessary
+        if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
+         {
+             wxBitmap bmp;
+
+             if (page.active){
+
+                 bmp = *this->page_close_icon;
+             }
+             else{
+
+                 wxSize bmp_size = this->page_close_icon->GetScaledSize();
+                 bmp = m_disabledCloseBmp.GetBitmap(bmp_size);
+            }
+
+             wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 8,
+                         tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2) + 6,
+                         bmp.GetScaledWidth(),
+                         tab_height - 1);
+             DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
+
+             *out_button_rect = rect;
+         }
+
+
+
+         wxString draw_text = page.caption;
+
+         wxSize Text_Extend = dc.GetTextExtent(draw_text);
+
+
+         int text_offset = tab_x + (tab_width-Text_Extend.x)/2;
+
+         // set minimum text offset
+
+         if (text_offset < tab_x + tab_height){
+
+             text_offset = tab_x + tab_height -12;
+         }
+
+
+         if(page.active){
+
+             dc.SetTextForeground(wxColour(245,245,245));
+         }
+         else{
+
+               dc.SetTextForeground(wxColour(70,70,70));
+         }
+
+
+         Text_Extend = dc.GetTextExtent(page.caption);
+
+
+         if(Text_Extend.x < tab_width){
+
+           dc.DrawText(draw_text,
+                 text_offset,
+                 (tab_y + tab_height)/2 - (texty/2) + 10);
+
+         }
+
+
+         *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);
  }
 
 
@@ -263,49 +285,52 @@ this program. If not, see <http://www.gnu.org/licenses/>.
         dc.DrawBitmap(bmp, rect.x, rect.y+6, true);
  }
 
-
-
  void Custom_TabArt::DrawButton(wxDC& dc,wxWindow* wnd,const wxRect& in_rect,
 
                     int bitmap_id,int button_state,int orientation, wxRect* out_rect)
  {
 
-      wxBitmap bmp;
+      wxBitmapBundle bb;
       wxRect rect;
 
       switch (bitmap_id)
       {
           case wxAUI_BUTTON_CLOSE:
               if (button_state & wxAUI_BUTTON_STATE_DISABLED)
-                  bmp = m_disabledCloseBmp;
+                  bb = m_disabledCloseBmp;
               else
-                  bmp = m_activeCloseBmp;
+                  bb = m_activeCloseBmp;
               break;
 
           case wxAUI_BUTTON_LEFT:
               if (button_state & wxAUI_BUTTON_STATE_DISABLED)
-                  bmp = m_disabledLeftBmp;
+                  bb = m_disabledLeftBmp;
               else
-                  bmp = m_activeLeftBmp;
+                  bb = m_activeLeftBmp;
               break;
 
           case wxAUI_BUTTON_RIGHT:
               if (button_state & wxAUI_BUTTON_STATE_DISABLED)
-                  bmp = m_disabledRightBmp;
+                  bb = m_disabledRightBmp;
               else
-                  bmp = m_activeRightBmp;
+                  bb = m_activeRightBmp;
               break;
 
           case wxAUI_BUTTON_WINDOWLIST:
               if (button_state & wxAUI_BUTTON_STATE_DISABLED)
-                  bmp = m_disabledWindowListBmp;
+                  bb = m_disabledWindowListBmp;
               else
-                  bmp = m_activeWindowListBmp;
+                  bb = m_activeWindowListBmp;
               break;
       }
 
-      if (!bmp.IsOk())
+
+      if (!bb.IsOk())
           return;
+
+
+      const wxBitmap bmp = bb.GetBitmapFor(wnd);
+
 
       rect = in_rect;
 

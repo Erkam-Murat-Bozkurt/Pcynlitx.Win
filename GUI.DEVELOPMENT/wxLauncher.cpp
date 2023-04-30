@@ -66,6 +66,8 @@ wxLauncher::~wxLauncher(){
 }
 
 
+
+
 bool wxLauncher::OnInit(){
 
      this->SetExitOnFrameDelete(true);

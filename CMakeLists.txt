@@ -27,6 +27,7 @@ add_subdirectory(SMART.POINTER.BUILDER)
 
 add_subdirectory(PROJECT.MANAGEMENT.TOOLS)
 
+add_subdirectory(GUI.DEVELOPMENT)
 
 
 add_executable(pcynlitx_kernel 
