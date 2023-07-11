@@ -1,18 +1,9 @@
 
  #include "Multi_Thread_Pointer_Header_Builder.h"
- #include "Process_Supervisor_Descriptor_File_Reader.h"
 
  int main(int argc, char** argv){
 
      Multi_Thread_Pointer_Header_Builder P_Header_Builder;
-
-     Process_Supervisor_Descriptor_File_Reader File_Reader;
-
-     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
-
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
-
-     File_Reader.Receive_Descriptor_File_Infomations();
 
 
      int Total_Data_Type_Number = File_Reader.Get_Shared_Data_Types()[1].Total_Data_Type_Number;

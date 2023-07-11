@@ -1,5 +1,4 @@
 
- #include "Process_Supervisor_Descriptor_File_Reader.h"
  #include "Multi_Thread_Pointer_File_Data_Collector.h"
  #include <iostream>
  #include <cstring>
@@ -7,13 +6,6 @@
 
  int main(int argc, char** argv){
 
-     Process_Supervisor_Descriptor_File_Reader File_Reader;
-
-     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
-
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
-
-     File_Reader.Receive_Descriptor_File_Infomations();
 
      Multi_Thread_Pointer_File_Data_Collector File_Data_Collector;
 

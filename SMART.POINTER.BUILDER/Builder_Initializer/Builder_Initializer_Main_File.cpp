@@ -1,20 +1,10 @@
 
- #include "Process_Supervisor_Descriptor_File_Reader.h"
  #include "Builder_Initializer.h"
- #include "Builder_FileReader.h"
  #include <iostream>
 
  int main(int argc, char** argv){
 
      Builder_Initializer Initializer;
-
-     Process_Supervisor_Descriptor_File_Reader File_Reader;
-
-     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
-
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
-
-     File_Reader.Receive_Descriptor_File_Infomations();
 
      Initializer.Receive_Data_Type(File_Reader.Get_Shared_Data_Types()[0].Data_Type);
 

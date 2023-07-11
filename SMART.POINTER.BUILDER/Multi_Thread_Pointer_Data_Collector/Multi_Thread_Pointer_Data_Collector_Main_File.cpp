@@ -1,21 +1,8 @@
 
 #include <iostream>
-#include "Process_Supervisor_Descriptor_File_Reader.h"
 #include "Multi_Thread_Pointer_Data_Collector.h"
 
  int main(int argc, char** argv){
-
-     Process_Supervisor_Descriptor_File_Reader File_Reader;
-
-     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
-
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
-
-     File_Reader.Receive_Descriptor_File_Infomations();
-
-     int Total_Data_Type_Number
-
-              = File_Reader.Get_Shared_Data_Types()[0].Total_Data_Type_Number;
 
      char * Data_Type = File_Reader.Get_Shared_Data_Types()[0].Data_Type;
 

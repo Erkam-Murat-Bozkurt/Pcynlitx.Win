@@ -1,6 +1,5 @@
 
  #include "ClassRebuilder_Initializer.h"
- #include "Process_Supervisor_Descriptor_File_Reader.h"
  #include <iostream>
 
  int main(int argc, char** argv){
@@ -11,19 +10,9 @@
 
      // ********************************************************************
 
-     Process_Supervisor_Descriptor_File_Reader File_Reader;
-
-     File_Reader.Receive_Descriptor_File_Directory("D:\\TestDirectory");
-
-     File_Reader.Receive_Descriptor_File_Name("Project_Descriptor_File.txt");
-
-     File_Reader.Receive_Descriptor_File_Infomations();
-
      // ********************************************************************
 
      ClassRebuilder_Initializer Initializer;
-
-     Initializer.Receive_Process_Supervisor_Descriptor_File_Reader(&File_Reader);
 
      int Class_Number = 1;
 
