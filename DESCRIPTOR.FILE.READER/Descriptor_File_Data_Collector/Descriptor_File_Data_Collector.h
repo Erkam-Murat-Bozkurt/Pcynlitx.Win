@@ -4,8 +4,8 @@
 
 #include <cstring>
 #include <cstdlib>
-#include <CharOperator.h>
 #include <stdio.h>
+#include "CharOperator.h"
 #include "StringOperator.h"
 #include "DirectoryOperations.h"
 

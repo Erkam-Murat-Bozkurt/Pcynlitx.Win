@@ -1,17 +1,9 @@
 
- #include "Process_Supervisor_Descriptor_File_Data_Collector.h"
- #include "Process_Supervisor_Descriptor_File_Reader_Initializer.h"
- #include "Process_Supervisor_Descriptor_File_Number_Processor.h"
+
  #include "Library_Descriptions_Reader.h"
  #include <iostream>
 
  int main(int argc, char** argv){
-
-     Process_Supervisor_Descriptor_File_Data_Collector File_Data_Collector;
-
-     Process_Supervisor_Descriptor_File_Reader_Initializer Reader_Initializer;
-
-     Process_Supervisor_Descriptor_File_Number_Processor Number_Processor;
 
      Library_Descriptions_Reader Library_Reader;
 

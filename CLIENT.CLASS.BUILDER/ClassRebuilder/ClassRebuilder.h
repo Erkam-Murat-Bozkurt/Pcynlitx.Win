@@ -2,15 +2,15 @@
 #ifndef CLASSREBUILDER_H
 #define CLASSREBUILDER_H
 
-#include <CharOperator.h>
-#include <MemberFunctionReader.h>
-#include <Cpp_FileOperations.h>
-#include <DirectoryOperations.h>
-#include <ClassRebuilder_Initializer.h>
-#include <MetaDataTranslater.h>
-#include <HeaderRebuilder.h>
-#include <Descriptor_File_Reader.h>
-#include <ClassRebuilder_Data_Collector.h>
+#include "CharOperator.h"
+#include "MemberFunctionReader.h"
+#include "Cpp_FileOperations.h"
+#include "DirectoryOperations.h"
+#include "ClassRebuilder_Initializer.h"
+#include "MetaDataTranslater.h"
+#include "HeaderRebuilder.h"
+#include "Descriptor_File_Reader.h"
+#include "ClassRebuilder_Data_Collector.h"
 #include <cstring>
 #include <cstdlib>
 #include <iostream>

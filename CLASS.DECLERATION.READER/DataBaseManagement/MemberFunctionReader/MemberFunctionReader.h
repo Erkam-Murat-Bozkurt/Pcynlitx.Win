@@ -2,8 +2,8 @@
 #ifndef MEMBERFUNCTIONREADER_H
 #define MEMBERFUNCTIONREADER_H
 
-#include <MethodReader.h>
-#include <DataBaseBuilder.h>
+#include "MethodReader.h"
+#include "DataBaseBuilder.h"
 
 
 class MemberFunctionReader
