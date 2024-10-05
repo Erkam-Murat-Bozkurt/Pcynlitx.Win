@@ -65,7 +65,7 @@ add_library(des_reader
 
 )
 
-target_link_libraries(des_reader PUBLIC class_reader proc_init tools)
+target_link_libraries(des_reader PUBLIC class_reader proc_init tools DataBsMng)
 
 
 target_link_directories(des_reader PUBLIC 

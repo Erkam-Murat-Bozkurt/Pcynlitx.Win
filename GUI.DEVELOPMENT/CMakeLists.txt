@@ -1,7 +1,7 @@
 
 
 
-SET(CMAKE_EXE_LINKER_FLAGS "-mwindows")
+#SET(CMAKE_EXE_LINKER_FLAGS "-mwindows")
 
 
 add_library(gui_tools 
@@ -116,6 +116,22 @@ add_library(gui_tools
 
 )
 
+include_directories(
+
+    C:/Development.Tools/wxWidgets-3.2.5/include
+
+    C:/Development.Tools/wxWidgets-3.2.5/lib/gcc810_x64_dll/mswu
+)
+
+link_directories(
+
+    C:/Development.Tools/wxWidgets-3.2.5/lib/gcc810_x64_dll
+
+    C:/Development.Tools/Mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0
+)
+
+
+
 target_include_directories(gui_tools PUBLIC
 
 
@@ -162,8 +178,10 @@ target_include_directories(gui_tools PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 
 
-    D:/wxWidgets-3.2.0/lib/gcc_lib/mswud
-    D:/wxWidgets-3.2.0/include
+
+    C:/Development.Tools/wxWidgets-3.2.5/include
+
+    C:/Development.Tools/wxWidgets-3.2.5/lib/gcc810_x64_dll/mswu
 
 
 
@@ -202,39 +220,251 @@ target_include_directories(gui_tools PUBLIC
 
     ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/SyntaxController
 
+
+    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Data_Collector    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Number_Processor
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Initializer
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Syntax_Controller
+
+
+
+    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Cpp_FileOperations
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/CharOperator
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Compiler
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Compiler_Descriptor_File_Reader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Custom_System_Interface
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/DirectoryOperations
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/HeaderFileBuilder
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/IntToCharTranslater
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/StringOperator
+
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Data_Collector    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Number_Processor
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Initializer
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Syntax_Controller
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Header_File_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Include_Directory_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Inter_Thread_Class_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Inter_Thread_Data_Type_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Library_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Main_File_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Source_File_Descriptions_Reader  
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/DataBaseManagement/MemberFunctionReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/DataBaseManagement/MetaDataTranslater
+
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/HeaderRebuilder
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ClassNameReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ClassSyntaxControl
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/FindSetPoints 
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ListFileOrganizer
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodInitializer
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodProcessor    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodReader    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/SyntaxController
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/DataBaseBuilder
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodInterpreter
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodListInterpreter
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodListReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodReceiver
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/NameReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ParameterReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ParenthesReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ReturnTypeReader   
+
+    
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/HeaderRebuilder
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Auto_Class_Compiler
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Convert_Repo_To_Single_File
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Included_Header_File_Names_Reader
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Library_Updater
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Make_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Test_Program_Builder
+
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Inter_Thread_Data_Structure_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Main_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Server_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Server_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Data_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Data_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Locker_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Locker_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Manager_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/TM_Client_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/TM_Client_Header_Builder
+
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Builder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Client_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Client_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Compile_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Compile_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Cleaner
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Cleaner
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/ReportFileBuilder_Writer
+  
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/ReportFileBuilder_HeaderWriter
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Smart_Pointer_Data_Conveyor
+
+
 )
 
 
 add_executable(pcynlitx ${CMAKE_CURRENT_SOURCE_DIR}/wxLauncher.cpp)
 
-target_link_libraries(pcynlitx PUBLIC  gui_tools des_reader class_reader proc_init tools)
-
-target_compile_options(gui_tools PUBLIC -static -static-libgcc 
-
-        -static-libstdc++ -DHAVE_W32API_H -D__WXMSW__ -D_UNICODE -D_WXUSE_UNICODE)
+target_link_libraries(pcynlitx PUBLIC gui_tools des_reader class_reader proc_init tools)
 
 
+target_link_libraries(gui_tools PUBLIC des_reader class_reader proc_init tools 
 
-target_link_libraries(gui_tools PUBLIC 
+                pthread libwxmsw32ud_core.a libwxbase32u.a libwxtiff.a 
+                      
+                libwxjpeg.a libwxpng.a libwxzlib.a libwxregexu.a libwxexpat.a libwxbase32u_xml.a libwxmsw32u_aui.a
+                
+                libwxmsw32u_stc.a libwxscintilla.a libwxbase32u_net.a libwxmsw32u_xrc.a libwxmsw32u_richtext.a
+        
+                libwxmsw32u_webview.a libwxmsw32u_ribbon.a libwxmsw32u_propgrid.a libwxmsw32u_html.a libwxmsw32u_adv.a 
+        
+                libwxmsw32u_gl.a libwxmsw32u_media.a libwxmsw32u_core.a kernel32 user32 gdi32 comdlg32 winspool winmm
 
-        wxmsw32ud_core wxbase32ud wxtiffd wxjpegd 
-        wxpngd wxzlibd wxregexud wxexpatd wxbase32ud_xml wxmsw32ud_aui
-        wxmsw32ud_stc wxscintillad wxbase32ud_net wxmsw32ud_xrc wxmsw32ud_richtext
-        wxmsw32ud_webview wxmsw32ud_ribbon wxmsw32ud_propgrid wxmsw32ud_html
-        wxmsw32ud_adv wxmsw32ud_gl wxmsw32ud_media kernel32 user32 gdi32 comdlg32 winspool winmm
-        shell32 comctl32 ole32 oleaut32 uuid rpcrt4 advapi32 wsock32 wininet uxtheme oleacc
-        gcc stdc++ des_reader  class_reader DataBsMng proc_init tools 
+                shell32 comctl32 ole32 oleaut32 uuid rpcrt4 advapi32 wsock32 wininet uxtheme oleacc User32
 )
+
+
+target_compile_options(pcynlitx PUBLIC -static-libgcc -static-libstdc++ 
+
+        -O0 -mthreads -D__WXMSW__ -D_UNICODE -W -Wall -Wl,
+        
+        -Bstatic )
+
+   
+
+target_link_options(pcynlitx PUBLIC -Wl,--subsystem,windows -mwindows )
+
+
+target_compile_options(gui_tools PUBLIC -static-libgcc -static-libstdc++ 
+
+        -O0 -mthreads -D__WXMSW__ -D_UNICODE -W -Wall -Wl,
+        
+        -Bstatic )
+
+   
+
+target_link_options(gui_tools PUBLIC -Wl,--subsystem,windows -mwindows )
+
+
 
 
 target_link_directories(gui_tools PUBLIC 
 
-    D:/wxMSW-3.2.0_Dev_Files
+    C:/Development.Tools/wxWidgets-3.2.5/lib/gcc810_x64_dll
 
-    D:/wxMSW-3.2.0_Dev_Files/mswud
-
-    D:/migw64/lib/gcc/x86_64-w64-mingw32/8.1.0
-
+    C:/Development.Tools/Mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0
 
 
     ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Data_Collector    
@@ -334,4 +564,182 @@ target_link_directories(gui_tools PUBLIC
     ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodReader    
 
     ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/SyntaxController
+
+
+    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Cpp_FileOperations
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/CharOperator
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Compiler
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Compiler_Descriptor_File_Reader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/Custom_System_Interface
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/DirectoryOperations
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/HeaderFileBuilder
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/IntToCharTranslater
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/StringOperator
+
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Data_Collector    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Number_Processor
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader    
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Initializer
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Descriptor_File_Reader_Syntax_Controller
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Header_File_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Include_Directory_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Inter_Thread_Class_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Inter_Thread_Data_Type_Description_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Library_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Main_File_Descriptions_Reader
+
+    ${CMAKE_SOURCE_DIR}/DESCRIPTOR.FILE.READER/Source_File_Descriptions_Reader  
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/DataBaseManagement/MemberFunctionReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/DataBaseManagement/MetaDataTranslater
+
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/HeaderRebuilder
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ClassNameReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ClassSyntaxControl
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/FindSetPoints 
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/ListFileOrganizer
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodInitializer
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodProcessor    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/MethodReader    
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ProcessInitialization/SyntaxController
+
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/DataBaseBuilder
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodInterpreter
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodListInterpreter
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodListReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/MethodReceiver
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/NameReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ParameterReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ParenthesReader
+
+    ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ReturnTypeReader   
+
+    
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/ClassRebuilder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/CLIENT.CLASS.BUILDER/HeaderRebuilder
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Auto_Class_Compiler
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Convert_Repo_To_Single_File
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Included_Header_File_Names_Reader
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Library_Updater
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Make_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/PROJECT.MANAGEMENT.TOOLS/Test_Program_Builder
+
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Inter_Thread_Data_Structure_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Main_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Server_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Server_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Data_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Data_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Locker_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Locker_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/Thread_Manager_Header_File_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/TM_Client_Builder
+
+    ${CMAKE_SOURCE_DIR}/SERVER.CLASS.BUILDER/TM_Client_Header_Builder
+
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Builder_Initializer
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Dynamic_Memory_Manager_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Client_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Client_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Compile_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Compile_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Cleaner
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Cleaner
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_File_Data_Collector
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Multi_Thread_Pointer_Header_Builder
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/ReportFileBuilder_Writer
+  
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/ReportFileBuilder_HeaderWriter
+
+    ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Smart_Pointer_Data_Conveyor
+
 )

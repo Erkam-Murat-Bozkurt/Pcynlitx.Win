@@ -1,6 +1,6 @@
 
-set( CMAKE_CXX_COMPILER "D:/Mingw64/mingw64/bin/g++.exe" )
-set( CMAKE_C_COMPILER "D:/Mingw64/mingw64/bin/gcc.exe" )
+set( CMAKE_CXX_COMPILER "C:/Program Files/Mingw64/bin/g++.exe" )
+set( CMAKE_C_COMPILER "C:/Program Files/Mingw64/bin/gcc.exe" )
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -40,6 +40,7 @@ target_link_libraries(pcynlitx_kernel PUBLIC
      Kernel server_builder smart_ptr ClassRebuilder des_reader des_writer exe_builder
      
      class_reader DataBsMng proc_init tools PrgMng)
+
 
 
 target_link_directories(pcynlitx_kernel PUBLIC 
