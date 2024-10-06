@@ -24,7 +24,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Manager,
 
-       wxFont Default_Font,wxSize size)
+       wxFont Default_Font,wxSize size, wxColour theme_clr)
 
       : wxAuiNotebook(parent,wxID_ANY,wxDefaultPosition,size,wxAUI_NB_DEFAULT_STYLE)
 {
@@ -38,7 +38,7 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
    this->SetThemeEnabled(false);
 
 
-   this->Custom_Notebook_TabArt = new Custom_TabArt();
+   this->Custom_Notebook_TabArt = new Custom_TabArt(theme_clr);
 
    this->SetArtProvider(this->Custom_Notebook_TabArt);
 

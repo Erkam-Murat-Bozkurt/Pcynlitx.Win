@@ -2,41 +2,40 @@
 
 /*
 
-Copyright ©  2021,  Erkam Murat Bozkurt
-
-This file is part of the research project which is carried by Erkam Murat Bozkurt.
-
-This is a free software: you can redistribute it and/or modify it under the terms
-of the GNU General Public License as published by the Free Software Foundation
-either version 3 of the License, or any later version.
-
-This software is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) { Erkam Murat Bozkurt } - All Rights Reserved
+ * 
+ * This source code is protected under international copyright law.  All rights
+ * reserved and protected by the copyright holders.
+ * 
+ * This file is confidential and only available to authorized individuals with the
+ * permission of the copyright holders.  If you encounter this file and do not have
+ * permission, please contact the copyright holders and delete this file.
 
 */
-
 
 #include "Custom_TabArt.h"
 
 
- Custom_TabArt::Custom_TabArt() : wxAuiDefaultTabArt()
+ Custom_TabArt::Custom_TabArt(wxColour clr) : wxAuiDefaultTabArt()
  {
-    this->page_close_icon = new wxBitmap(wxT("D:\\Pcynlitx_Build_Platform\\icons\\close_tab.png"),
+    this->page_close_icon = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\close_tab.png"),
 
                              wxBITMAP_TYPE_ANY);
 
-    this->m_tabCtrlHeight = 40;
+    std::string tabart_font = "Segoe UI";
+
+    this->Default_Font = new wxFont(9,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
+
+                     wxFONTWEIGHT_NORMAL,false,wxString(tabart_font));
+
+    this->m_tabCtrlHeight = 48;
+
+    this->theme_clr = clr;
  }
 
  wxAuiTabArt * Custom_TabArt::Clone() {
 
-       Custom_TabArt * TabArt_Pointer = new Custom_TabArt();
+       Custom_TabArt * TabArt_Pointer = new Custom_TabArt(this->theme_clr);
 
        return TabArt_Pointer;
  }
@@ -48,12 +47,11 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
  void Custom_TabArt::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect & rect) {
 
-      dc.SetBrush(wxBrush(wnd->GetBackgroundColour()));
+      dc.SetPen(wxPen(wxColour(240,240,240,0xff)));
 
+      dc.SetBrush(wxColour(240,240,240,0xff));
 
-      //dc.SetBrush(wxColour(150,150,150));
-
-      dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1,rect.GetWidth()+2,rect.GetHeight()+2);
+      dc.DrawRectangle(rect.GetX(), rect.GetY(),rect.GetWidth(),rect.GetHeight());
  }
 
  void Custom_TabArt::DrawTab(wxDC & dc, wxWindow *wnd, const wxAuiNotebookPage &page,
@@ -63,7 +61,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
                  wxRect * out_tab_rect, wxRect * out_button_rect, int * x_extent)
  {
 
-       wxCoord normal_textx, normal_texty;
+       wxCoord normal_textx,   normal_texty;
 
        wxCoord selected_textx, selected_texty;
 
@@ -72,40 +70,62 @@ this program. If not, see <http://www.gnu.org/licenses/>.
        wxString caption = page.caption;
 
 
-       dc.SetFont(wnd->GetFont());
+
+       dc.SetFont(*this->Default_Font);
 
        dc.GetTextExtent(caption, &selected_textx, &selected_texty);
 
        dc.GetTextExtent(caption, &normal_textx, &normal_texty);
+ 
+       //caption = caption + " "; // more area for the string must be allocted
+       
 
        // figure out the size of the tab
-       wxSize tab_size = GetTabSize(dc,wnd,page.caption,page.bitmap,
+       wxSize tab_size = this->GetTabSize(dc,wnd,caption,page.bitmap,
 
                                     page.active,close_button_state,x_extent);
 
-       wxCoord tab_height = tab_size.y;
+       wxCoord tab_height = tab_size.y+14;
 
-       wxCoord tab_width = tab_size.x;
+       wxCoord tab_width  = tab_size.x;
 
-       wxCoord tab_x = in_rect.x-4;
+       wxCoord tab_x = in_rect.x+1;
 
-       wxCoord tab_y = in_rect.y;
+       wxCoord tab_y = in_rect.y+14;
+
+
+
+
+
+       wxFont bld = *this->Default_Font;
+       
+       bld.SetFaceName(wxT("Segoe UI"));
+
+
+       
+
+       //bld.SetPixelSize(wxSize(0,14));
+
+
+       wxFont normal = *this->Default_Font;
+
+       normal.SetFaceName(wxT("Segoe UI"));
+
 
        if (page.active)
        {
-           dc.SetFont(wnd->GetFont());
+
+           dc.SetFont(bld);
 
            texty = selected_texty;
        }
        else
        {
-           dc.SetFont(wnd->GetFont());
+           dc.SetFont(normal);
 
            texty = normal_texty;
        }
 
-
-       wxPoint border_points[6];
 
        if (page.active)
        {
@@ -113,83 +133,39 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
            // draw base background color
 
-           wxRect r(tab_x, tab_y, tab_width, tab_height+14);
+           wxRect r(tab_x, tab_y, tab_width-2, tab_height-3);
 
-           //dc.SetPen(wxPen(wxColour(200,100,100)));
+           dc.SetPen(wxPen(wxColour(155,155,165,0xff)));
+            
+           dc.SetBrush(wxColour(175,175,185,0xff));
 
-           //dc.SetBrush(wxBrush(wxColour(200,100,100)));
-
-
-           dc.SetPen(wxPen(wxColour(200,100,100)));
-
-           dc.SetBrush(wxBrush(wxColour(200,100,100)));
-
+           
 
 
            // DrawRectangle member function: The first two parameters indicate the coordinates
            // of the top left corner of the rectangle
 
-           dc.DrawRectangle(r.x+3, r.y+7, r.width-3, r.height+4);
+           dc.DrawRectangle(r.x, r.y, r.width, r.height);
 
-
-           border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+18); // left bottom corner
-
-           border_points[1] = wxPoint(tab_x+3,tab_y+4);
-
-           border_points[2] = wxPoint(tab_x+3,tab_y+4); // left top corner
-
-           border_points[3] = wxPoint(tab_x+tab_width-1,tab_y+4); // Right top corner
-
-           border_points[4] = wxPoint(tab_x+tab_width-1,tab_y+4);
-
-           border_points[5] = wxPoint(tab_x+tab_width-1,tab_y+tab_height+18); // Right bottom corner
-
-
-           dc.SetPen(wxPen(wxColour(200,100,100)));
-
-           dc.SetBrush(wxColour(200,100,100));
-
-           dc.DrawPolygon(WXSIZEOF(border_points), border_points);
         }
         else{
 
                 // draw inactive tab
 
-                wxRect r(tab_x, tab_y,tab_width, tab_height+15);
+                wxRect r(tab_x, tab_y,tab_width-2, tab_height-3);
 
-                dc.SetPen(wxPen(wxColour(200,200,200)));
+                dc.SetPen(wxPen(wxColour(180, 180, 180)));
 
-                dc.SetBrush(wxBrush(wxColour(200,200,200)));
+                dc.SetBrush(wxBrush(wxColour(210, 210, 210)));
 
                 // DrawRectangle member function: The first two parameters indicate the coordinates
                 // of the top left corner of the rectangle
 
-                dc.DrawRectangle(r.x+3, r.y+7, r.width-1, r.height+4);
-
-
-                border_points[0] = wxPoint(tab_x+3,tab_y+tab_height+20); // left bottom corner
-
-                border_points[1] = wxPoint(tab_x+3,tab_y+4); // left top corner
-
-                border_points[2] = wxPoint(tab_x+3,tab_y+4); // right top corner
-
-                border_points[3] = wxPoint(tab_x+tab_width+1,tab_y+4);
-
-                border_points[4] = wxPoint(tab_x+tab_width+1,tab_y+4);
-
-                border_points[5] = wxPoint(tab_x+tab_width+1,tab_y+tab_height+20);
-
-                dc.SetPen(wxPen(wxColour(200,200,200)));
-
-                dc.SetBrush(wxColour(200,200,200));
-
-                dc.DrawPolygon(WXSIZEOF(border_points), border_points);
+                dc.DrawRectangle(r.x, r.y, r.width, r.height);
         }
 
 
-
-
-        // draw close button if necessary
+        // draw close button 
         if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
          {
              wxBitmap bmp;
@@ -204,10 +180,11 @@ this program. If not, see <http://www.gnu.org/licenses/>.
                  bmp = m_disabledCloseBmp.GetBitmap(bmp_size);
             }
 
-             wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 8,
-                         tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2) + 6,
-                         bmp.GetScaledWidth(),
+             wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 10,
+                         tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2)-10,
+                         bmp.GetScaledWidth()-3,
                          tab_height - 1);
+
              DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
 
              *out_button_rect = rect;
@@ -219,40 +196,40 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
          wxSize Text_Extend = dc.GetTextExtent(draw_text);
 
-
          int text_offset = tab_x + (tab_width-Text_Extend.x)/2;
 
-         // set minimum text offset
-
-         if (text_offset < tab_x + tab_height){
-
-             text_offset = tab_x + tab_height -12;
-         }
 
 
          if(page.active){
 
-             dc.SetTextForeground(wxColour(245,245,245));
+            dc.SetTextForeground(wxColour(0,0,10));
          }
          else{
 
-               dc.SetTextForeground(wxColour(70,70,70));
+            dc.SetTextForeground(wxColour(25,25,25));
          }
 
 
          Text_Extend = dc.GetTextExtent(page.caption);
 
+         if(page.active){
 
-         if(Text_Extend.x < tab_width){
+            text_offset = text_offset - 10;
+         }
+         else{
 
-           dc.DrawText(draw_text,
-                 text_offset,
-                 (tab_y + tab_height)/2 - (texty/2) + 10);
-
+            text_offset = text_offset - 3;
          }
 
 
+
+         dc.DrawText(draw_text,text_offset,
+
+                 (tab_y + tab_height)/2 - (texty/2) + 1);
+
+
          *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);
+
  }
 
 

@@ -8,6 +8,7 @@
 #include <wx\frame.h>
 #include <wx\panel.h>
 #include <wx\aui\aui.h>
+#include <wx\aui\tabart.h>
 #include <wx\aui\auibook.h>
 #include <wx\aui\framemanager.h>
 #include <wx\aui\dockart.h>
@@ -15,6 +16,9 @@
 #include <wx\font.h>
 #include <wx\fontdata.h>
 #include <wx\fontdlg.h>
+#include <string>
+#include <wx/fontutil.h>
+
 
 
 // Custom TabArt decleration .........
@@ -23,7 +27,7 @@ class Custom_TabArt : public wxAuiDefaultTabArt
 {
 public:
 
-  Custom_TabArt();
+  Custom_TabArt(wxColour clr);
 
   wxAuiTabArt * Clone();
 
@@ -39,15 +43,22 @@ public:
 
                int * x_extent);
 
+
   static void DrawButtons(wxDC& dc,const wxSize & offset,const wxRect & _rect,
 
                           const wxBitmap & bmp,const wxColour & bkcolour, int button_state);
+
+
 
   void DrawButton(wxDC & dc,wxWindow* wnd,const wxRect & in_rect,
 
                     int bitmap_id,int button_state,int orientation, wxRect* out_rect);
 
   wxBitmap * page_close_icon;
+
+  wxFont * Default_Font;
+
+  wxColour theme_clr;
 };
 
 #endif /* CUSTOM_TABART_H */

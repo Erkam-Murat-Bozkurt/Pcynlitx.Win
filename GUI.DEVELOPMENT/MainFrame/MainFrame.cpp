@@ -21,7 +21,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "Event_Table_Header.h"
 
-MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
+MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
         wxDefaultPosition, wxSize(1200,950),wxDEFAULT_FRAME_STYLE)
 {
@@ -127,7 +127,7 @@ MainFrame::MainFrame() : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
   this->Book_Manager = new Custom_Notebook(this->Custom_Main_Panel,&this->Interface_Manager,
 
-                       *(this->Default_Font),this->GetClientSize());
+                       *(this->Default_Font),this->GetClientSize(),theme_clr);
 
 
 

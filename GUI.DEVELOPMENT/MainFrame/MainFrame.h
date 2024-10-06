@@ -47,7 +47,7 @@
 class MainFrame : public wxFrame
 {
 public:
-  MainFrame();
+  MainFrame(wxColour theme_clr);
   virtual ~MainFrame();
   void OnPaint(wxPaintEvent & event);
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& _rect);

@@ -415,28 +415,29 @@ target_include_directories(gui_tools PUBLIC
 )
 
 
-add_executable(pcynlitx ${CMAKE_CURRENT_SOURCE_DIR}/wxLauncher.cpp)
+add_executable(Pcynlitx ${CMAKE_CURRENT_SOURCE_DIR}/wxLauncher.cpp)
 
-target_link_libraries(pcynlitx PUBLIC gui_tools des_reader class_reader proc_init tools)
+target_link_libraries(Pcynlitx PUBLIC gui_tools des_reader class_reader proc_init tools)
 
 
-target_link_libraries(gui_tools PUBLIC des_reader class_reader proc_init tools 
-
-                pthread libwxmsw32ud_core.a libwxbase32u.a libwxtiff.a 
+target_link_libraries(gui_tools PUBLIC pthread wxmsw32ud_core wxbase32ud wxtiffd 
                       
-                libwxjpeg.a libwxpng.a libwxzlib.a libwxregexu.a libwxexpat.a libwxbase32u_xml.a libwxmsw32u_aui.a
+                     wxjpegd wxpngd wxzlibd wxregexud wxexpatd wxbase32ud_xml wxmsw32ud_aui
                 
-                libwxmsw32u_stc.a libwxscintilla.a libwxbase32u_net.a libwxmsw32u_xrc.a libwxmsw32u_richtext.a
+                     wxmsw32ud_stc wxscintillad wxbase32ud_net wxmsw32ud_xrc wxmsw32ud_richtext
         
-                libwxmsw32u_webview.a libwxmsw32u_ribbon.a libwxmsw32u_propgrid.a libwxmsw32u_html.a libwxmsw32u_adv.a 
+                     wxmsw32ud_webview wxmsw32ud_ribbon wxmsw32u_propgrid wxmsw32ud_html wxmsw32ud_adv 
         
-                libwxmsw32u_gl.a libwxmsw32u_media.a libwxmsw32u_core.a kernel32 user32 gdi32 comdlg32 winspool winmm
+                     wxmsw32ud_gl wxmsw32ud_media kernel32 user32 gdi32 comdlg32 winspool winmm
 
-                shell32 comctl32 ole32 oleaut32 uuid rpcrt4 advapi32 wsock32 wininet uxtheme oleacc User32
-)
+                     shell32 comctl32 ole32 oleaut32 uuid rpcrt4 advapi32 wsock32 wininet uxtheme 
+
+                     oleacc gcc stdc++ )
 
 
-target_compile_options(pcynlitx PUBLIC -static-libgcc -static-libstdc++ 
+
+
+target_compile_options(Pcynlitx PUBLIC -static-libgcc -static-libstdc++ 
 
         -O0 -mthreads -D__WXMSW__ -D_UNICODE -W -Wall -Wl,
         
@@ -444,7 +445,7 @@ target_compile_options(pcynlitx PUBLIC -static-libgcc -static-libstdc++
 
    
 
-target_link_options(pcynlitx PUBLIC -Wl,--subsystem,windows -mwindows )
+target_link_options(Pcynlitx PUBLIC -Wl,--subsystem,windows -mwindows )
 
 
 target_compile_options(gui_tools PUBLIC -static-libgcc -static-libstdc++ 

@@ -124,3 +124,4 @@ target_include_directories(tools PUBLIC
     ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/Tools/StringOperator
 
  )
+
