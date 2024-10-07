@@ -28,7 +28,7 @@
 
                      wxFONTWEIGHT_NORMAL,false,wxString(tabart_font));
 
-    this->m_tabCtrlHeight = 48;
+    this->m_tabCtrlHeight = 45;
 
     this->theme_clr = clr;
  }
@@ -73,27 +73,27 @@
 
        dc.SetFont(*this->Default_Font);
 
-       dc.GetTextExtent(caption, &selected_textx, &selected_texty);
+       dc.GetTextExtent(page.caption, &selected_textx, &selected_texty);
 
-       dc.GetTextExtent(caption, &normal_textx, &normal_texty);
+       dc.GetTextExtent(page.caption, &normal_textx, &normal_texty);
  
        //caption = caption + " "; // more area for the string must be allocted
        
 
        // figure out the size of the tab
-       wxSize tab_size = this->GetTabSize(dc,wnd,caption,page.bitmap,
+       wxSize tab_size = this->GetTabSize(dc,wnd,page.caption,page.bitmap,
 
                                     page.active,close_button_state,x_extent);
 
        wxCoord tab_height = tab_size.y+14;
 
-       wxCoord tab_width  = tab_size.x;
+       wxCoord tab_width  = normal_textx+40;
 
-       wxCoord tab_x = in_rect.x+1;
+       //wxCoord x_diff = tab_size.x - tab_width;
+
+       wxCoord tab_x = in_rect.x;
 
        wxCoord tab_y = in_rect.y+14;
-
-
 
 
 
@@ -133,7 +133,9 @@
 
            // draw base background color
 
-           wxRect r(tab_x, tab_y, tab_width-2, tab_height-3);
+           
+
+           wxRect r(tab_x, tab_y, tab_width, tab_height-3);
 
            dc.SetPen(wxPen(wxColour(155,155,165,0xff)));
             
@@ -147,12 +149,15 @@
 
            dc.DrawRectangle(r.x, r.y, r.width, r.height);
 
+            //*x_extent =  0;
+
+            *x_extent = tab_width;
         }
         else{
 
                 // draw inactive tab
 
-                wxRect r(tab_x, tab_y,tab_width-2, tab_height-3);
+                wxRect r(tab_x, tab_y,tab_width, tab_height-3);
 
                 dc.SetPen(wxPen(wxColour(180, 180, 180)));
 
@@ -162,6 +167,14 @@
                 // of the top left corner of the rectangle
 
                 dc.DrawRectangle(r.x, r.y, r.width, r.height);
+
+                //*x_extent =  0;
+
+                //*x_extent = tab_x +  tab_width;
+
+                            *x_extent = tab_width;
+
+
         }
 
 
@@ -181,9 +194,9 @@
             }
 
              wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 10,
-                         tab_y + (tab_height/2) - (bmp.GetScaledHeight()/2)-10,
+                         tab_y + (tab_size.y/2) - (bmp.GetScaledHeight()/2),
                          bmp.GetScaledWidth()-3,
-                         tab_height - 1);
+                         tab_height+10);
 
              DrawButtons(dc,wxSize(1, 1), rect, bmp, *wxWHITE, close_button_state);
 
@@ -225,7 +238,7 @@
 
          dc.DrawText(draw_text,text_offset,
 
-                 (tab_y + tab_height)/2 - (texty/2) + 1);
+                 (tab_y + tab_height)/2 - (texty/2) + 4);
 
 
          *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);
@@ -321,7 +334,7 @@
       else
       {
           rect = wxRect(in_rect.x + in_rect.width - bmp.GetScaledWidth(),
-                      ((in_rect.y + in_rect.height)/2) - (bmp.GetScaledHeight()/2)-2,
+                      ((in_rect.y + in_rect.height)/2) - (bmp.GetScaledHeight()/2),
                       bmp.GetScaledWidth(), bmp.GetScaledHeight());
       }
 

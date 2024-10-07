@@ -87,7 +87,7 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
 
    this->Refresh();
 
-   this->SetTabCtrlHeight(47);
+   this->SetTabCtrlHeight(45);
 
    this->Default_Font = Default_Font;
 
