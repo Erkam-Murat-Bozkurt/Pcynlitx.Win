@@ -151,9 +151,14 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Dir_List_Manager = new Custom_Tree_View_Panel(this,wxID_ANY,wxDefaultPosition,
 
-                            wxSize(270,this->GetClientSize().y),&this->Interface_Manager,
+                            wxSize(400,this->GetClientSize().y),&this->Interface_Manager,
 
-                            *(this->Default_Font),this->Book_Manager->GetTabCtrlHeight());
+                            *(this->Default_Font),this->Book_Manager->GetTabCtrlHeight(),theme_clr);
+
+
+  this->Dir_List_Manager->SetSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
+
+  this->Dir_List_Manager->SetMinSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
 
 
   this->Interface_Manager.Update();
@@ -272,6 +277,7 @@ void MainFrame::PaintNow(wxWindow * wnd)
      }
 }
 
+
 void MainFrame::DrawBackground(wxDC & dc, wxWindow *  wnd, const wxRect& rect)
 {
      dc.SetBrush(wxColour(225,225,225));
@@ -344,6 +350,14 @@ void MainFrame::Close_Directory_Pane(wxAuiManagerEvent & event)
      event.Veto(true);
 
      event.StopPropagation();
+
+     /*
+
+     wxMessageDialog * dial = new wxMessageDialog(this,wxT("wxAuiManagerEvent triggered"));
+
+     dial->ShowModal();
+
+     */
 
      this->Dir_List_Manager->RemoveProjectDirectory();
 
@@ -565,7 +579,7 @@ void MainFrame::FileSelect(wxTreeEvent& event)
 
      event.StopPropagation();
 
-     wxTreeItemId Item = this->tree_control->GetSelection();
+     wxDataViewItem Item = this->tree_control->GetSelection();
 
      wxString Path = this->Dir_List_Manager->GetItemPath(Item);
 
@@ -574,14 +588,10 @@ void MainFrame::FileSelect(wxTreeEvent& event)
         if(this->Dir_List_Manager->GetTreeCtrl()->IsExpanded(Item)){
 
            this->Dir_List_Manager->GetTreeCtrl()->Collapse(Item);
-
-           this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
         }
         else{
 
              this->Dir_List_Manager->GetTreeCtrl()->Expand(Item);
-
-             this->Dir_List_Manager->GetTreeCtrl()->PaintNow();
         }
      }
      else{

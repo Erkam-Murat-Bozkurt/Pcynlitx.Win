@@ -14,11 +14,17 @@
 #include <wx/font.h>
 #include <wx/sizer.h>
 #include <wx/msgdlg.h>
-#include "Custom_wxTreeCtrl.h"
+#include <wx\dataview.h>
+#include <Windows.h>
+#include <cstdlib>
+#include <chrono>
+#include <thread>
+#include "Custom_Notebook.h"
 #include "Project_Folder_Lister.h"
 #include "Custom_DockArt.h"
 #include "Custom_Window.h"
 #include "Custom_Close_Button.h"
+
 
 
 class Custom_Tree_View_Panel : public wxPanel
@@ -28,9 +34,7 @@ public:
 
        const wxPoint &pos, const wxSize &size,wxAuiManager * Interface_Manager,
 
-       wxFont Default_Font, int tabctrl_hight);
-
-  Custom_Tree_View_Panel(const Custom_Tree_View_Panel & orig);
+       wxFont Default_Font, int tabctrl_hight, wxColour theme_clr);
 
   virtual ~Custom_Tree_View_Panel();
 
@@ -42,15 +46,24 @@ public:
 
   void RemoveProjectDirectory();
 
-  Custom_wxTreeCtrl * GetTreeCtrl();
+  wxDataViewTreeCtrl * GetTreeCtrl();
 
-  wxString GetItemPath(wxTreeItemId item_number);
+  int GetTotalItemNum(wxString Folder);
+
+  wxString GetItemPath(wxDataViewItem item_number);
+
+  void FileNameEdit(wxDataViewEvent & event);
 
   bool Get_Panel_Open_Status();
 
   Custom_Close_Button * close_button;
 
   Custom_Window * Top_Bar_Window;
+
+  Custom_Window * Title_Window;
+
+  Custom_Window * Bottom_Window;
+
 
   wxFrame * Frame_Pointer;
 
@@ -66,6 +79,8 @@ public:
 
   wxBoxSizer * Tree_Control_Sizer;
 
+  wxDir * dir_ctrl;
+
   bool panel_open_status;
 
   int tab_ctrl_hight;
@@ -74,9 +89,11 @@ public:
 
   void mouseReleased(wxMouseEvent& event);
 
-  void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect);
+  void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect & rect);
 
   void OnPaint(wxPaintEvent& event);
+
+  void FileSelect(wxDataViewEvent & event);
 
   void Close_Directory_Pane();
 
@@ -87,6 +104,18 @@ public:
   void Detach_Windows_From_Sizer();
 
   void Size_Event(wxSizeEvent & event);
+
+  void Expand_Selected_Item();
+
+  void Expand_Path(wxString path);
+
+  Custom_Notebook * Notebook_Ptr;
+
+  wxBoxSizer * topBar_Sizer;
+
+  wxBoxSizer * title_win_Sizer; 
+
+  wxBoxSizer * tree_Sizer;
 
   wxBoxSizer * panel_sizer;
 
@@ -104,6 +133,8 @@ public:
 
   bool windows_detach_condition;
 
+  wxSize start_menu_window_size;
+
 protected:
   bool Memory_Delete_Condition;
 
@@ -111,11 +142,14 @@ protected:
 
   Project_Folder_Lister * Folder_Lister;
 
-  Custom_wxTreeCtrl * tree_control;
+  wxDataViewTreeCtrl * tree_control;
 
   wxAuiManager * Interface_Manager_Pointer;
 
-  wxFont Directory_List_Font;
+  wxFont * Directory_List_Font;
+
+  DECLARE_EVENT_TABLE()
+
 };
 
-#endif /* CUSTOM_PANEL */
+#endif /* CUSTOM_TREE_VIEW_PANEL_H */

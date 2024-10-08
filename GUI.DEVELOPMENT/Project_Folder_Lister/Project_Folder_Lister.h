@@ -14,18 +14,20 @@
 #include <cstdlib>
 #include <wx/artprov.h>
 #include <wx/msgout.h>
-#include "Custom_wxTreeCtrl.h"
+#include <wx/dataview.h>
+#include <string>
+
 
 struct Tree_Item
 {
-   wxTreeItemId item_id;
-   wxString Item_Path;
+  wxDataViewItem item_number;
+  wxString Item_Path;
 };
 
 class Project_Folder_Lister
 {
 public:
-  Project_Folder_Lister(Custom_wxTreeCtrl * TreeCtrl);
+  Project_Folder_Lister(wxDataViewTreeCtrl * TreeCtrl);
 
   virtual ~Project_Folder_Lister();
 
@@ -33,20 +35,31 @@ public:
 
   void RemoveProjectDirectory();
 
-  Custom_wxTreeCtrl * GetTreeCtrl();
+  wxDataViewTreeCtrl * GetTreeCtrl();
 
-  wxString GetItemPath(wxTreeItemId item_number);
+  wxString GetItemPath(wxDataViewItem item_number);
 
   bool GetProjectDirectoryOpenStatus();
 
+  int GetTotalItemNum(wxString Folder);
+
   void Expand_Root();
 
+  void Expand_Selected_Item();
+
+  void Expand_Path(wxString path);
+
+  wxDataViewItem GetItemId_FromPath(wxString path);
+  
 private:
-  void Initialize_Properties(wxString Folder);
+
+  void Initialize_Properties();
 
   void count_sub_directories(wxString Folder);
 
-  void Append_Items(wxString Folder, wxTreeItemId Id);
+  bool Is_Item_Already_Exist(wxString Path);
+
+  void Append_Items(wxString Folder, wxDataViewItem Id);
 
   size_t Get_Sub_Directory_Name_Size(wxString Item);
 
@@ -54,11 +67,11 @@ private:
 
   bool Does_it_have_SubDir(wxString Folder);
 
-  wxTreeItemId Append_Directory_To_Tree(wxTreeItemId Id, wxString Directory, wxString Path);
+  wxDataViewItem Append_Directory_To_Tree(wxDataViewItem Item, wxString Directory, wxString Path);
 
-  wxTreeItemId Append_File_To_Tree(wxTreeItemId Id, wxString Directory, wxString Path);
+  wxDataViewItem Append_File_To_Tree(wxDataViewItem Item, wxString Directory, wxString Path);
 
-  void Append_Files(wxString Folder, wxTreeItemId Id);
+  void Append_Files(wxString Folder, wxDataViewItem Item);
 
   void Count_Files(wxString Folder);
 
@@ -66,8 +79,7 @@ private:
   int sub_directory_number;
   int total_item_number;
   int item_counter;
-  Custom_wxTreeCtrl * treeCtrl;
-  wxImageList * imglist;
+  wxDataViewTreeCtrl * treeCtrl;
   Tree_Item * tree_item_list;
   wxString Short_Path;
   wxString Item_Path;
@@ -75,7 +87,10 @@ private:
   bool Memory_Delete_Condition;
   bool search_cond;
   bool does_it_have_sub_dir;
-  wxTreeItemId appended_item_id;
+  wxDataViewItem appended_item;
+  wxBitmap Folder_Icon;
+  wxBitmap File_Icon;
+
 };
 
 #endif /* PROJECT_FOLDER_LISTER_H */

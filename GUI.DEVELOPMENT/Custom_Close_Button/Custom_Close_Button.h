@@ -8,7 +8,6 @@
 #include <wx\aui\aui.h>
 #include <wx\aui\framemanager.h>
 #include <wx\sizer.h>
-#include "Custom_wxTreeCtrl.h"
 #include "Custom_Window.h"
 #include "Project_Folder_Lister.h"
 
@@ -34,6 +33,7 @@ public:
     void keyPressed(wxKeyEvent& event);
     void keyReleased(wxKeyEvent& event);
     bool pressedDown;
+    bool pressedCloseButton;
     wxString text;
     wxPoint Position;
     wxPoint Parent_Position;

@@ -1,44 +1,28 @@
 
 /*
 
-Copyright ©  2021,  Erkam Murat Bozkurt
-
-This file is part of the research project which is carried by Erkam Murat Bozkurt.
-
-This is a free software: you can redistribute it and/or modify it under the terms
-of the GNU General Public License as published by the Free Software Foundation
-either version 3 of the License, or any later version.
-
-This software is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) { Erkam Murat Bozkurt } - All Rights Reserved
+ * 
+ * This source code is protected under international copyright law.  All rights
+ * reserved and protected by the copyright holders.
+ * 
+ * This file is confidential and only available to authorized individuals with the
+ * permission of the copyright holders.  If you encounter this file and do not have
+ * permission, please contact the copyright holders and delete this file.
 
 */
 
 #include "Custom_Close_Button.h"
 
-BEGIN_EVENT_TABLE(Custom_Close_Button,wxPanel)
 
-    EVT_MOTION(Custom_Close_Button::mouseMoved)
+
+BEGIN_EVENT_TABLE(Custom_Close_Button,wxPanel)
 
     EVT_LEFT_DOWN(Custom_Close_Button::mouseDown)
 
     EVT_LEFT_UP(Custom_Close_Button::mouseReleased)
 
-    EVT_RIGHT_DOWN(Custom_Close_Button::rightClick)
-
     EVT_LEAVE_WINDOW(Custom_Close_Button::mouseLeftWindow)
-
-    EVT_KEY_DOWN(Custom_Close_Button::keyPressed)
-
-    EVT_KEY_UP(Custom_Close_Button::keyReleased)
-
-    EVT_MOUSEWHEEL(Custom_Close_Button::mouseWheelMoved)
 
     EVT_PAINT(Custom_Close_Button::paintEvent)
 
@@ -67,9 +51,7 @@ Custom_Close_Button::Custom_Close_Button(Custom_Window * parent, wxPoint positio
 
     this->page_close_icon = new
 
-                wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\pane_close_icon.png"),
-
-                wxBITMAP_TYPE_ANY);
+                wxBitmap(wxT("C:\\Program Files\\Nwinix\\icons\\pane_close_icon.png"),wxBITMAP_TYPE_ANY);
 
     this->SetMinSize(this->page_close_icon->GetSize());
 
@@ -80,6 +62,8 @@ Custom_Close_Button::Custom_Close_Button(Custom_Window * parent, wxPoint positio
     this->Position = position;
 
     this->pressedDown = false;
+
+    this->pressedCloseButton = false;
 
     this->SetPosition(this->Position);
 }
@@ -108,6 +92,7 @@ void Custom_Close_Button::paintNow()
     this->Update_Window_Data();
 
     wxClientDC dc(this);
+    
     this->render(dc);
 }
 
@@ -146,9 +131,9 @@ void Custom_Close_Button::render(wxDC&  dc)
 {
     wxRect rect(this->GetSize());
 
-    dc.SetBrush(wxColour(235,235,235));
+    dc.SetBrush(wxColour(240,240,240));
 
-    dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+2,rect.GetHeight()+2);
+    dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+3,rect.GetHeight()+3);
 
     wxSize Bitmap_Size = this->page_close_icon->GetSize();
 
@@ -158,7 +143,7 @@ void Custom_Close_Button::render(wxDC&  dc)
 
     int y_extend = Panel_Size.y - Bitmap_Size.y;
 
-    dc.DrawBitmap(*this->page_close_icon,wxPoint(2+x_extend/2,2+y_extend/2));
+    dc.DrawBitmap(*this->page_close_icon,wxPoint(x_extend/2,y_extend/2));
 }
 
 void Custom_Close_Button::mouseDown(wxMouseEvent& event)
@@ -175,6 +160,16 @@ void Custom_Close_Button::mouseReleased(wxMouseEvent& event)
 
     this->pressedDown = false;
 
+    this->pressedCloseButton = true;
+
+    /**
+
+    wxMessageDialog * dial = new wxMessageDialog(this,wxT("wxMouseEvent triggered"));
+
+    dial->ShowModal();
+
+    */
+
     this->paintNow();
 }
 
@@ -183,13 +178,7 @@ void Custom_Close_Button::mouseLeftWindow(wxMouseEvent& event)
     if (this->pressedDown)
     {
         this->pressedDown = false;
+
         this->paintNow();
     }
 }
-
-// currently unused events
-void Custom_Close_Button::mouseMoved(wxMouseEvent& event) {}
-void Custom_Close_Button::mouseWheelMoved(wxMouseEvent& event) {}
-void Custom_Close_Button::rightClick(wxMouseEvent& event) {}
-void Custom_Close_Button::keyPressed(wxKeyEvent& event) {}
-void Custom_Close_Button::keyReleased(wxKeyEvent& event) {}

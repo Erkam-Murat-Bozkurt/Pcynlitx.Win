@@ -1,27 +1,24 @@
 
 /*
 
-Copyright ©  2021,  Erkam Murat Bozkurt
-
-This file is part of the research project which is carried by Erkam Murat Bozkurt.
-
-This is a free software: you can redistribute it and/or modify it under the terms
-of the GNU General Public License as published by the Free Software Foundation
-either version 3 of the License, or any later version.
-
-This software is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) { Erkam Murat Bozkurt } - All Rights Reserved
+ * 
+ * This source code is protected under international copyright law.  All rights
+ * reserved and protected by the copyright holders.
+ * 
+ * This file is confidential and only available to authorized individuals with the
+ * permission of the copyright holders. If you encounter this file and do not have
+ * permission, please contact the copyright holders and delete this file.
 
 */
 
 #include "Custom_Tree_View_Panel.h"
 
+
+BEGIN_EVENT_TABLE(Custom_Tree_View_Panel,wxPanel)
+   EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,Custom_Tree_View_Panel::FileSelect)
+   EVT_DATAVIEW_ITEM_START_EDITING(wxID_ANY,Custom_Tree_View_Panel::FileNameEdit)
+END_EVENT_TABLE()
 
 Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
@@ -29,7 +26,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      wxAuiManager * Interface_Manager,
 
-     wxFont Default_Font, int tabctrl_hight)
+     wxFont Default_Font, int tabctrl_hight, wxColor theme_clr)
 
   : wxPanel(frame,id,pos,size)
 
@@ -44,7 +41,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->close_button_construction_status = false;
 
-     this->Topbar_MinSize = wxSize(270,-1);
+     this->Topbar_MinSize = wxSize(500,this->tab_ctrl_hight);
 
      this->SetDoubleBuffered(true);
 
@@ -60,7 +57,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->GetEventHandler()->Bind(wxEVT_SIZE,&Custom_Tree_View_Panel::Size_Event,this,wxID_ANY);
 
-     this->SetSize(frame->GetClientSize());
+     this->SetSize(size);
 
      this->Centre(wxBOTH);
 
@@ -73,7 +70,10 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->Show(false);
 
 
-     this->tab_ctrl_hight = tabctrl_hight;
+     this->dir_ctrl = new wxDir;
+
+
+     this->tab_ctrl_hight = tabctrl_hight +1;
 
      this->Frame_Pointer = frame;
 
@@ -82,7 +82,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->panel_open_status = false;
 
 
-     this->Interface_Manager_Pointer->SetDockSizeConstraint(0.3,1);
+     //this->Interface_Manager_Pointer->SetDockSizeConstraint(0.35,1);
 
      this->File_List_Widget_Shape.TopDockable(false);
 
@@ -92,7 +92,7 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->File_List_Widget_Shape.Resizable(true);
 
-     this->File_List_Widget_Shape.MinSize(270,-1);
+     this->File_List_Widget_Shape.MinSize(size);
 
      this->File_List_Widget_Shape.Show(true);
 
@@ -100,16 +100,29 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->File_List_Widget_Shape.Dock();
 
-     this->File_List_Widget_Shape.dock_proportion = 0.25;
+     this->File_List_Widget_Shape.dock_proportion = 0.4;
+
+     this->SetMinSize(size);
 
 
-     this->Tree_Control_Size = this->GetClientSize();
+     int tree_size_y = size.y - 2*this->tab_ctrl_hight -60;
+
+     this->Tree_Control_Size = wxSize(size.x,tree_size_y);
 
 
-     this->tree_control = new Custom_wxTreeCtrl(this, wxID_ANY,wxDefaultPosition,
+     this->tree_control = new wxDataViewTreeCtrl(this, wxID_ANY,wxDefaultPosition,
 
-                             this->Tree_Control_Size, wxTR_DEFAULT_STYLE | wxTR_ROW_LINES);
+                             this->Tree_Control_Size,wxDV_NO_HEADER | wxDV_VARIABLE_LINE_HEIGHT  );
 
+
+     std::string face_name = "Calibri"; 
+
+
+     this->Directory_List_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
+
+                     wxFONTWEIGHT_NORMAL,false,wxString(face_name));
+
+     this->tree_control->SetFont(*this->Directory_List_Font);
 
 
      wxPoint tree_control_current_position = this->tree_control->GetPosition();
@@ -119,25 +132,82 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
                                    tree_control_current_position.y + this->tab_ctrl_hight );
 
 
-     this->tree_control->Receive_Position(this->Tree_Control_Position);
-
      this->tree_control->SetPosition(this->Tree_Control_Position);
 
+     this->tree_control->SetBackgroundColour(wxColour(250,250,250));
 
 
      wxSize Tab_Bar_size = wxSize(this->GetSize().x,this->tab_ctrl_hight);
 
-     this->Top_Bar_Window = new Custom_Window(this,wxPoint(0,0),Tab_Bar_size);
+     this->Top_Bar_Window = new Custom_Window(this,wxPoint(0,0),Tab_Bar_size,wxColour(240,240,240));
 
      this->Top_Bar_Window->Receive_Tab_ctrl_Hight(this->tab_ctrl_hight);
 
      this->Top_Bar_Window->Show(false);
 
 
-     wxPoint Panel_Top_Right_Position = this->GetRect().GetTopRight();
+
+     // TITLE WINDOW SETTINGS START
+
+
+     this->Title_Window =  new Custom_Window(this,wxPoint(0,this->tab_ctrl_hight),
+     
+                           wxSize(Tab_Bar_size.x,Tab_Bar_size.y-5),wxColour(80,80,90,0xff));
+
+     this->Title_Window->Receive_Tab_ctrl_Hight(this->tab_ctrl_hight);
+
+     this->Title_Window->Show(false);
+
+
+
+     wxStaticText * text = new wxStaticText(this->Title_Window ,wxID_ANY,wxT("FILE EXPLORER   "));
+
+     wxPoint title_pos =text->GetPosition();
+
+     wxSize text_size = text->GetSize();
+
+     int text_y_pos = title_pos.y + (this->tab_ctrl_hight - text_size.GetY())/2;
+
+     text->SetPosition(wxPoint(title_pos.x+25,text_y_pos));
+
+
+
+
+     wxFont textFont = text->GetFont();
+
+     textFont.SetPointSize(9);
+
+     textFont.SetFaceName(wxT("Segoe UI Semibold"));
+
+     text->SetFont(textFont);
+
+     text->SetForegroundColour(wxColour(250,250,250));
+
+     // TITLE WINDOW SETTINGS END
+
+
+
+     /*
+
+     int bottom_win_y = this->Tree_Control_Position.y + this->tree_control->GetSize().GetY();
+
+
+
+
+     this->Bottom_Window =  new Custom_Window(this,wxPoint(0,bottom_win_y+3),
+     
+                           wxSize(Tab_Bar_size.x,55),wxColour(240,240,240,0xff));
+
+     */
+
+
+
+
 
 
      // Default wxPanel position is TopLeft corner of the panel
+
+     wxPoint Panel_Top_Right_Position = this->GetRect().GetTopRight();
 
      int close_button_x = Panel_Top_Right_Position.x -35;
 
@@ -161,18 +231,36 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->tree_control->Show(false);
 
-
-     this->Directory_List_Font = Default_Font;
-
-     this->Directory_List_Font.SetPointSize(this->Directory_List_Font.GetPointSize()-1);
-
      this->Folder_Lister = new Project_Folder_Lister(this->tree_control);
+
+     this->Initialize_Sizer();
+
+     this->windows_detach_condition = false;
+
+
+
+     this->Top_Bar_Window->Show(true);
+
+     this->Title_Window->Show(true);
+
+     this->close_button->Show(true);
+
+     this->tree_control->Show(true);
+
+     //this->Bottom_Window->Show(true);
+
+     this->Show(false);
+
+
+     this->PostSizeEvent();
 }
 
 Custom_Tree_View_Panel::~Custom_Tree_View_Panel()
 {
     if(!this->windows_detach_condition)
     {
+        this->windows_detach_condition = true;
+
         this->Detach_Windows_From_Sizer();
     }
 
@@ -191,22 +279,34 @@ void Custom_Tree_View_Panel::Size_Event(wxSizeEvent & event)
      this->PaintNow();
 }
 
-void Custom_Tree_View_Panel::mouseReleased(wxMouseEvent& event)
+void Custom_Tree_View_Panel::mouseReleased(wxMouseEvent & event)
 {
      event.Skip(false);
 
      event.StopPropagation();
 
-     this->Close_Directory_Pane();
+     if(this->close_button->pressedCloseButton){
+
+        this->Close_Directory_Pane();
+
+        this->close_button->pressedCloseButton = false;
+     }
 }
 
 void Custom_Tree_View_Panel::Initialize_Sizer()
 {
      this->panel_sizer = new wxBoxSizer(wxVERTICAL);
 
-     this->panel_sizer->Add(this->Top_Bar_Window,0, wxALL|wxEXPAND,0);
+     this->panel_sizer->Add(this->Top_Bar_Window,0, wxEXPAND | wxALL,0);
 
-     this->panel_sizer->Add(this->tree_control,0, wxALL|wxEXPAND,0);
+     this->panel_sizer->Add(this->Title_Window,0,  wxEXPAND  | wxRIGHT,15);
+
+     this->panel_sizer->Add(this->tree_control,1,  wxEXPAND | wxRIGHT | wxBOTTOM,16);
+
+     //this->panel_sizer->Add(this->Bottom_Window,0, wxEXPAND | wxALL,0);
+
+
+     this->panel_sizer->Layout();
 
      this->windows_detach_condition = false;
 
@@ -217,13 +317,16 @@ void Custom_Tree_View_Panel::Initialize_Sizer()
      this->Fit();
 
      this->SetAutoLayout(true);
+
 }
 
 void Custom_Tree_View_Panel::Detach_Windows_From_Sizer()
 {
-     this->panel_sizer->Detach(this->tree_control);
-
      this->panel_sizer->Detach(this->Top_Bar_Window);
+
+     this->panel_sizer->Detach(this->Title_Window);
+
+     this->panel_sizer->Detach(this->tree_control);
 
      this->windows_detach_condition = true;
 }
@@ -235,10 +338,49 @@ void Custom_Tree_View_Panel::Receive_Topbar_MinSize(wxSize size)
 
 void Custom_Tree_View_Panel::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(wxColour(255,255,255));
+     dc.SetBrush(wxColour(240,240,240));
 
-     dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2, rect.GetWidth()+5,rect.GetHeight()+5);
+     dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+10,rect.GetHeight()+10);
 }
+
+
+void Custom_Tree_View_Panel::FileSelect(wxDataViewEvent & event)
+{
+     event.Skip(true);
+
+     event.StopPropagation();
+
+     wxDataViewItem Item = this->tree_control->GetSelection();
+
+     wxString Path = this->GetItemPath(Item);
+
+     if(this->dir_ctrl->Exists(Path)){
+
+        if(this->GetTreeCtrl()->IsExpanded(Item)){
+
+           this->GetTreeCtrl()->Collapse(Item);
+        }
+        else{
+
+             this->GetTreeCtrl()->Expand(Item);
+        }
+     }
+     else{
+
+            this->Notebook_Ptr->Open_File(Path);
+     }
+}
+
+
+
+void Custom_Tree_View_Panel::FileNameEdit(wxDataViewEvent & event)
+{
+     event.Veto();
+
+}
+
+
+
 
 void Custom_Tree_View_Panel::PaintNow()
 {
@@ -249,7 +391,7 @@ void Custom_Tree_View_Panel::PaintNow()
      this->DrawBackground(dc,this,rect);
 }
 
-void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
+void Custom_Tree_View_Panel::OnPaint(wxPaintEvent & event)
 {
      event.Skip(true);
 
@@ -267,6 +409,10 @@ void Custom_Tree_View_Panel::OnPaint(wxPaintEvent& event)
      if(this->Get_Panel_Open_Status()){
 
         this->Top_Bar_Window->paintNow();
+
+        this->Title_Window->paintNow();
+
+        //this->Bottom_Window->paintNow();
      }
 };
 
@@ -288,33 +434,60 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
 
      this->Folder_Lister->RemoveProjectDirectory();
 
-     if(!this->panel_open_status)
-     {
-        this->Interface_Manager_Pointer->AddPane(this,this->File_List_Widget_Shape);
-
-        this->Show(true);
-
-        this->panel_open_status = true;
-     }
-
-     this->Initialize_Sizer();
-
      this->Folder_Lister->Load_Project_Directory(Folder);
 
-     this->Top_Bar_Window->paintNow();
+     this->Folder_Lister->Expand_Root();
 
-     this->Top_Bar_Window->Show(true);
 
-     this->close_button->Show(true);
+     this->Top_Bar_Window->Update();
 
-     this->tree_control->Show(true);
+     this->Title_Window->Update();
+
+     this->close_button->Update();
+
+     //this->Bottom_Window->Update();
+
+
+     this->Interface_Manager_Pointer->AddPane(this,this->File_List_Widget_Shape);
+
+
+     for(int i=0;i<5;i++){
+
+         wxYield();
+
+         this->Top_Bar_Window->Update();
+
+         this->Title_Window->Update();
+
+         this->close_button->Update();
+
+         //this->Bottom_Window->Update();
+
+         this->PostSizeEvent();
+
+     }
+
 
      this->Show(true);
 
-     this->Refresh();
+     this->close_button->pressedCloseButton = false;
+
+     if(!this->panel_open_status)
+     {
+        this->panel_open_status = true;
+     }
 
      this->Interface_Manager_Pointer->Update();
+
 }
+
+
+void Custom_Tree_View_Panel::Expand_Path(wxString path){
+
+     this->Folder_Lister->Expand_Path(path);
+}
+
+
 
 void Custom_Tree_View_Panel::Close_Directory_Pane()
 {
@@ -324,16 +497,7 @@ void Custom_Tree_View_Panel::Close_Directory_Pane()
      {
         this->tree_control->DeleteAllItems();
 
-        this->tree_control->Show(false);
-
-        this->Top_Bar_Window->Show(false); // Top bar window
-
         this->Show(false);  // Directory_List_Panel
-
-        if(!this->windows_detach_condition)
-        {
-            this->Detach_Windows_From_Sizer();
-        }
 
         this->Interface_Manager_Pointer->DetachPane(this);
 
@@ -343,17 +507,29 @@ void Custom_Tree_View_Panel::Close_Directory_Pane()
     }
 }
 
+
+void Custom_Tree_View_Panel::Expand_Selected_Item(){
+
+     this->Folder_Lister->Expand_Selected_Item();
+}
+
+int Custom_Tree_View_Panel::GetTotalItemNum(wxString Folder){
+
+    return this->Folder_Lister->GetTotalItemNum(Folder);
+}
+
+
 void Custom_Tree_View_Panel::Set_Font(wxFont Font){
 
       this->tree_control->SetFont(Font);
 }
 
-Custom_wxTreeCtrl * Custom_Tree_View_Panel::GetTreeCtrl(){
+wxDataViewTreeCtrl * Custom_Tree_View_Panel::GetTreeCtrl(){
 
      return this->tree_control;
 }
 
-wxString Custom_Tree_View_Panel::GetItemPath(wxTreeItemId item_number){
+wxString Custom_Tree_View_Panel::GetItemPath(wxDataViewItem item_number){
 
          return this->Folder_Lister->GetItemPath(item_number);
 }

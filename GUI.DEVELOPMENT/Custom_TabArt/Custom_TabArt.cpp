@@ -95,6 +95,7 @@
 
        wxCoord tab_y = in_rect.y+14;
 
+       *x_extent = tab_width+1;
 
 
        wxFont bld = *this->Default_Font;
@@ -140,9 +141,7 @@
            dc.SetPen(wxPen(wxColour(155,155,165,0xff)));
             
            dc.SetBrush(wxColour(175,175,185,0xff));
-
            
-
 
            // DrawRectangle member function: The first two parameters indicate the coordinates
            // of the top left corner of the rectangle
@@ -151,7 +150,6 @@
 
             //*x_extent =  0;
 
-            *x_extent = tab_width;
         }
         else{
 
@@ -171,10 +169,6 @@
                 //*x_extent =  0;
 
                 //*x_extent = tab_x +  tab_width;
-
-                            *x_extent = tab_width;
-
-
         }
 
 

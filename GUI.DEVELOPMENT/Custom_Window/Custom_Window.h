@@ -10,7 +10,7 @@
 class Custom_Window : public wxWindow
 {
 public:
-    Custom_Window(wxPanel * parent, wxPoint position, wxSize window_size);
+    Custom_Window(wxPanel * parent, wxPoint position, wxSize window_size,wxColour win_colour);
     virtual ~Custom_Window();
     void paintEvent(wxPaintEvent & evt);
     void Size_Event_Handler(wxSizeEvent & event);
@@ -19,6 +19,7 @@ public:
     void Receive_Tab_ctrl_Hight(int hight);
     void paintNow();
     void render(wxDC& dc);
+    wxColour colour;
     wxPoint Position;
     wxPoint Button_Position;
     int Button_ID;

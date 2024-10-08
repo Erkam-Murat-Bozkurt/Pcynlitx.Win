@@ -136,7 +136,8 @@ private:
   wxDir    * dir_control;
   wxFont   * Default_Font;
   wxFontDialog * Font_Dialog;
-  Custom_wxTreeCtrl * tree_control;
+  wxDataViewTreeCtrl * tree_control;
+  //Custom_wxTreeCtrl * tree_control;
   bool Close_Operation_Status;
   int Toolbar_ID;
   DECLARE_EVENT_TABLE()

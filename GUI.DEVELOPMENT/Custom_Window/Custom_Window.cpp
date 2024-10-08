@@ -1,28 +1,21 @@
 
 /*
 
-Copyright ©  2021,  Erkam Murat Bozkurt
-
-This file is part of the research project which is carried by Erkam Murat Bozkurt.
-
-This is a free software: you can redistribute it and/or modify it under the terms
-of the GNU General Public License as published by the Free Software Foundation
-either version 3 of the License, or any later version.
-
-This software is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) { Erkam Murat Bozkurt } - All Rights Reserved
+ * 
+ * This source code is protected under international copyright law.  All rights
+ * reserved and protected by the copyright holders.
+ * 
+ * This file is confidential and only available to authorized individuals with the
+ * permission of the copyright holders.  If you encounter this file and do not have
+ * permission, please contact the copyright holders and delete this file.
 
 */
 
+
 #include "Custom_Window.h"
 
-Custom_Window::Custom_Window(wxPanel * parent, wxPoint position, wxSize window_size) :
+Custom_Window::Custom_Window(wxPanel * parent, wxPoint position, wxSize window_size, wxColour win_colour) :
 
      wxWindow(parent, wxID_ANY,position,window_size)
 {
@@ -38,13 +31,15 @@ Custom_Window::Custom_Window(wxPanel * parent, wxPoint position, wxSize window_s
 
     this->SetMinSize(window_size);
 
-    this->page_close_icon = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\pane_close_icon.png"), wxBITMAP_TYPE_ANY);
+    this->page_close_icon = new wxBitmap(wxT("C:\\Program Files\\Nwinix\\icons\\pane_close_icon.png"), wxBITMAP_TYPE_ANY);
 
     this->Position = position;
 
     this->tab_ctrl_hight = 0;
 
-    this->SetBackgroundColour(wxColour(240,240,240));
+    this->colour = win_colour;
+
+    this->SetBackgroundColour(this->colour);
 
     this->SetPosition(this->Position);
 
@@ -97,9 +92,9 @@ void Custom_Window::render(wxDC & dc)
 {
     wxRect rect(this->GetSize());
 
-    dc.SetBrush(wxColour(240,240,240));
+    dc.SetBrush(this->colour);
 
-    dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+5,rect.GetHeight()+15);
+    dc.DrawRectangle(rect.GetX()-2, rect.GetY()-2, rect.GetWidth()+10,rect.GetHeight()+15);
 }
 
 void Custom_Window::Receive_Button_ID(int button_id){
