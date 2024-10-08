@@ -1,41 +1,44 @@
 
 /*
 
-Copyright ©  2021,  Erkam Murat Bozkurt
-
-This file is part of the research project which is carried by Erkam Murat Bozkurt.
-
-This is a free software: you can redistribute it and/or modify it under the terms
-of the GNU General Public License as published by the Free Software Foundation
-either version 3 of the License, or any later version.
-
-This software is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) { Erkam Murat Bozkurt } - All Rights Reserved
+ * 
+ * This source code is protected under international copyright law.  All rights
+ * reserved and protected by the copyright holders.
+ * 
+ * This file is confidential and only available to authorized individuals with the
+ * permission of the copyright holders.  If you encounter this file and do not have
+ * permission, please contact the copyright holders and delete this file.
 
 */
 
 #include "Custom_Notebook.h"
 
-Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Manager,
+Custom_Notebook::Custom_Notebook(wxFrame * frame, wxPanel * parent, wxAuiManager * Interface_Manager,
 
        wxFont Default_Font,wxSize size, wxColour theme_clr)
 
-      : wxAuiNotebook(parent,wxID_ANY,wxDefaultPosition,size,wxAUI_NB_DEFAULT_STYLE)
+      : wxAuiNotebook(parent,wxID_ANY,wxDefaultPosition,size,wxAUI_NB_DEFAULT_STYLE )
 {
+   this->frame_ptr = frame;
+
+   this->OpenFileNumber = 0;
 
    this->Is_Intro_Page_Open = false;
-
-   this->Is_Help_Page_Open = false;
 
    this->Interface_Manager_Pointer = Interface_Manager;
 
    this->SetThemeEnabled(false);
+
+    std::string face_name = "Fira Code"; 
+
+
+
+   this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
+
+                     wxFONTWEIGHT_NORMAL,false,wxString(face_name));
+
+   this->SetFont(*(this->Default_Font));
 
 
    this->Custom_Notebook_TabArt = new Custom_TabArt(theme_clr);
@@ -45,7 +48,7 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
 
    this->SetBackgroundStyle(wxBG_STYLE_PAINT);
 
-   this->SetBackgroundColour(wxColour(235,235,235));
+   this->SetBackgroundColour(wxColour(240,240,240));
 
    this->SetDoubleBuffered(true);
 
@@ -83,13 +86,11 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
 
    this->Initialization();
 
-   this->OpenIntroPage();
-
    this->Refresh();
 
-   this->SetTabCtrlHeight(45);
+   this->SetTabCtrlHeight(48);
 
-   this->Default_Font = Default_Font;
+
 
    this->Show(true);
 
@@ -105,6 +106,7 @@ Custom_Notebook::Custom_Notebook( wxPanel * parent, wxAuiManager * Interface_Man
 
    this->PaintNow(this);
 };
+
 
 void Custom_Notebook::Size_Event(wxSizeEvent & event)
 {
@@ -137,8 +139,6 @@ void Custom_Notebook::Initialization(){
 
          this->NoteBook_Page_Data[i].Intro_Page_Pointer = nullptr;
 
-         this->NoteBook_Page_Data[i].Help_Page_Pointer = nullptr;
-
          this->NoteBook_Page_Data[i].Document_Change_In_File_Open = false;
 
          this->NoteBook_Page_Data[i].Is_Page_Open = false;
@@ -165,6 +165,8 @@ void Custom_Notebook::OpenIntroPage()
      {
          this->Is_Intro_Page_Open = true;
 
+         this->OpenFileNumber++;
+
          int Index_Number = this->Get_Empty_Pointer_Index_Number();
 
          this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer =
@@ -185,7 +187,7 @@ void Custom_Notebook::OpenIntroPage()
 
          // Load Intro Page
 
-         this->AddPage(this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer,wxT(" Introduction  "),true);
+         this->AddPage(this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer,wxT(" Welcome  "),true);
 
          this->NoteBook_Page_Data[Index_Number].Intro_Page_Pointer->Show(true);
 
@@ -206,49 +208,25 @@ void Custom_Notebook::OpenIntroPage()
      this->Refresh();
 }
 
-void Custom_Notebook::Load_Help_Page()
-{
-     // Load Help Page
 
-     if(!this->Is_Help_Page_Open)
-     {
-        this->Is_Help_Page_Open = true;
+void Custom_Notebook::SelectIntroPage(){
 
-        int Index_Number = this->Get_Empty_Pointer_Index_Number();
+     int Page_Number = 0;
 
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer =
+     for(int i=0;i<20;i++){
 
-                           new Help_Page_Loader(this,this->GetClientSize());
+         if(this->NoteBook_Page_Data[i].Window_ID == this->Introduction_Page_Id){
 
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Receive_Help_Page_Open_Status(&this->Is_Help_Page_Open);
+            Page_Number = i;
 
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->FitInside();
-
-        this->NoteBook_Page_Data[Index_Number].Window_ID = this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->GetId();
-
-        this->Introduction_Page_Id = this->NoteBook_Page_Data[Index_Number].Window_ID;
-
-        this->NoteBook_Page_Data[Index_Number].Document_Change_In_File_Open = false;
-
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Initialize_Help_Page_Text(this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer);
-
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Show(true);
-
-        this->NoteBook_Page_Data[Index_Number].Help_Page_Pointer->Refresh();
-
-        this->NoteBook_Page_Data[Index_Number].Document_Change_Condition = false;
-
-        this->NoteBook_Page_Data[Index_Number].Is_Pointer_Free = false;
-
-        this->NoteBook_Page_Data[Index_Number].Is_Page_Open = true;
-
-        this->NoteBook_Page_Data[Index_Number].File_Path = wxT("");
-
-        this->NoteBook_Page_Data[Index_Number].Is_This_Text_File = false;
+            break;
+         }
      }
 
-     this->Refresh();
+     this->SetSelection(Page_Number);
 }
+
+
 
 void Custom_Notebook::OnClose()
 {
@@ -269,7 +247,7 @@ void Custom_Notebook::PaintNow(wxWindow * wnd)
 {
      wxClientDC dc(wnd);
 
-     wxSize Rect_Size = wxSize(wnd->GetSize().x+5,wnd->GetSize().y+5);
+     wxSize Rect_Size = wxSize(wnd->GetSize().x+1,wnd->GetSize().y+1);
 
      wxRect rect(Rect_Size);
 
@@ -291,9 +269,9 @@ void Custom_Notebook::OnPaint(wxPaintEvent & event)
 
 void Custom_Notebook::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(wxColour(235,235,235));
+     dc.SetBrush(wxColour(240,240,240));
 
-     dc.DrawRectangle(rect.GetX()-1,rect.GetY()-1,rect.GetWidth()+5,rect.GetHeight()+5);
+     dc.DrawRectangle(rect.GetX()-2,rect.GetY()-2,rect.GetWidth()+5,rect.GetHeight()+5);
 };
 
 void Custom_Notebook::Change_Cursor_Type()
@@ -471,6 +449,8 @@ void Custom_Notebook::Add_New_File(wxString File_Path)
 
      if(!Is_File_Open){
 
+         this->OpenFileNumber++;
+
          int Index_Number = this->Get_Empty_Pointer_Index_Number();
 
          this->NoteBook_Page_Data[Index_Number].Text_Ctrl = new Custom_TextCtrl(this,wxID_ANY,wxDefaultPosition,
@@ -509,7 +489,7 @@ void Custom_Notebook::Add_New_File(wxString File_Path)
 
          this->NoteBook_Page_Data[Index_Number].Is_This_Text_File = true;
 
-         this->Text_Style_Loader.Set_Lexer_Style(this->Default_Font,this->NoteBook_Page_Data[Index_Number].Text_Ctrl);
+         this->Text_Style_Loader.Set_Lexer_Style(*this->Default_Font,this->NoteBook_Page_Data[Index_Number].Text_Ctrl);
 
          this->Determine_File_Short_Name(File_Path);
 
@@ -543,6 +523,8 @@ void Custom_Notebook::Open_File(wxString File_Path)
 
      if(!Is_File_Open){
 
+         this->OpenFileNumber++;
+
          int Index_Number = this->Get_Empty_Pointer_Index_Number();
 
          this->NoteBook_Page_Data[Index_Number].Text_Ctrl = new Custom_TextCtrl(this,wxID_ANY,wxDefaultPosition,
@@ -569,7 +551,7 @@ void Custom_Notebook::Open_File(wxString File_Path)
 
          this->NoteBook_Page_Data[Index_Number].Window_ID = this->NoteBook_Page_Data[Index_Number].Text_Ctrl->GetId();
 
-         this->Text_Style_Loader.Set_Lexer_Style(this->Default_Font,this->NoteBook_Page_Data[Index_Number].Text_Ctrl);
+         this->Text_Style_Loader.Set_Lexer_Style(*this->Default_Font,this->NoteBook_Page_Data[Index_Number].Text_Ctrl);
 
          this->Determine_File_Short_Name(File_Path);
 
@@ -739,7 +721,7 @@ void Custom_Notebook::Clear_Style()
             {
                 this->Text_Style_Loader.Clear_Text_Control_Style(this->NoteBook_Page_Data[i].Text_Ctrl,
 
-                  this->Default_Font);
+                  *this->Default_Font);
             }
          }
      }
@@ -747,6 +729,15 @@ void Custom_Notebook::Clear_Style()
      this->SetSelection(Selection);
 
      this->Style_Change_Operation = false;
+}
+
+
+void Custom_Notebook::Clear_Text_Control_Style(Custom_TextCtrl * text_ctrl){
+
+     this->Text_Style_Loader.Clear_Text_Control_Style(text_ctrl,
+
+     *this->Default_Font);
+
 }
 
 void Custom_Notebook::Reload_Style()
@@ -769,7 +760,7 @@ void Custom_Notebook::Reload_Style()
 
               this->Text_Style_Loader.Reload_Text_Control_Style(this->NoteBook_Page_Data[i].Text_Ctrl,
 
-                this->Default_Font);
+                *this->Default_Font);
            }
         }
      }
@@ -839,7 +830,10 @@ void Custom_Notebook::NoteBook_Page_Closed(wxAuiNotebookEvent & event)
 
      event.ResumePropagation(2);
 
+
      wxWindow * window_pointer = this->GetCurrentPage();
+
+     this->OpenFileNumber--;
 
      int closed_page_id = window_pointer->GetId();
 
@@ -853,6 +847,14 @@ void Custom_Notebook::NoteBook_Page_Closed(wxAuiNotebookEvent & event)
 
             break;
          }
+     }
+
+
+     bool is_intro_page = false;
+
+     if(this->NoteBook_Page_Data[index_number].Intro_Page_Pointer != nullptr){
+
+        is_intro_page = true;
      }
 
      bool is_this_text_file = this->NoteBook_Page_Data[index_number].Is_This_Text_File;
@@ -890,11 +892,16 @@ void Custom_Notebook::NoteBook_Page_Closed(wxAuiNotebookEvent & event)
 
      this->NoteBook_Page_Data[index_number].Intro_Page_Pointer = nullptr;
 
-     this->NoteBook_Page_Data[index_number].Help_Page_Pointer = nullptr;
-
      this->NoteBook_Page_Data[index_number].Text_Ctrl = nullptr;
 
      this->NoteBook_Page_Data[index_number].Is_This_Text_File = false;
+
+     if(is_intro_page){
+
+         this->Is_Intro_Page_Open = false;
+
+         this->OpenIntroPage();
+     }
 }
 
 Custom_Notebook * Custom_Notebook::Get_NoteBook_Pointer()
@@ -947,7 +954,7 @@ void Custom_Notebook::Determine_File_Short_Name(wxString File_Long_Name)
 
 bool Custom_Notebook::Is_File_Open(wxString File_Path)
 {
-     this->File_Open_Status = false;
+     bool file_open_status = false;
 
      for(int i=0;i<20;i++){
 
@@ -955,14 +962,14 @@ bool Custom_Notebook::Is_File_Open(wxString File_Path)
 
             if(File_Path == this->NoteBook_Page_Data[i].File_Path){
 
-               this->File_Open_Status = true;
+               file_open_status = true;
 
                break;
             }
          }
      }
 
-     return this->File_Open_Status;
+     return file_open_status;
 }
 
 wxString Custom_Notebook::Get_Selected_Text_Ctrl_File_Path()
@@ -999,6 +1006,26 @@ void Custom_Notebook::Select_File(wxString File_Path)
      }
 
      this->SetSelection(Page_Number);
+}
+
+
+size_t Custom_Notebook::GetIndex_FromPath(wxString path){
+
+    size_t indexNumber = 0;
+
+    size_t page_count = this->GetPageCount();
+
+    for(size_t i=0;i<page_count;i++){
+
+         if(this->NoteBook_Page_Data[i].File_Path == path){
+
+            indexNumber = i;
+
+            break;
+         }
+    }
+
+    return indexNumber;
 }
 
 void Custom_Notebook::Selection_Changing(wxAuiNotebookEvent & event)
@@ -1041,4 +1068,10 @@ bool Custom_Notebook::Is_Current_Page_Text_File() const
 wxString Custom_Notebook::Get_Notebook_Page_File_Path(int index)
 {
     return this->NoteBook_Page_Data[index].File_Path;
+}
+
+
+int Custom_Notebook::Get_Open_File_Number() const {
+
+    return this->OpenFileNumber;
 }

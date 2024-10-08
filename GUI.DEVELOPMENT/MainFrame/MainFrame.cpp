@@ -121,15 +121,17 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Custom_Main_Panel->SetAutoLayout(true);
 
-
+   
 
   // THE CONSTRUCTION OF THE NOTEBOOK
 
-  this->Book_Manager = new Custom_Notebook(this->Custom_Main_Panel,&this->Interface_Manager,
+  this->Book_Manager = new Custom_Notebook(this,this->Custom_Main_Panel,&this->Interface_Manager,
 
-                       *(this->Default_Font),this->GetClientSize(),theme_clr);
+                       *(this->Default_Font),wxSize(700,750),theme_clr);
 
+  this->Book_Manager->Update();
 
+  this->Book_Manager->OpenIntroPage();
 
   this->Book_Manager->SetAutoLayout(true);
 
@@ -159,6 +161,9 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
   this->Dir_List_Manager->SetSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
 
   this->Dir_List_Manager->SetMinSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
+
+
+  this->Dir_List_Manager->Notebook_Ptr = this->Book_Manager;
 
 
   this->Interface_Manager.Update();
@@ -579,9 +584,29 @@ void MainFrame::FileSelect(wxTreeEvent& event)
 
      event.StopPropagation();
 
+     wxMessageDialog * dial = new wxMessageDialog(NULL,wxT("Inside FileSlect"));
+
+         if(dial->ShowModal()== wxOK){
+
+                  delete dial;
+                }
+
+
+
      wxDataViewItem Item = this->tree_control->GetSelection();
 
      wxString Path = this->Dir_List_Manager->GetItemPath(Item);
+
+       dial = new wxMessageDialog(NULL,
+
+                Path,
+
+                    wxT("File Path"), wxOK);
+
+                if(dial->ShowModal()== wxOK){
+
+                  delete dial;
+                }
 
      if(this->dir_control->Exists(Path)){
 

@@ -350,6 +350,7 @@ void Custom_Tree_View_Panel::FileSelect(wxDataViewEvent & event)
 
      event.StopPropagation();
 
+
      wxDataViewItem Item = this->tree_control->GetSelection();
 
      wxString Path = this->GetItemPath(Item);
