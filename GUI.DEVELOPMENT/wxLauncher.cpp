@@ -91,7 +91,23 @@ bool wxLauncher::OnInit(){
 
          this->Frame->Centre(wxBOTH);
 
+         for(int i=0;i<5;i++){
+
+            wxYield();
+
+            this->Frame->Refresh();
+         }
+
          this->Frame->Show(true);
+
+         this->Frame->Centre(wxBOTH);
+
+         this->Frame->SetSize(this->Frame->FromDIP(wxSize(1000,750)));
+
+         this->Frame->SetMinSize(this->Frame->FromDIP(wxSize(975,750)));
+
+         this->Frame->Refresh();
+
 
          return true;
      }

@@ -70,7 +70,7 @@ public:
   void OnClose(wxCloseEvent & event);
   wxAuiPaneInfo Central_Pane_Info;
   bool is_custom_panel_constructed = false;
-private:
+private:  
   void FileNameEdit(wxTreeEvent& event);
   void Process_End(wxProcessEvent & event);
   void File_Save(wxCommandEvent & event);

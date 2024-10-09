@@ -47,13 +47,17 @@ Custom_wxPanel::Custom_wxPanel(wxWindow * parent, wxWindowID id,
 
      this->SetBackgroundStyle(wxBG_STYLE_PAINT);
 
-     this->SetBackgroundColour(wxColour(235,235,235));
+     this->SetBackgroundColour(wxColour(240,240,240));
 
      this->SetDoubleBuffered(true);
 
      this->SetExtraStyle(wxCLIP_CHILDREN);
 
      this->SetExtraStyle(wxNO_FULL_REPAINT_ON_RESIZE);
+
+     //this->SetSize(wxSize(800,750));
+
+     this->SetMinSize(wxSize(800,750));
 
 
      this->panel_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -85,7 +89,7 @@ Custom_wxPanel::~Custom_wxPanel()
 
 void Custom_wxPanel::Initialize_Sizer()
 {
-     this->panel_sizer->Add(this->book_manager,1, wxALL|wxEXPAND,0);
+     this->panel_sizer->Add(this->book_manager,1, wxEXPAND | wxLEFT | wxRIGHT,15);
 
      this->SetSizer(this->panel_sizer);
 
@@ -100,7 +104,7 @@ void Custom_wxPanel::Initialize_Sizer()
 
 void Custom_wxPanel::DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(wxColour(235,235,235));
+     dc.SetBrush(wxColour(240,240,240));
 
      dc.DrawRectangle(rect.GetX()-5, rect.GetY()-5, rect.GetWidth()+5,rect.GetHeight()+5);
 }

@@ -162,14 +162,6 @@ void Custom_Close_Button::mouseReleased(wxMouseEvent& event)
 
     this->pressedCloseButton = true;
 
-    /**
-
-    wxMessageDialog * dial = new wxMessageDialog(this,wxT("wxMouseEvent triggered"));
-
-    dial->ShowModal();
-
-    */
-
     this->paintNow();
 }
 

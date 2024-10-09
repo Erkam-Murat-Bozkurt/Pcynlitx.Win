@@ -23,7 +23,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
-        wxDefaultPosition, wxSize(1200,950),wxDEFAULT_FRAME_STYLE)
+        wxDefaultPosition, wxSize(1250,750),wxDEFAULT_FRAME_STYLE)
 {
 
   this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
@@ -56,9 +56,9 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
   this->Interface_Manager.SetFlags(wxAUI_MGR_LIVE_RESIZE);
 
 
-  this->SetSize(wxSize(1200,950));
+  //this->SetSize(wxSize(1200,750));
 
-  this->SetMinSize(wxSize(1200,950));
+  //this->SetMinSize(wxSize(1200,750));
 
   this->Refresh();
 
@@ -105,29 +105,40 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Central_Pane_Info.Resizable(true);
 
-  this->Central_Pane_Info.MinSize(910,650);
+  this->Central_Pane_Info.MinSize(this->FromDIP(wxSize(800,750)));
+
 
 
 
   this->Custom_Main_Panel = new Custom_wxPanel(this,wxID_ANY,wxDefaultPosition,
 
-                            wxDefaultSize,wxColour(200,200,200),&this->Central_Pane_Info,
+                            wxSize(800,750),wxColour(240,240,240),&this->Central_Pane_Info,
 
                             this->ToolBar_Widget->Get_ToolBar_Pointer());
 
-  this->Custom_Main_Panel->SetSize(this->GetClientSize());
+
+  this->Interface_Manager.AddPane(this->Custom_Main_Panel,this->Central_Pane_Info);
+
+
+  this->Custom_Main_Panel->SetSize(this->Custom_Main_Panel->FromDIP(wxSize(800,750)));
+
+  this->Custom_Main_Panel->SetMinSize(this->Custom_Main_Panel->FromDIP(wxSize(800,750)));
 
   this->Custom_Main_Panel->Fit();
 
   this->Custom_Main_Panel->SetAutoLayout(true);
-
    
 
   // THE CONSTRUCTION OF THE NOTEBOOK
 
   this->Book_Manager = new Custom_Notebook(this,this->Custom_Main_Panel,&this->Interface_Manager,
 
-                       *(this->Default_Font),wxSize(700,750),theme_clr);
+                       *(this->Default_Font),wxSize(800,750),theme_clr);
+
+  this->Book_Manager->SetSize(this->Book_Manager->FromDIP(wxSize(800,750)));
+
+  this->Book_Manager->SetMinSize(this->Book_Manager->FromDIP(wxSize(800,750)));
+
 
   this->Book_Manager->Update();
 
@@ -139,7 +150,7 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Custom_Main_Panel->Initialize_Sizer();
 
-  this->Interface_Manager.AddPane(this->Custom_Main_Panel,this->Central_Pane_Info);
+  //this->Interface_Manager.AddPane(this->Custom_Main_Panel,this->Central_Pane_Info);
 
   this->Interface_Manager.Update();
 
@@ -153,14 +164,14 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Dir_List_Manager = new Custom_Tree_View_Panel(this,wxID_ANY,wxDefaultPosition,
 
-                            wxSize(400,this->GetClientSize().y),&this->Interface_Manager,
+                            wxSize(400,750),&this->Interface_Manager,
 
                             *(this->Default_Font),this->Book_Manager->GetTabCtrlHeight(),theme_clr);
 
 
-  this->Dir_List_Manager->SetSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
+  this->Dir_List_Manager->SetSize(this->Dir_List_Manager->FromDIP(wxSize(400,750)));
 
-  this->Dir_List_Manager->SetMinSize(this->Dir_List_Manager->FromDIP(wxSize(400,950)));
+  this->Dir_List_Manager->SetMinSize(this->Dir_List_Manager->FromDIP(wxSize(400,750)));
 
 
   this->Dir_List_Manager->Notebook_Ptr = this->Book_Manager;
@@ -220,6 +231,8 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Centre(wxBOTH);
 
+
+
   this->Custom_Main_Panel->Refresh();
 
   this->Book_Manager->Refresh();
@@ -236,11 +249,17 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Custom_Main_Panel->Update();
 
+
+
   wxRect Book_Manager_Rect(this->Custom_Main_Panel->GetSize());
 
   this->Book_Manager->Refresh(true,&Book_Manager_Rect);
 
   this->Book_Manager->Update();
+
+  this->Custom_Main_Panel->PostSizeEvent();
+
+  this->Update();
 
   this->Raise();
 
@@ -278,16 +297,16 @@ void MainFrame::PaintNow(wxWindow * wnd)
 
         this->Book_Manager->PaintNow(this->Book_Manager);
 
-        this->Dir_List_Manager->PaintNow();
+        //this->Dir_List_Manager->PaintNow();
      }
 }
 
 
 void MainFrame::DrawBackground(wxDC & dc, wxWindow *  wnd, const wxRect& rect)
 {
-     dc.SetBrush(wxColour(225,225,225));
+     dc.SetBrush(wxColour(240,240,240));
 
-     dc.DrawRectangle(rect.GetX()-5, rect.GetY()-5, rect.GetWidth()+10,rect.GetHeight()+5);
+     dc.DrawRectangle(rect.GetX()-1, rect.GetY()-1, rect.GetWidth()+10,rect.GetHeight()+5);
 }
 
 void MainFrame::OnPaint(wxPaintEvent & event)
@@ -306,7 +325,7 @@ void MainFrame::OnPaint(wxPaintEvent & event)
 
         this->Book_Manager->PaintNow(this->Book_Manager);
 
-        this->Dir_List_Manager->PaintNow();
+        //this->Dir_List_Manager->PaintNow();
      }
 }
 
@@ -355,14 +374,6 @@ void MainFrame::Close_Directory_Pane(wxAuiManagerEvent & event)
      event.Veto(true);
 
      event.StopPropagation();
-
-     /*
-
-     wxMessageDialog * dial = new wxMessageDialog(this,wxT("wxAuiManagerEvent triggered"));
-
-     dial->ShowModal();
-
-     */
 
      this->Dir_List_Manager->RemoveProjectDirectory();
 
@@ -584,29 +595,9 @@ void MainFrame::FileSelect(wxTreeEvent& event)
 
      event.StopPropagation();
 
-     wxMessageDialog * dial = new wxMessageDialog(NULL,wxT("Inside FileSlect"));
-
-         if(dial->ShowModal()== wxOK){
-
-                  delete dial;
-                }
-
-
-
      wxDataViewItem Item = this->tree_control->GetSelection();
 
      wxString Path = this->Dir_List_Manager->GetItemPath(Item);
-
-       dial = new wxMessageDialog(NULL,
-
-                Path,
-
-                    wxT("File Path"), wxOK);
-
-                if(dial->ShowModal()== wxOK){
-
-                  delete dial;
-                }
 
      if(this->dir_control->Exists(Path)){
 
