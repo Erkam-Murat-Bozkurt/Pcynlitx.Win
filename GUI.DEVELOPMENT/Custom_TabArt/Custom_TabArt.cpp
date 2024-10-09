@@ -188,7 +188,7 @@
             }
 
              wxRect rect(tab_x + tab_width - bmp.GetScaledWidth() - 10,
-                         tab_y + (tab_size.y/2) - (bmp.GetScaledHeight()/2),
+                         tab_y + (tab_size.y/2) - (bmp.GetScaledHeight()/2) -2,
                          bmp.GetScaledWidth()-3,
                          tab_height+10);
 
@@ -232,7 +232,7 @@
 
          dc.DrawText(draw_text,text_offset,
 
-                 (tab_y + tab_height)/2 - (texty/2) + 4);
+                 (tab_y + tab_height)/2 - (texty/2) + 2);
 
 
          *out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height+14);

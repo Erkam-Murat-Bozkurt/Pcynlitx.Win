@@ -296,8 +296,6 @@ void MainFrame::PaintNow(wxWindow * wnd)
         this->Custom_Main_Panel->PaintNow(this->Custom_Main_Panel);
 
         this->Book_Manager->PaintNow(this->Book_Manager);
-
-        //this->Dir_List_Manager->PaintNow();
      }
 }
 
@@ -402,9 +400,6 @@ void MainFrame::DirectoryOpen(wxCommandEvent & event)
 
            this->Interface_Manager.Update();
         }
-
-
-        this->Centre();
 
         this->tree_control->Update();
 

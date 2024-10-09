@@ -187,22 +187,6 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
 
 
-     /*
-
-     int bottom_win_y = this->Tree_Control_Position.y + this->tree_control->GetSize().GetY();
-
-
-
-
-     this->Bottom_Window =  new Custom_Window(this,wxPoint(0,bottom_win_y+3),
-     
-                           wxSize(Tab_Bar_size.x,55),wxColour(240,240,240,0xff));
-
-     */
-
-
-
-
 
 
      // Default wxPanel position is TopLeft corner of the panel

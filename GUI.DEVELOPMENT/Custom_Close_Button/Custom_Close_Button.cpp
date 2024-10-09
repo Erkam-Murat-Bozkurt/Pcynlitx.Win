@@ -51,7 +51,7 @@ Custom_Close_Button::Custom_Close_Button(Custom_Window * parent, wxPoint positio
 
     this->page_close_icon = new
 
-                wxBitmap(wxT("C:\\Program Files\\Nwinix\\icons\\pane_close_icon.png"),wxBITMAP_TYPE_ANY);
+                wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\pane_close_icon.png"),wxBITMAP_TYPE_ANY);
 
     this->SetMinSize(this->page_close_icon->GetSize());
 
