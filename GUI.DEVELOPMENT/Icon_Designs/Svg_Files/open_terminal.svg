@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 12 12.516239"
    height="12.516239"
    width="12"
    id="svg6428"
    version="1.1"
    sodipodi:docname="open_terminal.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="D:\Pcynlitx\icons\open_terminal.png"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:export-filename="..\..\..\..\Pcynlitx.Win.Platform\icons\open_terminal.png"
    inkscape:export-xdpi="500"
-   inkscape:export-ydpi="500">
+   inkscape:export-ydpi="500"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -27,21 +27,28 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1001"
+     inkscape:window-height="1111"
      id="namedview8"
      showgrid="true"
      inkscape:zoom="22.411806"
-     inkscape:cx="-7.7834083"
-     inkscape:cy="6.8145746"
+     inkscape:cx="-7.7860749"
+     inkscape:cy="6.8490687"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg6428">
+     inkscape:current-layer="svg6428"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
     <inkscape:grid
        type="xygrid"
        id="grid10"
        originx="44.000001"
-       originy="-28.40897" />
+       originy="-28.40897"
+       spacingy="1"
+       spacingx="1"
+       units="px"
+       visible="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata6434">
@@ -58,23 +65,23 @@
   <defs
      id="defs6432" />
   <rect
-     style="fill:#646464;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:#c8c8d7;fill-opacity:1;stroke:#c8c8c8;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="rect819"
      width="11.999999"
      height="12.516238"
      x="5e-07"
      y="5e-07"
-     ry="1.2516239"
+     ry="0"
      inkscape:export-xdpi="500"
      inkscape:export-ydpi="500" />
   <path
      inkscape:connector-curvature="0"
      id="path7201-3-3"
      d="M 3.4282828,2.9252094 2.2262633,4.0597189 3.6000003,5.5183738 2.2262633,6.814956 3.4282828,8.1115369 6.0040406,5.5183738 3.4282828,2.9252094"
-     style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+     style="fill:#5a5a69;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      inkscape:connector-curvature="0"
      id="path7211-6-6"
      d="m 5.3590635,7.4944113 c 0,1.2754597 0,1.2754597 0,1.2754597 H 8.4394513 V 7.4944113 Z"
-     style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+     style="fill:#5a5a69;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>

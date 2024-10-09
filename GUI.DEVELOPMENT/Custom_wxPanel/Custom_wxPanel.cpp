@@ -89,7 +89,7 @@ Custom_wxPanel::~Custom_wxPanel()
 
 void Custom_wxPanel::Initialize_Sizer()
 {
-     this->panel_sizer->Add(this->book_manager,1, wxEXPAND | wxLEFT | wxRIGHT,15);
+     this->panel_sizer->Add(this->book_manager,1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM,15);
 
      this->SetSizer(this->panel_sizer);
 
