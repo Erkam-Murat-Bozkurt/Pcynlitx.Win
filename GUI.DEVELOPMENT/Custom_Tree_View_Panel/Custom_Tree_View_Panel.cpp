@@ -389,8 +389,6 @@ void Custom_Tree_View_Panel::OnPaint(wxPaintEvent & event)
         this->Top_Bar_Window->paintNow();
 
         this->Title_Window->paintNow();
-
-        //this->Bottom_Window->paintNow();
      }
 };
 

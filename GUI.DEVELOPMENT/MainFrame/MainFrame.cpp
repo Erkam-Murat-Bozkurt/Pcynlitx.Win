@@ -51,14 +51,15 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
 
 
+  this->exclamation_mark_bmp 
+  
+      = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\exclamation_icon.png"),wxBITMAP_TYPE_ANY);
+
   this->SetBackgroundColour(wxColour(225,225,225));
 
   this->Interface_Manager.SetFlags(wxAUI_MGR_LIVE_RESIZE);
 
 
-  //this->SetSize(wxSize(1200,750));
-
-  //this->SetMinSize(wxSize(1200,750));
 
   this->Refresh();
 
@@ -150,7 +151,6 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Custom_Main_Panel->Initialize_Sizer();
 
-  //this->Interface_Manager.AddPane(this->Custom_Main_Panel,this->Central_Pane_Info);
 
   this->Interface_Manager.Update();
 
@@ -325,7 +325,6 @@ void MainFrame::OnPaint(wxPaintEvent & event)
 
         this->Book_Manager->PaintNow(this->Book_Manager);
 
-        //this->Dir_List_Manager->PaintNow();
      }
 }
 
@@ -437,15 +436,18 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
                if(Dir_Ctrl.IsOpened()){
 
-                  wxMessageDialog * dial = new wxMessageDialog(NULL,
+                  wxString message =  wxT("This is a directory!\n A file must be selected .");
+            
+                  Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+                  wxT("ERROR MESSAGE:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-                    wxT(" This is a directory!\n A file must be selected ."),
+                  dial->ShowModal();
 
-                         wxT("Error Message"), wxOK);
+                  delete dial;     
 
-                         dial->ShowModal();
-
-                    return;
                 }
             }
 
@@ -493,11 +495,16 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
                message = message + wxT(" recognized as descriptor file!\n\n Be sure that it is the correct file?");
 
-               wxMessageDialog * dial = new wxMessageDialog(NULL,message,
-
-                    wxT("Error Message"),wxOK);
+            
+               Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+                  wxT("ERROR MESSAGE:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
                dial->ShowModal();
+
+               delete dial;     
 
                Project_Descriptor_File_Name_Is_Correct = false;
             }
@@ -563,16 +570,18 @@ void MainFrame::ShowProjectFile(wxCommandEvent & event)
             }
           }
           else{
-                wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-                wxT("Descriptor file was not selected ..\nPlease select a descriptor file"),
+                 wxString message = wxT("Descriptor file was not selected ..\nPlease select a descriptor file");
 
-                    wxT("Info"), wxOK);
+                 Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+                 wxT("Info:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-                if(dial->ShowModal()== wxOK){
+                 dial->ShowModal();
 
-                  delete dial;
-                }
+                 delete dial;     
           }
      }
 }
@@ -688,25 +697,30 @@ void MainFrame::ShowProjectFileLocation(wxCommandEvent & event)
 
            wxString message = wxT("Project file has not been selected yet!");
 
-           wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
+           Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+           wxT("Info:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-                                          wxT("Information"), wxOK);
+           dial->ShowModal();
 
-           if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
-
-              delete info_dial;
-           };
+           delete dial;  
         }
         else{
 
-              wxMessageDialog * info_dial = new wxMessageDialog(NULL,this->Descriptor_File_Path,
 
-                                          wxT("Information"), wxOK);
 
-              if(info_dial->ShowModal() == ID_SHOW_PROJECT_DESCRIPTOR_FILE_LOCATION){
+              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,this->Descriptor_File_Path,
+            
+              wxT("Info:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-                 delete info_dial;
-              };
+              dial->ShowModal();
+
+              delete dial;  
+
         }
      }
 }
@@ -717,26 +731,33 @@ void MainFrame::ShowProjectDirectoryLocation(wxCommandEvent & event)
 
      if(this->Construction_Point == wxT("")){
 
-         wxMessageDialog * info_dial = new wxMessageDialog(NULL,
 
-         wxT("Project directory has not been determined !"),
+        wxString message = wxT("Project directory has not been determined !");
+      
 
-                                       wxT("Information"), wxOK);
+        Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+              wxT("Info:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
 
-         if(info_dial->ShowModal() == ID_SHOW_PROJECT_DIRECTORY_LOCATION){
+        dial->ShowModal();
 
-            delete info_dial;
-         };
+        delete dial;  
+
      }
      else{
-            wxMessageDialog * info_dial = new wxMessageDialog(NULL,this->Construction_Point,
 
-            wxT("Information"), wxOK);
 
-            if(info_dial->ShowModal() == ID_SHOW_PROJECT_DIRECTORY_LOCATION){
+        Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,this->Construction_Point,
+            
+              wxT("Information:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
 
-               delete info_dial;
-            };
+        dial->ShowModal();
+
+        delete dial;  
       }
     }
 }
@@ -755,17 +776,21 @@ void MainFrame::Show_Descriptions(wxCommandEvent & event)
           this->Process_Controller.Show_Descriptions(this->Descriptor_File_Path);
        }
        else{
-              wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-                   wxT("Descriptor file was not selected!\nPlease select descriptor file"),
 
-                   wxT("Info"), wxOK);
+           wxString message = wxT("Descriptor file was not selected!\nPlease select descriptor file");
 
-              dial->ShowModal();
+           Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+           wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-              delete dial;
+           dial->ShowModal();
 
-              return;
+           delete dial; 
+
+           return;
        }
      }
 }
@@ -809,21 +834,17 @@ void MainFrame::OpenEmptyProjectFile(wxCommandEvent & event)
 
               message = message + wxT(" file will be lost ! ");
 
-              wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
 
-                  wxT("Information"), wxOK);
+              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-              info_dial->ShowModal();
+              dial->ShowModal();
 
-              wxMessageDialog * exit_dial = new wxMessageDialog(NULL,wxT("Are you sure to continue?"),
+              delete dial; 
 
-                                                wxT("Question"),wxYES_NO);
-
-
-              if(exit_dial->ShowModal() ==  wxID_NO){
-
-                 return;
-              };
             }
 
             wxString Working_Directory = wxT("C:\\Program Files\\Pcynlitx\\bin\\");
@@ -1142,14 +1163,17 @@ void MainFrame::Re_Open_Project_Directory(wxCommandEvent & event)
 
            message = message + wxT("  At first, Library must be constructed !");
 
-           wxMessageDialog * info_dial = new wxMessageDialog(NULL,message,
 
-                wxT("Information"), wxOK);
+           Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+           wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-           if(info_dial->ShowModal() == ID_OPEN_TREE_WIEW){
+           dial->ShowModal();
 
-              delete info_dial;
-           };
+           delete dial; 
+
         }
         else{
                if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
@@ -1370,16 +1394,17 @@ void MainFrame::Description_Record_Data_Lose_Protection()
      }
      else{
 
-           wxMessageDialog * dial = new wxMessageDialog(NULL,
+           wxString message = wxT("Descriptor file was not selected ..\nPlease select a descriptor file");
 
-           wxT("Descriptor file was not selected ..\nPlease select a descriptor file"),
+           Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,message,
+            
+           wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-           wxT("Info"), wxOK);
+           dial->ShowModal();
 
-           if(dial->ShowModal()== wxOK){
-
-              delete dial;
-           }
+           delete dial; 
      }
 }
 

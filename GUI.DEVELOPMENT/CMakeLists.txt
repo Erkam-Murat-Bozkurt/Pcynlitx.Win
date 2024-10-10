@@ -114,6 +114,11 @@ add_library(gui_tools
 
     ${CMAKE_CURRENT_SOURCE_DIR}/wx_Description_Record_Tools/wx_Description_Record_Tools.h  
 
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog/Custom_Message_Dialog.hpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog/Custom_Message_Dialog.cpp
+
 )
 
 include_directories(
@@ -174,6 +179,8 @@ target_include_directories(gui_tools PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/ToolBar_Initializer
 
     ${CMAKE_CURRENT_SOURCE_DIR}/wx_Description_Record_Tools
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog
 
     ${CMAKE_CURRENT_SOURCE_DIR}
 

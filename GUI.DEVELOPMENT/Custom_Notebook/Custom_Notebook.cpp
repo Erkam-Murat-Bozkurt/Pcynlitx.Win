@@ -865,7 +865,7 @@ void Custom_Notebook::NoteBook_Page_Closed(wxAuiNotebookEvent & event)
 
         if(Selected_File_Change_Condition){
 
-           wxString Message_Text = wxT(" File has changes\n Do you want to save!");
+           wxString Message_Text = wxT("The file has changes\n Do you want to save!");
 
            wxMessageDialog * info_dial = new wxMessageDialog(NULL,Message_Text,wxT("Information"),wxYES_NO);
 

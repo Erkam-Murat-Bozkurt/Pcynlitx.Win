@@ -42,6 +42,8 @@
 #include "Intro_Page_Loader.h"
 #include "Custom_wxPanel.h"
 #include "Custom_TabArt.h"
+#include "Custom_Message_Dialog.hpp"
+
 
 
 class MainFrame : public wxFrame
@@ -52,7 +54,6 @@ public:
   void OnPaint(wxPaintEvent & event);
   void DrawBackground(wxDC& dc, wxWindow *  wnd, const wxRect& _rect);
   void PaintNow(wxWindow * wnd);
-  void Receive_Interface_Manager_Adress(wxAuiManager * Interface_Manager);
   void OnQuit(wxCommandEvent & event);
   void OnOpen(wxCommandEvent & event);
   void SelectProjectFile(wxCommandEvent & event);
@@ -137,7 +138,7 @@ private:
   wxFont   * Default_Font;
   wxFontDialog * Font_Dialog;
   wxDataViewTreeCtrl * tree_control;
-  //Custom_wxTreeCtrl * tree_control;
+  wxBitmap * exclamation_mark_bmp;
   bool Close_Operation_Status;
   int Toolbar_ID;
   DECLARE_EVENT_TABLE()

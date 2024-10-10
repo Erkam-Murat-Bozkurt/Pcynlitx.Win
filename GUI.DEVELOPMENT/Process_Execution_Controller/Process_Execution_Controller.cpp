@@ -48,6 +48,11 @@ Process_Execution_Controller::Process_Execution_Controller(){
      this->exe_file_construction_process_start = false;
 
      this->sleep_time = 0;
+
+     this->exclamation_mark_bmp 
+  
+      = new wxBitmap(wxT("C:\\Program Files\\Pcynlitx\\icons\\exclamation_icon.png"),wxBITMAP_TYPE_ANY);
+
 }
 
 Process_Execution_Controller::~Process_Execution_Controller(){
@@ -116,6 +121,11 @@ void Process_Execution_Controller::Construction_Point_Determination(){
 
         if(log_string != wxT("")){
 
+
+
+
+
+
            wxRichMessageDialog * dial = new wxRichMessageDialog(this->MainFrame_Pointer,
 
                         log_string, wxT("Error in construction"), wxOK|wxCENTRE);
@@ -125,15 +135,18 @@ void Process_Execution_Controller::Construction_Point_Determination(){
            return;
         }
         else{
-                wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-                wxT("Descriptor file can not be readed successfuly! \nPlease cotrol declerations"),
+              wxString message = wxT("Descriptor file can not be readed successfuly! \nPlease cotrol declerations");
 
-                      wxT("Info"), wxOK);
+              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this->MainFrame_Pointer,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+                           *this->exclamation_mark_bmp, wxDefaultPosition);
 
-                dial->ShowModal();
+              dial->ShowModal();
 
-                return;
+              delete dial; 
           }
        }
        else{
@@ -277,16 +290,17 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
      if(this->is_library_constructed){
 
-        wxMessageDialog * dial = new wxMessageDialog(NULL,
+        wxString message = wxT("The meta lirary has been already constructed ..\nDou you want to continue!");
 
-        wxT("The meta lirary has been already constructed ..\nDou you want to continue!"),
+        Custom_Message_Dialog * dial = new Custom_Message_Dialog(this->MainFrame_Pointer,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
 
-            wxT("Info"), wxYES_NO);
+        dial->ShowModal();
 
-        if(dial->ShowModal()== wxID_NO){
-
-           return;
-        }
+        delete dial; 
      }
 
      this->library_construction_process_start = true;
@@ -349,13 +363,20 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
         }
       }
       else{
-              wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-                    wxT("Project file was not selected ..\nPlease select a project file"),
 
-                    wxT("Info"), wxOK);
 
-              dial->ShowModal();
+            wxString message = wxT("Project file was not selected ..\nPlease select a project file");
+
+            Custom_Message_Dialog * dial = new Custom_Message_Dialog(this->MainFrame_Pointer,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
+
+            dial->ShowModal();
+
+            delete dial; 
       }
 
       this->library_construction_process_start = false;
@@ -415,21 +436,34 @@ void Process_Execution_Controller::RunExeBuilder(Custom_Tree_View_Panel ** Dir_L
         }
         else{
 
-              wxMessageDialog * dial = new wxMessageDialog(NULL,
+              wxString message = wxT("There is no executable file name description ..\nPlease enter executable file name first");
 
-              wxT("There is no executable file name description ..\nPlease enter executable file name first"),
-
-                   wxT("Info"), wxOK);
+              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this->MainFrame_Pointer,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
 
               dial->ShowModal();
+
+              delete dial; 
         }
      }
      else{
-              wxMessageDialog * dial = new wxMessageDialog(NULL,
 
-              wxT("Meta library was not builded ..\nPlease build meta library first"), wxT("Info"), wxOK);
+
+
+              wxString message = wxT("Meta library was not builded ..\nPlease build meta library first");
+
+              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this->MainFrame_Pointer,message,
+            
+              wxT("Report:\n"),wxID_ANY,wxT("PCYNLITX OPERATION REPORT"),
+               
+              *this->exclamation_mark_bmp, wxDefaultPosition);
 
               dial->ShowModal();
+
+              delete dial; 
      }
 
      this->exe_file_construction_process_start = false;

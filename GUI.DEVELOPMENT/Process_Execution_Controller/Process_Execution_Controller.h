@@ -5,6 +5,7 @@
 #include "Event_ID_Numbers.h"
 #include "Custom_Tree_View_Panel.h"
 #include "Descriptor_File_Reader.h"
+#include "Custom_Message_Dialog.hpp"
 #include <wx\wx.h>
 #include <wx\frame.h>
 #include <wx\panel.h>
@@ -52,6 +53,7 @@ private:
   wxString Construction_Point;
   wxString Run_Command;
   wxString Construction_Point_Holder_Path;
+  wxBitmap * exclamation_mark_bmp;
   bool is_library_constructed;
   bool is_construction_point_determined;
   int Process_Exit_Status;
