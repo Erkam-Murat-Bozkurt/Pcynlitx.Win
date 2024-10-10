@@ -108,6 +108,8 @@ bool wxLauncher::OnInit(){
 
          this->Frame->Refresh();
 
+         this->Frame->Centre(wxBOTH);
+
 
          return true;
      }

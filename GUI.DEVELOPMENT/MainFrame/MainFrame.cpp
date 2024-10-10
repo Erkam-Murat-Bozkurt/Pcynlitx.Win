@@ -105,14 +105,14 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Central_Pane_Info.Resizable(true);
 
-  this->Central_Pane_Info.MinSize(this->FromDIP(wxSize(800,750)));
+  this->Central_Pane_Info.MinSize(this->FromDIP(wxSize(900,750)));
 
 
 
 
   this->Custom_Main_Panel = new Custom_wxPanel(this,wxID_ANY,wxDefaultPosition,
 
-                            wxSize(800,750),wxColour(240,240,240),&this->Central_Pane_Info,
+                            wxSize(900,750),wxColour(240,240,240),&this->Central_Pane_Info,
 
                             this->ToolBar_Widget->Get_ToolBar_Pointer());
 
@@ -120,9 +120,9 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
   this->Interface_Manager.AddPane(this->Custom_Main_Panel,this->Central_Pane_Info);
 
 
-  this->Custom_Main_Panel->SetSize(this->Custom_Main_Panel->FromDIP(wxSize(800,750)));
+  this->Custom_Main_Panel->SetSize(this->Custom_Main_Panel->FromDIP(wxSize(900,750)));
 
-  this->Custom_Main_Panel->SetMinSize(this->Custom_Main_Panel->FromDIP(wxSize(800,750)));
+  this->Custom_Main_Panel->SetMinSize(this->Custom_Main_Panel->FromDIP(wxSize(900,750)));
 
   this->Custom_Main_Panel->Fit();
 
@@ -133,11 +133,11 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Book_Manager = new Custom_Notebook(this,this->Custom_Main_Panel,&this->Interface_Manager,
 
-                       *(this->Default_Font),wxSize(800,750),theme_clr);
+                       *(this->Default_Font),wxSize(900,750),theme_clr);
 
-  this->Book_Manager->SetSize(this->Book_Manager->FromDIP(wxSize(800,750)));
+  this->Book_Manager->SetSize(this->Book_Manager->FromDIP(wxSize(900,750)));
 
-  this->Book_Manager->SetMinSize(this->Book_Manager->FromDIP(wxSize(800,750)));
+  this->Book_Manager->SetMinSize(this->Book_Manager->FromDIP(wxSize(900,750)));
 
 
   this->Book_Manager->Update();
@@ -164,7 +164,7 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Dir_List_Manager = new Custom_Tree_View_Panel(this,wxID_ANY,wxDefaultPosition,
 
-                            wxSize(400,750),&this->Interface_Manager,
+                            wxSize(375,750),&this->Interface_Manager,
 
                             *(this->Default_Font),this->Book_Manager->GetTabCtrlHeight(),theme_clr);
 
@@ -266,6 +266,8 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
   this->PostSizeEvent();
 
   this->Interface_Manager.Update();
+
+  this->Centre(wxBOTH);
 }
 
 MainFrame::~MainFrame()

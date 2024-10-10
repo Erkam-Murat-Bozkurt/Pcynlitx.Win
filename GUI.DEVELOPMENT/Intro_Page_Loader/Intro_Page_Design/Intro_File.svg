@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="137.58333mm"
-   height="79.375mm"
-   viewBox="0 0 137.58333 79.374999"
+   width="145.65781mm"
+   height="81.914032mm"
+   viewBox="0 0 145.65781 81.914031"
    version="1.1"
    id="svg8"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -29,11 +29,11 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="246.72976"
-     inkscape:cy="179.04954"
+     inkscape:cx="264.40743"
+     inkscape:cy="188.14091"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -47,12 +47,12 @@
     <inkscape:grid
        type="xygrid"
        id="grid10"
-       originx="-5.2916666"
-       originy="13.229171"
+       originx="-4.2246272"
+       originy="15.498928"
        spacingy="1"
        spacingx="1"
        units="mm"
-       visible="false" />
+       visible="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -70,92 +70,92 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-5.2916694,-230.85417)">
+     transform="translate(-4.2246301,-228.58441)">
     <rect
        id="rect12"
        width="150.8125"
        height="95.249985"
-       x="-18.52083"
-       y="217.625"
-       style="fill:none;fill-opacity:1;stroke-width:0.20258959" />
+       x="-11.304553"
+       y="218.82771"
+       style="fill:none;fill-opacity:1;stroke-width:0.20259" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#808b96;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="7.0706081"
+       x="8.0060511"
        y="249.50002"
        id="text824"><tspan
          sodipodi:role="line"
          id="tspan822"
-         x="7.0706081"
+         x="8.0060511"
          y="249.50002"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.1667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Bold';opacity:0.85;fill:#50505f;fill-opacity:1;stroke-width:0.264583">PCYNLITX</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="7.8468118"
-       y="263.49606"
+       x="10.118603"
+       y="263.89697"
        id="text825"><tspan
          sodipodi:role="line"
          id="tspan823"
-         x="7.8468118"
-         y="263.49606"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#c86464;fill-opacity:1;stroke-width:0.264583">THE NEW WAY OF COMPUTING</tspan></text>
+         x="10.118603"
+         y="263.89697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#c86464;fill-opacity:1;stroke-width:0.264583">THE NEW WAY OF MULTITHREADING</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:7px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c06c84;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="7.9826765"
-       y="278.60339"
+       x="10.120832"
+       y="278.46976"
        id="text825-3"><tspan
          sodipodi:role="line"
-         x="7.9826765"
-         y="278.60339"
+         x="10.120832"
+         y="278.46976"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:semi-condensed;font-size:7.05556px;line-height:7px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Semi-Bold Semi-Condensed';fill:#50505f;fill-opacity:1;stroke-width:0.264583"
          id="tspan4538">www.pcynlitx.com</tspan></text>
     <rect
-       style="fill:none;fill-opacity:1;stroke-width:0.26458332"
+       style="fill:none;fill-opacity:1;stroke-width:0.264583"
        id="rect849"
        width="103.1875"
        height="58.208332"
-       x="5.2916698"
-       y="234.02919" />
+       x="12.507947"
+       y="235.2319" />
     <ellipse
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#50505f;stroke-width:0.384;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path8466"
-       cx="119.52075"
+       cx="120.45619"
        cy="242.70799"
        rx="6.3718581"
        ry="6.459229" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.38971px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:justify;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.411535"
-       x="117.27941"
+       x="118.22048"
        y="244.10713"
        id="text8470"
        transform="scale(0.99402245,1.0060135)"><tspan
          sodipodi:role="line"
          id="tspan8468"
-         x="117.27941"
+         x="118.22048"
          y="244.10713"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:8.77942px;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';fill:#50505f;fill-opacity:1;stroke-width:0.411535">R</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:7px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c06c84;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="8.0948992"
-       y="291.28427"
+       x="9.965786"
+       y="292.21973"
        id="text825-3-0"><tspan
          sodipodi:role="line"
-         x="8.0948992"
-         y="291.28427"
+         x="9.965786"
+         y="292.21973"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.99722px;line-height:7px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Light';fill:#646464;fill-opacity:1;stroke-width:0.264583"
          id="tspan8504">Pcynlitx is an intelligent software development </tspan><tspan
          sodipodi:role="line"
-         x="8.0948992"
-         y="299.3743"
+         x="9.965786"
+         y="300.4718"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.99722px;line-height:7px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Light';fill:#646464;fill-opacity:1;stroke-width:0.264583"
          id="tspan8506">platform which produces cybernetic thread </tspan><tspan
          sodipodi:role="line"
-         x="8.0948992"
-         y="307.46432"
+         x="9.965786"
+         y="308.72385"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.99722px;line-height:7px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Light';fill:#646464;fill-opacity:1;stroke-width:0.264583"
          id="tspan8508">menagement library </tspan></text>
   </g>

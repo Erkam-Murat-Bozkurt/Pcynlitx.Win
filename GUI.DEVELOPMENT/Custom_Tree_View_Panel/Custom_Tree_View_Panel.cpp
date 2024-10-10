@@ -82,8 +82,6 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
      this->panel_open_status = false;
 
 
-     //this->Interface_Manager_Pointer->SetDockSizeConstraint(0.35,1);
-
      this->File_List_Widget_Shape.TopDockable(false);
 
      this->File_List_Widget_Shape.LeftDockable(false);
@@ -231,8 +229,6 @@ Custom_Tree_View_Panel::Custom_Tree_View_Panel(wxFrame * frame,
 
      this->tree_control->Show(true);
 
-     //this->Bottom_Window->Show(true);
-
      this->Show(false);
 
 
@@ -286,9 +282,6 @@ void Custom_Tree_View_Panel::Initialize_Sizer()
      this->panel_sizer->Add(this->Title_Window,0,  wxEXPAND  | wxRIGHT,15);
 
      this->panel_sizer->Add(this->tree_control,1,  wxEXPAND | wxRIGHT | wxBOTTOM,16);
-
-     //this->panel_sizer->Add(this->Bottom_Window,0, wxEXPAND | wxALL,0);
-
 
      this->panel_sizer->Layout();
 
@@ -430,8 +423,6 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
 
      this->close_button->Update();
 
-     //this->Bottom_Window->Update();
-
 
      this->Interface_Manager_Pointer->AddPane(this,this->File_List_Widget_Shape);
 
@@ -445,8 +436,6 @@ void Custom_Tree_View_Panel::Load_Project_Directory(wxString Folder){
          this->Title_Window->Update();
 
          this->close_button->Update();
-
-         //this->Bottom_Window->Update();
 
          this->PostSizeEvent();
 
