@@ -23,7 +23,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX",
 
-        wxDefaultPosition, wxSize(1250,750),wxDEFAULT_FRAME_STYLE)
+        wxDefaultPosition, wxSize(1300,750),wxDEFAULT_FRAME_STYLE)
 {
 
   this->Default_Font = new wxFont(10,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,
@@ -106,7 +106,7 @@ MainFrame::MainFrame(wxColour theme_clr) : wxFrame((wxFrame * )NULL,-1,"PCYNLITX
 
   this->Central_Pane_Info.Resizable(true);
 
-  this->Central_Pane_Info.MinSize(this->FromDIP(wxSize(900,750)));
+  this->Central_Pane_Info.MinSize(this->FromDIP(wxSize(925,750)));
 
 
 
@@ -422,11 +422,33 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
        event.Skip(true);
 
-        wxFileDialog * openFileDialog = new wxFileDialog(this,wxT("Select Project File"));
 
-        if (openFileDialog->ShowModal() == wxID_OK){
 
-            this->Descriptor_File_Path = openFileDialog->GetPath();
+
+       this->Freeze();
+
+       Project_File_Selection_Window * window = new Project_File_Selection_Window(this,wxID_ANY);
+
+       window->Receive_Descriptor_File_Path(&this->Descriptor_File_Path);
+
+       window->Receive_Project_File_Selection_Status(&this->is_project_file_selected);
+
+       window->ShowModal();
+
+       this->Thaw();
+
+
+
+
+
+
+        //wxFileDialog * openFileDialog = new wxFileDialog(this,wxT("Select Project File"));
+
+        //if (openFileDialog->ShowModal() == wxID_OK){
+
+        if (this->is_project_file_selected){
+
+            //this->Descriptor_File_Path = openFileDialog->GetPath();
 
             wxDir Dir_Ctrl;
 
@@ -532,7 +554,7 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
             }
         }
 
-        delete openFileDialog;
+        //delete openFileDialog;
 
         this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
      }

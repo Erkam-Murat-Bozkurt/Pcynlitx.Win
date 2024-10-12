@@ -119,6 +119,11 @@ add_library(gui_tools
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog/Custom_Message_Dialog.cpp
 
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_File_Selection_Window/Project_File_Selection_Window.hpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_File_Selection_Window/Project_File_Selection_Window.cpp
+
 )
 
 include_directories(
@@ -181,6 +186,8 @@ target_include_directories(gui_tools PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/wx_Description_Record_Tools
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_File_Selection_Window
 
     ${CMAKE_CURRENT_SOURCE_DIR}
 

@@ -80,6 +80,61 @@ void Cpp_FileOperations::Clear_Dynamic_Memory(){
       }
 }
 
+int Cpp_FileOperations::Delete_File(std::string path){
+
+    char * cpath = this->Convert_Std_String_To_CString(path);
+
+    return this->Delete_File(cpath);
+}
+
+
+char * Cpp_FileOperations::Convert_Std_String_To_CString(std::string st)
+{
+       this->Clear_CString_Memory(&this->c_str);
+
+       size_t string_size = st.length();
+
+       this->c_str = new char [5*string_size];
+
+       for(size_t i=0;i<5*string_size;i++){
+       
+           this->c_str[i] = '\0';    
+       }
+
+       for(size_t i=0;i<string_size;i++){
+       
+           this->c_str[i] = st[i];
+       }
+
+       this->c_str[string_size] = '\0';
+
+       return this->c_str;
+}
+
+
+void Cpp_FileOperations::Clear_CString_Memory(char ** pointer){
+
+     if(*pointer!= nullptr){
+     
+        delete [] *pointer;
+
+        *pointer = nullptr;     
+     }
+}
+
+
+
+void Cpp_FileOperations::Clear_String_Memory(std::string * pointer){
+
+     if(!pointer->empty()){
+
+         pointer->clear();
+
+         pointer->shrink_to_fit();
+     }
+}
+
+
 void Cpp_FileOperations::SetFilePath(std::string FilePATH){
 
      this->isFilePathReceive = true;
@@ -114,6 +169,25 @@ void Cpp_FileOperations::SetFilePath(std::string FilePATH){
      }
 
      this->CString_FilePATH[index_counter] = '\0';
+}
+
+
+bool Cpp_FileOperations::Is_Path_Exist(std::string path){
+
+     this->is_path_exist = true;
+
+     struct _stat buf;
+
+     int result = 0;
+
+     result = _stat( path.c_str(), &buf );
+
+     if( result != 0 ){
+
+       this->is_path_exist = false;
+     }
+
+     return this->is_path_exist;
 }
 
 void Cpp_FileOperations::SetFilePath(const char * String){

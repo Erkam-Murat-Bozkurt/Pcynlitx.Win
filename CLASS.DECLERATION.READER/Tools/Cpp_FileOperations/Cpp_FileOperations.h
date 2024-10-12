@@ -50,12 +50,14 @@ public:
  void CpFile(char * path, char * target_path);
  void MoveFile_Win(char * path, char * target_path);  // Transfer file to another location in windows
  int  Delete_File(char * path);
+ int  Delete_File(std::string path);
  void FileOpen(char Open_Mode);
  void FileClose( );
  void WriteToFile(std::string string_list);
  void WriteToFile(const char * String);
  void WriteToFile(char * String);
  bool Control_End_of_File();
+ bool Is_Path_Exist(std::string path);
  std::string Read();
  std::string ReadLine();
  std::string Receive_File_As_std_string(char * path);
@@ -69,6 +71,9 @@ public:
  bool Is_This_File_Empty(char * path);
  void Clear_Dynamic_Memory();
 private:
+ char * Convert_Std_String_To_CString(std::string st);
+ void Clear_String_Memory(std::string * pointer);
+ void Clear_CString_Memory(char ** ptr);
  bool TryOpen(char path);
  std::fstream DataFile;
  std::string String_Line;
@@ -77,6 +82,7 @@ private:
  std::string File_Content;
  bool Memory_Delete_Condition;
  bool Is_File_Empty;
+ char * c_str;
  char * CString;
  char * CString_FilePATH;
  char ** File_Index;

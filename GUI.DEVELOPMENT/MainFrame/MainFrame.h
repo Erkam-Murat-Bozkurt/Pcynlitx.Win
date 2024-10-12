@@ -38,6 +38,7 @@
 #include "Event_ID_Numbers.h"
 #include "ToolBar_Initializer.h"
 #include "Process_Execution_Controller.h"
+#include "Project_File_Selection_Window.hpp"
 #include "Custom_DockArt.h"
 #include "Intro_Page_Loader.h"
 #include "Custom_wxPanel.h"
