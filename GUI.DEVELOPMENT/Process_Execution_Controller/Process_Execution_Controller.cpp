@@ -305,27 +305,9 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
      if(this->is_project_file_selected){
 
-       /*
-
-       wxMessageDialog * dial = new wxMessageDialog(this->MainFrame_Pointer,wxT("Before Construction_Point_Determination"));
-
-       dial->ShowModal();
-
-       */
-
         this->Construction_Point_Determination();
 
-       /*
-
-       dial = new wxMessageDialog(this->MainFrame_Pointer,wxT("After Construction_Point_Determination"));
-
-       dial->ShowModal();
-
-       */
-
         if(this->is_construction_point_determined){
-
-           //this->sleep_time_determination();
 
            this->Process_Exit_Status = 0;
 
@@ -346,13 +328,6 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
                             + this->Descriptor_File_Path;
           
-           /*
-
-           dial = new wxMessageDialog(this->MainFrame_Pointer,this->Run_Command);
-
-           dial->ShowModal();
-
-            */
 
            this->Sub_Process_ID_Received = wxExecute( this->Run_Command,
 
@@ -382,8 +357,6 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
         }
       }
       else{
-
-
 
             wxString message = wxT("Project file was not selected ..\nPlease select a project file");
 
@@ -494,10 +467,6 @@ void Process_Execution_Controller::ShowProgress(){
 
         int max = 10; // The maximum num of iteration for progress bar.
 
-        if(!this->is_library_constructed){
-
-            max = 10*this->sleep_time;
-        }
 
         wxString Process_Label;
 
@@ -546,11 +515,9 @@ void Process_Execution_Controller::ShowProgress(){
                 }
             }
 
-            this->sleep_time = this->sleep_time*0.5;
+            wxSleep(1);
 
-            wxSleep(0.5);
-
-            dialog.Update(i);
+            dialog.Update(i+1);
         }
 
         dialog.Resume();
