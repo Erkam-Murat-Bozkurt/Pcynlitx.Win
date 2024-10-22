@@ -18,7 +18,9 @@ public:
   void Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer);
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
-  void Read_Main_File_Descriptions();
+  bool Read_Main_File_Descriptions();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
   void Clear_Dynamic_Memory();
   char *  Get_Server_Class_Name() const;
   char *  Get_Server_Class_Header_File_Name() const;
@@ -30,7 +32,7 @@ public:
   int     Get_Thread_Number() const;
   int     Get_Thread_Function_Number() const;
 private:
-  void Set_Informations_Comes_From_Data_Collector();
+  bool Set_Informations_Comes_From_Data_Collector();
   void Receive_Construction_Point();
   void Receive_Main_File_Name();
   void Receive_Namespace();
@@ -45,13 +47,15 @@ private:
   Descriptor_File_Data_Collector * Data_Collector_Pointer;
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;
-  char *  Construction_Point;
-  char *  Executable_File_Name;
-  char *  Main_File_Name;
-  char *  Namespace;
-  char *  OpenMP_Support_Condition;
-  char *  Server_Class_Name;
-  char *  Server_Class_Header_File_Name;
+  bool * error_status;
+  bool * gui_read_status;
+  char * Construction_Point;
+  char * Executable_File_Name;
+  char * Main_File_Name;
+  char * Namespace;
+  char * OpenMP_Support_Condition;
+  char * Server_Class_Name;
+  char * Server_Class_Header_File_Name;
   char ** Thread_Function_Names;
   bool Memory_Delete_Condition;
   bool Memory_Allocation_Started;

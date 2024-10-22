@@ -124,6 +124,11 @@ add_library(gui_tools
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Project_File_Selection_Window/Project_File_Selection_Window.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_Descriptions_Printer/Project_Descriptions_Printer.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_Descriptions_Printer/Project_Descriptions_Printer.hpp
+
+
 )
 
 include_directories(
@@ -188,6 +193,8 @@ target_include_directories(gui_tools PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Custom_Message_Dialog
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Project_File_Selection_Window
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project_Descriptions_Printer
 
     ${CMAKE_CURRENT_SOURCE_DIR}
 
@@ -424,7 +431,6 @@ target_include_directories(gui_tools PUBLIC
     ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/ReportFileBuilder_HeaderWriter
 
     ${CMAKE_SOURCE_DIR}/SMART.POINTER.BUILDER/Smart_Pointer_Data_Conveyor
-
 
 )
 

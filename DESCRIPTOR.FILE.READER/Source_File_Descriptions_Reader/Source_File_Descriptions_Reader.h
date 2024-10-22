@@ -27,20 +27,18 @@ public:
   void Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer);
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
-  void Read_Source_File_Descriptions();
-  int  Get_Header_Files_Number() const;
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_Source_File_Descriptions();
   int  Get_Source_File_Location_Number() const;
   int  Get_Source_File_Names_Number() const;
   char ** Get_Source_File_Locations() const;
   char ** Get_Source_File_Names() const;
-  char ** Get_Header_File_Names() const;
-  char ** Get_Header_File_Paths() const;
   void Clear_Dynamic_Memory();
 private:
   void Set_Informations_Comes_From_Data_Collector();
-  void Receive_Header_File_Names();
-  void Receive_Source_File_Locations();
-  void Receive_Source_File_Names();
+  bool Receive_Source_File_Locations();
+  bool Receive_Source_File_Names();
   void Place_String(char ** Pointer, char * String);
   void Place_Information(char ** Pointer, char * Information, int * index_counter, size_t Start_Point);
   void Clear_Pointer_Memory(char ** Pointer);
@@ -60,6 +58,8 @@ private:
   bool Memory_Delete_Condition;
   bool Memory_Allocation_Started;
   bool is_empty_decleration;
+  bool * error_status;
+  bool * gui_read_status;
   char ** Source_File_Locations;
   char ** Source_File_Names;
   char ** Header_File_Names;

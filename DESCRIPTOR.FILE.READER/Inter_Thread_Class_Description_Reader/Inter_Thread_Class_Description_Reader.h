@@ -44,16 +44,17 @@ public:
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
   void Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer);
-  void Read_Inter_Thread_Class_Descriptions();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_Inter_Thread_Class_Descriptions();
   Class_Data_Type * Get_Class_Names() const;
   int  Get_Class_Number() const;
   void Clear_Dynamic_Memory();
 private:
-  void Receive_Inter_Thread_Class_Header_File_Names();
-  void Receive_Inter_Thread_Class_Names();
-  void Receive_Inter_Thread_Class_Instance_Names();
+  bool Receive_Inter_Thread_Class_Header_File_Names();
+  bool Receive_Inter_Thread_Class_Names();
+  bool Receive_Inter_Thread_Class_Instance_Names();
   void Set_Informations_Comes_From_Data_Collector();
-  void Receive_Include_Directory();
   void Clear_Pointer_Memory(char ** Pointer);
   void Print_Read_Error_Information();
   void Print_End_of_Program();
@@ -68,6 +69,8 @@ private:
   Header_File_Data_Type    * Header_File_Data_Type_Pointer;
   Class_Data_Type          * Class_Data_Type_Pointer;
   Class_Instance_Data_Type * Class_Instance_Data_Type_Pointer;
+  bool * error_status;
+  bool * gui_read_status;
   int Inter_Thread_Class_Number;
   int Inter_Thread_Class_Header_File_Names_Number;
   int Include_Directory_Number;

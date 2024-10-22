@@ -268,16 +268,29 @@ void Descriptor_File_Reader_Initializer::Clear_Pointer_Memory(char ** Pointer){
      }
 }
 
+void Descriptor_File_Reader_Initializer::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Descriptor_File_Reader_Initializer::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 void Descriptor_File_Reader_Initializer::Receve_Data_Collector(Descriptor_File_Data_Collector * Data_Collector){
 
      this->File_Data_Collector = Data_Collector;
 }
 
-void Descriptor_File_Reader_Initializer::Read_File_Lists(){
+bool Descriptor_File_Reader_Initializer::Read_File_Lists(){
 
      this->Memory_Delete_Condition = false;
 
      this->Memory_Allocation_Started = true;
+
+     bool rt_value = false;
 
      if(this->File_Data_Collector->Include_Directory_Numbers > 0){
 
@@ -360,7 +373,14 @@ void Descriptor_File_Reader_Initializer::Read_File_Lists(){
 
      this->Receive_Thread_Function_Names();
 
-     this->Receive_Thread_Number();
+     if(this->Receive_Thread_Number()){
+
+        rt_value = true;
+
+        return rt_value;
+     }
+
+     return rt_value;
 }
 
 void Descriptor_File_Reader_Initializer::Receive_Include_Directory_List(){
@@ -939,7 +959,9 @@ void Descriptor_File_Reader_Initializer::Receive_Thread_Function_Names(){
      }
 }
 
-void Descriptor_File_Reader_Initializer::Receive_Thread_Number(){
+bool Descriptor_File_Reader_Initializer::Receive_Thread_Number(){
+
+     bool rt_value = false;
 
      int Record_Start = 0, Record_End = 0;
 
@@ -992,34 +1014,45 @@ void Descriptor_File_Reader_Initializer::Receive_Thread_Number(){
 
      if(this->Thread_Number == 0){
 
-        std::cerr << "\n";
+        if(!this->gui_read_status){
 
-        std::cerr << "\n  # ERROR MESSAGE";
+            std::cerr << "\n";
 
-        std::cerr << "\n";
+            std::cerr << "\n  # ERROR MESSAGE";
 
-        std::cerr << "\n  # Error Type: Descriptor File Read Error";
+            std::cerr << "\n";
 
-        std::cerr << "\n\n  [ THE POSSIBLE REASON OF THE ERROR ]";
+            std::cerr << "\n  # Error Type: Descriptor File Read Error";
 
-        std::cerr << "\n\n  {";
+            std::cerr << "\n\n  [ THE POSSIBLE REASON OF THE ERROR ]";
 
-        std::cerr << "\n       Thread number can not be determined..,";
+            std::cerr << "\n\n  {";
 
-        std::cerr << "\n";
+            std::cerr << "\n       Thread number can not be determined..,";
 
-        std::cerr << "\n       There is no thread number decleration..";
+            std::cerr << "\n";
 
-        std::cerr << "\n";
+            std::cerr << "\n       There is no thread number decleration..";
 
-        std::cerr << "\n       Please check thread number description.";
+            std::cerr << "\n";
 
-        std::cerr << "\n  }";
+            std::cerr << "\n       Please check thread number description.";
 
-        std::cerr << "\n\n  THE END OF THE PROGRAM \n\n";
+            std::cerr << "\n  }";
 
-        exit(EXIT_FAILURE);
+            std::cerr << "\n\n  THE END OF THE PROGRAM \n\n";
+
+            exit(EXIT_FAILURE);
+        }
+        else{
+
+              *this->error_status = true;
+
+              rt_value = true;
+        }
      }
+
+     return rt_value;
 }
 
 

@@ -25,18 +25,22 @@ public:
   void Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer);
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
-  void Read_Include_Directory_Descriptions();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_Include_Directory_Descriptions();
   Include_Directory_Type * Get_Include_Directory() const;
   int  Get_Include_Directory_Number() const;
   void Clear_Dynamic_Memory();
 private:
-  void Receive_Include_Directory();
+  bool Receive_Include_Directory();
   void Set_Informations_Comes_From_Data_Collector();
   void Clear_Pointer_Memory(char ** Pointer);
   void Print_Read_Error_Information();
   void Print_End_of_Program();
   void Place_String(char ** Pointer, char * String);
   bool Check_Empty_Decleration(char * String);
+  bool * error_status;
+  bool * gui_read_status;
   Descriptor_File_Data_Collector * Data_Collector_Pointer;
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;

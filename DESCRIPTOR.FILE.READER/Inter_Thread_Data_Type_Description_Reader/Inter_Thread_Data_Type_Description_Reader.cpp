@@ -90,6 +90,17 @@ void Inter_Thread_Data_Type_Description_Reader::Clear_Dynamic_Memory(){
      }
 }
 
+void Inter_Thread_Data_Type_Description_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Inter_Thread_Data_Type_Description_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 void Inter_Thread_Data_Type_Description_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
      this->Memory_Allocation_Started = true;
@@ -131,7 +142,9 @@ void Inter_Thread_Data_Type_Description_Reader::Set_Informations_Comes_From_Data
      this->Shared_Data_Types_Header_File_Names_Number = this->Data_Collector_Pointer->Shared_Data_Types_Include_File_Names_Number;
 }
 
-void Inter_Thread_Data_Type_Description_Reader::Read_Inter_Thread_Data_Type_Descriptions(){
+bool Inter_Thread_Data_Type_Description_Reader::Read_Inter_Thread_Data_Type_Descriptions(){
+
+     bool  rt_value = false;
 
      this->Memory_Delete_Condition = false;
 
@@ -141,20 +154,44 @@ void Inter_Thread_Data_Type_Description_Reader::Read_Inter_Thread_Data_Type_Desc
 
      if(this->Include_Directory_Number > 0){
 
-        this->Receive_Include_Directory();
+        if(this->Receive_Include_Directory()){
+
+           rt_value = true;
+
+           return rt_value;
+        };
      }
 
      if(this->Shared_Data_Types_Number > 0){
 
-        this->Receive_Shared_Memory_Data_Types_Header_File_Names();
+        if(this->Receive_Shared_Memory_Data_Types_Header_File_Names()){
 
-        this->Receive_Shared_Memory_Pointer_Names();
+           rt_value = true;
 
-        this->Receive_Shared_Memory_Data_Types();
+           return rt_value;
+        };
+
+        if(this->Receive_Shared_Memory_Pointer_Names()){
+
+           rt_value = true;
+
+           return rt_value;
+        };
+
+        if(this->Receive_Shared_Memory_Data_Types()){
+           rt_value = true;
+
+           return rt_value;           
+        };
      }
+
+    return rt_value;           
+
 }
 
-void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
+bool Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
+
+     bool return_status = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -174,40 +211,63 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Header_File_Locations\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                   std::cerr << "\n     In description of \"Header_File_Locations\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                   std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
+                   std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                    *this->error_status = true;
+
+                    return_status = true;
+
+                    return return_status;
+               }
+
             }
 
             int Include_Directory_Number =  this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
             if(Directory_Number_Holder[Include_Directory_Number] != 0){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     Some of the include directories has the same directory number !";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     Each directory must have different number..";
+                  std::cerr << "\n     Some of the include directories has the same directory number !";
 
-               std::cerr << "\n\n     Plase check include directories declerations!";
+                  std::cerr << "\n\n     Each directory must have different number..";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Plase check include directories declerations!";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                    *this->error_status = true;
+
+                    return_status = true;
+
+                    return return_status;
+               }
             }
 
             Directory_Number_Holder[Include_Directory_Number] = 1;
@@ -230,9 +290,11 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Include_Directory(){
  }
 
 
-void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types_Header_File_Names(){
+bool Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types_Header_File_Names(){
 
      this->Memory_Allocation_Started = true;
+
+     bool rt_value = false;
 
      if(this->Shared_Data_Types_Number > 0){
 
@@ -246,162 +308,252 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
            for(int i=0;i<this->Shared_Data_Types_Number;i++){
 
+
                if(this->Initializer_Pointer->Get_Shared_Data_Type_Header_File_List()[i] != nullptr){
 
                   char * String_Line = this->Initializer_Pointer->Get_Shared_Data_Type_Header_File_List()[i];
 
+
                   if(this->Check_Empty_Decleration(String_Line)){
 
-                     this->Print_Read_Error_Information();
+                     if(!this->gui_read_status){
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                         this->Print_Read_Error_Information();
 
-                     std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                         std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                     std::cerr << "\n\n     but there is no decleration at that line. ";
+                         std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-                     std::cerr << "\n\n     Please check \"Inter_Thread_Data_Type_Header_File_Names\" description.";
+                         std::cerr << "\n\n     but there is no decleration at that line. ";
 
-                     std::cerr << "\n\n     The process will be interrupted ..";
+                         std::cerr << "\n\n     Please check \"Inter_Thread_Data_Type_Header_File_Names\" description.";
 
-                     this->Print_End_of_Program();
+                         std::cerr << "\n\n     The process will be interrupted ..";
 
-                     exit(1);
+                         this->Print_End_of_Program();
+
+                        exit(1);
+                     }
+                     else{
+
+                          *this->error_status = true;
+
+                          rt_value = true;
+
+                          return rt_value;
+                     }
                   }
+
+
 
                   size_t String_Size = strlen(String_Line);
 
                   int Data_Type_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
+
                   if(Data_Type_Number == -1){
 
-                     this->Print_Read_Error_Information();
+                     if(!this->gui_read_status){
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                        this->Print_Read_Error_Information();
 
-                     std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
+                        std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                     std::cerr << "\n\n     Data type number data can not be readed. (The leak of number in the brace)";
+                        std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
 
-                     std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                        std::cerr << "\n\n     Data type number data can not be readed. (The leak of number in the brace)";
 
-                     this->Print_End_of_Program();
+                        std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-                     exit(1);
+                        this->Print_End_of_Program();
+
+                        exit(1);
+                     }
+                     else{
+
+                          *this->error_status = true;
+
+                          rt_value = true;
+
+                          return rt_value;
+                     }
                   }
+
 
                   if(Data_Type_Number == -2){
 
-                     this->Print_Read_Error_Information();
+                     if(!this->gui_read_status){
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                        this->Print_Read_Error_Information();
 
-                     std::cerr << "\n\n     there is an open brace or missing number in data type number descriptions.";
+                        std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                     std::cerr << "\n\n     Data type number can not be readed. Please check description.";
+                        std::cerr << "\n\n     there is an open brace or missing number in data type number descriptions.";
 
-                     std::cerr << "\n\n     The process will be interrupted ..";
+                        std::cerr << "\n\n     Data type number can not be readed. Please check description.";
 
-                     this->Print_End_of_Program();
+                        std::cerr << "\n\n     The process will be interrupted ..";
 
-                     exit(1);
-                  }
+                        this->Print_End_of_Program();
 
-                  this->Shared_Memory_Header_Pointer[i].Data_Type_Number = new int;
+                        exit(1);
+                     }
+                     else{
 
-                  this->Shared_Memory_Header_Pointer[i].Data_Type_Number[0] = Data_Type_Number;
+                          *this->error_status = true;
 
-                  int File_Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
+                          rt_value = true;
 
-                  if(File_Location_Number == -1){
+                          return rt_value;
+                     }
 
-                     this->Print_Read_Error_Information();
+                     this->Shared_Memory_Header_Pointer[i].Data_Type_Number = new int;
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                     this->Shared_Memory_Header_Pointer[i].Data_Type_Number[0] = Data_Type_Number;
 
-                     std::cerr << "\n\n     There is an empy brace in header file location number decleration.";
+                     int File_Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
 
-                     std::cerr << "\n\n     The data can not be readed. Please check description.";
+                     if(File_Location_Number == -1){
 
-                     std::cerr << "\n\n     The process will be interrupted ..";
+                        if(!this->gui_read_status){
 
-                     this->Print_End_of_Program();
+                           this->Print_Read_Error_Information();
 
-                     exit(1);
-                  }
+                           std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                  if(File_Location_Number == -2){
+                           std::cerr << "\n\n     There is an empy brace in header file location number decleration.";
 
-                     this->Print_Read_Error_Information();
+                           std::cerr << "\n\n     The data can not be readed. Please check description.";
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                           std::cerr << "\n\n     The process will be interrupted ..";
 
-                     std::cerr << "\n\n     there is an open brace or missing number in header file location number -";
+                           this->Print_End_of_Program();
 
-                     std::cerr << "\n\n     descriptions. Data can not be readed. Please check description.";
+                           exit(1);
+                        }
+                        else{
 
-                     std::cerr << "\n\n     The process will be interrupted ..";
+                              *this->error_status = true;
 
-                     this->Print_End_of_Program();
+                              rt_value = true;
 
-                     exit(1);
-                  }
+                              return rt_value;
+                        }
+                     }
 
-                  bool Wrong_Include_Directory_Set_Condition = true;
+                     if(File_Location_Number == -2){
 
-                  for(int k=0;k<this->Include_Directory_Number;k++){
+                       if(!this->gui_read_status){
 
-                      int Include_Directory_Number = this->Include_Directory_Pointer[k].Directory_Number;
+                           this->Print_Read_Error_Information();
 
-                      if(Include_Directory_Number == File_Location_Number){
+                           std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                         Wrong_Include_Directory_Set_Condition = false;
-                      }
-                  }
+                           std::cerr << "\n\n     there is an open brace or missing number in header file location number -";
 
-                  if(Wrong_Include_Directory_Set_Condition){
+                           std::cerr << "\n\n     descriptions. Data can not be readed. Please check description.";
 
-                     this->Print_Read_Error_Information();
+                           std::cerr << "\n\n     The process will be interrupted ..";
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                           this->Print_End_of_Program();
 
-                     std::cerr << "\n\n     header file location can not be readed correctly.";
+                           exit(1);
+                       }
+                       else{
 
-                     std::cerr << "\n\n     The number which indicates the file location is wrong.";
+                           *this->error_status = true;
 
-                     std::cerr << "\n\n     There is no such a location in the description of Header_File_Locations.";
+                           rt_value = true;
 
-                     std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                           return rt_value;
+                       }
+                     }
 
-                     this->Print_End_of_Program();
+                     bool Wrong_Include_Directory_Set_Condition = true;
+   
+                     for(int k=0;k<this->Include_Directory_Number;k++){
 
-                     exit(1);
-                  }
+                         int Include_Directory_Number = this->Include_Directory_Pointer[k].Directory_Number;
 
-                  Data_Type_Number_holder [i] = Data_Type_Number;
+                         if(Include_Directory_Number == File_Location_Number){
 
-                  bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Data_Type_Number_holder,this->Shared_Data_Types_Number);
+                            Wrong_Include_Directory_Set_Condition = false;
+                         }
+                     }
 
-                  if(Number_Repitation){
 
-                     this->Print_Read_Error_Information();
 
-                     std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                     if(Wrong_Include_Directory_Set_Condition){
 
-                     std::cerr << "\n\n     the some data type number readed more than ones time !";
+                        if(!this->gui_read_status){
 
-                     std::cerr << "\n\n     Each data type must have different number ..";
+                            this->Print_Read_Error_Information();
 
-                     std::cerr << "\n\n     Please check data type number declerations in description";
+                            std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                     std::cerr << "\n\n     Process will be interrupted ..";
+                            std::cerr << "\n\n     header file location can not be readed correctly.";
 
-                     this->Print_End_of_Program();
+                            std::cerr << "\n\n     The number which indicates the file location is wrong.";
 
-                     exit(1);
-                  }
+                            std::cerr << "\n\n     There is no such a location in the description of Header_File_Locations.";
 
-                  for(int k=0;k<this->Include_Directory_Number;k++){
+                            std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+
+                           this->Print_End_of_Program();
+
+                           exit(1);
+                        }
+                        else{
+
+                           *this->error_status = true;
+
+                           rt_value = true;
+
+                           return rt_value;
+                        }
+                     }
+
+
+
+
+                     Data_Type_Number_holder [i] = Data_Type_Number;
+
+                     bool Number_Repitation = this->Number_Processor_Pointer->Check_Number_Repitation(Data_Type_Number_holder,this->Shared_Data_Types_Number);
+
+                     if(Number_Repitation){
+
+                        if(!this->gui_read_status){
+
+                            this->Print_Read_Error_Information();
+
+                            std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+
+                            std::cerr << "\n\n     the some data type number readed more than ones time !";
+
+                            std::cerr << "\n\n     Each data type must have different number ..";
+
+                            std::cerr << "\n\n     Please check data type number declerations in description";
+
+                            std::cerr << "\n\n     Process will be interrupted ..";
+
+                            this->Print_End_of_Program();
+
+                            exit(1);
+                        }
+                        else{
+
+                           *this->error_status = true;
+
+                           rt_value = true;
+
+                           return rt_value;
+                        
+                        }
+                     }
+
+
+
+                    for(int k=0;k<this->Include_Directory_Number;k++){
 
                       if(File_Location_Number == this->Include_Directory_Pointer[k].Directory_Number){
 
@@ -415,58 +567,73 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
                          break;
                       }
-                  }
+                    }
 
-                  this->Shared_Memory_Header_Pointer[i].Header_File_Name = new char [10*String_Size];
 
-                  this->Place_String(&(this->Shared_Memory_Header_Pointer[i].Header_File_Name),String_Line);
 
-                  char * File_Location = nullptr;
+                    this->Shared_Memory_Header_Pointer[i].Header_File_Name = new char [10*String_Size];
 
-                  char * File_Name = nullptr;
+                    this->Place_String(&(this->Shared_Memory_Header_Pointer[i].Header_File_Name),String_Line);
 
-                  if(this->Shared_Memory_Header_Pointer[i].Include_Directory != nullptr){
+                    char * File_Location = nullptr;
 
-                     File_Location = this->Shared_Memory_Header_Pointer[i].Include_Directory;
-                  }
+                    char * File_Name = nullptr;
 
-                  if(this->Shared_Memory_Header_Pointer[i].Header_File_Name != nullptr){
+                    if(this->Shared_Memory_Header_Pointer[i].Include_Directory != nullptr){
 
-                     File_Name = this->Shared_Memory_Header_Pointer[i].Header_File_Name;
-                  }
+                       File_Location = this->Shared_Memory_Header_Pointer[i].Include_Directory;
+                    }
 
-                  if(((File_Location != nullptr) && (File_Name != nullptr))){
+                    if(this->Shared_Memory_Header_Pointer[i].Header_File_Name != nullptr){
 
-                     bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(File_Location,File_Name);
+                       File_Name = this->Shared_Memory_Header_Pointer[i].Header_File_Name;
+                    }
 
-                     if(!is_that_file_exist){
 
-                        this->Print_Read_Error_Information();
+                    if(((File_Location != nullptr) && (File_Name != nullptr))){
 
-                        std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
+                        bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(File_Location,File_Name);
 
-                        std::cerr << "\n\n     there is no a file with name \"" << File_Name << "\" in directory -";
+                        if(!is_that_file_exist){
 
-                        std::cerr << "\n\n     \"" << File_Location << "\"";
+                           if(!this->gui_read_status){
 
-                        std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Header_File_Names description.";
+                               this->Print_Read_Error_Information();
 
-                        std::cerr << "\n\n     The process will be interrupted ..";
+                               std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\",";
 
-                        this->Print_End_of_Program();
+                               std::cerr << "\n\n     there is no a file with name \"" << File_Name << "\" in directory -";
 
-                        exit(1);
+                               std::cerr << "\n\n     \"" << File_Location << "\"";
+
+                               std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Header_File_Names description.";
+
+                               std::cerr << "\n\n     The process will be interrupted ..";
+
+                              this->Print_End_of_Program();
+
+                              exit(1);
+                           }
+                           else{
+
+                              *this->error_status = true;
+
+                              rt_value = true;
+
+                              return rt_value;
+                           }
+                        }
                      }
-                  }
-                }
-                else{
+                     else{
 
-                     this->Shared_Memory_Header_Pointer[i].Header_File_Name = nullptr;
+                        this->Shared_Memory_Header_Pointer[i].Header_File_Name = nullptr;
 
-                     this->Shared_Memory_Header_Pointer[i].Include_Directory = nullptr;
+                        this->Shared_Memory_Header_Pointer[i].Include_Directory = nullptr;
 
-                     this->Shared_Memory_Header_Pointer[i].Data_Type_Number = nullptr;
-                }
+                        this->Shared_Memory_Header_Pointer[i].Data_Type_Number = nullptr;
+                     }
+                 }  
+               }
             }
         }
         else{
@@ -485,7 +652,9 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
     }
 }
 
-void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Names(){
+bool Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Names(){
+
+     bool rt_value = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -493,67 +662,103 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Na
 
         int index_counter = 0;
 
-        this->Shared_Memory_Pointer_Names_Holder = new Shared_Memory_Pointer [10*this->Shared_Data_Types_Number];
+        this->Shared_Memory_Pointer_Names_Holder 
+        
+        = new Shared_Memory_Pointer [10*this->Shared_Data_Types_Number];
 
-        for(int i= 0;i<this->Shared_Data_Types_Number;i++){
-
+        for(int i=0;i<this->Shared_Data_Types_Number;i++){
+         
             char * String_Line   = this->Initializer_Pointer->Get_Shared_Memory_Pointer_Name_List()[i];
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                   std::cerr << "\n\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                   std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Inter_Thread_Data_Type_Pointer_Names\" description.";
+                   std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check \"Inter_Thread_Data_Type_Pointer_Names\" description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
             }
+
 
             int Data_Type_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
             if(Data_Type_Number == -1){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
+                   std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
 
-               std::cerr << "\n\n     Data type number can not be readed. (The leak of number in the brace)";
+                   std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
 
-               std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Pointer_Names description.";
+                   std::cerr << "\n\n     Data type number can not be readed. (The leak of number in the brace)";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Pointer_Names description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
             }
 
             if(Data_Type_Number == -2){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an open brace or missing number in data type number -";
+                   std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Pointer_Names\",";
 
-               std::cerr << "\n\n     descriptions. Data type number can not be readed. ";
+                   std::cerr << "\n\n     there is an open brace or missing number in data type number -";
 
-               std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                   std::cerr << "\n\n     descriptions. Data type number can not be readed. ";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;   
+               }
+
             }
 
             this->Shared_Memory_Pointer_Names_Holder[index_counter].Data_Type_Number = Data_Type_Number;
@@ -569,7 +774,9 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Pointer_Na
      }
 }
 
-void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types(){
+bool Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types(){
+
+     bool rt_value = false;
 
      if(this->Shared_Data_Types_Number > 0){
 
@@ -593,23 +800,35 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
             char * String_Line = this->Initializer_Pointer->Get_Shared_Data_Type_List()[i];
 
+
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                   std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                   std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Inter_Thread_Data_Types\" description.";
+                   std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check \"Inter_Thread_Data_Types\" description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;                     
+               }
             }
 
             size_t String_Size = strlen(String_Line);
@@ -622,36 +841,58 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
             if(Data_Type_Number == -1){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
+                 this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
+                 std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
 
-               std::cerr << "\n\n     Data type number can not be readed. (The leak of number in the brace)";
+                 std::cerr << "\n\n     there is an Empty Brace in data type number descriptions.";
 
-               std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                 std::cerr << "\n\n     Data type number can not be readed. (The leak of number in the brace)";
 
-               this->Print_End_of_Program();
+                 std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-               exit(1);
+                 this->Print_End_of_Program();
+
+                 exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+               }
             }
 
             if(Data_Type_Number == -2){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an open brace or missing number in data type number -";
+                   std::cerr << "\n     In description of \"Inter_Thread_Data_Types\",";
 
-               std::cerr << "\n\n     descriptions. Data type number data can not be readed.";
+                   std::cerr << "\n\n     there is an open brace or missing number in data type number -";
 
-               std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                   std::cerr << "\n\n     descriptions. Data type number data can not be readed.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+               }
             }
 
             this->Shared_Memory_Data_Type_Pointer[index_counter].Data_Number = Data_Type_Number;
@@ -664,21 +905,32 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
             if(Number_Repitation){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In \"Inter_Thread_Data_Types\" description, ";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     The one of the data type numbers readed more than ones time !";
+                   std::cerr << "\n     In \"Inter_Thread_Data_Types\" description, ";
 
-               std::cerr << "\n\n     Each data type must have different number.";
+                   std::cerr << "\n\n     The one of the data type numbers readed more than ones time !";
 
-               std::cerr << "\n\n     Please check data type number declerations";
+                   std::cerr << "\n\n     Each data type must have different number.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check data type number declerations";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+               }
             }
 
             this->Shared_Memory_Data_Type_Pointer[index_counter].Header_File_Name = nullptr;
@@ -709,21 +961,32 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
             if(Wrong_Data_Type_for_header_file){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In \"Inter_Thread_Data_Types\" description,";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     There are data type numbers mistach between Inter_Thread_Data_Types ";
+                  std::cerr << "\n     In \"Inter_Thread_Data_Types\" description,";
 
-               std::cerr << "\n\n     description and Inter_Thread_Data_Type_Header_File_Names description.";
+                  std::cerr << "\n\n     There are data type numbers mistach between Inter_Thread_Data_Types ";
 
-               std::cerr << "\n\n     Data type numbers con not be readed. Please check declerations.";
+                  std::cerr << "\n\n     description and Inter_Thread_Data_Type_Header_File_Names description.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Data type numbers con not be readed. Please check declerations.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+               }
             }
 
             bool Wrong_Data_Type_for_Pointer_Names = true;
@@ -738,19 +1001,31 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
             if(Wrong_Data_Type_for_Pointer_Names){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     There are data type numbers mistach between Inter_Thread_Data_Type_Pointer_Names";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     description and Inter_Thread_Data_Types description.";
+                  std::cerr << "\n     There are data type numbers mistach between Inter_Thread_Data_Type_Pointer_Names";
 
-               std::cerr << "\n\n     Data type numbers can not be readed correctly. Please check declerations.";
+                  std::cerr << "\n\n     description and Inter_Thread_Data_Types description.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Data type numbers can not be readed correctly. Please check declerations.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+                  
+               }
             }
 
             for(int k=0;k<this->Shared_Data_Types_Header_File_Names_Number;k++){
@@ -759,21 +1034,32 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
                    if(Header_Names_Number_Holder [Data_Type_Number] != 0){
 
-                      this->Print_Read_Error_Information();
+                      if(!this->gui_read_status){
 
-                      std::cerr << "\n     In \"Inter_Thread_Data_Type_Header_File_Names\" description,";
+                         this->Print_Read_Error_Information();
 
-                      std::cerr << "\n     The one of the data types has more than one header file .";
+                         std::cerr << "\n     In \"Inter_Thread_Data_Type_Header_File_Names\" description,";
 
-                      std::cerr << "\n\n     Each data type must have exactly one header file ..";
+                         std::cerr << "\n     The one of the data types has more than one header file .";
 
-                      std::cerr << "\n\n     Please check shared data type header file names declerations";
+                         std::cerr << "\n\n     Each data type must have exactly one header file ..";
 
-                      std::cerr << "\n\n     The process will be interrupted ..";
+                         std::cerr << "\n\n     Please check shared data type header file names declerations";
 
-                      this->Print_End_of_Program();
+                         std::cerr << "\n\n     The process will be interrupted ..";
 
-                      exit(1);
+                         this->Print_End_of_Program();
+
+                         exit(1);
+                      }
+                      else{
+
+                             *this->error_status = true;
+
+                             rt_value = true;
+
+                            return rt_value; 
+                      }
                     }
 
                     Header_Names_Number_Holder [Data_Type_Number] = 1;
@@ -812,21 +1098,33 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
                    if(Pointer_Names_Number_Holder [Data_Type_Number] != 0){
 
-                      this->Print_Read_Error_Information();
+                      if(!this->gui_read_status){
 
-                      std::cerr << "\n     In \"Inter_Thread_Data_Type_Pointer_Names\" description,";
+                          this->Print_Read_Error_Information();
 
-                      std::cerr << "\n\n     Some of the data type pointer name has the same data type number .";
+                          std::cerr << "\n     In \"Inter_Thread_Data_Type_Pointer_Names\" description,";
 
-                      std::cerr << "\n\n     Each pointer name must have different data type number ..";
+                          std::cerr << "\n\n     Some of the data type pointer name has the same data type number .";
 
-                      std::cerr << "\n\n     Please check shared data type pointer names declerations";
+                          std::cerr << "\n\n     Each pointer name must have different data type number ..";
 
-                      std::cerr << "\n\n     The process will be interrupted ..";
+                          std::cerr << "\n\n     Please check shared data type pointer names declerations";
 
-                      this->Print_End_of_Program();
+                          std::cerr << "\n\n     The process will be interrupted ..";
 
-                      exit(1);
+                          this->Print_End_of_Program();
+
+                          exit(1);
+                      }
+                      else{
+
+                             *this->error_status = true;
+
+                             rt_value = true;
+
+                            return rt_value; 
+                          
+                      }
                    }
 
                    Pointer_Names_Number_Holder [Data_Type_Number] = 1;
@@ -856,19 +1154,30 @@ void Inter_Thread_Data_Type_Description_Reader::Receive_Shared_Memory_Data_Types
 
         if(((this->Shared_Data_Types_Header_File_Names_Number > 0) && (Empty_Header_Names_Number_Holder))){
 
-           this->Print_Read_Error_Information();
+           if(!this->gui_read_status){
 
-           std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\"";
+               this->Print_Read_Error_Information();
 
-           std::cerr << "\n\n     the data type number which indicates the header files identity can not -.";
+               std::cerr << "\n     In description of \"Inter_Thread_Data_Type_Header_File_Names\"";
 
-           std::cerr << "\n\n     be readed correctly. Data type number is wrong. Please check description.";
+               std::cerr << "\n\n     the data type number which indicates the header files identity can not -.";
 
-           std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     be readed correctly. Data type number is wrong. Please check description.";
 
-           this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-           exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+           }
+           else{
+
+               *this->error_status = true;
+
+               rt_value = true;
+
+               return rt_value; 
+           }
         }
 
         if(this->Include_Directory_Pointer != nullptr){

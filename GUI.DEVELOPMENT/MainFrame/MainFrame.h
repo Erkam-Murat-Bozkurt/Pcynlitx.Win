@@ -44,6 +44,7 @@
 #include "Custom_wxPanel.h"
 #include "Custom_TabArt.h"
 #include "Custom_Message_Dialog.hpp"
+#include "Project_Descriptions_Printer.hpp"
 
 
 

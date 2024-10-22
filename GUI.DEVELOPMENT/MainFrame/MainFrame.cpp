@@ -439,8 +439,12 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
 
 
+       /*
+       wxMessageDialog * dial = new wxMessageDialog(this,this->Descriptor_File_Path);
 
+       dial->ShowModal();
 
+        */
 
         //wxFileDialog * openFileDialog = new wxFileDialog(this,wxT("Select Project File"));
 
@@ -479,6 +483,13 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
                                 + this->Descriptor_File_Path;
 
+
+       /*
+       wxMessageDialog * dial = new wxMessageDialog(this,this->Run_Command);
+
+       dial->ShowModal();
+
+        */
 
             int Descriptor_File_Name_Size = 0;
 
@@ -795,7 +806,13 @@ void MainFrame::Show_Descriptions(wxCommandEvent & event)
 
        if(this->is_project_file_selected){
 
-          this->Process_Controller.Show_Descriptions(this->Descriptor_File_Path);
+          Project_Descriptions_Printer *  Des_Printer = new   Project_Descriptions_Printer(this,wxID_ANY);
+
+          Des_Printer->Receive_Descriptor_File_Path(this->Descriptor_File_Path);
+
+          Des_Printer->Read_Descriptions();
+
+          Des_Printer->Print_Descriptions();
        }
        else{
 

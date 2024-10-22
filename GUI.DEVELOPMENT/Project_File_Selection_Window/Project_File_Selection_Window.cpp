@@ -482,6 +482,8 @@ void Project_File_Selection_Window::Select_File(){
 
           if(return_mode == wxID_CANCEL){
 
+            *this->Descriptor_File_Selection_Status = false;
+
             this->Destroy();
           }
      }
@@ -492,5 +494,5 @@ void Project_File_Selection_Window::Select_File(){
 
 bool Project_File_Selection_Window::get_Descriptor_File_Selection_Status() const 
 {
-     return this->Descriptor_File_Selection_Status;
+     return *this->Descriptor_File_Selection_Status;
 }

@@ -82,6 +82,18 @@ void Library_Descriptions_Reader::Clear_Dynamic_Memory(){
     }
 }
 
+
+void Library_Descriptions_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Library_Descriptions_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 void Library_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
      this->Memory_Allocation_Started = true;
@@ -112,11 +124,14 @@ void Library_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
      this->Library_Names_Number = this->Data_Collector_Pointer->Library_Names_Number;
 }
 
-void Library_Descriptions_Reader::Read_Library_Descriptions(){
+bool Library_Descriptions_Reader::Read_Library_Descriptions(){
+
+     bool err_status = false;
 
      this->Memory_Allocation_Started = true;
 
      this->Set_Informations_Comes_From_Data_Collector();
+     
 
      if(this->Library_Directory_Number > 0){
 
@@ -170,27 +185,40 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
 
          for(int k=0;((k<this->Library_Directory_Number) && (!is_that_library_exist));k++){
 
-             is_that_library_exist = this->Directory_Manager.Search_File_in_Directory(this->Library_Directories[k],Library_Names_Pointer[i]);
+             is_that_library_exist 
+             
+                = this->Directory_Manager.Search_File_in_Directory(this->Library_Directories[k],Library_Names_Pointer[i]);
 
          }
 
          if(!is_that_library_exist){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In description of \"Library_Names\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is no a file with name \"" << Library_Names_Pointer[i] << "\"-";
+               std::cerr << "\n     In description of \"Library_Names\",";
 
-            std::cerr << "\n\n     in the directories descripted as library location.";
+               std::cerr << "\n\n     there is no a file with name \"" << Library_Names_Pointer[i] << "\"-";
 
-            std::cerr << "\n\n     Please check \"Library_Names\" description.";
+               std::cerr << "\n\n     in the directories descripted as library location.";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Library_Names\" description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+         }
+         else{
+
+              *this->error_status = true;
+
+              err_status = true;
+
+              return err_status;
          }
      }
 
@@ -205,7 +233,9 @@ void Library_Descriptions_Reader::Read_Library_Descriptions(){
     delete [] Library_Names_Pointer;
 }
 
-void Library_Descriptions_Reader::Receive_Library_Directories(){
+bool Library_Descriptions_Reader::Receive_Library_Directories(){
+
+     bool return_status = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -217,73 +247,110 @@ void Library_Descriptions_Reader::Receive_Library_Directories(){
 
          if(this->Check_Empty_Decleration(Library_Directory)){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In description of \"Library_Locations\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+               std::cerr << "\n     In description of \"Library_Locations\",";
 
-            std::cerr << "\n\n     but there is no decleration at that line. ";
+               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-            std::cerr << "\n\n     Please check \"Library_Locations\" description.";
+               std::cerr << "\n\n     but there is no decleration at that line. ";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Library_Locations\" description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
-         }
+               this->Print_End_of_Program();
 
-         int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(Library_Directory);
+               exit(1);
+            }
+            else{
 
-         if(Location_Number == -1){
+                 *this->error_status = true;
 
-            this->Print_Read_Error_Information();
+                 return_status = true;
 
-            std::cerr << "\n     In description of \"Library_Locations\",";
+                 return return_status;
+            }
 
-            std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
+            int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(Library_Directory);
 
-            std::cerr << "\n\n     Location number data can not be readed.";
+            if(Location_Number == -1){
 
-            std::cerr << "\n\n     Please check the description.";
+               if(!this->gui_read_status){
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+                   this->Print_Read_Error_Information();
 
-            this->Print_End_of_Program();
+                   std::cerr << "\n     In description of \"Library_Locations\",";
 
-            exit(1);
-         }
+                   std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
 
-         if(Location_Number == -2){
+                   std::cerr << "\n\n     Location number data can not be readed.";
 
-            this->Print_Read_Error_Information();
+                   std::cerr << "\n\n     Please check the description.";
 
-            std::cerr << "\n     In description of \"Library_Locations\",";
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-            std::cerr << "\n\n     there is an open brace or missing number in file name -";
+                   this->Print_End_of_Program();
 
-            std::cerr << "\n\n     descriptions. Location data can not be readed. ";
+                   exit(1);
+               }
+               else{
 
-            std::cerr << "\n\n     Please check the description.";
+                    *this->error_status = true;
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+                    return_status = true;
 
-            this->Print_End_of_Program();
+                    return return_status;
+               }
+            }
 
-            exit(1);
-         }
+            if(Location_Number == -2){
 
-         size_t Library_Directory_Name_Size = strlen(Library_Directory);
+               if(!this->gui_read_status){
 
-         this->Library_Directories[i] = new char [10*Library_Directory_Name_Size];
+                  this->Print_Read_Error_Information();
 
-         this->Place_String(&(this->Library_Directories[i]),Library_Directory);
+                  std::cerr << "\n     In description of \"Library_Locations\",";
+
+                  std::cerr << "\n\n     there is an open brace or missing number in file name -";
+
+                  std::cerr << "\n\n     descriptions. Location data can not be readed. ";
+
+                  std::cerr << "\n\n     Please check the description.";
+
+                  std::cerr << "\n\n     The process will be interrupted ..";
+
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                    *this->error_status = true;
+
+                    return_status = true;
+
+                    return return_status;
+               }
+            }
+
+            size_t Library_Directory_Name_Size = strlen(Library_Directory);
+
+            this->Library_Directories[i] = new char [10*Library_Directory_Name_Size];
+
+            this->Place_String(&(this->Library_Directories[i]),Library_Directory);
+        }
      }
+
+     return return_status;
 }
 
-void Library_Descriptions_Reader::Receive_Library_Names(){
+bool Library_Descriptions_Reader::Receive_Library_Names(){
 
+     bool return_status = false;
+     
      this->Memory_Allocation_Started = true;
 
      this->Library_Names = new char * [10*this->Library_Names_Number];
@@ -294,59 +361,92 @@ void Library_Descriptions_Reader::Receive_Library_Names(){
 
          if(this->Check_Empty_Decleration(Library_Name)){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In description of \"Library_Names\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+               std::cerr << "\n     In description of \"Library_Names\",";
 
-            std::cerr << "\n\n     but there is no decleration at that line. ";
+               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-            std::cerr << "\n\n     Please check \"Library_Names\" description.";
+               std::cerr << "\n\n     but there is no decleration at that line. ";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Please check \"Library_Names\" description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+            else{
+
+                 *this->error_status = true;
+
+                 return_status = true;
+
+                 return return_status;
+            }
          }
 
          int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(Library_Name);
 
          if(Location_Number == -1){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In description of \"Library_Names\",";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an Empty Brace in names number descriptions.";
+               std::cerr << "\n     In description of \"Library_Names\",";
 
-            std::cerr << "\n\n     Name data can not be readed. Please check the description.";
+               std::cerr << "\n\n     there is an Empty Brace in names number descriptions.";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Name data can not be readed. Please check the description.";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+            else{
+
+                 *this->error_status = true;
+
+                 return_status = true;
+
+                 return return_status;
+            }
          }
 
          if(Location_Number == -2){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In the description of \"Library_Names\",";
+                this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     there is an open brace or missing number in library name -";
+                std::cerr << "\n     In the description of \"Library_Names\",";
 
-            std::cerr << "\n\n     descriptions. Name data can not be readed. ";
+                std::cerr << "\n\n     there is an open brace or missing number in library name -";
 
-            std::cerr << "\n\n     Please check the description.";
+                std::cerr << "\n\n     descriptions. Name data can not be readed. ";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+                std::cerr << "\n\n     Please check the description.";
 
-            this->Print_End_of_Program();
+                std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+                this->Print_End_of_Program();
+
+                exit(1);
+            }
+            else{
+
+                 *this->error_status = true;
+
+                 return_status = true;
+
+                 return return_status;
+            }
          }
 
          size_t Library_Name_Size = strlen(Library_Name);
@@ -355,6 +455,8 @@ void Library_Descriptions_Reader::Receive_Library_Names(){
 
          this->Place_String(&(this->Library_Names[i]),Library_Name);
      }
+
+     return return_status;
 }
 
 bool Library_Descriptions_Reader::Check_Empty_Decleration(char * String){

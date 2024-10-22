@@ -58,6 +58,19 @@ Main_File_Descriptions_Reader::~Main_File_Descriptions_Reader(){
      }
 }
 
+
+void Main_File_Descriptions_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+
+void Main_File_Descriptions_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 void Main_File_Descriptions_Reader::Clear_Dynamic_Memory(){
 
      if(((!this->Memory_Delete_Condition) && (this->Memory_Allocation_Started))){
@@ -111,7 +124,9 @@ void Main_File_Descriptions_Reader::Receive_Number_Processor(Descriptor_File_Num
      this->Number_Processor_Pointer = Pointer;
 }
 
-void Main_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+bool Main_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector(){
+
+     bool return_status = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -121,29 +136,49 @@ void Main_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector()
 
      if(this->Thread_Function_Number > this->Thread_Number){
 
-       this->Print_Read_Error_Information();
+        if(!this->gui_read_status){
 
-       std::cerr << "\n     In descriptions, the number of the function routine is more";
+            this->Print_Read_Error_Information();
 
-       std::cerr << "\n\n     than the thread number. In contrast, the number of the thread";
+            std::cerr << "\n     In descriptions, the number of the function routine is more";
 
-       std::cerr << "\n\n     must be equal or more than the number of thread function name.";
+            std::cerr << "\n\n     than the thread number. In contrast, the number of the thread";
 
-       std::cerr << "\n\n     Please check your descriptions.";
+            std::cerr << "\n\n     must be equal or more than the number of thread function name.";
 
-       std::cerr << "\n\n     The process will be interrupted ..";
+            std::cerr << "\n\n     Please check your descriptions.";
 
-       this->Print_End_of_Program();
+            std::cerr << "\n\n     The process will be interrupted ..";
 
-       exit(EXIT_FAILURE);
+            this->Print_End_of_Program();
+
+            exit(EXIT_FAILURE);
+        }
+        else{
+
+            *this->error_status = true;
+
+            return_status = true;
+
+            return return_status;
+        }
      }
+
+     return return_status;
 }
 
-void Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
+bool Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
+
+     bool return_value = false;
 
      this->Memory_Allocation_Started = true;
 
-     this->Set_Informations_Comes_From_Data_Collector();
+     if(this->Set_Informations_Comes_From_Data_Collector()){
+
+          return_value = true;
+
+          return return_value;
+     };
 
      this->Receive_Construction_Point();
 
@@ -155,6 +190,7 @@ void Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
 
         this->Receive_Main_File_Name();
      }
+
 
      if(this->Data_Collector_Pointer->Executable_File_Name_Record_Number > 0){
 
@@ -175,6 +211,8 @@ void Main_File_Descriptions_Reader::Read_Main_File_Descriptions(){
 
         this->Place_String(&this->Namespace,Namespace_Info);
      }
+
+     return return_value;
 }
 
 void Main_File_Descriptions_Reader::Receive_Construction_Point(){

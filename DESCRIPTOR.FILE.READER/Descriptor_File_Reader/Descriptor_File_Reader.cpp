@@ -27,6 +27,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
        this->Memory_Allocation_Started = false;
 
+       this->error_status = false;
+
        this->Constructed_Include_Directory = nullptr;
  }
 
@@ -69,6 +71,34 @@ this program. If not, see <http://www.gnu.org/licenses/>.
        }
  }
 
+ void Descriptor_File_Reader::Receive_Gui_Read_Status(bool status){
+
+      this->gui_read_status = status;
+
+      this->File_Data_Collector.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->Reader_Initializer.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->Number_Processor.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->IT_Class_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->IT_Data_Type_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->ID_Description_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->SF_Descriptions_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+
+      this->HF_Descriptions_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+      
+      this->Lib_Descriptions_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+ 
+      this->MF_Descriptions_Reader.Receive_Gui_Read_Status(&this->gui_read_status);
+ 
+      this->Syntax_Controler.Receive_Gui_Read_Status(&this->gui_read_status);
+ }
+
+
  void Descriptor_File_Reader::Receive_Descriptor_File_Directory(const char * DescriptorFileDirectory){
 
       this->Memory_Allocation_Started = true;
@@ -97,42 +127,197 @@ this program. If not, see <http://www.gnu.org/licenses/>.
       this->File_Data_Collector.Receive_Descriptor_File_Name(DescriptorFileName);
  }
 
- void Descriptor_File_Reader::Receive_Descriptor_File_Infomations(){
+ bool Descriptor_File_Reader::Receive_Descriptor_File_Infomations(){
+
+      bool rt_value = false;
 
       this->Memory_Allocation_Started = true;
 
-      this->File_Data_Collector.Collect_Descriptor_File_Datas();
+      this->File_Data_Collector.Receive_Read_Error_Status(&this->error_status);
+      
+      this->Reader_Initializer.Receive_Read_Error_Status(&this->error_status);
+ 
+      this->Number_Processor.Receive_Read_Error_Status(&this->error_status);
 
-      this->Reader_Initializer.Receve_Data_Collector(&this->File_Data_Collector);
+      this->IT_Class_Reader.Receive_Read_Error_Status(&this->error_status);
+    
+      this->IT_Data_Type_Reader.Receive_Read_Error_Status(&this->error_status);
+ 
+      this->ID_Description_Reader.Receive_Read_Error_Status(&this->error_status);
+    
+      this->SF_Descriptions_Reader.Receive_Read_Error_Status(&this->error_status);
+    
+      this->HF_Descriptions_Reader.Receive_Read_Error_Status(&this->error_status);
+    
+      this->Lib_Descriptions_Reader.Receive_Read_Error_Status(&this->error_status);
+ 
+      this->MF_Descriptions_Reader.Receive_Read_Error_Status(&this->error_status);
+ 
+      this->Syntax_Controler.Receive_Read_Error_Status(&this->error_status);
 
-      this->Reader_Initializer.Read_File_Lists();
+      if(!this->error_status){
 
-      this->Receive_Include_Directory_Descriptions();
+          if(this->File_Data_Collector.Collect_Descriptor_File_Datas()){
 
-      this->Receive_Source_File_Descriptions();
+             bool rt_value = true;
 
-      this->Receive_Header_File_Descriptions();
+             return rt_value;
+          }
+      }
+      else{
 
-      this->Receive_Library_Descriptions();
+            bool rt_value = true;
 
-      this->Receive_Inter_Thread_Class_Names();
+            return rt_value;
+      }
 
-      this->Receive_Shared_Memory_Data_Types();
+      if(!this->error_status){
 
-      this->Receive_Main_File_Descriptions();
+          this->Reader_Initializer.Receve_Data_Collector(&this->File_Data_Collector);
+      }
+      else{
 
-      this->Control_Process_Header_Files_Syntax();
+            bool rt_value = true;
 
-      this->Determine_Newly_Constructed_Include_Directory();
+            return rt_value;
+      }
+
+      if(!this->error_status){
+
+         if(this->Reader_Initializer.Read_File_Lists()){
+
+            bool rt_value = true;
+
+            return rt_value;
+         }
+      }
+      else{
+
+            bool rt_value = true;
+
+            return rt_value;
+      }
+
+
+      if(!this->error_status){
+
+          this->Receive_Include_Directory_Descriptions();
+      }
+      else{
+
+            bool rt_value = true;
+
+            return rt_value;
+      }
+
+      if(!this->error_status){
+
+          this->Receive_Source_File_Descriptions();
+      }
+      else{
+
+            bool rt_value = true;
+
+            return rt_value;
+      }
+
+      if(!this->error_status){
+
+         this->Receive_Header_File_Descriptions();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      if(!this->error_status){
+
+        this->Receive_Library_Descriptions();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      if(!this->error_status){
+
+         this->Receive_Inter_Thread_Class_Names();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      if(!this->error_status){
+
+          this->Receive_Shared_Memory_Data_Types();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      if(!this->error_status){
+
+         this->Receive_Main_File_Descriptions();      
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+
+      if(!this->error_status){
+
+         this->Control_Process_Header_Files_Syntax();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      if(!this->error_status){
+
+         this->Determine_Newly_Constructed_Include_Directory();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
 
       this->File_Data_Collector.Clear_Dynamic_Memory();
 
       this->Reader_Initializer.Clear_Dynamic_Memory();
 
-      this->Remove_Compiler_Output_File();
+      if(!this->error_status){
+
+          this->Remove_Compiler_Output_File();
+      }
+      else{
+
+           bool rt_value = true;
+
+           return rt_value;
+      }
+
+      return rt_value;
  }
 
- void Descriptor_File_Reader::Receive_Include_Directory_Descriptions(){
+ bool Descriptor_File_Reader::Receive_Include_Directory_Descriptions(){
 
       this->Memory_Allocation_Started = true;
 
@@ -142,10 +327,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
       this->ID_Description_Reader.Receive_Number_Processor(&this->Number_Processor);
 
-      this->ID_Description_Reader.Read_Include_Directory_Descriptions();
+      return this->ID_Description_Reader.Read_Include_Directory_Descriptions();
  }
 
- void Descriptor_File_Reader::Receive_Inter_Thread_Class_Names(){
+ bool Descriptor_File_Reader::Receive_Inter_Thread_Class_Names(){
 
       this->IT_Class_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -155,10 +340,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
       this->IT_Class_Reader.Receive_Include_Directory_Description_Reader(&this->ID_Description_Reader);
 
-      this->IT_Class_Reader.Read_Inter_Thread_Class_Descriptions();
+      return this->IT_Class_Reader.Read_Inter_Thread_Class_Descriptions();
 }
 
-void Descriptor_File_Reader::Receive_Shared_Memory_Data_Types(){
+bool Descriptor_File_Reader::Receive_Shared_Memory_Data_Types(){
 
      this->IT_Data_Type_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -168,10 +353,10 @@ void Descriptor_File_Reader::Receive_Shared_Memory_Data_Types(){
 
      this->IT_Data_Type_Reader.Receive_Include_Directory_Description_Reader(&this->ID_Description_Reader);
 
-     this->IT_Data_Type_Reader.Read_Inter_Thread_Data_Type_Descriptions();
+     return this->IT_Data_Type_Reader.Read_Inter_Thread_Data_Type_Descriptions();
 }
 
-void Descriptor_File_Reader::Receive_Source_File_Descriptions(){
+bool Descriptor_File_Reader::Receive_Source_File_Descriptions(){
 
      this->SF_Descriptions_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -179,10 +364,10 @@ void Descriptor_File_Reader::Receive_Source_File_Descriptions(){
 
      this->SF_Descriptions_Reader.Receive_Number_Processor(&this->Number_Processor);
 
-     this->SF_Descriptions_Reader.Read_Source_File_Descriptions();
+     return this->SF_Descriptions_Reader.Read_Source_File_Descriptions();
 }
 
-void Descriptor_File_Reader::Receive_Header_File_Descriptions(){
+bool Descriptor_File_Reader::Receive_Header_File_Descriptions(){
 
      this->HF_Descriptions_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -192,10 +377,10 @@ void Descriptor_File_Reader::Receive_Header_File_Descriptions(){
 
      this->HF_Descriptions_Reader.Receive_Include_Directory_Description_Reader(&this->ID_Description_Reader);
 
-     this->HF_Descriptions_Reader.Receive_Header_File_Names();
+     return this->HF_Descriptions_Reader.Receive_Header_File_Names();
 }
 
-void Descriptor_File_Reader::Receive_Library_Descriptions(){
+bool Descriptor_File_Reader::Receive_Library_Descriptions(){
 
      this->Lib_Descriptions_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -203,10 +388,10 @@ void Descriptor_File_Reader::Receive_Library_Descriptions(){
 
      this->Lib_Descriptions_Reader.Receive_Number_Processor(&this->Number_Processor);
 
-     this->Lib_Descriptions_Reader.Read_Library_Descriptions();
+     return this->Lib_Descriptions_Reader.Read_Library_Descriptions();
 }
 
-void Descriptor_File_Reader::Receive_Main_File_Descriptions(){
+bool Descriptor_File_Reader::Receive_Main_File_Descriptions(){
 
      this->MF_Descriptions_Reader.Receive_Data_Collector(&this->File_Data_Collector);
 
@@ -214,10 +399,10 @@ void Descriptor_File_Reader::Receive_Main_File_Descriptions(){
 
      this->MF_Descriptions_Reader.Receive_Number_Processor(&this->Number_Processor);
 
-     this->MF_Descriptions_Reader.Read_Main_File_Descriptions();
+     return this->MF_Descriptions_Reader.Read_Main_File_Descriptions();
 }
 
-void Descriptor_File_Reader::Control_Process_Header_Files_Syntax(){
+bool Descriptor_File_Reader::Control_Process_Header_Files_Syntax(){
 
       if(this->Get_Class_Number() > 0){
 
@@ -251,7 +436,7 @@ void Descriptor_File_Reader::Control_Process_Header_Files_Syntax(){
       }
 }
 
-void Descriptor_File_Reader::Remove_Compiler_Output_File(){
+bool Descriptor_File_Reader::Remove_Compiler_Output_File(){
 
      char Compiler_Output_File_Name [] = "Compiler_Output.txt";
 
@@ -307,7 +492,7 @@ void Descriptor_File_Reader::Remove_Compiler_Output_File(){
 }
 
 
-void Descriptor_File_Reader::Determine_Newly_Constructed_Include_Directory(){
+bool Descriptor_File_Reader::Determine_Newly_Constructed_Include_Directory(){
 
      char Include_Directory_Add_Word [] = {'_','I','n','c','l','u','d','e','_','D','i','r','e','c','t','o','r','y','\0'};
 

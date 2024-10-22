@@ -44,6 +44,18 @@ void Descriptor_File_Number_Processor::Clear_Dynamic_Memory(){
      }
 }
 
+void Descriptor_File_Number_Processor::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Descriptor_File_Number_Processor::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
+
 int Descriptor_File_Number_Processor::Read_Record_Number_From_String_Line(char * String){
 
     this->Record_Number = 0;

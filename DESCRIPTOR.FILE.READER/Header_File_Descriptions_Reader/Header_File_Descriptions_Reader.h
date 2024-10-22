@@ -21,7 +21,9 @@ public:
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
   void Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Pointer);
-  void Receive_Header_File_Names();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Receive_Header_File_Names();
   void Clear_Dynamic_Memory();
   int  Get_Header_Files_Number() const;
   char ** Get_Header_File_Names() const;
@@ -36,6 +38,8 @@ private:
   void Print_Brace_Data_Read_Error(int Readed_Data, char * Data_Type);
   bool Check_Empty_Decleration(char * String);
   void Place_Null(char ** Pointer, size_t size);
+  bool * error_status;
+  bool * gui_read_status;
   Descriptor_File_Data_Collector * Data_Collector_Pointer;
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;

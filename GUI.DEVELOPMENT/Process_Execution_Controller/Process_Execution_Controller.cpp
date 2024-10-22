@@ -47,7 +47,7 @@ Process_Execution_Controller::Process_Execution_Controller(){
 
      this->exe_file_construction_process_start = false;
 
-     this->sleep_time = 0;
+     this->sleep_time = 1;
 
      this->exclamation_mark_bmp 
   
@@ -120,10 +120,6 @@ void Process_Execution_Controller::Construction_Point_Determination(){
         delete this->Process_Pointer;
 
         if(log_string != wxT("")){
-
-
-
-
 
 
            wxRichMessageDialog * dial = new wxRichMessageDialog(this->MainFrame_Pointer,
@@ -309,11 +305,27 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
      if(this->is_project_file_selected){
 
+       /*
+
+       wxMessageDialog * dial = new wxMessageDialog(this->MainFrame_Pointer,wxT("Before Construction_Point_Determination"));
+
+       dial->ShowModal();
+
+       */
+
         this->Construction_Point_Determination();
+
+       /*
+
+       dial = new wxMessageDialog(this->MainFrame_Pointer,wxT("After Construction_Point_Determination"));
+
+       dial->ShowModal();
+
+       */
 
         if(this->is_construction_point_determined){
 
-           this->sleep_time_determination();
+           //this->sleep_time_determination();
 
            this->Process_Exit_Status = 0;
 
@@ -333,7 +345,14 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
            this->Run_Command = wxT("C:\\Program Files\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe ")
 
                             + this->Descriptor_File_Path;
+          
+           /*
 
+           dial = new wxMessageDialog(this->MainFrame_Pointer,this->Run_Command);
+
+           dial->ShowModal();
+
+            */
 
            this->Sub_Process_ID_Received = wxExecute( this->Run_Command,
 
@@ -529,7 +548,7 @@ void Process_Execution_Controller::ShowProgress(){
 
             this->sleep_time = this->sleep_time*0.5;
 
-            wxSleep(1);
+            wxSleep(0.5);
 
             dialog.Update(i);
         }

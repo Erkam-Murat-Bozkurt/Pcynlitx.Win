@@ -71,6 +71,17 @@ void Header_File_Descriptions_Reader::Clear_Dynamic_Memory(){
      }
 }
 
+void Header_File_Descriptions_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Header_File_Descriptions_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 
 void Header_File_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
@@ -109,7 +120,9 @@ void Header_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector
      this->Header_File_Names_Number = this->Data_Collector_Pointer->Header_File_Names_Number;
 }
 
-void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
+bool Header_File_Descriptions_Reader::Receive_Header_File_Names(){
+
+     bool rt_value = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -137,21 +150,32 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Header_File_Names\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                  std::cerr << "\n     In description of \"Header_File_Names\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                  std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Header_File_Names\" description.";
+                  std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Header_File_Names\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
             }
 
             int File_Names_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
@@ -162,20 +186,31 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
             if(Number_Repitation){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In \"Header_File_Names\" description,";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     The same header file number readed more than ones time ..";
+                   std::cerr << "\n     In \"Header_File_Names\" description,";
 
-               std::cerr << "\n\n     Please check header file number declerations";
+                   std::cerr << "\n\n     The same header file number readed more than ones time ..";
 
-               std::cerr << "\n\n     Process will be interrupted ..";
+                   std::cerr << "\n\n     Please check header file number declerations";
 
+                   std::cerr << "\n\n     Process will be interrupted ..";
 
-               this->Print_End_of_Program();
+                   this->Print_End_of_Program();
 
-               exit(1);
+                   exit(1);  
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+                    
+               }
             }
 
             char Header_File_Number [] = "header file number";
@@ -202,23 +237,35 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
             if(Wrong_Include_Directory_Set_Condition){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Header_File_Names\",";
+                    this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     header file location can not be readed correctly.";
+                    std::cerr << "\n     In description of \"Header_File_Names\",";
 
-               std::cerr << "\n\n     The number which indicates file location is wrong or";
+                    std::cerr << "\n\n     header file location can not be readed correctly.";
 
-               std::cerr << "\n\n     the description of the location can be missed. ";
+                    std::cerr << "\n\n     The number which indicates file location is wrong or";
 
-               std::cerr << "\n\n     Please check the description.";
+                    std::cerr << "\n\n     the description of the location can be missed. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Please check the description.";
 
-               this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
+
             }
 
             char * Header_File_Location = nullptr;
@@ -233,79 +280,101 @@ void Header_File_Descriptions_Reader::Receive_Header_File_Names(){
 
             if(Header_File_Location == nullptr){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n\n     The location of the header file can not be determined !";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     Please check the number indicates the header file location";
+                   std::cerr << "\n\n     The location of the header file can not be determined !";
 
-               std::cerr << "\n\n     Process will be interrupted ..";
+                   std::cerr << "\n\n     Please check the number indicates the header file location";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     Process will be interrupted ..";
 
-               exit(1);
-             }
+                   this->Print_End_of_Program();
+
+                  exit(1);
+              }
+              else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+              }
 
 
-             size_t String_Size = strlen(String_Line);
+              size_t String_Size = strlen(String_Line);
 
-             this->Header_File_Names[i] = new char [10*String_Size];
+              this->Header_File_Names[i] = new char [10*String_Size];
 
-             this->Place_Null(&(this->Header_File_Names[i]),10*String_Size);
+              this->Place_Null(&(this->Header_File_Names[i]),10*String_Size);
 
 
-             this->Place_String(&(this->Header_File_Names[i]),String_Line);
+              this->Place_String(&(this->Header_File_Names[i]),String_Line);
 
-             size_t Location_Name_Size = strlen(Header_File_Location);
+              size_t Location_Name_Size = strlen(Header_File_Location);
 
-             size_t Header_File_Name_Size = Directory_Character_Name_Size +
+              size_t Header_File_Name_Size = Directory_Character_Name_Size +
 
                       Location_Name_Size + String_Size;
 
 
 
-             this->Header_File_Paths[i] = new char [10*Header_File_Name_Size];
+              this->Header_File_Paths[i] = new char [10*Header_File_Name_Size];
 
-             this->Place_Null(&(this->Header_File_Paths[i]),10*Header_File_Name_Size);
-
-
-
-             int Start_Point = 0, index_counter = 0;
-
-             this->Place_Information(&(this->Header_File_Paths[i]),Header_File_Location,&index_counter,Start_Point);
-
-             this->Place_Information(&(this->Header_File_Paths[i]),Directory_Character,&index_counter,Start_Point);
-
-             Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
-
-             this->Place_Information(&(this->Header_File_Paths[i]),String_Line,&index_counter,Start_Point);
-
-             this->Header_File_Paths[i][index_counter] = '\0';
+              this->Place_Null(&(this->Header_File_Paths[i]),10*Header_File_Name_Size);
 
 
-             bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(Header_File_Location,this->Header_File_Names[i]);
 
-             if(!is_that_file_exist){
+              int Start_Point = 0, index_counter = 0;
 
-                 this->Print_Read_Error_Information();
+              this->Place_Information(&(this->Header_File_Paths[i]),Header_File_Location,&index_counter,Start_Point);
 
-                 std::cerr << "\n     In description of \"Header_File_Names\",";
+              this->Place_Information(&(this->Header_File_Paths[i]),Directory_Character,&index_counter,Start_Point);
 
-                 std::cerr << "\n\n     there is no a file with name \"" << this->Header_File_Names[i] << "\"";
+              Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
 
-                 std::cerr << "\n\n     in the directories descripted as header file locations.";
+              this->Place_Information(&(this->Header_File_Paths[i]),String_Line,&index_counter,Start_Point);
 
-                 std::cerr << "\n\n     Please check Header_File_Names description.";
+              this->Header_File_Paths[i][index_counter] = '\0';
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
 
-                 this->Print_End_of_Program();
+              bool is_that_file_exist = this->Directory_Manager.Search_File_in_Directory(Header_File_Location,this->Header_File_Names[i]);
 
-                 exit(1);
+              if(!is_that_file_exist){
+
+                 if(!this->gui_read_status){
+
+                    this->Print_Read_Error_Information();
+
+                    std::cerr << "\n     In description of \"Header_File_Names\",";
+
+                    std::cerr << "\n\n     there is no a file with name \"" << this->Header_File_Names[i] << "\"";
+
+                    std::cerr << "\n\n     in the directories descripted as header file locations.";
+
+                    std::cerr << "\n\n     Please check Header_File_Names description.";
+
+                    std::cerr << "\n\n     The process will be interrupted ..";
+
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value;
+                 }
               }
           }
 
           delete [] Header_File_Names_Number_Holder;
+        }
      }
 }
 
@@ -333,40 +402,54 @@ void Header_File_Descriptions_Reader::Print_Brace_Data_Read_Error(int Readed_Dat
 
      if(Readed_Data == -1){
 
-        this->Print_Read_Error_Information();
+        if(!this->gui_read_status){
 
-        std::cerr << "\n     In description of \"Header_File_Names\",";
+           this->Print_Read_Error_Information();
 
-        std::cerr << "\n\n     there is an Empty Brace in " << Data_Type << " descriptions.";
+           std::cerr << "\n     In description of \"Header_File_Names\",";
 
-        std::cerr << "\n\n     " << Data_Type << " data can not be readed.";
+           std::cerr << "\n\n     there is an Empty Brace in " << Data_Type << " descriptions.";
 
-        std::cerr << "\n\n     Please check the description.";
+           std::cerr << "\n\n     " << Data_Type << " data can not be readed.";
 
-        std::cerr << "\n\n     The process will be interrupted ..";
+           std::cerr << "\n\n     Please check the description.";
 
-        this->Print_End_of_Program();
+           std::cerr << "\n\n     The process will be interrupted ..";
 
-        exit(1);
+           this->Print_End_of_Program();
+
+           exit(1);
+        }
+        else{
+
+            *this->error_status = true;
+        }
      }
 
      if(Readed_Data == -2){
 
-        this->Print_Read_Error_Information();
+        if(!this->gui_read_status){
 
-        std::cerr << "\n     In description of \"Header_File_Names\",";
+           this->Print_Read_Error_Information();
 
-        std::cerr << "\n\n     there is an open brace or missing number in " << Data_Type;
+           std::cerr << "\n     In description of \"Header_File_Names\",";
 
-        std::cerr << "\n\n     descriptions. " << Data_Type << " can not be readed. ";
+           std::cerr << "\n\n     there is an open brace or missing number in " << Data_Type;
 
-        std::cerr << "\n\n     Please check the description.";
+           std::cerr << "\n\n     descriptions. " << Data_Type << " can not be readed. ";
 
-        std::cerr << "\n\n     The process will be interrupted ..";
+           std::cerr << "\n\n     Please check the description.";
 
-        this->Print_End_of_Program();
+           std::cerr << "\n\n     The process will be interrupted ..";
 
-        exit(1);
+           this->Print_End_of_Program();
+
+          exit(1);
+        }
+        else{
+
+           *this->error_status = true;
+        }
      }
 }
 

@@ -100,7 +100,7 @@ void Include_Directory_Description_Reader::Set_Informations_Comes_From_Data_Coll
      this->Include_Directory_Number = this->Data_Collector_Pointer->Include_Directory_Numbers;
 }
 
-void Include_Directory_Description_Reader::Read_Include_Directory_Descriptions(){
+bool Include_Directory_Description_Reader::Read_Include_Directory_Descriptions(){
 
      this->Memory_Allocation_Started = true;
 
@@ -112,7 +112,9 @@ void Include_Directory_Description_Reader::Read_Include_Directory_Descriptions()
      }
 }
 
-void Include_Directory_Description_Reader::Receive_Include_Directory(){
+bool Include_Directory_Description_Reader::Receive_Include_Directory(){
+
+     bool rt_value = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -132,79 +134,123 @@ void Include_Directory_Description_Reader::Receive_Include_Directory(){
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Header_File_Locations\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                  std::cerr << "\n     In description of \"Header_File_Locations\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                  std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
+                  std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
             }
 
             int Include_Directory_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
             if(Include_Directory_Number == -1){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Header_File_Locations\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
+                  std::cerr << "\n     In description of \"Header_File_Locations\",";
 
-               std::cerr << "\n\n     Header file location number data can not be readed.";
+                  std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
 
-               std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
+                  std::cerr << "\n\n     Header file location number data can not be readed.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Header_File_Locations\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
 
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+               }
              }
 
              if(Include_Directory_Number == -2){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     In description of \"Header_File_Locations\",";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
+                   std::cerr << "\n     In description of \"Header_File_Locations\",";
 
-                std::cerr << "\n\n     Header file location number data can not be readed. ";
+                   std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
 
-                std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                   std::cerr << "\n\n     Header file location number data can not be readed. ";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+                }
              }
 
              if(Directory_Number_Holder[Include_Directory_Number] != 0){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     In \"Header_File_Locations\" description,";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Some of the directories indicating the location of the header files -";
+                    std::cerr << "\n\n     In \"Header_File_Locations\" description,";
 
-                std::cerr << "\n\n     has the same directory number ! Each directory must have different number..";
+                    std::cerr << "\n\n     Some of the directories indicating the location of the header files -";
 
-                std::cerr << "\n\n     Plase check Header File Location directory declerations!";
+                    std::cerr << "\n\n     has the same directory number ! Each directory must have different number..";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check Header File Location directory declerations!";
 
-                this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+                }
+
               }
 
               Directory_Number_Holder[Include_Directory_Number] = 1;
@@ -295,7 +341,20 @@ void Include_Directory_Description_Reader::Receive_Include_Directory(){
       std::cerr << "\n\n  THE END OF THE PROGRAM \n\n";
  }
 
- Include_Directory_Type * Include_Directory_Description_Reader::Get_Include_Directory() const {
+void Include_Directory_Description_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+
+void Include_Directory_Description_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
+
+Include_Directory_Type * Include_Directory_Description_Reader::Get_Include_Directory() const {
 
      return this->Include_Directory_Pointer;
  }

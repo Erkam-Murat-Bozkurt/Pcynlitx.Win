@@ -66,6 +66,16 @@ void Descriptor_File_Reader_Syntax_Controler::Clear_Dynamic_Memory(){
      }
 }
 
+void Descriptor_File_Reader_Syntax_Controler::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Descriptor_File_Reader_Syntax_Controler::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
 void Descriptor_File_Reader_Syntax_Controler::Receive_Construction_Point(char * Construction_Point){
 
      this->Construction_Point = Construction_Point;

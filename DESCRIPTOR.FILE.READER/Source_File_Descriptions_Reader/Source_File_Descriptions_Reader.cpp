@@ -87,6 +87,16 @@ void Source_File_Descriptions_Reader::Receive_Data_Collector(Descriptor_File_Dat
      this->Data_Collector_Pointer = Pointer;
 }
 
+void Source_File_Descriptions_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Source_File_Descriptions_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
 void Source_File_Descriptions_Reader::Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer){
 
      this->Memory_Allocation_Started = true;
@@ -112,7 +122,9 @@ void Source_File_Descriptions_Reader::Set_Informations_Comes_From_Data_Collector
      this->Source_File_Number = this->Data_Collector_Pointer->Source_File_Number;
 }
 
-void Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
+bool Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
+
+     bool rt_value = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -120,16 +132,30 @@ void Source_File_Descriptions_Reader::Read_Source_File_Descriptions(){
 
      if(this->Source_File_Location_Number > 0){
 
-        this->Receive_Source_File_Locations();
+        if(this->Receive_Source_File_Locations()){
+
+            rt_value = true;
+
+            return rt_value;
+        }
      }
 
      if(this->Source_File_Number > 0){
 
-        this->Receive_Source_File_Names();
+        if(this->Receive_Source_File_Names()){
+
+           rt_value = true;
+
+           return rt_value;
+        }
      }
+
+     return rt_value;
 }
 
-void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
+bool Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
+
+     bool rt_value = false;
 
      this->Memory_Allocation_Started = true;
 
@@ -149,57 +175,91 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Source_File_Locations\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                  std::cerr << "\n     In description of \"Source_File_Locations\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                  std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Source_File_Locations\" description.";
+                  std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Source_File_Locations\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
+
             }
 
             int Location_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
             if(Location_Number == -1){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Source_File_Locations\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
+                   std::cerr << "\n     In description of \"Source_File_Locations\",";
 
-               std::cerr << "\n\n     Location number data can not be readed.";
+                   std::cerr << "\n\n     there is an Empty Brace in location number descriptions.";
 
-               std::cerr << "\n\n     Please check description. The process will be interrupted ..";
+                   std::cerr << "\n\n     Location number data can not be readed.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     Please check description. The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             if(Location_Number == -2){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Source_File_Locations\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
+                  std::cerr << "\n     In description of \"Source_File_Locations\",";
 
-               std::cerr << "\n\n     Location number data can not be readed. Please check description.";
+                  std::cerr << "\n\n     there is an open brace or missing number in location number descriptions.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Location number data can not be readed. Please check description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             Location_Number_holder[i] = Location_Number;
@@ -208,21 +268,32 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 
             if(Number_Repitation){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In \"Source_File_Locations\" description,";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     A number for source file locations readed more than ones time !";
+                  std::cerr << "\n     In \"Source_File_Locations\" description,";
 
-               std::cerr << "\n\n     Each location must have different number ..";
+                  std::cerr << "\n\n     A number for source file locations readed more than ones time !";
 
-               std::cerr << "\n\n     Please check the declerations";
+                  std::cerr << "\n\n     Each location must have different number ..";
 
-               std::cerr << "\n\n     Process will be interrupted ..";
+                  std::cerr << "\n\n     Please check the declerations";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     Process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             size_t String_Size = strlen(String_Line);
@@ -240,11 +311,15 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Locations(){
 
          delete [] Location_Number_holder;
      }
+
+     return rt_value;
 }
 
-void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
+bool Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
      this->Memory_Allocation_Started = true;
+
+     bool rt_value = false;
 
      if(this->Source_File_Number > 0) {
 
@@ -264,21 +339,32 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Source_File_Names\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                  std::cerr << "\n     In description of \"Source_File_Names\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                  std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
+                  std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+  
+                  exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             char * Source_File_Location = nullptr;
@@ -297,19 +383,30 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             if(Number_Repitation){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In \"Source_File_Names\" description,";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     The same class number readed more than ones time ..";
+                  std::cerr << "\n     In \"Source_File_Names\" description,";
 
-               std::cerr << "\n\n     Please check class number declerations";
+                  std::cerr << "\n\n     The same class number readed more than ones time ..";
 
-               std::cerr << "\n\n     Process will be interrupted ..";
+                  std::cerr << "\n\n     Please check class number declerations";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     Process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             int Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
@@ -328,21 +425,32 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             if(Source_File_Location == nullptr){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n\n     Source File location can not be determined !";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     Source file location number is wrong.";
+                   std::cerr << "\n\n     Source File location can not be determined !";
 
-               std::cerr << "\n\n     There is no location which descripted with this number.";
+                   std::cerr << "\n\n     Source file location number is wrong.";
 
-               std::cerr << "\n\n     Please check sorce file location number decleration.";
+                   std::cerr << "\n\n     There is no location which descripted with this number.";
 
-               std::cerr << "\n\n     Process will be interrupted ..";
+                   std::cerr << "\n\n     Please check sorce file location number decleration.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     Process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);  
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             int Start_Point = this->Number_Processor_Pointer->Get_Read_Operation_Start_Point(String_Line);
@@ -397,21 +505,32 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
             if(!is_that_file_exist){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Source_File_Names\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is no a file with name \"" << Source_File_Name_Pointer << "\" in directory -";
+                  std::cerr << "\n     In description of \"Source_File_Names\",";
 
-               std::cerr << "\n\n    " << Source_File_Location;
+                  std::cerr << "\n\n     there is no a file with name \"" << Source_File_Name_Pointer << "\" in directory -";
 
-               std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
+                  std::cerr << "\n\n    " << Source_File_Location;
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Source_File_Names\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                     *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             delete [] Source_File_Name_Pointer;
@@ -429,6 +548,8 @@ void Source_File_Descriptions_Reader::Receive_Source_File_Names(){
 
         delete [] Source_File_Names_Number_Holder;
      }
+
+     return rt_value;
 }
 
 void Source_File_Descriptions_Reader::Print_Read_Error_Information(){

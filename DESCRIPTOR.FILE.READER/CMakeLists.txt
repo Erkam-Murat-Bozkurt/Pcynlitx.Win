@@ -232,3 +232,7 @@ target_include_directories(des_reader PUBLIC
 
     ${CMAKE_SOURCE_DIR}/CLASS.DECLERATION.READER/ClassReader/ReturnTypeReader
 )
+
+add_executable(Descriptor_File_Reader ${CMAKE_CURRENT_SOURCE_DIR}/Descriptor_File_Reader/Descriptor_File_Reader_Main_File.cpp)
+
+target_link_libraries(Descriptor_File_Reader PUBLIC des_reader)

@@ -18,7 +18,9 @@ public:
   void Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer);
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
-  void Read_Library_Descriptions();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_Library_Descriptions();
   int  Get_Library_Directory_Number() const;
   int  Get_Library_Names_Number() const;
   char ** Get_Library_Directories() const;
@@ -29,8 +31,8 @@ private:
   void Place_String(char ** Pointer, char * String);
   void Place_Information(char ** Pointer, char * String, int * index_counter);
   void Clear_Pointer_Memory(char ** Pointer);
-  void Receive_Library_Directories();
-  void Receive_Library_Names();
+  bool Receive_Library_Directories();
+  bool Receive_Library_Names();
   void Print_End_of_Program();
   void Print_Read_Error_Information();
   bool Check_Empty_Decleration(char * String);
@@ -38,6 +40,8 @@ private:
   Descriptor_File_Reader_Initializer * Initializer_Pointer;
   Descriptor_File_Number_Processor * Number_Processor_Pointer;
   DirectoryOperations Directory_Manager;
+  bool * error_status;
+  bool * gui_read_status;
   char ** Library_Directories;
   char ** Library_Names;
   int Library_Directory_Number;

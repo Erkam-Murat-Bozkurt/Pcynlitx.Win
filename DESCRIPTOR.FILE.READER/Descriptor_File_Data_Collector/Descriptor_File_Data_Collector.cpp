@@ -122,6 +122,18 @@ void Descriptor_File_Data_Collector::Clear_Dynamic_Memory(){
      }
 }
 
+
+void Descriptor_File_Data_Collector::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+
+void Descriptor_File_Data_Collector::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
 void Descriptor_File_Data_Collector::Receive_Descriptor_File_Directory(const char * DescriptorFileDirectory){
 
      this->Memory_Allocation_Started = true;
@@ -204,7 +216,9 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
      }
  }
 
- void Descriptor_File_Data_Collector::Collect_Descriptor_File_Datas(){
+ bool Descriptor_File_Data_Collector::Collect_Descriptor_File_Datas(){
+
+      bool rt_value = false;
 
       if(this->DescriptorFileDirectory_Receive_Condition){
 
@@ -222,396 +236,765 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
              if(((this->Header_File_Names_Number > 0) && (this->Include_Directory_Numbers == 0))){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     There is no any include directory decleration ..";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     Therefore, the location of some header files can not be determined ";
+                    std::cerr << "\n     There is no any include directory decleration ..";
 
-                 std::cerr << "\n\n     Plase check include directory and header file declerations!";
+                    std::cerr << "\n\n     Therefore, the location of some header files can not be determined ";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check include directory and header file declerations!";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                        *this->error_status = true;
+
+                        rt_value = true;
+
+                        return rt_value;
+                 }
              }
 
              if((this->Inter_Thread_Class_Header_File_Names_Number != this->Class_Number)){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     The number of inter-thread class names are not equal the number of inter-thread";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     header file names. Therefore, the header files of some classes can not";
+                    std::cerr << "\n     The number of inter-thread class names are not equal the number of inter-thread";
 
-                 std::cerr << "\n\n     be determined. Plase check class names and header file declerations!";
+                    std::cerr << "\n\n     header file names. Therefore, the header files of some classes can not";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     be determined. Plase check class names and header file declerations!";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value;
+                 }
              }
+
 
              if(this->Supervisor_Class_Name_Record_Number > 1){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more than one server class name .. ";
+                    this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check server class name decleration!";
+                    std::cerr << "\n     There are more than one server class name .. ";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check server class name decleration!";
 
-                this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value;                     
+                }
              }
+          
 
              if(this->Supervisor_Class_Name_Record_Number == 0){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There is no server class name .. ";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check server class name decleration!";
+                   std::cerr << "\n     There is no server class name .. ";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Plase check server class name decleration!";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+                }
+                else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value; 
+                }
+
              }
+
 
              if(this->Thread_Function_Number == 0){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There is no thread function name decleration .. ";
+                    this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check thread function name decleration!";
+                    std::cerr << "\n     There is no thread function name decleration .. ";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check thread function name decleration!";
 
-                this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value; 
+                }
+
              }
 
-             if(this->Namespace_Record_Number > 1){
+                if(this->Namespace_Record_Number > 1){
 
-                this->Print_Read_Error_Information();
+                   if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more than one record namespace decleration .. ";
+                      this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check namespace decleration!";
+                      std::cerr << "\n     There are more than one record namespace decleration .. ";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                      std::cerr << "\n\n     Plase check namespace decleration!";
 
-                this->Print_End_of_Program();
+                      std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                      this->Print_End_of_Program();
+
+                      exit(1);
+                   }
+                   else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value; 
+                   }
+                }
+
+                if(this->Construction_Point_Record_Number == 0){
+
+                    if(!this->gui_read_status){
+
+                       this->Print_Read_Error_Information();
+
+                       std::cerr << "\n     There is no construction point decleraion .. ";
+
+                       std::cerr << "\n\n     Plase check construction point decleration!";
+
+                       std::cerr << "\n\n     The process will be interrupted ..";
+
+                       this->Print_End_of_Program();
+
+                       exit(1);
+                    }
+                    else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+                    }
+                }
+
+                if(this->Class_Instance_Number != this->Class_Number){
+
+                    if(!this->gui_read_status){
+
+                        this->Print_Read_Error_Information();
+
+                        std::cerr << "\n     The number of class instance names are not equal";
+
+                        std::cerr << "\n\n     the number of class names.. Plase check ";
+
+                        std::cerr << "\n\n     \"Inter-Thread class instance names\" decleration!";
+
+                        std::cerr << "\n\n     The process will be interrupted ..";
+
+                        this->Print_End_of_Program();
+
+                        exit(1);
+                    }
+                    else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+
+                    }
+                }
+
+
+                if(this->Shared_Data_Type_Pointer_Names_Number != this->Shared_Data_Types_Number){
+
+                  if(!this->gui_read_status){
+
+                    this->Print_Read_Error_Information();
+     
+                    std::cerr << "\n     The number of shared data type pointer names are not equal -";
+
+                    std::cerr << "\n\n     the number of shared data types. Plase check the shared";
+
+                    std::cerr << "\n\n     data type pointer names decleration!";
+
+                    std::cerr << "\n\n     The process will be interrupted ..";
+
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                  }
+                  else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+                  }
              }
 
-             if(this->Construction_Point_Record_Number == 0){
-
-                this->Print_Read_Error_Information();
-
-                std::cerr << "\n     There is no construction point decleraion .. ";
-
-                std::cerr << "\n\n     Plase check construction point decleration!";
-
-                std::cerr << "\n\n     The process will be interrupted ..";
-
-                this->Print_End_of_Program();
-
-                exit(1);
-             }
-
-             if(this->Class_Instance_Number != this->Class_Number){
-
-                this->Print_Read_Error_Information();
-
-                std::cerr << "\n     The number of class instance names are not equal";
-
-                std::cerr << "\n\n     the number of class names.. Plase check ";
-
-                std::cerr << "\n\n     \"Inter-Thread class instance names\" decleration!";
-
-                std::cerr << "\n\n     The process will be interrupted ..";
-
-                this->Print_End_of_Program();
-
-                exit(1);
-             }
-
-             if(this->Shared_Data_Type_Pointer_Names_Number != this->Shared_Data_Types_Number){
-
-                this->Print_Read_Error_Information();
-
-                std::cerr << "\n     The number of shared data type pointer names are not equal -";
-
-                std::cerr << "\n\n     the number of shared data types. Plase check the shared";
-
-                std::cerr << "\n\n     data type pointer names decleration!";
-
-                std::cerr << "\n\n     The process will be interrupted ..";
-
-                this->Print_End_of_Program();
-
-                exit(1);
-             }
 
              if(this->Shared_Data_Types_Include_File_Names_Number > this->Shared_Data_Types_Number){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more shared data type header file name than";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     shared data types! Plase check data type declerations";
+                   std::cerr << "\n     There are more shared data type header file name than";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     shared data types! Plase check data type declerations";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+                }
+                else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+                }
+
              }
 
              if(this->Record_Line_Number_for_Total_Thread_Number > 1){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more than one record about total thread number !";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check total thread number decleration";
+                   std::cerr << "\n     There are more than one record about total thread number !";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Plase check total thread number decleration";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+                }
+                else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+                }
              }
 
              if(this->Main_File_Name_Record_Number > 1){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more than one record about Main file name !";
+                    this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check main file name decleration";
+                    std::cerr << "\n     There are more than one record about Main file name !";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check main file name decleration";
 
-                this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                       *this->error_status = true;
+
+                        rt_value = true;
+
+                       return rt_value; 
+                }
              }
+
 
              if(this->Executable_File_Name_Record_Number > 1){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     There are more than one record about the Executable file name !";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     Plase check Executable file name decleration";
+                    std::cerr << "\n     There are more than one record about the Executable file name !";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check Executable file name decleration";
 
-                this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                    *this->error_status = true;
+
+                    rt_value = true;
+
+                    return rt_value; 
+                }
              }
 
              if((this->Source_File_Location_Number != 0) && (this->Source_File_Number == 0)){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     A location for a source file readed but there is no source file name definition !";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     Plase check source file name declerations carefully";
+                    std::cerr << "\n     A location for a source file readed but there is no source file name definition !";
 
-                 std::cerr << "\n\n     If the definition of source file location is unnecessary, place delete it ..";
+                    std::cerr << "\n\n     Plase check source file name declerations carefully";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     If the definition of source file location is unnecessary, place delete it ..";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                    *this->error_status = true;
+
+                    rt_value = true;
+
+                    return rt_value; 
+                 }
              }
+
 
              if((this->Source_File_Location_Number == 0) && (this->Source_File_Number != 0)){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     A source file readed but there is no information about the location of the file!";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     Plase check source file name declerations carefully..";
+                    std::cerr << "\n     A source file readed but there is no information about the location of the file!";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Plase check source file name declerations carefully..";
 
-                 std::cerr << "\n";
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 std::cerr << "\n\n     [ HELP ] - Source file information can not be received without any decleration";
+                    std::cerr << "\n";
 
-                 std::cerr << "\n\n                about the file locations. The program does not search the location of ";
+                    std::cerr << "\n\n     [ HELP ] - Source file information can not be received without any decleration";
 
-                 std::cerr << "\n\n                the file. Therefore, it needs the exact path of the file. But,";
+                    std::cerr << "\n\n                about the file locations. The program does not search the location of ";
 
-                 std::cerr << "\n\n                the decleration block of the source file locations is empty ";
+                    std::cerr << "\n\n                the file. Therefore, it needs the exact path of the file. But,";
 
-                 std::cerr << "\n";
+                    std::cerr << "\n\n                the decleration block of the source file locations is empty ";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value; 
+                 }
              }
           }
           else{
 
-                this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-                std::cerr << "\n\n   Descriptor file name can not readed ..";
+                  this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n   The process will be interrupted ..";
+                  std::cerr << "\n\n   Descriptor file name can not readed ..";
 
-                this->Print_End_of_Program();
+                  std::cerr << "\n\n   The process will be interrupted ..";
 
-                exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                    *this->error_status = true;
+
+                    rt_value = true;
+
+                    return rt_value;
+               }
           }
       }
       else{
 
-              this->Print_Read_Error_Information();
+              if(!this->gui_read_status){
 
-              std::cerr << "\n   Descriptor file directory path can not readed ..";
+                 this->Print_Read_Error_Information();
 
-              std::cerr << "\n\n   The process will be interrupted ..";
+                 std::cerr << "\n   Descriptor file directory path can not readed ..";
 
-              this->Print_End_of_Program();
+                 std::cerr << "\n\n   The process will be interrupted ..";
 
-              exit(1);
+                 this->Print_End_of_Program();
+
+                 exit(1);
+              }
+              else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+              }
+    }
+
+    return rt_value;
+ }
+
+ bool Descriptor_File_Data_Collector::Determine_Record_Lines(){
+
+      bool rt_value = false;
+
+      if(!this->Determine_Data_Record_Area("Header_File_Locations","}")){
+
+         this->Include_Directory_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Include_Directory_Record_Area[1] = this->Data_Record_EndLine;
       }
+      else{
+
+           rt_value = true;
+
+           return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Source_File_Locations","}")){
+
+         this->Source_File_Locations_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Source_File_Locations_Record_Area[1] = this->Data_Record_EndLine;
+
+      }
+      else{
+
+           rt_value = true;
+
+           return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Library_Locations","}")){
+
+          this->Library_Directories_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Library_Directories_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+           rt_value = true;
+
+           return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Header_File_Names","}")){
+
+         this->Header_File_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Header_File_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+         rt_value = true;
+
+         return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Source_File_Names","}")){
+
+          this->Source_File_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Source_File_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+      if(!this->Determine_Data_Record_Area("Library_Names","}")){
+
+         this->Library_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Library_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Main_File_Name","}")){
+
+          this->Main_File_Name_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Main_File_Name_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Project_Executable_File_Name","}")){
+
+         this->Executable_File_Name_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Executable_File_Name_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Class_Header_File_Names","}")){
+
+          this->Inter_Thread_Class_Header_File_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Inter_Thread_Class_Header_File_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Class_Names","}")){
+
+          this->Class_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Class_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+          
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Class_Instance_Names","}")){
+
+         this->Class_Instance_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Class_Instance_Record_Area[1] = this->Data_Record_EndLine;
+
+      }
+      else{
+        
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Data_Types","}")){
+
+          this->Shared_Data_Types_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Shared_Data_Types_Record_Area[1] = this->Data_Record_EndLine;
+
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Data_Type_Header_File_Names","}")){
+
+          this->Shared_Data_Types_Include_Files_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Shared_Data_Types_Include_Files_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Inter_Thread_Data_Type_Pointer_Names","}")){
+
+          this->Shared_Data_Type_Pointer_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Shared_Data_Type_Pointer_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Construction_Point","}")){
+
+          this->Supervisor_Class_Construction_Point_Record_Area[0] = this->Data_Record_StartLine;
+
+          this->Supervisor_Class_Construction_Point_Record_Area[1] = this->Data_Record_EndLine;
+
+      }
+      else{
+
+          rt_value = true;
+
+          return rt_value;  
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Server_Class_Name","}")){
+
+         this->Supervisor_Class_Name_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Supervisor_Class_Name_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+         rt_value = true;
+
+         return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Thread_Number","}")){
+
+         this->Thread_Numbers_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Thread_Numbers_Record_Area[1] = this->Data_Record_EndLine;
+
+      }
+      else{
+
+         rt_value = true;
+
+         return rt_value;
+      }
+
+
+
+      if(!this->Determine_Data_Record_Area("Thread_Function_Names","}")){
+
+         this->Thread_Names_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Thread_Names_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+         rt_value = true;
+
+         return rt_value;
+      }
+
+
+      if(!this->Determine_Data_Record_Area("Namespace","}")){
+   
+         this->Namespace_Record_Area[0] = this->Data_Record_StartLine;
+
+         this->Namespace_Record_Area[1] = this->Data_Record_EndLine;
+      }
+      else{
+
+         rt_value = true;
+
+         return rt_value;  
+      }
+
+      return  rt_value;
  }
 
- void Descriptor_File_Data_Collector::Determine_Record_Lines(){
+ bool Descriptor_File_Data_Collector::Determine_Data_Record_Area(const char * Start_Point, const char * End_Point){
 
-      this->Determine_Data_Record_Area("Header_File_Locations","}");
-
-      this->Include_Directory_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Include_Directory_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Source_File_Locations","}");
-
-      this->Source_File_Locations_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Source_File_Locations_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Library_Locations","}");
-
-      this->Library_Directories_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Library_Directories_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Header_File_Names","}");
-
-      this->Header_File_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Header_File_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Source_File_Names","}");
-
-      this->Source_File_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Source_File_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Library_Names","}");
-
-      this->Library_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Library_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Main_File_Name","}");
-
-      this->Main_File_Name_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Main_File_Name_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Project_Executable_File_Name","}");
-
-      this->Executable_File_Name_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Executable_File_Name_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Class_Header_File_Names","}");
-
-      this->Inter_Thread_Class_Header_File_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Inter_Thread_Class_Header_File_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Class_Names","}");
-
-      this->Class_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Class_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Class_Instance_Names","}");
-
-      this->Class_Instance_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Class_Instance_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Data_Types","}");
-
-      this->Shared_Data_Types_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Shared_Data_Types_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Data_Type_Header_File_Names","}");
-
-      this->Shared_Data_Types_Include_Files_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Shared_Data_Types_Include_Files_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Inter_Thread_Data_Type_Pointer_Names","}");
-
-      this->Shared_Data_Type_Pointer_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Shared_Data_Type_Pointer_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Construction_Point","}");
-
-      this->Supervisor_Class_Construction_Point_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Supervisor_Class_Construction_Point_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Server_Class_Name","}");
-
-      this->Supervisor_Class_Name_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Supervisor_Class_Name_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Thread_Number","}");
-
-      this->Thread_Numbers_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Thread_Numbers_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Thread_Function_Names","}");
-
-      this->Thread_Names_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Thread_Names_Record_Area[1] = this->Data_Record_EndLine;
-
-      this->Determine_Data_Record_Area("Namespace","}");
-
-      this->Namespace_Record_Area[0] = this->Data_Record_StartLine;
-
-      this->Namespace_Record_Area[1] = this->Data_Record_EndLine;
- }
-
- void Descriptor_File_Data_Collector::Determine_Data_Record_Area(const char * Start_Point, const char * End_Point){
+      bool rt_value = false;
 
       /* If a file or directory includes a name of description such as the word Namespace_Record_Area
 
@@ -713,20 +1096,33 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
       if(!Start_Line_Find_Condition){
 
-          this->Print_Read_Error_Information();
+          if(!this->gui_read_status){
 
-          std::cerr << "\n\n      Start Brace location can not determined for";
+             this->Print_Read_Error_Information();
 
-          std::cerr << " [" << Start_Point << "]" << " definition..!";
+             std::cerr << "\n\n      Start Brace location can not determined for";
 
-          std::cerr << "\n\n      Place check definition, Process will be interrupted";
+             std::cerr << " [" << Start_Point << "]" << " definition..!";
 
-          std::cerr << "\n\n      Press Enter..";
+             std::cerr << "\n\n      Place check definition, Process will be interrupted";
 
-          std::cerr << "\n\n";
+             std::cerr << "\n\n      Press Enter..";
 
-          exit(1);
+             std::cerr << "\n\n";
+
+             exit(1);
+          }
+          else{
+
+                *this->error_status = true;
+
+                rt_value = true;
+
+                return rt_value;
+          }
       }
+
+      return rt_value;
  }
 
  void Descriptor_File_Data_Collector::ReadConstString(const char * ConstString){
@@ -854,6 +1250,8 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
       Start_Point = this->Thread_Names_Record_Area[0];
 
       End_Point   = this->Thread_Names_Record_Area[1];
+
+      
 
       this->Thread_Function_Number = this->Determine_Record_Number(Start_Point,End_Point);
 
@@ -1019,6 +1417,8 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
  bool Descriptor_File_Data_Collector::Check_Descriptor_File_Name(const char * FileName){
 
+      bool rt_value = false;
+
       char true_name [] = "Project_Descriptor_File.txt";
 
 
@@ -1035,21 +1435,34 @@ void Descriptor_File_Data_Collector::Receive_Descriptor_File_Name(char * Descrip
 
       if(!this->CharacterOperations.CompareString(file_name,true_name)){
 
-         std::cout << "\n\n ERROR:";
+         if(!this->gui_read_status){
+  
+           std::cout << "\n\n ERROR:";
 
-         std::cout << "\n\n The name of the descriptor file must be \"Project_Descriptor_File.txt\"";
+           std::cout << "\n\n The name of the descriptor file must be \"Project_Descriptor_File.txt\"";
 
-         std::cout << "\n\n Different file names can not be recognize as descriptor file.";
+           std::cout << "\n\n Different file names can not be recognize as descriptor file.";
 
-         std::cout << "\n\n";
+           std::cout << "\n\n";
 
-         std::cout << "\n\n";
+           std::cout << "\n\n";
 
-         this->is_descriptor_file_name_true = false;
+           this->is_descriptor_file_name_true = false;
 
-         delete [] file_name;
+           delete [] file_name;
 
-         exit(0);
+           exit(0);
+         }
+         else{
+
+              *this->error_status = true;
+
+              rt_value = true;
+
+              this->is_descriptor_file_name_true = false;
+
+             delete [] file_name;
+         }
       }
       else{
 

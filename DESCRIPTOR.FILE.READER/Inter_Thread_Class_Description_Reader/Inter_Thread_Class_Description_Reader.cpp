@@ -93,6 +93,17 @@ void Inter_Thread_Class_Description_Reader::Clear_Dynamic_Memory(){
       }
 }
 
+void Inter_Thread_Class_Description_Reader::Receive_Read_Error_Status(bool * status){
+
+     this->error_status = status;
+}
+
+void Inter_Thread_Class_Description_Reader::Receive_Gui_Read_Status(bool * status){
+
+    this->gui_read_status = status;
+}
+
+
 void Inter_Thread_Class_Description_Reader::Receive_Data_Collector(Descriptor_File_Data_Collector * Pointer){
 
      this->Memory_Allocation_Started = true;
@@ -131,30 +142,51 @@ void Inter_Thread_Class_Description_Reader::Set_Informations_Comes_From_Data_Col
 
      this->Inter_Thread_Class_Header_File_Names_Number =
 
-                this->Data_Collector_Pointer->Inter_Thread_Class_Header_File_Names_Number;
+         this->Data_Collector_Pointer->Inter_Thread_Class_Header_File_Names_Number;
 }
 
-void Inter_Thread_Class_Description_Reader::Read_Inter_Thread_Class_Descriptions(){
+bool Inter_Thread_Class_Description_Reader::Read_Inter_Thread_Class_Descriptions(){
 
      this->Memory_Allocation_Started = true;
 
      this->Memory_Delete_Condition = false;
 
+     bool rt_value = false;
+
      this->Set_Informations_Comes_From_Data_Collector();
 
      if(this->Inter_Thread_Class_Number > 0){
 
-        this->Receive_Inter_Thread_Class_Header_File_Names();
+        if(this->Receive_Inter_Thread_Class_Header_File_Names()){
 
-        this->Receive_Inter_Thread_Class_Instance_Names();
+           rt_value = true;
 
-        this->Receive_Inter_Thread_Class_Names();
+           return rt_value;
+        };
+
+        if(this->Receive_Inter_Thread_Class_Instance_Names()){
+
+           rt_value = true;
+
+           return rt_value;
+        }
+
+        if(this->Receive_Inter_Thread_Class_Names()){
+
+           rt_value = true;
+
+           return rt_value;
+        }
      }
+
+     return rt_value;
 }
 
-void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_File_Names(){
+bool Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_File_Names(){
 
      this->Memory_Allocation_Started = true;
+
+     bool rt_value = false;
 
      if(this->Inter_Thread_Class_Header_File_Names_Number > 0){
 
@@ -168,103 +200,161 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
             if(this->Check_Empty_Decleration(String_Line)){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                  this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                  std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-               std::cerr << "\n\n     but there is no decleration at that line. ";
+                  std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-               std::cerr << "\n\n     Please check \"Inter_Thread_Class_Header_File_Names\" description.";
+                  std::cerr << "\n\n     but there is no decleration at that line. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                  std::cerr << "\n\n     Please check \"Inter_Thread_Class_Header_File_Names\" description.";
 
-               this->Print_End_of_Program();
+                  std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                    *this->error_status = true;
+
+                    rt_value = true;
+
+                    return rt_value;
+               }
             }
 
             int Class_Number = this->Number_Processor_Pointer->Read_Record_Number_From_String_Line(String_Line);
 
             if(Class_Number == -1){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
+                   std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-               std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
+                   std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
 
-               std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                   std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+               }
+               else{
+
+                   *this->error_status = true;
+
+                   rt_value = true;
+
+                   return rt_value;
+               }
             }
 
             if(Class_Number == -2){
 
-               this->Print_Read_Error_Information();
+               if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                   this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
+                   std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-               std::cerr << "\n\n     Class number data can not be readed. ";
+                   std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
 
-               std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                   std::cerr << "\n\n     Class number data can not be readed. ";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-               this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
-             }
+                   this->Print_End_of_Program();
 
-             this->Header_File_Data_Type_Pointer[index_counter].Class_Number = Class_Number;
+                   exit(1);
+               }
+               else{
 
-             int File_Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
+                   *this->error_status = true;
 
-             if(File_Location_Number == -1){
+                   rt_value = true;
 
-                this->Print_Read_Error_Information();
+                   return rt_value;
+               }
+            }
 
-                std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-                std::cerr << "\n\n     There is an empy brace in header file location number decleration.";
+            this->Header_File_Data_Type_Pointer[index_counter].Class_Number = Class_Number;
 
-                std::cerr << "\n\n     Data can not be readed. Please check description.";
+            int File_Location_Number = this->Number_Processor_Pointer->Read_Second_Record_Number_From_String_Line(String_Line);
 
-                std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+               
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+            if(File_Location_Number == -1){
 
-                this->Print_End_of_Program();
+               if(!this->gui_read_status){
 
-                exit(1);
+                  this->Print_Read_Error_Information();
+
+                  std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+
+                  std::cerr << "\n\n     There is an empy brace in header file location number decleration.";
+
+                  std::cerr << "\n\n     Data can not be readed. Please check description.";
+
+                  std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+
+                  std::cerr << "\n\n     The process will be interrupted ..";
+
+                  this->Print_End_of_Program();
+
+                  exit(1);
+               }
+               else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;
+
+                      return rt_value;
+               }
              }
 
              if(File_Location_Number == -2){
 
-               this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-               std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                    this->Print_Read_Error_Information();
 
-               std::cerr << "\n\n     there is an open brace or missing number in header file location number -.";
+                    std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-               std::cerr << "\n\n     descriptions. Data can not be readed. Please check description.";
+                    std::cerr << "\n\n     there is an open brace or missing number in header file location number -.";
 
-               std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                    std::cerr << "\n\n     descriptions. Data can not be readed. Please check description.";
 
-               std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-               this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-               exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                }
+                else{
+
+                      *this->error_status = true;
+
+                      rt_value = true;        
+
+                      return rt_value;
+                }
              }
 
              bool Wrong_Include_Directory_Set_Condition = true;
@@ -282,23 +372,34 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
              if(Wrong_Include_Directory_Set_Condition){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     header file location can not be readed correctly.";
+                   std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-                std::cerr << "\n\n     The number which indicates file location is wrong.";
+                   std::cerr << "\n\n     header file location can not be readed correctly.";
 
-                std::cerr << "\n\n     There is no such a location in the description of Header_File_Locations.";
+                   std::cerr << "\n\n     The number which indicates file location is wrong.";
 
-                std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Header_File_Names description.";
+                   std::cerr << "\n\n     There is no such a location in the description of Header_File_Locations.";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check Inter_Thread_Data_Type_Header_File_Names description.";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+                }
+                else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;
+
+                     return rt_value;
+                }
              }
 
              for(int k=0;k<this->Include_Directory_Number;k++){
@@ -343,21 +444,32 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
                 if(!is_that_file_exist){
 
-                    this->Print_Read_Error_Information();
+                    if(!this->gui_read_status){
 
-                    std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
+                        this->Print_Read_Error_Information();
 
-                    std::cerr << "\n\n     there is no a file with name \"" << File_Name << "\" in directory -";
+                        std::cerr << "\n     In description of \"Inter_Thread_Class_Header_File_Names\",";
 
-                    std::cerr << "\n\n     \"" << File_Location << "\"";
+                        std::cerr << "\n\n     there is no a file with name \"" << File_Name << "\" in directory -";
 
-                    std::cerr << "\n\n     Please check \"Inter_Thread_Class_Header_File_Names\" description.";
+                        std::cerr << "\n\n     \"" << File_Location << "\"";
 
-                    std::cerr << "\n\n     The process will be interrupted ..";
+                        std::cerr << "\n\n     Please check \"Inter_Thread_Class_Header_File_Names\" description.";
 
-                    this->Print_End_of_Program();
+                        std::cerr << "\n\n     The process will be interrupted ..";
 
-                    exit(1);
+                        this->Print_End_of_Program();
+
+                        exit(1);
+                    }
+                    else{
+
+                        *this->error_status = true;
+
+                        rt_value = true;   
+
+                        return rt_value;
+                    }
                 }
               }
 
@@ -366,26 +478,41 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
          if(Header_File_Location_Counter < index_counter){
 
-            this->Print_Read_Error_Information();
+            if(!this->gui_read_status){
 
-            std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+               this->Print_Read_Error_Information();
 
-            std::cerr << "\n\n     The location of some header files can not be determined ..";
+               std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-            std::cerr << "\n\n     Plase check class header file location declerations!";
+               std::cerr << "\n\n     The location of some header files can not be determined ..";
 
-            std::cerr << "\n\n     The process will be interrupted ..";
+               std::cerr << "\n\n     Plase check class header file location declerations!";
 
-            this->Print_End_of_Program();
+               std::cerr << "\n\n     The process will be interrupted ..";
 
-            exit(1);
+               this->Print_End_of_Program();
+
+               exit(1);
+            }
+            else{
+
+                 *this->error_status = true;
+
+                 rt_value = true;  
+
+                 return rt_value;
+            }
          }
      }
+
+     return rt_value;
  }
 
- void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Instance_Names(){
+ bool Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Instance_Names(){
 
       this->Memory_Allocation_Started = true;
+
+      bool rt_value = false;
 
       if(this->Inter_Thread_Class_Number){
 
@@ -407,59 +534,92 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
              if(Class_Number == -1){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
+                   std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
 
-                std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
+                   std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
 
-                std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                   std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
-              }
+                   this->Print_End_of_Program();
+
+                  exit(1);
+                }
+                else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                }
+             }
 
               if(Class_Number == -2){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
+                    std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
 
-                 std::cerr << "\n\n     Class number data can not be readed. ";
+                    std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
 
-                 std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                    std::cerr << "\n\n     Class number data can not be readed. ";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               if(this->Check_Empty_Decleration(String_Line)){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
+                     this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                     std::cerr << "\n     In description of \"Inter_Thread_Class_Instance_Names\",";
 
-                 std::cerr << "\n\n     but there is no decleration at that line. ";
+                     std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-                 std::cerr << "\n\n     Please check \"Inter_Thread_Class_Instance_Names\" description.";
+                     std::cerr << "\n\n     but there is no decleration at that line. ";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                     std::cerr << "\n\n     Please check \"Inter_Thread_Class_Instance_Names\" description.";
 
-                 this->Print_End_of_Program();
+                     std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                     this->Print_End_of_Program();
+
+                     exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               this->Class_Instance_Data_Type_Pointer[index_counter].Class_Number = Class_Number;
@@ -467,11 +627,16 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
               index_counter++;
           }
       }
+
+      return rt_value;
  }
 
- void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Names(){
+ bool Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Names(){
 
       this->Memory_Allocation_Started = true;
+
+      bool rt_value = false;
+
 
       if(this->Inter_Thread_Class_Number){
 
@@ -510,59 +675,92 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
              if(this->Check_Empty_Decleration(String_Line)){
 
-                this->Print_Read_Error_Information();
+                if(!this->gui_read_status){
 
-                std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
+                   this->Print_Read_Error_Information();
 
-                std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
+                   std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
 
-                std::cerr << "\n\n     but there is no decleration at that line. ";
+                   std::cerr << "\n\n     there is an empty decleration. There is a decleration number";
 
-                std::cerr << "\n\n     Please check \"Inter_Thread_Class_Names\" description.";
+                   std::cerr << "\n\n     but there is no decleration at that line. ";
 
-                std::cerr << "\n\n     The process will be interrupted ..";
+                   std::cerr << "\n\n     Please check \"Inter_Thread_Class_Names\" description.";
 
-                this->Print_End_of_Program();
+                   std::cerr << "\n\n     The process will be interrupted ..";
 
-                exit(1);
+                   this->Print_End_of_Program();
+
+                   exit(1);
+                }
+                else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                }
               }
 
               if(Class_Number == -1){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
+                    std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
 
-                 std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
+                    std::cerr << "\n\n     there is an Empty Brace in class number descriptions.";
 
-                 std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                    std::cerr << "\n\n     Class number data can not be readed. (The leak of number in the brace)";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               if(Class_Number == -2){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
+                     this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
+                     std::cerr << "\n     In description of \"Inter_Thread_Class_Names\",";
 
-                 std::cerr << "\n\n     Class number data can not be readed. ";
+                     std::cerr << "\n\n     there is an open brace or missing number in class number descriptions.";
 
-                 std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
+                     std::cerr << "\n\n     Class number data can not be readed. ";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                     std::cerr << "\n\n     Please check Inter_Thread_Class_Header_File_Names description.";
 
-                 this->Print_End_of_Program();
+                     std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                     this->Print_End_of_Program();
+
+                     exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               /*  Inter_Thread_Class_Header_File_Names record start point  */
@@ -580,25 +778,36 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
               if(Wrong_Class_Number_for_header_file){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     There is a class numbers mistach between Inter_Thread_Class_Names -";
+                    std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-                 std::cerr << "\n\n     description and Inter_Thread_Class_Header_File_Names description.";
+                    std::cerr << "\n\n     There is a class numbers mistach between Inter_Thread_Class_Names -";
 
-                 std::cerr << "\n\n     There is no such a class which descripted with this number in -";
+                    std::cerr << "\n\n     description and Inter_Thread_Class_Header_File_Names description.";
 
-                 std::cerr << "\n\n     \"Inter_Thread_Class_Names\" description.";
+                    std::cerr << "\n\n     There is no such a class which descripted with this number in -";
 
-                 std::cerr << "\n\n     Class numbers can not be readed. Please check declerations.";
+                    std::cerr << "\n\n     \"Inter_Thread_Class_Names\" description.";
 
-                 std::cerr << "\n\n     The process will be interrupted ..";
+                    std::cerr << "\n\n     Class numbers can not be readed. Please check declerations.";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     The process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               Class_Number_List[index_counter] = Class_Number;
@@ -607,19 +816,30 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
               if(Number_Repitation){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+                    this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     The same class number readed more than ones time ..";
+                    std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-                 std::cerr << "\n\n     Please check class number declerations";
+                    std::cerr << "\n\n     The same class number readed more than ones time ..";
 
-                 std::cerr << "\n\n     Process will be interrupted ..";
+                    std::cerr << "\n\n     Please check class number declerations";
 
-                 this->Print_End_of_Program();
+                    std::cerr << "\n\n     Process will be interrupted ..";
 
-                 exit(1);
+                    this->Print_End_of_Program();
+
+                    exit(1);
+                 }
+                 else{
+
+                     *this->error_status = true;
+
+                     rt_value = true;  
+
+                     return rt_value;
+                 }
               }
 
               this->Class_Data_Type_Pointer[index_counter].Class_Number = Class_Number;
@@ -632,21 +852,32 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
                      if(Header_File_Number_holder[Class_Number] != 0){
 
-                        this->Print_Read_Error_Information();
+                        if(!this->gui_read_status){
 
-                        std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+                            this->Print_Read_Error_Information();
 
-                        std::cerr << "\n\n     Some of the header files has same class number .";
+                            std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-                        std::cerr << "\n\n     Each header file must have different class number ..";
+                            std::cerr << "\n\n     Some of the header files has same class number .";
 
-                        std::cerr << "\n\n     Please check header files declerations";
+                            std::cerr << "\n\n     Each header file must have different class number ..";
 
-                        std::cerr << "\n\n     The process will be interrupted ..";
+                            std::cerr << "\n\n     Please check header files declerations";
 
-                        this->Print_End_of_Program();
+                            std::cerr << "\n\n     The process will be interrupted ..";
 
-                        exit(1);
+                            this->Print_End_of_Program();
+
+                           exit(1);
+                        }
+                        else{
+
+                              *this->error_status = true;
+
+                              rt_value = true;  
+
+                              return rt_value;
+                        }
                      }
 
                      Header_File_Number_holder[Class_Number] = 1;
@@ -687,27 +918,38 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
               if(Wrong_Class_Instance_Names_Read){
 
-                 this->Print_Read_Error_Information();
+                 if(!this->gui_read_status){
 
-                 std::cerr << "\n     In \"Inter_Thread_Class_Names\" description,";
+                     this->Print_Read_Error_Information();
 
-                 std::cerr << "\n\n     there are class numbers mistach between Inter_Thread_Class_Names -";
+                     std::cerr << "\n     In \"Inter_Thread_Class_Names\" description,";
 
-                 std::cerr << "\n\n     description and \"Inter_Thread_Class_Instance_Names\" description.";
+                     std::cerr << "\n\n     there are class numbers mistach between Inter_Thread_Class_Names -";
 
-                 std::cerr << "\n\n     Class number in \"Inter_Thread_Class_Instance_Names\" is wrong.";
+                     std::cerr << "\n\n     description and \"Inter_Thread_Class_Instance_Names\" description.";
 
-                 std::cerr << "\n\n     There is no class which described with this number in -";
+                     std::cerr << "\n\n     Class number in \"Inter_Thread_Class_Instance_Names\" is wrong.";
 
-                 std::cerr << "\n\n     Inter_Thread_Class_Names description.";
+                     std::cerr << "\n\n     There is no class which described with this number in -";
 
-                 std::cerr << "\n\n     Class numbers can not be readed correctly.";
+                     std::cerr << "\n\n     Inter_Thread_Class_Names description.";
 
-                 std::cerr << "\n\n     Please check declerations. The process will be interrupted ..";
+                     std::cerr << "\n\n     Class numbers can not be readed correctly.";
 
-                 this->Print_End_of_Program();
+                     std::cerr << "\n\n     Please check declerations. The process will be interrupted ..";
 
-                 exit(1);
+                     this->Print_End_of_Program();
+
+                     exit(1);
+                 }
+                 else{
+
+                        *this->error_status = true;
+
+                        rt_value = true;  
+
+                        return rt_value;
+                 }
               }
 
               for(int k=0;k<Total_Class_Number;k++){
@@ -716,21 +958,32 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
                      if(Class_Instance_Name_Number_Holder[Class_Number] != 0){
 
-                        this->Print_Read_Error_Information();
+                        if(!this->gui_read_status){
 
-                        std::cerr << "\n     In \"Inter_Thread_Class_Instance_Names\" description,";
+                           this->Print_Read_Error_Information();
 
-                        std::cerr << "\n\n     Some of the class instance name has the same class number .";
+                           std::cerr << "\n     In \"Inter_Thread_Class_Instance_Names\" description,";
 
-                        std::cerr << "\n\n     Each class instance name must have different class number ..";
+                           std::cerr << "\n\n     Some of the class instance name has the same class number .";
 
-                        std::cerr << "\n\n     Please check class instance name declerations";
+                           std::cerr << "\n\n     Each class instance name must have different class number ..";
 
-                        std::cerr << "\n\n     The process will be interrupted ..";
+                           std::cerr << "\n\n     Please check class instance name declerations";
 
-                        this->Print_End_of_Program();
+                           std::cerr << "\n\n     The process will be interrupted ..";
 
-                        exit(1);
+                           this->Print_End_of_Program();
+
+                           exit(1);
+                        }
+                        else{
+
+                             *this->error_status = true;
+
+                             rt_value = true;  
+
+                             return rt_value;
+                        }
                      }
 
                      Class_Instance_Name_Counter++;
@@ -753,44 +1006,66 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
         if(Class_Header_File_Counter < Total_Class_Number){
 
-           this->Print_Read_Error_Information();
+           if(!this->gui_read_status){
 
-           std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+              this->Print_Read_Error_Information();
 
-           std::cerr << "\n\n     Header file number - Class number mismach !.";
+              std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-           std::cerr << "\n\n     Class Numbers of header files can not read correctly.";
+              std::cerr << "\n\n     Header file number - Class number mismach !.";
 
-           std::cerr << "\n\n     Each header file name must include a true class number ..";
+              std::cerr << "\n\n     Class Numbers of header files can not read correctly.";
 
-           std::cerr << "\n\n     Please check header file name declerations";
+              std::cerr << "\n\n     Each header file name must include a true class number ..";
 
-           std::cerr << "\n\n     The process will be interrupted ..";
+              std::cerr << "\n\n     Please check header file name declerations";
 
-           this->Print_End_of_Program();
+              std::cerr << "\n\n     The process will be interrupted ..";
 
-           exit(1);
+              this->Print_End_of_Program();
+
+              exit(1);
+           }
+           else{
+               
+                  *this->error_status = true;
+
+                  rt_value = true;  
+
+                  return rt_value;
+           }
         }
 
         if(Class_Instance_Name_Counter < Total_Class_Number){
 
-           this->Print_Read_Error_Information();
+           if(!this->gui_read_status){
 
-           std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
+              this->Print_Read_Error_Information();
 
-           std::cerr << "\n\n     Class instance number - Class number mismach !.";
+              std::cerr << "\n     In \"Inter_Thread_Class_Header_File_Names\" description,";
 
-           std::cerr << "\n\n     The class Numbers of the class instances can not read correctly.";
+              std::cerr << "\n\n     Class instance number - Class number mismach !.";
 
-           std::cerr << "\n\n     Each class instance name must include a true class number ..";
+              std::cerr << "\n\n     The class Numbers of the class instances can not read correctly.";
 
-           std::cerr << "\n\n     Please class instance name declerations";
+              std::cerr << "\n\n     Each class instance name must include a true class number ..";
 
-           std::cerr << "\n\n     The process will be interrupted ..";
+              std::cerr << "\n\n     Please class instance name declerations";
 
-           this->Print_End_of_Program();
+              std::cerr << "\n\n     The process will be interrupted ..";
 
-           exit(1);
+              this->Print_End_of_Program();
+
+              exit(1);
+           }
+           else{
+
+                  *this->error_status = true;
+
+                  rt_value = true;  
+
+                  return rt_value;
+           }
         }
 
 
@@ -826,6 +1101,8 @@ void Inter_Thread_Class_Description_Reader::Receive_Inter_Thread_Class_Header_Fi
 
         delete [] Class_Instance_Name_Number_Holder;
       }
+
+      return rt_value;
 }
 
 void Inter_Thread_Class_Description_Reader::Clear_Pointer_Memory(char ** Pointer){

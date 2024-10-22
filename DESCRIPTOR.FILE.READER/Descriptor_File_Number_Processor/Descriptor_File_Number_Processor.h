@@ -14,6 +14,8 @@ public:
   Descriptor_File_Number_Processor();
   Descriptor_File_Number_Processor(const Descriptor_File_Number_Processor & orig);
   virtual ~Descriptor_File_Number_Processor();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
   int Read_Record_Number_From_String_Line(char * String);
   int Read_Second_Record_Number_From_String_Line(char * String);
   int Get_Read_Operation_Start_Point(char * String);
@@ -23,6 +25,8 @@ public:
 private:
   CharOperator CharacterOperations;
   IntToCharTranslater Translater;
+  bool * error_status;
+  bool * gui_read_status;
   bool Memory_Delete_Condition;
   int Record_Number;
   int Read_Operation_Start_Point;

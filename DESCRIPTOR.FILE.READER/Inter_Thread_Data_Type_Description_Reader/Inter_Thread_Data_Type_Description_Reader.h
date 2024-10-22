@@ -44,17 +44,19 @@ public:
   void Receive_Initializer(Descriptor_File_Reader_Initializer * Pointer);
   void Receive_Number_Processor(Descriptor_File_Number_Processor * Pointer);
   void Receive_Include_Directory_Description_Reader(Include_Directory_Description_Reader * Ponter);
-  void Read_Inter_Thread_Data_Type_Descriptions();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_Inter_Thread_Data_Type_Descriptions();
   Shared_Memory_Data_Type  * Get_Shared_Data_Types() const;
   int  Get_Shared_Data_Types_Number() const;
   int  Get_Shared_Data_Types_Include_File_Names_Number() const;
   void Clear_Dynamic_Memory();
 private:
-  void Receive_Shared_Memory_Data_Types_Header_File_Names();
-  void Receive_Shared_Memory_Pointer_Names();
-  void Receive_Shared_Memory_Data_Types();
+  bool Receive_Shared_Memory_Data_Types_Header_File_Names();
+  bool Receive_Shared_Memory_Pointer_Names();
+  bool Receive_Shared_Memory_Data_Types();
   void Set_Informations_Comes_From_Data_Collector();
-  void Receive_Include_Directory();
+  bool Receive_Include_Directory();
   void Clear_Pointer_Memory(char ** Pointer);
   void Print_Read_Error_Information();
   void Print_End_of_Program();
@@ -69,6 +71,8 @@ private:
   Shared_Memory_Header * Shared_Memory_Header_Pointer;
   Include_Directory_Type * Include_Directory_Pointer;
   Shared_Memory_Pointer * Shared_Memory_Pointer_Names_Holder;
+  bool * error_status;
+  bool * gui_read_status;
   int Shared_Data_Types_Header_File_Names_Number;
   int Shared_Data_Types_Number;
   int Include_Directory_Number;

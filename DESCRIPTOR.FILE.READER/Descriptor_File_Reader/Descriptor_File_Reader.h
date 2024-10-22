@@ -27,7 +27,8 @@ public:
  void Receive_Descriptor_File_Directory(char * DescriptorFileDirectory);
  void Receive_Descriptor_File_Name(const char * DescriptorFileName);
  void Receive_Descriptor_File_Name(char * DescriptorFileName);
- void Receive_Descriptor_File_Infomations();
+ bool Receive_Descriptor_File_Infomations();
+ void Receive_Gui_Read_Status(bool status);
  int  Get_Class_Number() const;
  int  Get_Source_File_Location_Number() const;
  int  Get_Source_File_Names_Number() const;
@@ -58,16 +59,18 @@ public:
  char ** Get_Header_File_Paths() const;
  void Clear_Dynamic_Memory();
 private:
- void Receive_Include_Directory_Descriptions();
- void Receive_Source_File_Descriptions();
- void Receive_Header_File_Descriptions();
- void Receive_Library_Descriptions();
- void Receive_Inter_Thread_Class_Names();
- void Receive_Shared_Memory_Data_Types();
- void Receive_Main_File_Descriptions();
- void Remove_Compiler_Output_File();
- void Determine_Newly_Constructed_Include_Directory();
- void Control_Process_Header_Files_Syntax();
+ bool Receive_Include_Directory_Descriptions();
+ bool Receive_Source_File_Descriptions();
+ bool Receive_Header_File_Descriptions();
+ bool Receive_Library_Descriptions();
+ bool Receive_Inter_Thread_Class_Names();
+ bool Receive_Shared_Memory_Data_Types();
+ bool Receive_Main_File_Descriptions();
+ bool Remove_Compiler_Output_File();
+ bool Determine_Newly_Constructed_Include_Directory();
+ bool Control_Process_Header_Files_Syntax();
+ bool error_status;
+ bool gui_read_status;
  Descriptor_File_Data_Collector File_Data_Collector;
  Descriptor_File_Reader_Initializer Reader_Initializer;
  Descriptor_File_Number_Processor Number_Processor;

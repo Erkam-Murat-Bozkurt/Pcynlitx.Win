@@ -12,7 +12,9 @@ public:
   Descriptor_File_Reader_Initializer(const Descriptor_File_Reader_Initializer & orig);
   virtual ~Descriptor_File_Reader_Initializer();
   void Receve_Data_Collector(Descriptor_File_Data_Collector * Data_Collector);
-  void Read_File_Lists();
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
+  bool Read_File_Lists();
   void Clear_Dynamic_Memory();
   int     Get_Thread_Number() const;
   int     Get_Source_File_Number() const;
@@ -55,10 +57,12 @@ private:
   void Receive_Construction_Point();
   void Receive_Supervisor_Class_Name();
   void Receive_Thread_Function_Names();
-  void Receive_Thread_Number();
+  bool Receive_Thread_Number();
   void Receive_Namespace();
   Descriptor_File_Data_Collector * File_Data_Collector;
   IntToCharTranslater Translater;
+  bool * error_status;
+  bool * gui_read_status;
   bool Memory_Delete_Condition;
   bool Memory_Allocation_Started;
   int     Thread_Number;

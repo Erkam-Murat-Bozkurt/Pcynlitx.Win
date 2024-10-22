@@ -17,6 +17,8 @@ public:
   void Receive_Inter_Thread_Class_Data(Class_Data_Type * Data);
   void Receive_Inter_Thread_Data_Type_Data(Shared_Memory_Data_Type * Data);
   void Receive_Construction_Point(char * Construction_Point);
+  void Receive_Read_Error_Status(bool * status);
+  void Receive_Gui_Read_Status(bool * status);
   void Control_Process_Syntax();
   void Clear_Dynamic_Memory();
 private:
@@ -24,6 +26,8 @@ private:
   void Place_Information(char ** Pointer, char * Information, int * index_counter);
   void Determine_Inter_Thread_Class_Informations(Class_Data_Type Class_Data_Holder);
   void Determine_Shared_Data_Type_Informations(Shared_Memory_Data_Type Data_Holder);
+  bool * error_status;
+  bool * gui_read_status;
   MemberFunctionReader FunctionReader;
   bool Memory_Delete_Condition;
   bool Memory_Allocation_Started;
