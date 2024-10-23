@@ -54,7 +54,11 @@ Custom_ProcessOutput(wxFrame *parent, wxWindowID id=wxID_ANY, const wxString & t
 
   void PrintProcessOutput(wxString text);
 
-  bool process_interrrupt_status;
+  bool * library_construction_status;
+
+  Custom_Tree_View_Panel * Dir_List_Manager;
+
+  wxString Construction_Point;
 
   int progress_point;
 
@@ -65,6 +69,7 @@ private:
   void OnClose(wxCloseEvent & ent);
 
   void CloseWindow(wxCommandEvent & event);
+
 
   wxPanel * text_ctrl_panel;
 

@@ -344,10 +344,14 @@ void Process_Execution_Controller::RunLibraryBuilder(Custom_Tree_View_Panel ** D
 
            if(((this->Process_Event_Counter>=2) && (this->Process_Exit_Status == 0))){
 
+              /*
+
               if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
 
                  this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
               }
+
+              */
 
               this->is_library_constructed = true;
            }
@@ -755,6 +759,12 @@ void Process_Execution_Controller::sleep_time_determination(){
 void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
      Custom_ProcessOutput * Process_Output = new Custom_ProcessOutput(this->MainFrame_Pointer,wxID_ANY,title);
+
+     Process_Output->Dir_List_Manager = this->Dir_List_Manager;
+
+     Process_Output->library_construction_status = &this->is_library_constructed;
+
+     Process_Output->Construction_Point = this->Construction_Point;
 
      Process_Output->SetSize(Process_Output->FromDIP(wxSize(750,600)));
 

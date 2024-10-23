@@ -90,7 +90,6 @@ private:
   void Enter_Source_File(wxCommandEvent & event);
   void Enter_Library_Name(wxCommandEvent & event);
   void Enter_Namespace(wxCommandEvent & event);
-  void Enter_OpenMP_Support(wxCommandEvent & event);
   void Enter_Construction_Point(wxCommandEvent & event);
   void Enter_Thread_Function_Name(wxCommandEvent & event);
   void Enter_Thread_Number(wxCommandEvent & event);

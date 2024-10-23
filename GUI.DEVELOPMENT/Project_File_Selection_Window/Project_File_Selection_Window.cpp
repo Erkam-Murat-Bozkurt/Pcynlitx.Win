@@ -411,7 +411,7 @@ void Project_File_Selection_Window::Construct_Empty_Project_File(wxCommandEvent 
             
                          wxT("ERROR REPORT:"),wxID_ANY,
                          
-                         wxT("NWINIX PLATFORM OPERATION REPORT"),*this->exclamation_mark_bmp);
+                         wxT("PCYNLITX PLATFORM OPERATION REPORT"),*this->exclamation_mark_bmp);
 
                dial->ShowModal();
 
@@ -427,21 +427,21 @@ void Project_File_Selection_Window::Construct_Empty_Project_File(wxCommandEvent 
 
              *this->Descriptor_File_Selection_Status = false;
 
-                           wxString Message = "\nThere is an error on empty ";
+             wxString Message = "\nThere is an error on empty ";
 
-              Message += "\ndescriptor file construction process";
+             Message += "\ndescriptor file construction process";
 
-              Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,Message,
+             Custom_Message_Dialog * dial = new Custom_Message_Dialog(this,Message,
             
                          wxT("ERROR REPORT:"),wxID_ANY,
                          
                          wxT("NWINIX PLATFORM OPERATION REPORT"),*this->exclamation_mark_bmp);
 
-              dial->SetSize(this->FromDIP(wxSize(620,400)));
+             dial->SetSize(this->FromDIP(wxSize(620,400)));
 
-              dial->ShowModal();
+             dial->ShowModal();
 
-              this->Destroy();
+             this->Destroy();
         }
      }
 }

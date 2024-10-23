@@ -527,10 +527,10 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
                this->Process_Controller.Receive_Descriptor_File_Path(this->Descriptor_File_Path);
 
-               this->Book_Manager->Open_File(this->Descriptor_File_Path);
+               //this->Book_Manager->Open_File(this->Descriptor_File_Path);
 
 
-               this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
+               //this->Description_Recorder.Receive_Text_Control(this->Book_Manager->Get_Selected_Text_Ctrl());
 
                this->Description_Recorder.Receive_Main_Frame_Address(this);
 
@@ -627,7 +627,7 @@ void MainFrame::FileSelect(wxTreeEvent& event)
      }
      else{
 
-            this->Book_Manager->Open_File(Path);
+         this->Book_Manager->Open_File(Path);
      }
 }
 

@@ -189,6 +189,11 @@ void Custom_ProcessOutput::CloseWindow(wxCommandEvent & event){
         event.Skip(false);
 
         this->Destroy();
+
+        if(!this->Dir_List_Manager->Get_Panel_Open_Status()){
+
+            this->Dir_List_Manager->Load_Project_Directory(this->Construction_Point);
+        }
      }
 }
 
