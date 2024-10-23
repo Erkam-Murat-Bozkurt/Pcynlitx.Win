@@ -29,12 +29,13 @@ Project_Descriptions_Printer::Project_Descriptions_Printer(wxFrame *parent, wxWi
    
    long style) : wxFrame(parent,id,title,pos,size,
    
-   wxDEFAULT_FRAME_STYLE | wxSYSTEM_MENU | wxRESIZE_BORDER | wxCAPTION | wxCLOSE_BOX | wxCLIP_CHILDREN | wxSTAY_ON_TOP)
+   wxDEFAULT_FRAME_STYLE | wxSYSTEM_MENU | wxRESIZE_BORDER 
+   
+   | wxCAPTION | wxCLOSE_BOX | wxCLIP_CHILDREN | wxSTAY_ON_TOP)
 {
 
      DestroyCaret(); 
 
-     
      this->log_num =0;
 
      this->Default_Font = new wxFont(10,wxFONTFAMILY_MODERN ,wxFONTSTYLE_NORMAL,
@@ -63,8 +64,6 @@ Project_Descriptions_Printer::Project_Descriptions_Printer(wxFrame *parent, wxWi
 
      this->ClearBackground();
 
-
-
      this->Construct_Text_Panel();
 
      this->Construct_Close_Panel();
@@ -86,34 +85,7 @@ Project_Descriptions_Printer::Project_Descriptions_Printer(wxFrame *parent, wxWi
      this->SetCanFocus(false);
 
      DestroyCaret(); 
-
 }
-
-
-
-Project_Descriptions_Printer::~Project_Descriptions_Printer(){
-
-
-}
-
-
-/*
-void Project_Descriptions_Printer::Receive_Descriptor_File_Directory(char * DescriptorFileDirectory){
-
-     this->Des_Reader.Receive_Descriptor_File_Directory(DescriptorFileDirectory);
-}
-
-
-
-
-void Project_Descriptions_Printer::Receive_Descriptor_File_Name(char * DescriptorFileName){
-
-     this->Des_Reader.Receive_Descriptor_File_Name(DescriptorFileName);
-
-}
-
-*/
-
 
 void Project_Descriptions_Printer::Receive_Descriptor_File_Path(wxString DesPATH){
 
@@ -121,11 +93,9 @@ void Project_Descriptions_Printer::Receive_Descriptor_File_Path(wxString DesPATH
 }
 
 
-
 bool Project_Descriptions_Printer::Read_Descriptions(){
 
      char Project_Descriptor_File_Name [] = "Project_Descriptor_File.txt";
-
 
      size_t Descriptor_File_Name_Size = 0;
 
@@ -159,11 +129,9 @@ bool Project_Descriptions_Printer::Read_Descriptions(){
 
 void Project_Descriptions_Printer::Construct_Text_Panel(){
 
-
      this->scroll_win = new wxScrolledWindow(this,wxID_ANY,wxDefaultPosition,wxSize(950,680));
 
      this->scroll_win->SetBackgroundColour(wxColour(240, 240, 240));
-
 
 
      this->textctrl = new wxTextCtrl(this->scroll_win,wxID_ANY, wxT(""), 
@@ -202,7 +170,6 @@ void Project_Descriptions_Printer::Construct_Text_Panel(){
      this->PostSizeEvent();
 
      this->textctrl->ShowNativeCaret(false);
-
 
      DestroyCaret();
 }

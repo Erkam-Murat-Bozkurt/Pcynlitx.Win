@@ -6,6 +6,7 @@
 #include "Custom_Tree_View_Panel.h"
 #include "Descriptor_File_Reader.h"
 #include "Custom_Message_Dialog.hpp"
+#include "Custom_ProcessOutput.hpp"
 #include <wx\wx.h>
 #include <wx\frame.h>
 #include <wx\panel.h>

@@ -44,7 +44,7 @@ Project_Descriptions_Printer(wxFrame *parent, wxWindowID id=wxID_ANY, const wxSt
    
    long style=wxDEFAULT_FRAME_STYLE | wxSTAY_ON_TOP);
 
-  virtual ~Project_Descriptions_Printer();
+  virtual ~Project_Descriptions_Printer(){};
 
   wxTextCtrl * GetTextControl() const;
 

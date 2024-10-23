@@ -754,22 +754,11 @@ void Process_Execution_Controller::sleep_time_determination(){
 
 void Process_Execution_Controller::Print_Text(wxString std_out, wxString title){
 
-     wxDialog * Succes_Dialog = new wxDialog(this->MainFrame_Pointer,
+     Custom_ProcessOutput * Process_Output = new Custom_ProcessOutput(this->MainFrame_Pointer,wxID_ANY,title);
 
-                             -1,title,wxDefaultPosition,wxSize(950,650));
+     Process_Output->SetSize(Process_Output->FromDIP(wxSize(750,600)));
 
-     Succes_Dialog->Centre(wxBOTH);
-
-
-     wxTextCtrl * Succes_Text = new wxTextCtrl(Succes_Dialog,wxID_ANY,std_out,
-
-                                 wxDefaultPosition,wxSize(950,650), wxTE_MULTILINE | wxTE_LEFT);
-
-     Succes_Text->Centre(wxBOTH);
-
-     Succes_Dialog->ShowWindowModal();
-
-     delete Succes_Text;
+     Process_Output->PrintProcessOutput(std_out);
 }
 
 void Process_Execution_Controller::Print_Error_Stream(wxString title){

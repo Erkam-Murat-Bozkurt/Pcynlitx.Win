@@ -437,22 +437,7 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
 
        this->Thaw();
 
-
-
-       /*
-       wxMessageDialog * dial = new wxMessageDialog(this,this->Descriptor_File_Path);
-
-       dial->ShowModal();
-
-        */
-
-        //wxFileDialog * openFileDialog = new wxFileDialog(this,wxT("Select Project File"));
-
-        //if (openFileDialog->ShowModal() == wxID_OK){
-
         if (this->is_project_file_selected){
-
-            //this->Descriptor_File_Path = openFileDialog->GetPath();
 
             wxDir Dir_Ctrl;
 
@@ -482,14 +467,6 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
             this->Run_Command = "C:\\Program Files\\Pcynlitx\\bin\\Pcynlitx_Kernel.exe "
 
                                 + this->Descriptor_File_Path;
-
-
-       /*
-       wxMessageDialog * dial = new wxMessageDialog(this,this->Run_Command);
-
-       dial->ShowModal();
-
-        */
 
             int Descriptor_File_Name_Size = 0;
 
@@ -565,7 +542,6 @@ void MainFrame::SelectProjectFile(wxCommandEvent & event)
             }
         }
 
-        //delete openFileDialog;
 
         this->Description_Recorder.Receive_Project_File_Selection_Status(this->is_project_file_selected);
      }
